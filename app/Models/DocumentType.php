@@ -77,7 +77,7 @@ class DocumentType extends Model
 
     public function documentCategory(): BelongsTo
     {
-        return $this->belongsTo(documentCategory::class, 'document_category_id', 'id');
+        return $this->belongsTo(DocumentCategory::class, 'document_category_id', 'id');
     }
 
     public function documentTemplates(): HasMany
