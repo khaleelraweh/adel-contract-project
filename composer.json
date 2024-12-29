@@ -21,6 +21,7 @@
         "laravel/ui": "^4.2",
         "livewire/livewire": "^2.12",
         "mindscms/entrust": "^2.6",
+        "mpdf/mpdf": "^8.2",
         "nicolaslopezj/searchable": "^1.13",
         "predis/predis": "^2.2",
         "spatie/laravel-sluggable": "^3.6",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c29cdabd47c5240c916324106e0a419",
+    "content-hash": "1e574bbb83d15d90012a8a960c1c2977",
     "packages": [
         {
             "name": "alkoumi/laravel-hijri-date",
