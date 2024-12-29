@@ -24,8 +24,7 @@
         "nicolaslopezj/searchable": "^1.13",
         "predis/predis": "^2.2",
         "spatie/laravel-sluggable": "^3.6",
-        "spatie/laravel-translatable": "^6.8",
-        "vildanbina/livewire-wizard": "^1.2"
+        "spatie/laravel-translatable": "^6.8"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
