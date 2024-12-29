@@ -11,7 +11,6 @@
         "carlos-meneses/laravel-mpdf": "^2.1",
         "codezero/laravel-unique-translation": "^4.3",
         "cviebrock/eloquent-sluggable": "^9.0",
-        "fruitcake/laravel-cors": "^2.0.5",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^3.8",
         "jantinnerezo/livewire-alert": "^3.0",
