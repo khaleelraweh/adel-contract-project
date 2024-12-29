@@ -201,6 +201,7 @@ return [
     'language'                      =>  'Language',
     'language_ar'                   =>  'Arabic',
     'language_en'                   =>  'English',
+    'language_both'                 =>  'Arabic/English',
     'evaluation'                    =>  'Evaluation',
     'evaluation_normal'             =>  'Normal',
     'evaluation_featured'           =>  'Featured',
@@ -447,9 +448,22 @@ return [
     'document_export_pdf'                                   =>  'Export PDF',
     'document_send_to_email'                                =>  'Send to email',
 
+
+    'document_status'                                       =>  'Document Status',
+    'document_status_draft'                                 =>  'Draft',
+    'document_status_completed'                            =>  'Completed',
+
+    'document_file'                                         =>  'Document File',
+
+    'document_print'                                        =>  'Print',
+    'document_export_pdf'                                   =>  'Export PDF',
+    'document_send_to_email'                                =>  'Send to email',
+
+
     'document_created_at'                                   =>  'Created at',
     'document_created_by'                                   =>  'Created by',
     'document_review'                                       =>  'Document Review',
+
 
 
 

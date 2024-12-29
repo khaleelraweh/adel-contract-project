@@ -212,6 +212,7 @@ return [
     'language'                   =>  'اللغة',
     'language_ar'                =>  'عربي',
     'language_en'                =>  'إنجليزي',
+    'language_both'                 =>  'عربي/إنجليزي',
     'evaluation'             =>  'التقييم',
     'evaluation_normal'      =>  'عادي',
     'evaluation_featured'         =>  'مفضل',
@@ -450,6 +451,22 @@ return [
     'document_text'                                     =>  'محتوى الوثيقة',
 
 
+    'document_status'                                       =>  'حالة الوثيقة',
+    'document_status_draft'                                 =>  'مسودة',
+    'document_status_completed'                            =>  'مكتملة',
+
+    'document_file'                                         =>  'ملف المسودة',
+
+    'document_print'                                        =>  'طباعة',
+    'document_export_pdf'                                   =>  'تصدير الى PDF',
+    'document_send_to_email'                                =>  'إرسال الى بريد',
+
+
+
+
+    'document_created_at'                               =>  'تاريخ الإنشاء',
+    'document_created_by'                               =>  'انشات بواسطة',
+    'document_review'                                   =>  'مراجعة الوثيقة',
 
 
     // --------------- Document Archive  --------------//
