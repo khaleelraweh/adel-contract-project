@@ -189,8 +189,12 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-sm-12 col-md-3 pt-3">
-                                    <label for="doc_type_id"> {{ __('panel.document_type') }} </label>
+                                <div class="col-sm-12 col-md-2 pt-3">
+                                    <label for="doc_type_id">
+                                        {{ __('panel.document_type') }}
+                                    </label>
+                                </div>
+                                <div class="col-sm-12 col-md-10 pt-3">
                                     <select name="doc_type_id" wire:model.defer="doc_type_id" class="form-control">
                                         <option value="">---</option>
                                         <option value="0" {{ old('doc_type_id') == '0' ? 'selected' : null }}>
