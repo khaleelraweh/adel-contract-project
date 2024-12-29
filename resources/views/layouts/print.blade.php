@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.css">
 
     @livewireStyles
-    @include('partial.backend.head')
+    {{-- @include('partial.backend.head') --}}
 
 </head>
 
@@ -24,7 +24,7 @@
         @yield('content')
     </div>
 
-    @include('partial.backend.footer-scripts')
+    {{-- @include('partial.backend.footer-scripts') --}}
     @yield('script')
 </body>
 
