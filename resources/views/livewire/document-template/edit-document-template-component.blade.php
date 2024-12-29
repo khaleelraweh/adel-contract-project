@@ -66,10 +66,13 @@
 
                             <!-- document category -->
                             <div class="row">
-
-                                <div class="col-sm-12 col-md-6   pt-3">
+                                <div class="col-sm-12 col-md-2 pt-3">
                                     <label for="document_category_id" class="text-small text-uppercase">
-                                        {{ __('panel.document_category_name') }} </label>
+                                        {{ __('panel.document_category_name') }}
+                                    </label>
+                                </div>
+
+                                <div class="col-sm-12 col-md-10 pt-3">
                                     <select class="form-control form-control-lg" wire:model="document_category_id">
                                         <option value="">---</option>
                                         @forelse ($document_categories as $document_category)
@@ -83,12 +86,17 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
+                            </div>
 
-                                <div class="col-sm-12  col-md-6 pt-3">
-
+                            <div class="row">
+                                <div class="col-sm-12 col-md-2 pt-3">
                                     <label for="document_type_id" class="text-small text-uppercase">
                                         {{ __('panel.document_type_name') }}
                                     </label>
+                                </div>
+
+                                <div class="col-sm-12 col-md-10 pt-3">
+
                                     <select class="form-control form-control-lg" wire:model="document_type_id">
                                         <option value="">---</option>
                                         @forelse ($document_types as $document_type)
@@ -106,8 +114,12 @@
 
 
                             <div class="row">
-                                <div class="col-sm-12 col-md-9 pt-3">
-                                    <label for="doc_template_name"> {{ __('panel.document_template_name') }} </label>
+                                <div class="col-sm-12 col-md-2 pt-3">
+                                    <label for="doc_template_name"> {{ __('panel.document_template_name') }}
+                                    </label>
+                                </div>
+                                <div class="col-sm-12 col-md-10 pt-3">
+
                                     <input type="text" id="doc_template_name" wire:model="doc_template_name"
                                         name="doc_template_name" value="{{ old('doc_template_name') }}"
                                         class="form-control" placeholder="">
@@ -115,10 +127,13 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
+                            </div>
 
-
-                                <div class="col-sm-12 col-md-3 pt-3">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-2 pt-3">
                                     <label for="language"> {{ __('panel.language') }} </label>
+                                </div>
+                                <div class="col-sm-12 col-md-10 pt-3">
                                     <select name="language" wire:model.defer="language" class="form-control">
                                         <option value="">---</option>
                                         <option value="1" {{ old('language') == '1' ? 'selected' : null }}>
