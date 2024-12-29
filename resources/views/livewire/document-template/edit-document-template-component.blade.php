@@ -62,132 +62,146 @@
                     @method('PATCH')
 
                     <div class="row">
-                        <div class="col-sm-12 col-md-9">
-
-                            <!-- document category -->
-                            <div class="row">
-                                <div class="col-sm-12 col-md-2 pt-3">
-                                    <label for="document_category_id" class="text-small text-uppercase">
-                                        {{ __('panel.document_category_name') }}
-                                    </label>
-                                </div>
-
-                                <div class="col-sm-12 col-md-10 pt-3">
-                                    <select class="form-control form-control-lg" wire:model="document_category_id">
-                                        <option value="">---</option>
-                                        @forelse ($document_categories as $document_category)
-                                            <option value="{{ $document_category->id }}">
-                                                {{ $document_category->doc_cat_name }}
-                                            </option>
-                                        @empty
-                                        @endforelse
-                                    </select>
-                                    @error('document_category_id')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12 col-md-2 pt-3">
-                                    <label for="document_type_id" class="text-small text-uppercase">
-                                        {{ __('panel.document_type_name') }}
-                                    </label>
-                                </div>
-
-                                <div class="col-sm-12 col-md-10 pt-3">
-
-                                    <select class="form-control form-control-lg" wire:model="document_type_id">
-                                        <option value="">---</option>
-                                        @forelse ($document_types as $document_type)
-                                            <option value="{{ $document_type->id }}">
-                                                {{ $document_type->doc_type_name }}</option>
-                                        @empty
-                                        @endforelse
-                                    </select>
-                                    @error('document_type_id')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-sm-12 col-md-2 pt-3">
-                                    <label for="doc_template_name"> {{ __('panel.document_template_name') }}
-                                    </label>
-                                </div>
-                                <div class="col-sm-12 col-md-10 pt-3">
-
-                                    <input type="text" id="doc_template_name" wire:model="doc_template_name"
-                                        name="doc_template_name" value="{{ old('doc_template_name') }}"
-                                        class="form-control" placeholder="">
-                                    @error('doc_template_name')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12 col-md-2 pt-3">
-                                    <label for="language"> {{ __('panel.language') }} </label>
-                                </div>
-                                <div class="col-sm-12 col-md-10 pt-3">
-                                    <select name="language" wire:model.defer="language" class="form-control">
-                                        <option value="">---</option>
-                                        <option value="1" {{ old('language') == '1' ? 'selected' : null }}>
-                                            {{ __('panel.language_ar') }}
-                                        </option>
-                                        <option value="2" {{ old('language') == '2' ? 'selected' : null }}>
-                                            {{ __('panel.language_en') }}
-                                        </option>
-                                        <option value="3" {{ old('language') == '3' ? 'selected' : null }}>
-                                            {{ __('panel.language_both') }}
-                                        </option>
-
-                                    </select>
-                                    @error('language')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
+                        <div class="col-sm-12 col-md-2 pt-3">
+                            <label for="document_category_id" class="text-small text-uppercase">
+                                {{ __('panel.document_category_name') }}
+                            </label>
                         </div>
 
-                        <div class="col-sm-12 col-md-3">
+                        <div class="col-sm-12 col-md-10 pt-3">
+                            <select class="form-control form-control-lg" wire:model="document_category_id">
+                                <option value="">---</option>
+                                @forelse ($document_categories as $document_category)
+                                    <option value="{{ $document_category->id }}">
+                                        {{ $document_category->doc_cat_name }}
+                                    </option>
+                                @empty
+                                @endforelse
+                            </select>
+                            @error('document_category_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
 
-                            {{-- publish_start publish time field --}}
-                            <div class="row" wire:ignore>
-                                <div class="col-sm-12 col-md-12 pt-3">
-                                    <label for="published_on"> {{ __('panel.published_date') }} </label>
-                                    <input type="text" id="published_on" wire:model.defer="published_on"
-                                        name="published_on"
-                                        value="{{ old('published_on', now()->format('Y-m-d H:i A')) }}"
-                                        class="form-control flatpickr_publihsed_on">
-                                    @error('published_on')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                    <div class="row">
+                        <div class="col-sm-12 col-md-2 pt-3">
+                            <label for="document_type_id" class="text-small text-uppercase">
+                                {{ __('panel.document_type_name') }}
+                            </label>
+                        </div>
 
-                                </div>
-                            </div>
+                        <div class="col-sm-12 col-md-10 pt-3">
 
-                            <div class="row">
-                                <div class="col-sm-12 pt-3">
-                                    <label for="status">{{ __('panel.status') }}</label>
-                                    <div class="main-toggle-group-demo">
-                                        <div class="main-toggle main-toggle-success {{ $status == 1 ? 'on' : '' }}"
-                                            id="main-toggler" wire:click="toggleStatus">
-                                            <span></span>
-                                        </div>
-                                    </div>
-                                    <input type="hidden" wire:model.defer="status" name="status" id="status"
-                                        value="{{ $status }}">
-                                </div>
-                            </div>
-
+                            <select class="form-control form-control-lg" wire:model="document_type_id">
+                                <option value="">---</option>
+                                @forelse ($document_types as $document_type)
+                                    <option value="{{ $document_type->id }}">
+                                        {{ $document_type->doc_type_name }}</option>
+                                @empty
+                                @endforelse
+                            </select>
+                            @error('document_type_id')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
 
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-2 pt-3">
+                            <label for="doc_template_name"> {{ __('panel.document_template_name') }}
+                            </label>
+                        </div>
+                        <div class="col-sm-12 col-md-10 pt-3">
+
+                            <input type="text" id="doc_template_name" wire:model="doc_template_name"
+                                name="doc_template_name" value="{{ old('doc_template_name') }}" class="form-control"
+                                placeholder="">
+                            @error('doc_template_name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-2 pt-3">
+                            <label for="language"> {{ __('panel.language') }} </label>
+                        </div>
+                        <div class="col-sm-12 col-md-10 pt-3">
+                            <select name="language" wire:model.defer="language" class="form-control">
+                                <option value="">---</option>
+                                <option value="1" {{ old('language') == '1' ? 'selected' : null }}>
+                                    {{ __('panel.language_ar') }}
+                                </option>
+                                <option value="2" {{ old('language') == '2' ? 'selected' : null }}>
+                                    {{ __('panel.language_en') }}
+                                </option>
+                                <option value="3" {{ old('language') == '3' ? 'selected' : null }}>
+                                    {{ __('panel.language_both') }}
+                                </option>
+
+                            </select>
+                            @error('language')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row" wire:ignore.self>
+                        <div class="col-sm-12 col-md-2 pt-3">
+                            <label for="published_on">
+                                {{ __('panel.published_on') }}
+                            </label>
+                        </div>
+
+                        <div class="col-sm-12 col-md-10 pt-3">
+                            <div class="input-group flatpickr" id="flatpickr-datetime">
+                                <input type="text" name="published_on" wire:model.defer="published_on"
+                                    value="{{ old('published_on') }}" class="form-control" placeholder="Select date"
+                                    data-input readonly>
+                                <span class="input-group-text input-group-addon" data-toggle>
+                                    <i data-feather="calendar"></i>
+                                </span>
+                            </div>
+
+                            @error('published_on')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-2 pt-3">
+                            <label for="status" class="control-label">
+                                <span>{{ __('panel.status') }}</span>
+                            </label>
+                        </div>
+                        <div class="col-sm-12 col-md-10 pt-3">
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" name="status"
+                                    wire:model.defer="status" id="status_active" value="1"
+                                    {{ old('status', '1') == '1' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="status_active">
+                                    {{ __('panel.status_active') }}
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" class="form-check-input" name="status"
+                                    wire:model.defer="status" id="status_inactive" value="0"
+                                    {{ old('status') == '0' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="status_inactive">
+                                    {{ __('panel.status_inactive') }}
+                                </label>
+                            </div>
+                            @error('status')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
                 </form>
             </section>
 
