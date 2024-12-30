@@ -11,7 +11,7 @@ use App\Models\PageVariable;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
-class EditDocumentTemplateComponent extends Component
+class EditContractTemplateComponent extends Component
 {
     use LivewireAlert;
 
@@ -136,7 +136,7 @@ class EditDocumentTemplateComponent extends Component
         $this->document_categories  = DocumentCategory::whereStatus(true)->get();
         $this->document_types       = $this->document_category_id != '' ? DocumentType::whereStatus(true)->whereDocumentCategoryId($this->document_category_id)->get() : [];
 
-        return view('livewire.document-template.edit-document-template-component', [
+        return view('livewire.contract-template.edit-contract-template-component', [
             'document_categories'   => $this->document_categories,
             'document_types'        => $this->document_types,
             'documentTemplateId'    => $this->documentTemplate->id,

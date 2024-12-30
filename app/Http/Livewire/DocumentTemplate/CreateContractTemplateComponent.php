@@ -13,7 +13,7 @@ use Carbon\Carbon;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
-class CreateDocumentTemplateComponent extends Component
+class CreateContractTemplateComponent extends Component
 {
     use LivewireAlert;
 
@@ -120,7 +120,7 @@ class CreateDocumentTemplateComponent extends Component
 
 
         return view(
-            'livewire.document-template.create-document-template-component',
+            'livewire.contract-template.create-contract-template-component',
             [
                 'document_categories'   => $this->document_categories,
                 'document_types'        => $this->document_types,
