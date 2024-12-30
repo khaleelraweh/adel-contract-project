@@ -99,7 +99,7 @@ class ContractTemplateController extends Controller
         ]);
     }
 
-    public function updateDocumentTemplateStatus(Request $request)
+    public function updateContractTemplateStatus(Request $request)
     {
         if ($request->ajax()) {
             $data = $request->all();
@@ -108,8 +108,8 @@ class ContractTemplateController extends Controller
             } else {
                 $status = 1;
             }
-            DocumentTemplate::where('id', $data['document_template_id'])->update(['status' => $status]);
-            return response()->json(['status' => $status, 'document_template_id' => $data['document_template_id']]);
+            ContractTemplate::where('id', $data['contract_template_id'])->update(['status' => $status]);
+            return response()->json(['status' => $status, 'contract_template_id' => $data['contract_template_id']]);
         }
     }
 }
