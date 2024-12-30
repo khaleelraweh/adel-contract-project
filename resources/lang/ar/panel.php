@@ -1704,4 +1704,11 @@ return [
     'previous'                                              =>  'السابق',
 
 
+    // --------------- Contract Template  --------------//
+    'manage_contract_templates'                             => 'إدارة نماذج العقود',
+    'show_contract_templates'                               => 'نماذج العقود',
+    'add_new_contract_template'                             => 'نموذج عقد جديد',
+    'edit_existing_contract_template'                       => 'التعديل على نموذج عقد',
+
+
 ];
