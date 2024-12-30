@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Helper\MySlugHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use Spatie\Sluggable\HasTranslatableSlug;
@@ -67,5 +68,10 @@ class ContractTemplate extends Model
     public function scopeActive($query)
     {
         return $query->whereStatus(true);
+    }
+
+    public function contractVariables(): MorphMany
+    {
+        return $this->morphMany(ContractVariable::class, 'contract_variableable');
     }
 }
