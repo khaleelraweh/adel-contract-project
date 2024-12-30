@@ -221,9 +221,7 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-12 pt-3">
                         @foreach ($pages[$currentPageIndex]['groups'] as $groupIndex => $group)
-                            {{-- variables  --}}
                             @if ($groupIndex == $activeGroupIndex)
-                                {{-- @foreach ($group['variables'] as $variableIndex => $variable) --}}
                                 @foreach ($pages[$currentPageIndex]['groups'][$activeGroupIndex]['variables'] as $variableIndex => $variable)
                                     <div class="card">
                                         <div class="card-header mb-0">
