@@ -18,21 +18,21 @@
                     class="disabled {{ $currentStep == 2 ? 'current' : '' }}" aria-disabled="true">
                     <a id="wizard1-t-1" href="#wizard1-h-1" aria-controls="wizard1-p-1">
                         <span class="number">2</span>
-                        <span class="title"> {{ __('panel.document_template_text') }} </span>
+                        <span class="title"> {{ __('panel.contract_template_text') }} </span>
                     </a>
                 </li>
                 <li role="tab" wire:click="directMoveToStep(3)"
                     class="disabled {{ $currentStep == 3 ? 'current' : '' }}" aria-disabled="true">
                     <a id="wizard1-t-1" href="#wizard1-h-1" aria-controls="wizard1-p-1">
                         <span class="number">3</span>
-                        <span class="title"> {{ __('panel.document_template_variables') }} </span>
+                        <span class="title"> {{ __('panel.contract_template_variables') }} </span>
                     </a>
                 </li>
                 <li role="tab" wire:click="directMoveToStep(4)"
                     class="disabled last {{ $currentStep == 4 ? 'current' : '' }}" aria-disabled="true">
                     <a id="wizard1-t-2" href="#wizard1-h-2" aria-controls="wizard1-p-2"><span class="number">4</span>
                         <span class="title">
-                            {{ __('panel.document_and_template_formatting') }}
+                            {{ __('panel.contract_and_template_formatting') }}
                         </span>
                     </a>
                 </li>
