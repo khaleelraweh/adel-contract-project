@@ -1679,6 +1679,11 @@ return [
     'finish'                                                =>  'Finish',
     'previous'                                              =>  'Previous',
 
+    // --------------- Contract template  --------------//
+    'manage_contract_templates'                             => 'Manage Contract Templates',
+    'show_contract_templates'                               => 'Contract Templates',
+    'add_new_contract_template'                             => 'New Contract Template',
+    'edit_existing_contract_template'                       => 'Edit Existing Contract Template ',
 
 
 
