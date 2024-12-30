@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\ContractTemplate;
 
+use App\Models\ContractTemplate;
 use App\Models\DocumentTemplate;
 use App\Models\DocumentCategory;
 use App\Models\DocumentType;
@@ -19,17 +20,22 @@ class CreateContractTemplateComponent extends Component
     public $currentStep = 1;
     public $totalSteps = 4;
 
-    // -------- for document categories and types ---------//
+    public $stepData = [
+        'step1' => '',
+        'step2' => '',
+        'step3' => '',
+        'step4' => '',
+    ];
 
-    // this is for sending data to document template table 
 
-    public $doc_template_name;
+    //step 1
+    public $name;
     public $language;
     public $published_on;
     public $status = 1; // Default status value
 
     //step2
-    public $documentTemplateId;
+    public $contractTemplateId;
     public $doc_template_text;
 
     // step3 
@@ -40,16 +46,10 @@ class CreateContractTemplateComponent extends Component
 
 
 
-    public $stepData = [
-        'step1' => '',
-        'step2' => '',
-        'step3' => '',
-        'step4' => '',
-    ];
 
-    public function mount($documentTemplateId = null)
+
+    public function mount($contractTemplateId = null)
     {
-
 
         $this->currentPageIndex = 0;
 
@@ -81,13 +81,13 @@ class CreateContractTemplateComponent extends Component
             ];
         }
 
-        $this->documentTemplateId = $documentTemplateId;
+        $this->contractTemplateId = $contractTemplateId;
 
-        if ($documentTemplateId) {
-            $documentTemplate = DocumentTemplate::find($documentTemplateId);
+        if ($contractTemplateId) {
+            $documentTemplate = DocumentTemplate::find($contractTemplateId);
 
             if ($documentTemplate) {
-                $this->doc_template_name    =   $documentTemplate->doc_template_name;
+                $this->name    =   $documentTemplate->name;
                 $this->language             =   $documentTemplate->language;
                 $this->published_on         =   $documentTemplate->published_on;
                 $this->status               =   $documentTemplate->status;
@@ -106,13 +106,13 @@ class CreateContractTemplateComponent extends Component
 
 
         // Fetch the DocumentTemplate instance
-        $documentTemplate = $this->documentTemplateId ? DocumentTemplate::find($this->documentTemplateId) : null;
+        $documentTemplate = $this->contractTemplateId ? DocumentTemplate::find($this->contractTemplateId) : null;
 
 
         return view(
             'livewire.contract-template.create-contract-template-component',
             [
-                'documentTemplateId'    => $this->documentTemplateId,
+                'contractTemplateId'    => $this->contractTemplateId,
                 'documentTemplate'      => $documentTemplate, // Pass the DocumentTemplate instance
                 'doc_template_text'     => $this->doc_template_text, // Pass the doc_template_text to the view
 
@@ -153,7 +153,7 @@ class CreateContractTemplateComponent extends Component
     {
         if ($this->currentStep == 1) {
             $this->validate([
-                'doc_template_name'     => 'required|string',
+                'name'                  => 'required|string',
                 'language'              => 'required|numeric',
                 'published_on'          => 'required',
             ]);
@@ -174,35 +174,32 @@ class CreateContractTemplateComponent extends Component
     public function saveStepData()
     {
         if ($this->currentStep == 1) {
-            if ($this->documentTemplateId) {
+            if ($this->contractTemplateId) {
                 $documentTemplate = DocumentTemplate::updateOrCreate(
-                    ['id' => $this->documentTemplateId],
+                    ['id' => $this->contractTemplateId],
                     [
-                        'doc_template_name'     => $this->doc_template_name,
+                        'name'     => $this->name,
                         'language'              => $this->language,
-                        // 'published_on'          => $this->published_on,
                         'published_on'          => Carbon::now(),
                         'status'                => $this->status,
                     ]
                 );
             } else {
-                $documentTemplate = DocumentTemplate::updateOrCreate(
+                $contractTemplate = ContractTemplate::updateOrCreate(
                     [
-                        'doc_template_name'     => $this->doc_template_name,
+                        'name'     => $this->name,
                         'language'              => $this->language,
-                        // 'published_on'          => $this->published_on,
                         'published_on'          => Carbon::now(),
                         'status'                => $this->status,
                     ]
                 );
             }
 
-
-            $this->documentTemplateId = $documentTemplate->id;
+            $this->contractTemplateId = $contractTemplate->id;
             $this->alert('success', __('panel.document_template_data_saved'));
         } elseif ($this->currentStep == 2) {
             DocumentTemplate::updateOrCreate(
-                ['id' => $this->documentTemplateId],
+                ['id' => $this->contractTemplateId],
                 [
                     'doc_template_text'     => $this->doc_template_text,
                 ]
@@ -214,7 +211,7 @@ class CreateContractTemplateComponent extends Component
             $this->alert('success', __('panel.document_template_variables_saved'));
         } elseif ($this->currentStep == 4) {
             DocumentTemplate::updateOrCreate(
-                ['id' => $this->documentTemplateId],
+                ['id' => $this->contractTemplateId],
                 [
                     'doc_template_text' => $this->doc_template_text,
                 ]
@@ -396,7 +393,7 @@ class CreateContractTemplateComponent extends Component
             $pageData = [
                 'doc_page_name'         => $page['doc_page_name'],
                 'doc_page_description'  => $page['doc_page_description'],
-                'document_template_id'  => $this->documentTemplateId,
+                'document_template_id'  => $this->contractTemplateId,
             ];
 
             $pageModel = DocumentPage::updateOrCreate($pageData);

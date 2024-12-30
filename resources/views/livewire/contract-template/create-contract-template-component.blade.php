@@ -52,19 +52,18 @@
                 style="display: {{ $currentStep == 1 ? 'block' : 'none' }}">
 
 
-                <form action="{{ route('admin.document_templates.store') }}" method="post">
+                <form action="{{ route('admin.contract_templates.store') }}" method="post">
                     @csrf
 
                     <div class="row">
                         <div class="col-sm-12 col-md-2 pt-3">
-                            <label for="doc_template_name"> {{ __('panel.document_template_name') }}
+                            <label for="name"> {{ __('panel.document_template_name') }}
                             </label>
                         </div>
                         <div class="col-sm-12 col-md-10 pt-3">
-                            <input type="text" id="doc_template_name" wire:model="doc_template_name"
-                                name="doc_template_name" value="{{ old('doc_template_name') }}" class="form-control"
-                                placeholder="">
-                            @error('doc_template_name')
+                            <input type="text" id="name" wire:model="name" name="name"
+                                value="{{ old('name') }}" class="form-control" placeholder="">
+                            @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
