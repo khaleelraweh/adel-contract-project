@@ -119,7 +119,7 @@ class CreateContractTemplateComponent extends Component
 
 
         return view(
-            'livewire.contract-template.contract-template-component',
+            'livewire.contract-template.create-contract-template-component',
             [
                 'document_categories'   => $this->document_categories,
                 'document_types'        => $this->document_types,
