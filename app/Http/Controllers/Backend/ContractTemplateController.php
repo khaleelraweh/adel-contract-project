@@ -25,11 +25,9 @@ class ContractTemplateController extends Controller
             return redirect('admin/index');
         }
 
-        $documentCategories = DocumentCategory::whereStatus(1)->get(['id', 'doc_cat_name']);
-        $documentTypes = DocumentType::whereStatus(1)->get(['id', 'doc_type_name']);
 
 
-        return view('backend.contract_templates.create', compact('documentCategories', 'documentTypes'));
+        return view('backend.contract_templates.create');
     }
 
     public function store(Request $request)
