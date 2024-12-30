@@ -1710,5 +1710,10 @@ return [
     'add_new_contract_template'                             => 'نموذج عقد جديد',
     'edit_existing_contract_template'                       => 'التعديل على نموذج عقد',
 
+    // ........... commons in contract Template   ....... //
+    'contract_template_data'                                =>  'بيانات نموذج العقد',
+    'contract_template_name'                                =>  'نموذج العقد',
+    'contract_template_status'                              =>  'حالة نموذج العقد',
+
 
 ];

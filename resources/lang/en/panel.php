@@ -1685,6 +1685,11 @@ return [
     'add_new_contract_template'                             => 'New Contract Template',
     'edit_existing_contract_template'                       => 'Edit Existing Contract Template ',
 
+    // ........... commons in contract template   ....... //
+    'contract_template_data'                                =>  'Contract Template Data',
+    'contract_template_name'                                =>  'Contract Template',
+    'contract_template_status'                              =>  'Status',
+
 
 
 ];
