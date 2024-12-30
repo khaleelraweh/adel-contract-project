@@ -1711,9 +1711,23 @@ return [
     'edit_existing_contract_template'                       => 'التعديل على نموذج عقد',
 
     // ........... commons in contract Template   ....... //
-    'contract_template_data'                                =>  'بيانات نموذج العقد',
     'contract_template_name'                                =>  'نموذج العقد',
     'contract_template_status'                              =>  'حالة نموذج العقد',
+
+
+    'contract_template_data'                                =>  'بيانات نموذج العقد',
+    'contract_template_data_saved'                          =>  'تم حفظ بيانات نموذج العقد بنجاح',
+
+    'contract_template_text'                                =>  'نص نموذج العقد',
+    'contract_template_text_saved'                          =>  'تم حفظ نص نموذج العقد بنجاح',
+
+    'contract_template_variables'                           =>  'متغيرات نموذج العقد',
+    'contract_template_variables_save'                      =>  'حفظ',
+    'contract_template_variables_saved'                     =>  'تم حفظ متغيرات نموذج العقد بنجاح',
+
+    'contract_and_template_formatting'                      =>  'تنسيق العقد والمستند',
+    'contract_and_template_formatting_saved'                =>  'تم حفظ تنسيق العقد والمستند بنجاح',
+
 
 
 ];

@@ -1686,9 +1686,22 @@ return [
     'edit_existing_contract_template'                       => 'Edit Existing Contract Template ',
 
     // ........... commons in contract template   ....... //
-    'contract_template_data'                                =>  'Contract Template Data',
     'contract_template_name'                                =>  'Contract Template',
     'contract_template_status'                              =>  'Status',
+
+
+    'contract_template_data'                                =>  'Contract template data',
+    'contract_template_data_saved'                          =>  'Contract template data saved successfully',
+
+    'contract_template_text'                                =>  'Contract template text',
+    'contract_template_text_saved'                          =>  'Contract template text saved successfully',
+
+    'contract_template_variables'                           =>  'Contract template variables',
+    'contract_template_variables_save'                      =>  'Save',
+    'contract_template_variables_saved'                     =>  'Contract template variables saved successfully',
+
+    'contract_and_template_formatting'                      =>  'Contract and template formatting',
+    'contract_and_template_formatting_saved'                =>  'Contract and template formatting saved successfully',
 
 
 

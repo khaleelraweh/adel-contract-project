@@ -10,7 +10,7 @@
                         </span>
                         <span class="number">1</span>
                         <span class="title">
-                            {{ __('panel.document_template_data') }}
+                            {{ __('panel.contract_template_data') }}
                         </span>
                     </a>
                 </li>
