@@ -43,7 +43,7 @@
         {{-- body part  --}}
         <div class="card-body">
             <div class="card-body">
-                @livewire('contract-template.contract-template-component')
+                @livewire('contract-template.create-contract-template-component')
             </div>
         </div>
     @endsection
