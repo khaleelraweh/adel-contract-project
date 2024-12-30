@@ -63,22 +63,22 @@
                                     value="{{ $contract_template->id }}">
                             </td>
                             <td>
-                                {{ $contract_template->doc_template_name }}
+                                {{ $contract_template->name }}
                             </td>
                             <td class="d-none d-sm-table-cell">
                                 {{ $contract_template->created_by }}
                             </td>
                             <td class="d-none d-sm-table-cell">
                                 @if ($contract_template->status == 1)
-                                    <a href="javascript:void(0);" class="updateDocumentTemplateStatus "
-                                        id="document-template-{{ $contract_template->id }}"
+                                    <a href="javascript:void(0);" class="updateContractTemplateStatus "
+                                        id="contract-template-{{ $contract_template->id }}"
                                         contract_template_id="{{ $contract_template->id }}">
                                         <i class="fas fa-toggle-on fa-lg text-success" aria-hidden="true" status="Active"
                                             style="font-size: 1.6em"></i>
                                     </a>
                                 @else
-                                    <a href="javascript:void(0);" class="updateDocumentTemplateStatus"
-                                        id="document-template-{{ $contract_template->id }}"
+                                    <a href="javascript:void(0);" class="updateContractTemplateStatus"
+                                        id="contract-template-{{ $contract_template->id }}"
                                         contract_template_id="{{ $contract_template->id }}">
                                         <i class="fas fa-toggle-off fa-lg text-warning" aria-hidden="true" status="Inactive"
                                             style="font-size: 1.6em"></i>
@@ -109,7 +109,6 @@
                                                 <span class="">{{ __('panel.operation_edit') }}</span>
                                             </a>
 
-                                            {{-- @if ($contract_template->documentPages->count() > 0) --}}
                                             @if ($contract_template)
                                                 <a href="javascript:void(0);"
                                                     class="dropdown-item d-flex align-items-center"
@@ -125,14 +124,14 @@
                                             @else
                                                 <a href="javascript:void(0);"
                                                     class="dropdown-item d-flex align-items-center"
-                                                    onclick="confirmDelete('delete-document-template-{{ $contract_template->id }}', '{{ __('panel.confirm_delete_message') }}', '{{ __('panel.yes_delete') }}', '{{ __('panel.cancel') }}')">
+                                                    onclick="confirmDelete('delete-contract-template-{{ $contract_template->id }}', '{{ __('panel.confirm_delete_message') }}', '{{ __('panel.yes_delete') }}', '{{ __('panel.cancel') }}')">
                                                     <i data-feather="trash" class="icon-sm me-2"></i>
                                                     <span class="">{{ __('panel.operation_delete') }}</span>
                                                 </a>
                                                 <form
                                                     action="{{ route('admin.contract_templates.destroy', $contract_template->id) }}"
                                                     method="post" class="d-none"
-                                                    id="delete-document-template-{{ $contract_template->id }}">
+                                                    id="delete-contract-template-{{ $contract_template->id }}">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
