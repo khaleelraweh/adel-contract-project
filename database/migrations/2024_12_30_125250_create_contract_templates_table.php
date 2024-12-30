@@ -19,7 +19,7 @@ return new class extends Migration
             $table->json('name');
             $table->json('slug');
             $table->tinyInteger('language')->default(1); // 1 = arabic , 2 = english , 3 = both
-            $table->text('text')->nullable();
+            $table->json('text')->nullable();
             $table->string('file')->nullable();
 
 
