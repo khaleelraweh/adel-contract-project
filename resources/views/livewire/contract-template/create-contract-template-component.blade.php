@@ -51,103 +51,95 @@
                 aria-hidden="{{ $currentStep == 1 ? 'false' : 'true' }}"
                 style="display: {{ $currentStep == 1 ? 'block' : 'none' }}">
 
+                <div class="row">
+                    <div class="col-sm-12 col-md-2 pt-3">
+                        <label for="name"> {{ __('panel.document_template_name') }}
+                        </label>
+                    </div>
+                    <div class="col-sm-12 col-md-10 pt-3">
+                        <input type="text" id="name" wire:model="name" name="name"
+                            value="{{ old('name') }}" class="form-control" placeholder="">
+                        @error('name')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
 
-                <form action="{{ route('admin.contract_templates.store') }}" method="post">
-                    @csrf
+                <div class="row">
+                    <div class="col-sm-12 col-md-2 pt-3">
+                        <label for="language"> {{ __('panel.language') }} </label>
+                    </div>
+                    <div class="col-sm-12 col-md-10 pt-3">
+                        <select name="language" wire:model.defer="language" class="form-control">
+                            <option value="">---</option>
+                            <option value="1" {{ old('language') == '1' ? 'selected' : null }}>
+                                {{ __('panel.language_ar') }}
+                            </option>
+                            <option value="2" {{ old('language') == '2' ? 'selected' : null }}>
+                                {{ __('panel.language_en') }}
+                            </option>
+                            <option value="3" {{ old('language') == '3' ? 'selected' : null }}>
+                                {{ __('panel.language_both') }}
+                            </option>
 
-                    <div class="row">
-                        <div class="col-sm-12 col-md-2 pt-3">
-                            <label for="name"> {{ __('panel.document_template_name') }}
+                        </select>
+                        @error('language')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row" wire:ignore.self>
+                    <div class="col-sm-12 col-md-2 pt-3">
+                        <label for="published_on">
+                            {{ __('panel.published_on') }}
+                        </label>
+                    </div>
+
+                    <div class="col-sm-12 col-md-10 pt-3">
+                        <div class="input-group flatpickr" id="flatpickr-datetime">
+                            <input type="text" name="published_on" wire:model.defer="published_on"
+                                value="{{ old('published_on') }}" class="form-control" placeholder="Select date"
+                                data-input readonly>
+                            <span class="input-group-text input-group-addon" data-toggle>
+                                <i data-feather="calendar"></i>
+                            </span>
+                        </div>
+
+                        @error('published_on')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-2 pt-3">
+                        <label for="status" class="control-label">
+                            <span>{{ __('panel.status') }}</span>
+                        </label>
+                    </div>
+                    <div class="col-sm-12 col-md-10 pt-3">
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" name="status" wire:model.defer="status"
+                                id="status_active" value="1" {{ old('status', '1') == '1' ? 'checked' : '' }}>
+                            <label class="form-check-label" for="status_active">
+                                {{ __('panel.status_active') }}
                             </label>
                         </div>
-                        <div class="col-sm-12 col-md-10 pt-3">
-                            <input type="text" id="name" wire:model="name" name="name"
-                                value="{{ old('name') }}" class="form-control" placeholder="">
-                            @error('name')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-12 col-md-2 pt-3">
-                            <label for="language"> {{ __('panel.language') }} </label>
-                        </div>
-                        <div class="col-sm-12 col-md-10 pt-3">
-                            <select name="language" wire:model.defer="language" class="form-control">
-                                <option value="">---</option>
-                                <option value="1" {{ old('language') == '1' ? 'selected' : null }}>
-                                    {{ __('panel.language_ar') }}
-                                </option>
-                                <option value="2" {{ old('language') == '2' ? 'selected' : null }}>
-                                    {{ __('panel.language_en') }}
-                                </option>
-                                <option value="3" {{ old('language') == '3' ? 'selected' : null }}>
-                                    {{ __('panel.language_both') }}
-                                </option>
-
-                            </select>
-                            @error('language')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="row" wire:ignore.self>
-                        <div class="col-sm-12 col-md-2 pt-3">
-                            <label for="published_on">
-                                {{ __('panel.published_on') }}
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" name="status" wire:model.defer="status"
+                                id="status_inactive" value="0" {{ old('status') == '0' ? 'checked' : '' }}>
+                            <label class="form-check-label" for="status_inactive">
+                                {{ __('panel.status_inactive') }}
                             </label>
                         </div>
-
-                        <div class="col-sm-12 col-md-10 pt-3">
-                            <div class="input-group flatpickr" id="flatpickr-datetime">
-                                <input type="text" name="published_on" wire:model.defer="published_on"
-                                    value="{{ old('published_on') }}" class="form-control" placeholder="Select date"
-                                    data-input readonly>
-                                <span class="input-group-text input-group-addon" data-toggle>
-                                    <i data-feather="calendar"></i>
-                                </span>
-                            </div>
-
-                            @error('published_on')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-
+                        @error('status')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
-
-                    <div class="row">
-                        <div class="col-sm-12 col-md-2 pt-3">
-                            <label for="status" class="control-label">
-                                <span>{{ __('panel.status') }}</span>
-                            </label>
-                        </div>
-                        <div class="col-sm-12 col-md-10 pt-3">
-                            <div class="form-check form-check-inline">
-                                <input type="radio" class="form-check-input" name="status"
-                                    wire:model.defer="status" id="status_active" value="1"
-                                    {{ old('status', '1') == '1' ? 'checked' : '' }}>
-                                <label class="form-check-label" for="status_active">
-                                    {{ __('panel.status_active') }}
-                                </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input type="radio" class="form-check-input" name="status"
-                                    wire:model.defer="status" id="status_inactive" value="0"
-                                    {{ old('status') == '0' ? 'checked' : '' }}>
-                                <label class="form-check-label" for="status_inactive">
-                                    {{ __('panel.status_inactive') }}
-                                </label>
-                            </div>
-                            @error('status')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-
-                </form>
+                </div>
             </section>
 
             {{-- step 2 : نص نموذج الوثيقة  --}}
@@ -160,14 +152,11 @@
                 aria-hidden="{{ $currentStep == 2 ? 'false' : 'true' }}"
                 style="display: {{ $currentStep == 2 ? 'block' : 'none' }}">
 
-                {{-- <textarea name="doc_template_text" wire:model="doc_template_text" rows="10" class="form-control summernote">{!! old('doc_template_text') !!}</textarea> --}}
-
                 <div wire:ignore>
-                    <textarea name="doc_template_text" id="ckEditor2" wire:model="doc_template_text" rows="10"
-                        class="form-control">{{ $doc_template_text }}</textarea>
+                    <textarea name="text" id="ckEditor2" wire:model="text" rows="10" class="form-control">{{ $text }}</textarea>
                 </div>
 
-                @error('doc_template_text')
+                @error('text')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
 
@@ -185,13 +174,13 @@
                                 editorInstance2 = editor;
 
                                 // Set the initial text from Livewire
-                                @this.on('updateDocTemplateText', (text) => {
+                                @this.on('updateContractTemplateText', (text) => {
                                     editorInstance2.setData(text);
                                 });
 
                                 // Sync CKEditor data with Livewire
                                 editor.model.document.on('change:data', () => {
-                                    @this.set('doc_template_text', editorInstance2.getData());
+                                    @this.set('text', editorInstance2.getData());
                                 });
                             })
                             .catch(error => {
@@ -199,7 +188,7 @@
                             });
                     });
 
-                    Livewire.on('updateDocTemplateText', text => {
+                    Livewire.on('updateContractTemplateText', text => {
                         if (editorInstance2) {
                             editorInstance2.setData(text);
                         }
@@ -530,7 +519,7 @@
                         </select>
                     </div>
                     <div class="col-sm-12 col-md-8 pt-3" wire:ignore>
-                        <textarea name="doc_template_text" id="khaleel3" class="form-control">{{ $doc_template_text }}</textarea>
+                        <textarea name="text" id="khaleel3" class="form-control">{{ $text }}</textarea>
                     </div>
                 </div>
 
@@ -550,7 +539,7 @@
                             editorInstance = editor;
 
                             // Set the initial text from Livewire
-                            @this.on('updateDocTemplateText', (text) => {
+                            @this.on('updateContractTemplateText', (text) => {
                                 editorInstance.setData(text);
                             });
 
@@ -571,7 +560,7 @@
 
                             // Sync CKEditor data with Livewire
                             editor.model.document.on('change:data', () => {
-                                @this.set('doc_template_text', editorInstance.getData());
+                                @this.set('text', editorInstance.getData());
                             });
                         })
                         .catch(error => {
@@ -579,7 +568,7 @@
                         });
                 });
 
-                Livewire.on('updateDocTemplateText', text => {
+                Livewire.on('updateContractTemplateText', text => {
                     if (editorInstance) {
                         editorInstance.setData(text);
                     }
