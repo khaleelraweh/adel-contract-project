@@ -39,6 +39,7 @@ use App\Http\Controllers\Backend\ImportantLinkMenuController;
 use App\Http\Controllers\Backend\DocumentCategoriesController;
 use App\Http\Controllers\Backend\AcademicProgramMenuController;
 use App\Http\Controllers\Backend\CommonQuestionVideoController;
+use App\Http\Controllers\Backend\ContractTemplateController;
 use App\Http\Controllers\Backend\DocumentsController;
 use App\Http\Controllers\Backend\DocumentTemplatesController;
 use App\Http\Controllers\Backend\PoliciesPrivacyMenuController;
@@ -98,6 +99,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('document/pdf/{id}', [DocumentsController::class, 'pdf'])->name('documents.pdf');
         Route::resource('documents', DocumentsController::class);
 
+
+        // ==============   contract template Tab   ==============  //
+        Route::post('contract-templates/update-contract-template-status', [ContractTemplateController::class, 'updateContractTemplateStatus'])->name('contract_templates.update_contract_template_status');
+        Route::resource('contract_templates', ContractTemplateController::class);
 
 
 
