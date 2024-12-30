@@ -25,8 +25,6 @@ class ContractTemplateController extends Controller
             return redirect('admin/index');
         }
 
-
-
         return view('backend.contract_templates.create');
     }
 
