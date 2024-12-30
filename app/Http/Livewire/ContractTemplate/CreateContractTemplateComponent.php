@@ -39,6 +39,7 @@ class CreateContractTemplateComponent extends Component
     public $text;
 
     // step3 
+    public $c_variables = [];
     public $pages = [];
     public $count = 1;
     public $currentPageIndex = 0; // Track the currently active page
@@ -51,10 +52,22 @@ class CreateContractTemplateComponent extends Component
     public function mount($contractTemplateId = null)
     {
 
+        $this->c_variables = [
+            [
+                'cv_name'               =>  '',
+                'cv_question'           =>  '',
+                'cv_type'               =>   0,
+                'cv_required'           =>   1,
+                'cv_details'            =>  '',
+            ],
+        ];
+
         $this->currentPageIndex = 0;
 
         // Initialize the pages array with a default page if it's empty
         if (empty($this->pages)) {
+
+
             $this->pages = [
                 [
                     'pageId' => 1,
