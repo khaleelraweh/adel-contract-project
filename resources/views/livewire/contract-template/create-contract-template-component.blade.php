@@ -223,20 +223,6 @@
                         @foreach ($pages[$currentPageIndex]['groups'] as $groupIndex => $group)
                             {{-- variables  --}}
                             @if ($groupIndex == $activeGroupIndex)
-                                <div class="row align-items-end mb-4 mb-md-0">
-                                    <div class="col-md mb-4 mb-md-0">
-                                        <h4>{{ __('panel.variables') }}</h4>
-                                    </div>
-                                    <div class="col-md-auto aos-init aos-animate" data-aos="fade-start">
-                                        <a href=""
-                                            wire:click.prevent="addVariable({{ $currentPageIndex }}, {{ $groupIndex }})">
-                                            <i class="fas fa-plus-circle me-2"></i>
-                                            <span>
-                                                {{ __('panel.add_variable') }}
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
                                 {{-- @foreach ($group['variables'] as $variableIndex => $variable) --}}
                                 @foreach ($pages[$currentPageIndex]['groups'][$activeGroupIndex]['variables'] as $variableIndex => $variable)
                                     <div class="card">
@@ -340,6 +326,21 @@
                                         </div>
                                     </div>
                                 @endforeach
+
+                                <div class="row align-items-end mb-4 mb-md-0 pt-4">
+                                    <div class="col-md mb-4 mb-md-0">
+                                        <a href=""
+                                            wire:click.prevent="addVariable({{ $currentPageIndex }}, {{ $groupIndex }})">
+                                            <i class="fas fa-plus-circle me-2"></i>
+                                            <span>
+                                                {{ __('panel.add_variable') }}
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-auto aos-init aos-animate" data-aos="fade-start">
+
+                                    </div>
+                                </div>
                             @endif
                         @endforeach
                     </div>
