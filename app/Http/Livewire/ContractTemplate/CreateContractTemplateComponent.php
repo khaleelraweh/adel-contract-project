@@ -47,6 +47,29 @@ class CreateContractTemplateComponent extends Component
 
 
 
+    // Step 3
+
+    //add c_variables
+    public function addCVariable()
+    {
+        $this->c_variables[] = ['link' => ''];
+
+        $this->c_variables[] = [
+            'pv_name'           =>  '',
+            'pv_question'       =>  '',
+            'pv_type'           =>  0,
+            'pv_required'       =>  1,
+            'pv_details'        =>  '',
+        ];
+    }
+
+    // remove c_variables
+    public function removeCVariable($index)
+    {
+        unset($this->c_variables[$index]);
+        $this->c_variables = array_values($this->c_variables);
+    }
+
 
 
     public function mount($contractTemplateId = null)
