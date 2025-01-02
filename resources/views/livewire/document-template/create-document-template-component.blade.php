@@ -260,7 +260,7 @@
                     });
                 </script> --}}
 
-                <script>
+                {{-- <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         let editorInstance2;
 
@@ -292,7 +292,99 @@
                             }
                         });
                     });
+                </script> --}}
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        let editorInstance2;
+
+                        // Initialize TinyMCE
+                        tinymce.init({
+                            selector: '#tinymceExample', // Select the textarea by its ID
+                            language: typeof tinymceLanguage !== 'undefined' ? tinymceLanguage :
+                            'ar', // Default to 'ar' if no language set
+                            min_height: 350,
+                            default_text_color: 'red',
+                            plugins: [
+                                "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                                "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                                "save table contextmenu directionality emoticons template paste textcolor image"
+                            ],
+                            toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                            templates: [{
+                                    title: 'Test template 1',
+                                    content: 'Test 1'
+                                },
+                                {
+                                    title: 'Test template 2',
+                                    content: 'Test 2'
+                                }
+                            ],
+                            content_css: [],
+                            image_title: true,
+                            automatic_uploads: true,
+                            file_picker_types: 'image',
+                            file_picker_callback: function(cb, value, meta) {
+                                var input = document.createElement('input');
+                                input.setAttribute('type', 'file');
+                                input.setAttribute('accept', 'image/*');
+                                input.onchange = function() {
+                                    var file = this.files[0];
+                                    var reader = new FileReader();
+                                    reader.onload = function() {
+                                        var id = 'blobid' + (new Date()).getTime();
+                                        var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                                        var base64 = reader.result.split(',')[1];
+                                        var blobInfo = blobCache.create(id, file, base64);
+                                        blobCache.add(blobInfo);
+                                        cb(blobInfo.blobUri(), {
+                                            title: file.name
+                                        });
+                                    };
+                                    reader.readAsDataURL(file);
+                                };
+                                input.click();
+                            },
+                            image_advtab: true,
+                            contextmenu: 'image align | link',
+                            content_style: `
+                                body { font-family:Helvetica,Arial,sans-serif; font-size:14px }
+                                img { display: block; margin-left: auto; margin-right: auto; }
+                            `,
+                            setup: function(editor) {
+                                editorInstance2 = editor;
+
+                                // Set the initial text from Livewire when event is triggered
+                                @this.on('updateDocTemplateText', (text) => {
+                                    editor.setContent(text);
+                                });
+
+                                // Sync TinyMCE data with Livewire when content changes
+                                editor.on('change keyup', () => {
+                                    @this.set('doc_template_text', editor.getContent());
+                                });
+
+                                // Add alignment toolbar for images
+                                editor.ui.registry.addContextToolbar('imagealign', {
+                                    predicate: function(node) {
+                                        return node.nodeName.toLowerCase() === 'img';
+                                    },
+                                    items: 'alignleft aligncenter alignright',
+                                    position: 'node',
+                                    scope: 'node'
+                                });
+                            }
+                        });
+
+                        // Update TinyMCE content when Livewire triggers an event
+                        Livewire.on('updateDocTemplateText', text => {
+                            if (editorInstance2) {
+                                editorInstance2.setContent(text);
+                            }
+                        });
+                    });
                 </script>
+
 
 
 
