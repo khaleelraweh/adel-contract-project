@@ -31,7 +31,7 @@
 
     <div class="mywizard">
         <!------------- part 1 : Steps ------------->
-        <div class="steps clearfix">
+        {{-- <div class="steps clearfix">
             <ul role="tablist">
                 <li role="tab" wire:click="directMoveToStep(1)" class="first {{ $currentStep == 1 ? 'current' : '' }}"
                     aria-disabled="false" aria-selected="true">
@@ -78,7 +78,8 @@
                 @endif
 
             </ul>
-        </div>
+        </div> --}}
+        @include('livewire.documents.createDocumentSections.steps.step')
         <!------------- part 1 : Steps end ------------->
 
         <!------------- part 2 : Content ------------->
