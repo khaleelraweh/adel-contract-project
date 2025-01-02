@@ -690,7 +690,7 @@
                 });
             </script> --}}
 
-            <script>
+            {{-- <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     // Initialize TinyMCE editor
                     tinymce.init({
@@ -732,7 +732,119 @@
                         }
                     });
                 });
+            </script> --}}
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Initialize TinyMCE editor
+                    tinymce.init({
+                        selector: '#tinymceEditor',
+                        language: 'ar', // Set the editor language
+                        min_height: 350,
+                        default_text_color: 'red',
+                        plugins: [
+                            "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                            "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                            "save table contextmenu directionality emoticons template paste textcolor image",
+                        ],
+                        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                        templates: [{
+                                title: 'Test template 1',
+                                content: 'Test 1'
+                            },
+                            {
+                                title: 'Test template 2',
+                                content: 'Test 2'
+                            }
+                        ],
+                        content_css: [],
+
+                        // Enable image title and upload functionality
+                        image_title: true,
+                        automatic_uploads: true,
+                        file_picker_types: 'image',
+                        file_picker_callback: function(cb, value, meta) {
+                            var input = document.createElement('input');
+                            input.setAttribute('type', 'file');
+                            input.setAttribute('accept', 'image/*');
+
+                            input.onchange = function() {
+                                var file = this.files[0];
+                                var reader = new FileReader();
+                                reader.onload = function() {
+                                    var id = 'blobid' + (new Date()).getTime();
+                                    var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                                    var base64 = reader.result.split(',')[1];
+                                    var blobInfo = blobCache.create(id, file, base64);
+                                    blobCache.add(blobInfo);
+
+                                    cb(blobInfo.blobUri(), {
+                                        title: file.name
+                                    });
+                                };
+                                reader.readAsDataURL(file);
+                            };
+
+                            input.click();
+                        },
+
+                        // Add alignment options for images in the toolbar
+                        image_advtab: true,
+
+                        contextmenu: 'image align | link',
+
+                        content_style: `
+                            body { font-family:Helvetica,Arial,sans-serif; font-size:14px }
+                            img { display: block; margin-left: auto; margin-right: auto; }
+                        `,
+
+                        setup: function(editor) {
+                            // Handle Livewire integration
+                            editor.on('init', function() {
+                                @this.on('updateDocTemplateText', (text) => {
+                                    editor.setContent(text);
+                                });
+                            });
+
+                            // Handle select changes for inserting variables
+                            document.querySelector('select[name="pv_name"]').addEventListener('change',
+                                function() {
+                                    const selectedValue = this.value;
+                                    const selectedText = this.options[this.selectedIndex].text;
+
+                                    if (selectedValue) {
+                                        const placeholder = `{!-${selectedValue}-${selectedText}!}`;
+                                        editor.execCommand('mceInsertContent', false, placeholder);
+                                    }
+                                });
+
+                            // Sync TinyMCE data with Livewire
+                            editor.on('change', function() {
+                                @this.set('doc_template_text', editor.getContent());
+                            });
+
+                            // Add custom image alignment toolbar
+                            editor.ui.registry.addContextToolbar('imagealign', {
+                                predicate: function(node) {
+                                    return node.nodeName.toLowerCase() === 'img';
+                                },
+                                items: 'alignleft aligncenter alignright',
+                                position: 'node',
+                                scope: 'node'
+                            });
+                        }
+                    });
+
+                    // Update editor content when triggered by Livewire
+                    Livewire.on('updateDocTemplateText', text => {
+                        const editor = tinymce.get('tinymceEditor');
+                        if (editor) {
+                            editor.setContent(text);
+                        }
+                    });
+                });
             </script>
+
 
 
 
