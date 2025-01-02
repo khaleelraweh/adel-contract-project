@@ -211,8 +211,14 @@
                 {{-- <textarea name="doc_template_text" wire:model="doc_template_text" rows="10" class="form-control summernote">{!! old('doc_template_text') !!}</textarea> --}}
 
                 <div wire:ignore>
-                    <textarea name="doc_template_text" id="ckEditor2" wire:model="doc_template_text" rows="10"
-                        class="form-control">{{ $doc_template_text }}</textarea>
+                    {{-- <textarea name="doc_template_text" id="ckEditor2" wire:model="doc_template_text" rows="10"
+                        class="form-control">{{ $doc_template_text }}</textarea> --}}
+
+                    <textarea name="doc_template_text" id="tinymceExample" rows="10" class="form-control"
+                        wire:model.defer="doc_template_text" placeholder="{{ __('transf.Insert your course description.') }}"></textarea>
+                    @error('tinymceExample')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 @error('doc_template_text')
@@ -225,7 +231,7 @@
                         let editorInstance2;
 
                         ClassicEditor
-                            .create(document.querySelector('#ckEditor2'), {
+                            .create(document.querySelector('#tinymceExample'), {
                                 language: 'ar', // Example setting for Arabic language
                                 // Other editor configurations
                             })
