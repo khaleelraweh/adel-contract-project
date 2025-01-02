@@ -608,7 +608,7 @@
                 </div>
             </section>
 
-            {{-- step 4 :   تنسيق الوثيقة والمستند  --}}
+            {{-- step 4 : تنسيق الوثيقة والمستند --}}
             <h3 id="wizard1-h-0" tabindex="-1" class="title {{ $currentStep == 4 ? 'current' : '' }} ">
                 {{ __('panel.document_and_template_formatting') }}
             </h3>
@@ -620,7 +620,6 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-4 pt-3">
                         <label for="pv_name">{{ __('panel.select_pv_name') }}</label>
-                        {{-- <select name="pv_name" class="form-control" wire:model="selectedVariable"> --}}
                         <select name="pv_name" class="form-control">
                             <option value="" selected>-- {{ __('panel.select_variable') }} --</option>
                             @if ($documentTemplate)
@@ -642,61 +641,100 @@
                         </select>
                     </div>
                     <div class="col-sm-12 col-md-8 pt-3" wire:ignore>
-                        <textarea name="doc_template_text" id="khaleel3" class="form-control">{{ $doc_template_text }}</textarea>
+                        <textarea name="doc_template_text" id="tinymceEditor" class="form-control">{{ $doc_template_text }}</textarea>
                     </div>
                 </div>
-
-
             </section>
 
-            <script>
+            {{-- <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    let editorInstance;
-
-                    ClassicEditor
-                        .create(document.querySelector('#khaleel3'), {
-                            language: 'ar', // Example setting
-                            // Other editor configurations
-                        })
-                        .then(editor => {
-                            editorInstance = editor;
-
-                            // Set the initial text from Livewire
-                            @this.on('updateDocTemplateText', (text) => {
-                                editorInstance.setData(text);
+                    // Initialize TinyMCE editor
+                    tinymce.init({
+                        selector: '#tinymceEditor',
+                        language: 'ar', // Set the editor language
+                        setup: function(editor) {
+                            // Set the initial content from Livewire
+                            editor.on('init', function() {
+                                @this.on('updateDocTemplateText', (text) => {
+                                    editor.setContent(text);
+                                });
                             });
 
                             // Handle select changes
-                            document.querySelector('select[name="pv_name"]').addEventListener('change', function() {
-                                const selectedValue = this.value;
-                                const selectedText = this.options[this.selectedIndex].text;
+                            document.querySelector('select[name="pv_name"]').addEventListener('change',
+                                function() {
+                                    const selectedValue = this.value;
+                                    const selectedText = this.options[this.selectedIndex].text;
 
-                                if (selectedValue && editorInstance) {
-                                    editorInstance.model.change(writer => {
-                                        writer.insertText("{!-" + selectedValue + '-' + selectedText +
-                                            "!}",
-                                            editorInstance.model.document.selection
-                                            .getFirstPosition());
-                                    });
-                                }
-                            });
+                                    if (selectedValue) {
+                                        const content = editor.getContent();
+                                        editor.setContent(content +
+                                        `{!-${selectedValue}-${selectedText}!}`);
+                                    }
+                                });
 
-                            // Sync CKEditor data with Livewire
-                            editor.model.document.on('change:data', () => {
-                                @this.set('doc_template_text', editorInstance.getData());
+                            // Sync TinyMCE data with Livewire
+                            editor.on('change', function() {
+                                @this.set('doc_template_text', editor.getContent());
                             });
-                        })
-                        .catch(error => {
-                            console.error('Error initializing CKEditor:', error);
-                        });
+                        },
+                    });
+
+                    // Update editor content when triggered by Livewire
+                    Livewire.on('updateDocTemplateText', text => {
+                        const editor = tinymce.get('tinymceEditor');
+                        if (editor) {
+                            editor.setContent(text);
+                        }
+                    });
                 });
+            </script> --}}
 
-                Livewire.on('updateDocTemplateText', text => {
-                    if (editorInstance) {
-                        editorInstance.setData(text);
-                    }
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Initialize TinyMCE editor
+                    tinymce.init({
+                        selector: '#tinymceEditor',
+                        language: 'ar', // Set the editor language
+                        setup: function(editor) {
+                            // Set the initial content from Livewire
+                            editor.on('init', function() {
+                                @this.on('updateDocTemplateText', (text) => {
+                                    editor.setContent(text);
+                                });
+                            });
+
+                            // Handle select changes
+                            document.querySelector('select[name="pv_name"]').addEventListener('change',
+                                function() {
+                                    const selectedValue = this.value;
+                                    const selectedText = this.options[this.selectedIndex].text;
+
+                                    if (selectedValue) {
+                                        // Insert the variable at the cursor position
+                                        const placeholder = `{!-${selectedValue}-${selectedText}!}`;
+                                        editor.execCommand('mceInsertContent', false, placeholder);
+                                    }
+                                });
+
+                            // Sync TinyMCE data with Livewire
+                            editor.on('change', function() {
+                                @this.set('doc_template_text', editor.getContent());
+                            });
+                        },
+                    });
+
+                    // Update editor content when triggered by Livewire
+                    Livewire.on('updateDocTemplateText', text => {
+                        const editor = tinymce.get('tinymceEditor');
+                        if (editor) {
+                            editor.setContent(text);
+                        }
+                    });
                 });
             </script>
+
+
 
 
 
