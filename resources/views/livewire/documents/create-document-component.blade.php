@@ -1,10 +1,4 @@
 <div>
-    <link rel="stylesheet" href="{{ asset('assets/css/mywizard.css') }}">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
-
 
     <style>
         body {
@@ -39,8 +33,8 @@
         <!------------- part 1 : Steps ------------->
         <div class="steps clearfix">
             <ul role="tablist">
-                <li role="tab" wire:click="directMoveToStep(1)"
-                    class="first {{ $currentStep == 1 ? 'current' : '' }}" aria-disabled="false" aria-selected="true">
+                <li role="tab" wire:click="directMoveToStep(1)" class="first {{ $currentStep == 1 ? 'current' : '' }}"
+                    aria-disabled="false" aria-selected="true">
                     <a id="wizard1-t-0" href="#wizard1-h-0" aria-controls="wizard1-p-0">
                         <span class="current-info audible">current step:
                         </span>
@@ -207,6 +201,13 @@
                                     @enderror
                                 </div>
                             </div>
+
+
+
+
+
+
+
                         </div>
 
 
@@ -221,15 +222,11 @@
                 @foreach ($docData as $pageIndex => $documentPage)
                     <h3 id="wizard1-h-0" tabindex="-1"
                         class="title {{ $currentStep == $pageIndex + 2 ? 'current' : '' }} ">
-
                         <div class="row align-items-end mb-4 mb-md-0">
                             <div class="col-md mb-4 mb-md-0">
                                 <h4>{{ $documentPage['doc_page_name'] }}</h4>
                             </div>
                             <div class="col-md-auto aos-init aos-animate" data-aos="fade-start">
-                                {{-- <button wire:click="saveStep({{ $pageIndex + 2 }})" class="btn btn-primary">
-                                      {{ __('panel.document_template_variables_save') }}
-                                  </button> --}}
                             </div>
                         </div>
                     </h3>
@@ -237,50 +234,104 @@
                         class="body {{ $currentStep == $pageIndex + 2 ? 'current' : '' }}  step"
                         aria-hidden="{{ $currentStep == $pageIndex + 2 ? 'false' : 'true' }}"
                         style="display: {{ $currentStep == $pageIndex + 2 ? 'block' : 'none' }}">
-
                         <form method="post">
                             @csrf
-                            <div class="row">
+                            <div class="row" wire:ignore.self>
                                 <div class="col-sm-12 col-md-12">
-
                                     @foreach ($documentPage['groups'] as $groupIndex => $pageGroup)
                                         <fieldset>
                                             <legend>{{ $pageGroup['pg_name'] }}</legend>
-
                                             @foreach ($pageGroup['variables'] as $variableIndex => $pageVariable)
                                                 <div class="row">
                                                     <div class="col-sm-12 {{ $loop->first ? '' : 'pt-3' }} ">
-                                                        <label for=" {{ 'text_' . $pageVariable['pv_id'] }}">
+                                                        <label for="{{ 'text_' . $pageVariable['pv_id'] }}">
                                                             {{ $pageVariable['pv_name'] }}:
                                                             (<small>{{ $pageVariable['pv_question'] }}</small>)
                                                         </label>
-                                                        <input
-                                                            type="{{ $pageVariable['pv_type'] == 0 ? 'text' : 'number' }}"
-                                                            id="{{ 'text_' . $pageVariable['pv_id'] }}"
-                                                            name="{{ $pageVariable['pv_id'] }}"
-                                                            wire:model.defer="docData.{{ $pageIndex }}.groups.{{ $groupIndex }}.variables.{{ $variableIndex }}.pv_value"
-                                                            value="{{ $pageVariable['pv_value'] }}" class="form-control"
-                                                            {{ $pageVariable['pv_required'] == 0 ? '' : 'required' }}>
-                                                        <small>{{ $pageVariable['pv_details'] }}</small>
+                                                        @switch($pageVariable['pv_type'])
+                                                            @case(0)
+                                                                <input type="text" name="{{ $pageVariable['pv_id'] }}"
+                                                                    id="{{ 'text_' . $pageVariable['pv_id'] }}"
+                                                                    wire:model.defer="docData.{{ $pageIndex }}.groups.{{ $groupIndex }}.variables.{{ $variableIndex }}.pv_value"
+                                                                    value="{{ $pageVariable['pv_value'] }}" class="form-control"
+                                                                    {{ $pageVariable['pv_required'] == 0 ? '' : 'required' }}>
+                                                                <small>{{ $pageVariable['pv_details'] }}</small>
+                                                                @error('docData.' . $pageIndex . '.groups.' . $groupIndex .
+                                                                    '.variables.' . $variableIndex . '.pv_value')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            @break
 
-                                                        @error('docData.' . $pageIndex . '.groups.' . $groupIndex .
-                                                            '.variables.' . $variableIndex . '.pv_value')
-                                                            <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
+                                                            @case(1)
+                                                                <input type="number" name="{{ $pageVariable['pv_id'] }}"
+                                                                    id="{{ 'text_' . $pageVariable['pv_id'] }}"
+                                                                    wire:model.defer="docData.{{ $pageIndex }}.groups.{{ $groupIndex }}.variables.{{ $variableIndex }}.pv_value"
+                                                                    value="{{ $pageVariable['pv_value'] }}" class="form-control"
+                                                                    {{ $pageVariable['pv_required'] == 0 ? '' : 'required' }}>
+                                                                <small>{{ $pageVariable['pv_details'] }}</small>
+                                                                @error('docData.' . $pageIndex . '.groups.' . $groupIndex .
+                                                                    '.variables.' . $variableIndex . '.pv_value')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            @break
 
+                                                            @case(2)
+                                                                <div class="input-group flatpickr" id="flatpickr-datetime"
+                                                                    wire:ignore>
+                                                                    <input type="text" name="published_on"
+                                                                        wire:model.defer="docData.{{ $pageIndex }}.groups.{{ $groupIndex }}.variables.{{ $variableIndex }}.pv_value"
+                                                                        value="{{ $pageVariable['pv_value'] }}"
+                                                                        class="form-control" placeholder="Select date" data-input
+                                                                        readonly>
+                                                                    <span class="input-group-text input-group-addon" data-toggle>
+                                                                        <i data-feather="calendar"></i>
+                                                                    </span>
+                                                                </div>
+                                                                @error('docData.' . $pageIndex . '.groups.' . $groupIndex .
+                                                                    '.variables.' . $variableIndex . '.pv_value')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            @break
+
+                                                            @default
+                                                        @endswitch
                                                     </div>
                                                 </div>
                                             @endforeach
                                         </fieldset>
                                     @endforeach
-
                                 </div>
                             </div>
                         </form>
-
                     </section>
                 @endforeach
             @endisset
+
+            <script>
+                document.addEventListener('livewire:load', function() {
+                    initializeFlatpickr();
+                });
+
+                document.addEventListener('livewire:update', function() {
+                    initializeFlatpickr();
+                });
+
+                function initializeFlatpickr() {
+                    const flatpickrElements = document.querySelectorAll('.flatpickr input');
+                    flatpickrElements.forEach((el) => {
+                        if (!el._flatpickr) {
+                            flatpickr(el, {
+                                enableTime: true,
+                                dateFormat: "Y-m-d H:i",
+                                onChange: function(selectedDates, dateStr) {
+                                    el.dispatchEvent(new Event('input'));
+                                },
+                            });
+                        }
+                    });
+                }
+            </script>
+
             <!---- end related to dynamic steps --->
 
             <!------ review step ----->

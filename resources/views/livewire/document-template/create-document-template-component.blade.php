@@ -543,7 +543,7 @@
                                                                                 {{ old('pv_type') == '1' ? 'selected' : null }}>
                                                                                 {{ __('panel.pv_type_number') }}
                                                                             </option>
-                                                                            <option value="1"
+                                                                            <option value="2"
                                                                                 {{ old('pv_type') == '2' ? 'selected' : null }}>
                                                                                 {{ __('panel.pv_type_date') }}
                                                                             </option>
