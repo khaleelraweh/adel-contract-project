@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('pv_name')->nullable();
             $table->string('pv_question')->nullable();
-            $table->string('pv_type')->nullable();  // 0 means text , 1 means number
+            $table->string('pv_type')->nullable();  // 0 means text , 1 means number 2 means date
             $table->boolean('pv_required')->nullable()->default(true); // 0 mean no // 1 mean yes 
             $table->string('pv_details')->nullable();
             $table->foreignId('page_group_id')->constrained()->cascadeOnDelete();

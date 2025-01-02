@@ -1673,6 +1673,7 @@ return [
     'pv_type'                                               =>  'Type',
     'pv_type_text'                                          =>  'Text',
     'pv_type_number'                                        =>  'Number',
+    'pv_type_date'                                          =>  'Date',
     'pv_required'                                           =>  'Required',
     'pv_details'                                            =>  'Details',
     'select_variable'                                       =>  'Select Variable',

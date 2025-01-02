@@ -1694,6 +1694,7 @@ return [
     'pv_type'                                               =>  'النوع',
     'pv_type_text'                                          =>  'نص',
     'pv_type_number'                                        =>  'رقم',
+    'pv_type_date'                                          =>  'تاريخ',
     'pv_required'                                           =>  'إلزامي',
     'pv_details'                                            =>  'التفاصيل',
 
