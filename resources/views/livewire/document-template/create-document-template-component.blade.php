@@ -226,7 +226,7 @@
                 @enderror
 
 
-                <script>
+                {{-- <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         let editorInstance2;
 
@@ -258,7 +258,42 @@
                             editorInstance2.setData(text);
                         }
                     });
+                </script> --}}
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        let editorInstance2;
+
+                        // Initialize TinyMCE
+                        tinymce.init({
+                            selector: '#tinymceExample', // Select the textarea by its ID
+                            language: 'ar', // Set language to Arabic
+                            plugins: 'link image lists table preview code', // Example plugins
+                            toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright | numlist bullist | link image | code', // Toolbar configuration
+                            setup: function(editor) {
+                                editorInstance2 = editor;
+
+                                // Set the initial text from Livewire when event is triggered
+                                @this.on('updateDocTemplateText', (text) => {
+                                    editor.setContent(text);
+                                });
+
+                                // Sync TinyMCE data with Livewire when content changes
+                                editor.on('change keyup', () => {
+                                    @this.set('doc_template_text', editor.getContent());
+                                });
+                            }
+                        });
+
+                        // Update TinyMCE content when Livewire triggers an event
+                        Livewire.on('updateDocTemplateText', text => {
+                            if (editorInstance2) {
+                                editorInstance2.setContent(text);
+                            }
+                        });
+                    });
                 </script>
+
 
 
             </section>
