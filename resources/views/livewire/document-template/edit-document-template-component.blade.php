@@ -214,10 +214,9 @@
                 class="body {{ $currentStep == 2 ? 'current' : '' }}  step"
                 aria-hidden="{{ $currentStep == 2 ? 'false' : 'true' }}"
                 style="display: {{ $currentStep == 2 ? 'block' : 'none' }}">
-
                 <div wire:ignore>
-                    <textarea name="doc_template_text" id="ckEditor2" wire:model="doc_template_text" rows="10"
-                        class="form-control summernote">{!! old('doc_template_text') !!}</textarea>
+                    <textarea name="doc_template_text" id="tinymceEditor" wire:model.defer="doc_template_text" rows="10"
+                        class="form-control">{{ $doc_template_text }}</textarea>
                 </div>
                 @error('doc_template_text')
                     <span class="text-danger">{{ $message }}</span>
@@ -225,39 +224,97 @@
 
             </section>
 
+            <!-- With this script -->
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    let editorInstance2;
+                    let editorInstance;
 
-                    ClassicEditor
-                        .create(document.querySelector('#ckEditor2'), {
-                            language: 'ar', // Example setting for Arabic language
-                            // Other editor configurations
-                        })
-                        .then(editor => {
-                            editorInstance2 = editor;
+                    // Initialize TinyMCE
+                    tinymce.init({
+                        selector: '#tinymceEditor', // Select the textarea by its ID
+                        language: 'ar', // Set the editor language
+                        min_height: 350,
+                        default_text_color: 'red',
+                        plugins: [
+                            "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                            "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                            "save table contextmenu directionality emoticons template paste textcolor image"
+                        ],
+                        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                        templates: [{
+                                title: 'Test template 1',
+                                content: 'Test 1'
+                            },
+                            {
+                                title: 'Test template 2',
+                                content: 'Test 2'
+                            }
+                        ],
+                        content_css: [],
+                        image_title: true,
+                        automatic_uploads: true,
+                        file_picker_types: 'image',
+                        file_picker_callback: function(cb, value, meta) {
+                            var input = document.createElement('input');
+                            input.setAttribute('type', 'file');
+                            input.setAttribute('accept', 'image/*');
+                            input.onchange = function() {
+                                var file = this.files[0];
+                                var reader = new FileReader();
+                                reader.onload = function() {
+                                    var id = 'blobid' + (new Date()).getTime();
+                                    var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                                    var base64 = reader.result.split(',')[1];
+                                    var blobInfo = blobCache.create(id, file, base64);
+                                    blobCache.add(blobInfo);
+                                    cb(blobInfo.blobUri(), {
+                                        title: file.name
+                                    });
+                                };
+                                reader.readAsDataURL(file);
+                            };
+                            input.click();
+                        },
+                        image_advtab: true,
+                        contextmenu: 'image align | link',
+                        content_style: `
+                body { font-family:Helvetica,Arial,sans-serif; font-size:14px }
+                img { display: block; margin-left: auto; margin-right: auto; }
+            `,
+                        setup: function(editor) {
+                            editorInstance = editor;
 
-                            // Set the initial text from Livewire
+                            // Set the initial text from Livewire when event is triggered
                             @this.on('updateDocTemplateText', (text) => {
-                                editorInstance2.setData(text);
+                                editor.setContent(text);
                             });
 
-                            // Sync CKEditor data with Livewire
-                            editor.model.document.on('change:data', () => {
-                                @this.set('doc_template_text', editorInstance2.getData());
+                            // Sync TinyMCE data with Livewire when content changes
+                            editor.on('change keyup', () => {
+                                @this.set('doc_template_text', editor.getContent());
                             });
-                        })
-                        .catch(error => {
-                            console.error('Error initializing CKEditor:', error);
-                        });
-                });
 
-                Livewire.on('updateDocTemplateText', text => {
-                    if (editorInstance2) {
-                        editorInstance2.setData(text);
-                    }
+                            // Add alignment toolbar for images
+                            editor.ui.registry.addContextToolbar('imagealign', {
+                                predicate: function(node) {
+                                    return node.nodeName.toLowerCase() === 'img';
+                                },
+                                items: 'alignleft aligncenter alignright',
+                                position: 'node',
+                                scope: 'node'
+                            });
+                        }
+                    });
+
+                    // Update TinyMCE content when Livewire triggers an event
+                    Livewire.on('updateDocTemplateText', text => {
+                        if (editorInstance) {
+                            editorInstance.setContent(text);
+                        }
+                    });
                 });
             </script>
+
 
             {{-- step 3 : متغيرات نموذج الوثيقة  --}}
             <h3 id="wizard1-h-0" tabindex="-1" class="title {{ $currentStep == 3 ? 'current' : '' }} ">
@@ -580,59 +637,113 @@
                         </select>
                     </div>
                     <div class="col-sm-12 col-md-8 pt-3" wire:ignore>
-                        <textarea name="doc_template_text" id="khaleel3" class="form-control">{{ $doc_template_text }}</textarea>
+                        <textarea name="doc_template_text" id="tinymceEditor2" class="form-control">{{ $doc_template_text }}</textarea>
                     </div>
                 </div>
 
 
             </section>
 
+            <!-- With this script -->
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    let editorInstance;
+                    let editorInstance2;
 
-                    ClassicEditor
-                        .create(document.querySelector('#khaleel3'), {
-                            language: 'ar', // Example setting
-                            // Other editor configurations
-                        })
-                        .then(editor => {
-                            editorInstance = editor;
-
-                            // Set the initial text from Livewire
-                            @this.on('updateDocTemplateText', (text) => {
-                                editorInstance.setData(text);
-                            });
-
-                            // Handle select changes
-                            document.querySelector('select[name="pv_name"]').addEventListener('change', function() {
-                                const selectedValue = this.value;
-                                const selectedText = this.options[this.selectedIndex].text;
-
-                                if (selectedValue && editorInstance) {
-                                    editorInstance.model.change(writer => {
-                                        writer.insertText("{!-" + selectedValue + '-' + selectedText +
-                                            "!}",
-                                            editorInstance.model.document.selection
-                                            .getFirstPosition());
+                    // Initialize TinyMCE
+                    tinymce.init({
+                        selector: '#tinymceEditor2', // Select the textarea by its ID
+                        language: 'ar', // Set the editor language
+                        min_height: 350,
+                        default_text_color: 'red',
+                        plugins: [
+                            "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                            "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                            "save table contextmenu directionality emoticons template paste textcolor image"
+                        ],
+                        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                        templates: [{
+                                title: 'Test template 1',
+                                content: 'Test 1'
+                            },
+                            {
+                                title: 'Test template 2',
+                                content: 'Test 2'
+                            }
+                        ],
+                        content_css: [],
+                        image_title: true,
+                        automatic_uploads: true,
+                        file_picker_types: 'image',
+                        file_picker_callback: function(cb, value, meta) {
+                            var input = document.createElement('input');
+                            input.setAttribute('type', 'file');
+                            input.setAttribute('accept', 'image/*');
+                            input.onchange = function() {
+                                var file = this.files[0];
+                                var reader = new FileReader();
+                                reader.onload = function() {
+                                    var id = 'blobid' + (new Date()).getTime();
+                                    var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                                    var base64 = reader.result.split(',')[1];
+                                    var blobInfo = blobCache.create(id, file, base64);
+                                    blobCache.add(blobInfo);
+                                    cb(blobInfo.blobUri(), {
+                                        title: file.name
                                     });
-                                }
+                                };
+                                reader.readAsDataURL(file);
+                            };
+                            input.click();
+                        },
+                        image_advtab: true,
+                        contextmenu: 'image align | link',
+                        content_style: `
+                body { font-family:Helvetica,Arial,sans-serif; font-size:14px }
+                img { display: block; margin-left: auto; margin-right: auto; }
+            `,
+                        setup: function(editor) {
+                            editorInstance2 = editor;
+
+                            // Set the initial text from Livewire when event is triggered
+                            @this.on('updateDocTemplateText', (text) => {
+                                editor.setContent(text);
                             });
 
-                            // Sync CKEditor data with Livewire
-                            editor.model.document.on('change:data', () => {
-                                @this.set('doc_template_text', editorInstance.getData());
-                            });
-                        })
-                        .catch(error => {
-                            console.error('Error initializing CKEditor:', error);
-                        });
-                });
+                            // Handle select changes for inserting variables
+                            document.querySelector('select[name="pv_name"]').addEventListener('change',
+                                function() {
+                                    const selectedValue = this.value;
+                                    const selectedText = this.options[this.selectedIndex].text;
 
-                Livewire.on('updateDocTemplateText', text => {
-                    if (editorInstance) {
-                        editorInstance.setData(text);
-                    }
+                                    if (selectedValue) {
+                                        const placeholder = `{!-${selectedValue}-${selectedText}!}`;
+                                        editor.execCommand('mceInsertContent', false, placeholder);
+                                    }
+                                });
+
+                            // Sync TinyMCE data with Livewire when content changes
+                            editor.on('change keyup', () => {
+                                @this.set('doc_template_text', editor.getContent());
+                            });
+
+                            // Add alignment toolbar for images
+                            editor.ui.registry.addContextToolbar('imagealign', {
+                                predicate: function(node) {
+                                    return node.nodeName.toLowerCase() === 'img';
+                                },
+                                items: 'alignleft aligncenter alignright',
+                                position: 'node',
+                                scope: 'node'
+                            });
+                        }
+                    });
+
+                    // Update TinyMCE content when Livewire triggers an event
+                    Livewire.on('updateDocTemplateText', text => {
+                        if (editorInstance2) {
+                            editorInstance2.setContent(text);
+                        }
+                    });
                 });
             </script>
 
