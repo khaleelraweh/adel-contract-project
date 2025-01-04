@@ -215,7 +215,7 @@
                         class="form-control">{{ $doc_template_text }}</textarea> --}}
 
                     <textarea name="doc_template_text" id="tinymceExample" rows="10" class="form-control"
-                        wire:model.defer="doc_template_text" placeholder="{{ __('transf.Insert your course description.') }}"></textarea>
+                        wire:model.defer="doc_template_text" placeholder=""></textarea>
                     @error('tinymceExample')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
