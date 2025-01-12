@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class ContractVariable extends Model
@@ -12,11 +13,10 @@ class ContractVariable extends Model
 
     protected $guarded = [];
 
-    public function contract_variableable(): MorphTo
+    public function contractTemplate(): BelongsTo
     {
-        return $this->morphTo();
+        return $this->belongsTo(contractTemplate::class);
     }
-
 
     public function pv_type()
     {

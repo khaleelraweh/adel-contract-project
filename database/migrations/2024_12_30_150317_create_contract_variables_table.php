@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('contract_variables', function (Blueprint $table) {
+
             $table->id();
             $table->string('cv_name')->nullable();
             $table->string('cv_question')->nullable();
@@ -21,9 +22,7 @@ return new class extends Migration
             $table->boolean('cv_required')->nullable()->default(true); // 0 mean no // 1 mean yes 
             $table->string('cv_details')->nullable();
             $table->string('cv_code')->nullable();
-
-            $table->unsignedBigInteger('contract_variableable_id');
-            $table->string('contract_variableable_type');
+            $table->foreignId('contract_template_id')->constrained()->cascadeOnDelete();
 
             $table->timestamps();
         });

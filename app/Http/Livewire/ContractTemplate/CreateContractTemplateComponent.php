@@ -3,12 +3,10 @@
 namespace App\Http\Livewire\ContractTemplate;
 
 use App\Models\ContractTemplate;
+use App\Models\ContractVariable;
 use App\Models\DocumentTemplate;
 use App\Models\DocumentCategory;
 use App\Models\DocumentType;
-use App\Models\DocumentPage;
-use App\Models\PageGroup;
-use App\Models\PageVariable;
 use Carbon\Carbon;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
@@ -34,10 +32,9 @@ class CreateContractTemplateComponent extends Component
     public $contract_template_text;
 
     // step3 
-    public $pages = [];
+    public $variables = [];
     public $count = 1;
-    public $currentPageIndex = 0; // Track the currently active page
-    public $activeGroupIndex = 0; // Track the currently active group within a page
+    public $currentVariableIndex = 0; // Track the currently active variable
 
 
 
@@ -51,32 +48,18 @@ class CreateContractTemplateComponent extends Component
     public function mount($contractTemplateId = null)
     {
 
+        $this->currentVariableIndex = 0;
 
-        $this->currentPageIndex = 0;
-
-        // Initialize the pages array with a default page if it's empty
-        if (empty($this->pages)) {
-            $this->pages = [
+        // Initialize the variables array with a default variables if it's empty
+        if (empty($this->variables)) {
+            $this->variables = [
                 [
-                    'pageId' => 1,
-                    'doc_page_name' => __('panel.page') . ' 1',
-                    'doc_page_description' => 'Page Description 1',
-                    'groups' => [
-                        [
-                            'pg_name' =>  '',
-                            'variables' => [
-                                [
-                                    'pv_name'               =>  '',
-                                    'pv_question'           =>  '',
-                                    'pv_type'               =>   0,
-                                    'pv_required'           =>   1,
-                                    'pv_details'            =>  '',
-                                ],
-                            ],
-
-                        ],
-
-                    ],
+                    'variableId' => 1,
+                    'cv_name'               =>  '',
+                    'cv_question'           =>  '',
+                    'cv_type'               =>   0,
+                    'cv_required'           =>   1,
+                    'cv_details'            =>  '',
                     'saved' => false, // Initialize saved as false
                 ]
             ];
@@ -96,16 +79,14 @@ class CreateContractTemplateComponent extends Component
                 // Initialize other fields as needed
             }
 
-            // Initialize count based on existing pages
-            $this->count = count($this->pages);
+            // Initialize count based on existing variables
+            $this->count = count($this->variables);
         }
     }
 
 
     public function render()
     {
-        // -------- for document categories and types ---------//
-
 
         // Fetch the contractTemplate instance
         $contractTemplate = $this->contractTemplateId ? ContractTemplate::find($this->contractTemplateId) : null;
@@ -238,151 +219,78 @@ class CreateContractTemplateComponent extends Component
     }
 
 
-    // ===================== for step 3 making page  =================//
+    // ===================== for step 3 making variable  =================//
 
-    // Method to add a new page
-    public function addPage()
+    // Method to add a new variable
+    public function addVariable()
     {
         $this->count++;
 
-        $this->pages[] = [
-            'pageId'                => $this->count,
-            'doc_page_name'         => __('panel.page') . ' ' . $this->count,
-            'doc_page_description'  => 'Page description ' . $this->count,
-            'groups' => [
-                [
-                    'pg_name'   =>  '',
-                    'variables' => [
-                        [
-                            'pv_name'       =>  '',
-                            'pv_question'   =>  '',
-                            'pv_type'       =>   0,
-                            'pv_required'   =>   1,
-                            'pv_details'    =>  '',
-                        ],
-                    ],
-                ],
-            ],
+        $this->variables[] = [
+            'cv_name'           =>  '',
+            'cv_question'       =>  '',
+            'cv_type'           =>  0,
+            'cv_required'       =>  1,
+            'cv_details'        =>  '',
+
+
+
             'saved' => false, // Initialize saved as false
         ];
 
-        // Set the current page index to the new page
-        $this->currentPageIndex = count($this->pages) - 1;
+        // Set the current variable index to the new variable
+        $this->currentVariableIndex = count($this->variables) - 1;
 
-        $this->setActivePage($this->currentPageIndex);
+        $this->setActiveVariable($this->currentVariableIndex);
     }
 
 
-    public function addGroup($pageIndex)
-    {
 
-        $this->pages[$pageIndex]['groups'][] = [
-            'pg_name'   => '',
-            'variables' => [
-                [
-                    'pv_name'           =>  '',
-                    'pv_question'       =>  '',
-                    'pv_type'           =>  0,
-                    'pv_required'       =>  1,
-                    'pv_details'        =>  '',
-                ],
-            ]
-        ];
 
-        // Set the new group as the active group
-        $this->activeGroupIndex = count($this->pages[$pageIndex]['groups']) - 1;
-    }
 
-    public function addVariable($pageIndex, $groupIndex)
-    {
-        $this->pages[$pageIndex]['groups'][$groupIndex]['variables'][] = [
-            'pv_name'           =>  '',
-            'pv_question'       =>  '',
-            'pv_type'           =>  0,
-            'pv_required'       =>  1,
-            'pv_details'        =>  '',
-        ];
-    }
-
-    public function setActivePage($index)
+    public function setActiveVariable($index)
     {
         // Ensure the index is within bounds
-        if ($index >= 0 && $index < count($this->pages)) {
-            $this->currentPageIndex = $index;
+        if ($index >= 0 && $index < count($this->variables)) {
+            $this->currentVariableIndex = $index;
             $this->activeGroupIndex = 0; // Reset the active group index
 
         }
     }
 
-    public function setActiveGroup($pageIndex, $groupIndex)
-    {
-        // Ensure the indexes are within bounds
-        if (
-            $pageIndex >= 0 && $pageIndex < count($this->pages) &&
-            $groupIndex >= 0 && $groupIndex < count($this->pages[$pageIndex]['groups'])
-        ) {
-            $this->currentPageIndex = $pageIndex;
-            $this->activeGroupIndex = $groupIndex;
-        }
-    }
 
-
-    // Method to remove a page
-    public function removePage($pageIndex)
-    {
-        if (isset($this->pages[$pageIndex])) {
-            array_splice($this->pages, $pageIndex, 1);
-            $this->count--;
-
-            // Adjust the currentPageIndex if necessary
-            if ($this->currentPageIndex >= count($this->pages)) {
-                $this->currentPageIndex = count($this->pages) - 1;
-            }
-
-            if ($this->currentPageIndex < 0) {
-                $this->currentPageIndex = 0;
-            }
-        }
-    }
-
-
-    // Method to remove a group
-    public function removeGroup($pageIndex, $groupIndex)
-    {
-        if (isset($this->pages[$pageIndex]['groups'][$groupIndex])) {
-            array_splice($this->pages[$pageIndex]['groups'], $groupIndex, 1);
-
-            // Adjust the activeGroupIndex if necessary
-            if ($this->activeGroupIndex >= count($this->pages[$pageIndex]['groups'])) {
-                $this->activeGroupIndex = count($this->pages[$pageIndex]['groups']) - 1;
-            }
-
-            if ($this->activeGroupIndex < 0) {
-                $this->activeGroupIndex = 0;
-            }
-        }
-    }
 
     // Method to remove a variable
-    public function removeVariable($pageIndex, $groupIndex, $variableIndex)
+    public function removeVariable($variableIndex)
     {
-        if (isset($this->pages[$pageIndex]['groups'][$groupIndex]['variables'][$variableIndex])) {
-            array_splice($this->pages[$pageIndex]['groups'][$groupIndex]['variables'], $variableIndex, 1);
+        if (isset($this->variables[$variableIndex])) {
+            array_splice($this->variables, $variableIndex, 1);
+            $this->count--;
+
+            // Adjust the currentVariableIndex if necessary
+            if ($this->currentVariableIndex >= count($this->variables)) {
+                $this->currentVariableIndex = count($this->variables) - 1;
+            }
+
+            if ($this->currentVariableIndex < 0) {
+                $this->currentVariableIndex = 0;
+            }
         }
     }
+
+
+
+
 
 
     public function validateStepThree()
     {
         $this->validate([
-            'pages.*.doc_page_name'                     => 'required|string',
-            'pages.*.doc_page_description'              => 'required|string',
-            'pages.*.groups.*.pg_name'                  => 'required|string',
-            'pages.*.groups.*.variables.*.pv_name'      => 'required|string',
-            'pages.*.groups.*.variables.*.pv_question'  => 'required|string',
-            'pages.*.groups.*.variables.*.pv_type'      => 'required|numeric',
-            'pages.*.groups.*.variables.*.pv_required'  => 'required|boolean',
-            'pages.*.groups.*.variables.*.pv_details'   => 'required|string',
+            'variables.*.cv_name'                     => 'required|string',
+            'variables.*.cv_question'                 => 'required|string',
+            'variables.*.cv_type'                     => 'required|numeric',
+            'variables.*.cv_required'                 => 'required|boolean',
+            'variables.*.cv_details'                  => 'required|string',
         ]);
     }
 
@@ -393,37 +301,17 @@ class CreateContractTemplateComponent extends Component
         $this->validateStepThree();
 
         // Save the data to the database
-        foreach ($this->pages as $page) {
-            $pageData = [
-                'doc_page_name'         => $page['doc_page_name'],
-                'doc_page_description'  => $page['doc_page_description'],
-                'document_template_id'  => $this->contractTemplateId,
+        foreach ($this->variables as $variable) {
+            $variableData = [
+                'cv_name'       => $variable['cv_name'],
+                'cv_question'   => $variable['cv_question'],
+                'cv_type'       => $variable['cv_type'],
+                'cv_required'   => $variable['cv_required'],
+                'cv_details'    => $variable['cv_details'],
+                'contract_template_id'  => $this->contractTemplateId,
             ];
 
-            $pageModel = DocumentPage::updateOrCreate($pageData);
-
-            foreach ($page['groups'] as $group) {
-                $groupData = [
-                    'pg_name'           => $group['pg_name'],
-                    'document_page_id'  => $pageModel->id,
-                ];
-
-                $groupModel = PageGroup::updateOrCreate($groupData);
-
-                foreach ($group['variables'] as $variable) {
-
-                    $variableData = [
-                        'pv_name'       => $variable['pv_name'],
-                        'pv_question'   => $variable['pv_question'],
-                        'pv_type'       => $variable['pv_type'],
-                        'pv_required'   => $variable['pv_required'],
-                        'pv_details'    => $variable['pv_details'],
-                        'page_group_id' => $groupModel->id,
-                    ];
-
-                    PageVariable::updateOrCreate($variableData);
-                }
-            }
+            $variableModel = ContractVariable::updateOrCreate($variableData);
         }
 
         // Indicate that step three data is saved

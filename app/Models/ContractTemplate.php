@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Helper\MySlugHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Nicolaslopezj\Searchable\SearchableTrait;
@@ -61,7 +62,7 @@ class ContractTemplate extends Model
 
     protected $searchable = [
         'columns' => [
-            'course_templates.contract_template_name' => 10,
+            'contract_templates.contract_template_name' => 10,
         ]
     ];
 
@@ -70,8 +71,8 @@ class ContractTemplate extends Model
         return $query->whereStatus(true);
     }
 
-    public function contractVariables(): MorphMany
+    public function contractVariables(): HasMany
     {
-        return $this->morphMany(ContractVariable::class, 'contract_variableable');
+        return $this->hasMany(ContractVariable::class);
     }
 }
