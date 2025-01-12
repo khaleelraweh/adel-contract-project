@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('contract_templates', function (Blueprint $table) {
 
             $table->id();
-            $table->json('name');
+            $table->json('contract_template_name');
             $table->json('slug');
             $table->tinyInteger('language')->default(1); // 1 = arabic , 2 = english , 3 = both
             $table->json('contract_text')->nullable();
-            $table->string('file')->nullable();
+            $table->string('contract_template_file')->nullable();
 
 
             // will be use always

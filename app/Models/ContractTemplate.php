@@ -17,12 +17,12 @@ class ContractTemplate extends Model
     use HasFactory, HasTranslations, HasTranslatableSlug, SearchableTrait, SoftDeletes;
     protected $guarded = [];
 
-    public $translatable = ['name', 'slug', 'contract_text'];
+    public $translatable = ['contract_template_name', 'slug', 'contract_text'];
 
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('name')
+            ->generateSlugsFrom('contract_template_name')
             ->saveSlugsTo('slug');
     }
 
@@ -61,7 +61,7 @@ class ContractTemplate extends Model
 
     protected $searchable = [
         'columns' => [
-            'course_templates.doc_template_name' => 10,
+            'course_templates.contract_template_name' => 10,
         ]
     ];
 

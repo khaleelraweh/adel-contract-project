@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\ContractTemplate;
 
+use App\Models\ContractTemplate;
 use App\Models\DocumentTemplate;
 use App\Models\DocumentCategory;
 use App\Models\DocumentType;
@@ -19,15 +20,12 @@ class CreateContractTemplateComponent extends Component
     public $currentStep = 1;
     public $totalSteps = 4;
 
-    // -------- for document categories and types ---------//
-    public $document_categories;
-    public $document_types = [];
+
 
     // this is for sending data to document template table 
     //step1
-    public $document_category_id;
-    public $document_type_id;
-    public $doc_template_name;
+
+    public $contract_template_name;
     public $language;
     public $published_on;
     public $status = 1; // Default status value
@@ -91,9 +89,7 @@ class CreateContractTemplateComponent extends Component
             $documentTemplate = DocumentTemplate::find($documentTemplateId);
 
             if ($documentTemplate) {
-                $this->document_category_id =   $documentTemplate->document_category_id;
-                $this->document_type_id     =   $documentTemplate->document_type_id;
-                $this->doc_template_name    =   $documentTemplate->doc_template_name;
+                $this->contract_template_name    =   $documentTemplate->contract_template_name;
                 $this->language             =   $documentTemplate->language;
                 $this->published_on         =   $documentTemplate->published_on;
                 $this->status               =   $documentTemplate->status;
@@ -110,8 +106,6 @@ class CreateContractTemplateComponent extends Component
     public function render()
     {
         // -------- for document categories and types ---------//
-        $this->document_categories  = DocumentCategory::whereStatus(true)->get();
-        $this->document_types       = $this->document_category_id != '' ? DocumentType::whereStatus(true)->whereDocumentCategoryId($this->document_category_id)->get() : [];
 
 
         // Fetch the DocumentTemplate instance
@@ -121,9 +115,6 @@ class CreateContractTemplateComponent extends Component
         return view(
             'livewire.contract-template.create-contract-template-component',
             [
-                'document_categories'   => $this->document_categories,
-                'document_types'        => $this->document_types,
-                'documentTemplateId'    => $this->documentTemplateId,
                 'documentTemplate'      => $documentTemplate, // Pass the DocumentTemplate instance
                 'doc_template_text'     => $this->doc_template_text, // Pass the doc_template_text to the view
 
@@ -164,11 +155,9 @@ class CreateContractTemplateComponent extends Component
     {
         if ($this->currentStep == 1) {
             $this->validate([
-                'document_category_id'  => 'required|numeric',
-                'document_type_id'      => 'required|numeric',
-                'doc_template_name'     => 'required|string',
-                'language'              => 'required|numeric',
-                'published_on'          => 'required',
+                'contract_template_name'    => 'required|string',
+                'language'                  => 'required|numeric',
+                'published_on'              => 'required',
             ]);
         } elseif ($this->currentStep == 2) {
             $this->validate([
@@ -188,26 +177,20 @@ class CreateContractTemplateComponent extends Component
     {
         if ($this->currentStep == 1) {
             if ($this->documentTemplateId) {
-                $documentTemplate = DocumentTemplate::updateOrCreate(
+                $documentTemplate = ContractTemplate::updateOrCreate(
                     ['id' => $this->documentTemplateId],
                     [
-                        'document_category_id'  => $this->document_category_id,
-                        'document_type_id'      => $this->document_type_id,
-                        'doc_template_name'     => $this->doc_template_name,
-                        'language'              => $this->language,
-                        // 'published_on'          => $this->published_on,
-                        'published_on'          => Carbon::now(),
-                        'status'                => $this->status,
+                        'contract_template_name'     => $this->contract_template_name,
+                        'language'                  => $this->language,
+                        'published_on'              => Carbon::now(),
+                        'status'                    => $this->status,
                     ]
                 );
             } else {
-                $documentTemplate = DocumentTemplate::updateOrCreate(
+                $documentTemplate = ContractTemplate::updateOrCreate(
                     [
-                        'document_category_id'  => $this->document_category_id,
-                        'document_type_id'      => $this->document_type_id,
-                        'doc_template_name'     => $this->doc_template_name,
+                        'contract_template_name'     => $this->contract_template_name,
                         'language'              => $this->language,
-                        // 'published_on'          => $this->published_on,
                         'published_on'          => Carbon::now(),
                         'status'                => $this->status,
                     ]

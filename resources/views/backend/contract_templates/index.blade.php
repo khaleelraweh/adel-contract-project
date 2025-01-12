@@ -63,7 +63,7 @@
                                     value="{{ $contract_template->id }}">
                             </td>
                             <td>
-                                {{ $contract_template->name }}
+                                {{ $contract_template->contract_template_name }}
                             </td>
                             <td class="d-none d-sm-table-cell">
                                 {{ $contract_template->created_by }}
