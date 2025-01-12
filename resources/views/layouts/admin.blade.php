@@ -92,7 +92,6 @@
 
     <link rel="shortcut icon" href="{{ asset('backend/images/favicon.png') }}" />
 
-    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.css">
     @livewireStyles
 
     @yield('style')
@@ -263,9 +262,8 @@
         });
     </script>
 
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
 
-    <script>
+    {{-- <script>
         let editorInstance;
 
         ClassicEditor
@@ -300,7 +298,7 @@
             .catch(error => {
                 console.error(error);
             });
-    </script>
+    </script> --}}
 
     @livewireScripts
 
