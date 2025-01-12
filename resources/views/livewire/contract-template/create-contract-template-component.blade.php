@@ -442,17 +442,13 @@
                         <label for="{{ $variables[$currentVariableIndex]['cv_name'] }}">
                             {{ __('panel.cv_name') }}
                         </label>
-                        {{-- <select name="cv_name" class="form-control">
+                        <select name="cv_name" class="form-control">
                             <option value="" selected>-- {{ __('panel.select_variable') }} --</option>
                             @if ($contractTemplate)
-                                @if ($contractTemplate->documentvariables->isNotEmpty())
-                                    @foreach ($contractTemplate->documentvariables as $variable)
-                                        @foreach ($variable->variableGroups as $group)
-                                            @foreach ($group->variableVariables as $variable)
-                                                <option value="{{ $variable->id }}">{{ $variable->pv_name }}
-                                                </option>
-                                            @endforeach
-                                        @endforeach
+                                @if ($contractTemplate->contractVariables->isNotEmpty())
+                                    @foreach ($contractTemplate->contractVariables as $variable)
+                                        <option value="{{ $variable->id }}">{{ $variable->cv_name }}
+                                        </option>
                                     @endforeach
                                 @else
                                     <option value="">No variables available</option>
@@ -460,7 +456,7 @@
                             @else
                                 <p>No document template found.</p>
                             @endif
-                        </select> --}}
+                        </select>
                     </div>
                     <div class="col-sm-12 col-md-8 pt-3" wire:ignore>
                         <textarea name="contract_template_text" id="tinymceEditor" class="form-control">{{ $contract_template_text }}</textarea>
