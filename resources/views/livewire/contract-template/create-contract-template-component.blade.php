@@ -297,7 +297,7 @@
                 style="display: {{ $currentStep == 3 ? 'block' : 'none' }}">
 
                 <div class="row">
-                    <div class="col-sm-12 col-md-2 pt-3">
+                    <div class="col-sm-12 col-md-4 pt-3">
                         <h4 class="mb-3">متغيرات العقد</h4>
                         <ul style="list-style: none;margin:0;padding:0;">
                             @foreach ($variables as $index => $variable)
@@ -323,7 +323,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-10 pt-3">
+                    <div class="col-sm-12 col-md-8 pt-3">
                         @if (isset($variables[$currentVariableIndex]))
                             <div class="card">
                                 <div class="card-header mb-0 pb-0">
@@ -333,7 +333,7 @@
                                 </div>
                                 <div class="card-body mt-0 pt-0">
                                     <div class="row">
-                                        <div class="col-sm-12 col-md-4 pt-3">
+                                        <div class="col-sm-12 col-md-12 pt-3">
                                             <label for="{{ $variables[$currentVariableIndex]['cv_name'] }}">
                                                 {{ __('panel.cv_name') }}
                                             </label>
@@ -347,7 +347,9 @@
                                             @enderror
 
                                         </div>
-                                        <div class="col-sm-12 col-md-8 pt-3">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 pt-3">
                                             <label for="{{ $variables[$currentVariableIndex]['cv_question'] }}">
                                                 {{ __('panel.cv_question') }}
                                             </label>
