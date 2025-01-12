@@ -439,8 +439,10 @@
 
                 <div class="row">
                     <div class="col-sm-12 col-md-4 pt-3">
-                        <label for="pv_name">{{ __('panel.select_pv_name') }}</label>
-                        {{-- <select name="pv_name" class="form-control">
+                        <label for="{{ $variables[$currentVariableIndex]['cv_name'] }}">
+                            {{ __('panel.cv_name') }}
+                        </label>
+                        {{-- <select name="cv_name" class="form-control">
                             <option value="" selected>-- {{ __('panel.select_variable') }} --</option>
                             @if ($contractTemplate)
                                 @if ($contractTemplate->documentvariables->isNotEmpty())
