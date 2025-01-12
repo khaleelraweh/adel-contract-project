@@ -298,7 +298,7 @@
 
                 <div class="row">
                     <div class="col-sm-12 col-md-2 pt-3">
-                        <h2>صفحات النموذج</h2>
+                        <h4 class="mb-3">متغيرات العقد</h4>
                         <ul style="list-style: none;margin:0;padding:0;">
                             @foreach ($variables as $index => $variable)
                                 <li class="w-100 mb-1 d-flex justify-content-between"
@@ -346,20 +346,19 @@
                                             @enderror
 
                                         </div>
-                                        {{-- <div class="col-sm-12 col-md-8 pt-3">
-                                            <label
-                                                for="{{ $variables[$currentVariableIndex]['doc_variable_description'] }}">
-                                                {{ __('panel.variable_description') }}
+                                        <div class="col-sm-12 col-md-8 pt-3">
+                                            <label for="{{ $variables[$currentVariableIndex]['cv_question'] }}">
+                                                {{ __('panel.cv_question') }}
                                             </label>
 
                                             <input type="text" class="form-control"
-                                                id="{{ $variables[$currentVariableIndex]['doc_variable_description'] }}"
-                                                wire:model.defer="variables.{{ $currentVariableIndex }}.doc_variable_description">
+                                                id="{{ $variables[$currentVariableIndex]['cv_question'] }}"
+                                                wire:model.defer="variables.{{ $currentVariableIndex }}.cv_question">
 
-                                            @error('variables.' . $currentVariableIndex . '.doc_variable_description')
+                                            @error('variables.' . $currentVariableIndex . '.cv_question')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
-                                        </div> --}}
+                                        </div>
                                     </div>
 
                                 </div>
