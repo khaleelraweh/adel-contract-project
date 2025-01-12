@@ -115,7 +115,7 @@ class CreateContractTemplateComponent extends Component
     {
         $this->validateStep();
         $this->saveStepData();
-        return redirect()->route('admin.document_templates.index');
+        return redirect()->route('admin.contract_templates.index');
     }
 
     public function previousStep()
