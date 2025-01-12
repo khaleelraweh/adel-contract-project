@@ -55,7 +55,7 @@ class CreateContractTemplateComponent extends Component
             $this->variables = [
                 [
                     'variableId' => 1,
-                    'cv_name'               =>  '',
+                    'cv_name'               =>  __('panel.variable') . (count($this->variables) + 1),
                     'cv_question'           =>  '',
                     'cv_type'               =>   0,
                     'cv_required'           =>   1,
@@ -227,7 +227,7 @@ class CreateContractTemplateComponent extends Component
         $this->count++;
 
         $this->variables[] = [
-            'cv_name'           =>  '',
+            'cv_name'           =>  __('panel.variable') . $this->count,
             'cv_question'       =>  '',
             'cv_type'           =>  0,
             'cv_required'       =>  1,
