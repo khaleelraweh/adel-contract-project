@@ -1729,6 +1729,15 @@ return [
     'contract_and_template_formatting'                      =>  'تنسيق العقد والمستند',
     'contract_and_template_formatting_saved'                =>  'تم حفظ تنسيق العقد والمستند بنجاح',
 
+    'cv_name'                                               =>  'الإسم',
+    'select_cv_name'                                        =>  'إختر المتغير',
+    'cv_question'                                           =>  'السؤال',
+    'cv_type'                                               =>  'النوع',
+    'cv_type_text'                                          =>  'نص',
+    'cv_type_number'                                        =>  'رقم',
+    'cv_type_date'                                          =>  'تاريخ',
+    'cv_required'                                           =>  'إلزامي',
+    'cv_details'                                            =>  'التفاصيل',
 
 
 ];

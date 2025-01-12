@@ -1704,6 +1704,15 @@ return [
     'contract_and_template_formatting'                      =>  'Contract and template formatting',
     'contract_and_template_formatting_saved'                =>  'Contract and template formatting saved successfully',
 
+    'pc_name'                                               =>  'Name',
+    'select_pc_name'                                        =>  'Select Variable',
+    'pc_question'                                           =>  'Question',
+    'pc_type'                                               =>  'Type',
+    'pc_type_text'                                          =>  'Text',
+    'pc_type_number'                                        =>  'Number',
+    'pc_type_date'                                          =>  'Date',
+    'pc_required'                                           =>  'Required',
+    'pc_details'                                            =>  'Details',
 
 
 ];
