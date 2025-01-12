@@ -147,7 +147,7 @@ class EntrustSeeder extends Seeder
 
 
         //document Categories 
-        $manageDocumentCategories = Permission::create(['name' => 'manage_document_categories', 'display_name' => ['ar' => 'إدارة الوثائق', 'en' => 'Manage Documents'], 'route' => 'document_categories', 'module' => 'document_categories', 'as' => 'document_categories.index', 'icon' => 'far fa-file-alt', 'parent' => '0', 'parent_original' => '0', 'sidebar_link' => '1', 'appear' => '1', 'ordering' => '10',]);
+        $manageDocumentCategories = Permission::create(['name' => 'manage_document_categories', 'display_name' => ['ar' => 'إدارة تصنيف الوثائق', 'en' => 'Manage Document Categories'], 'route' => 'document_categories', 'module' => 'document_categories', 'as' => 'document_categories.index', 'icon' => 'far fa-file-alt', 'parent' => '0', 'parent_original' => '0', 'sidebar_link' => '1', 'appear' => '1', 'ordering' => '10',]);
         $manageDocumentCategories->parent_show = $manageDocumentCategories->id;
         $manageDocumentCategories->save();
         $showDocuments    =  Permission::create(['name' => 'show_document_categories',  'display_name' => ['ar'     => 'إدارة تصنيف الوثائق ', 'en'  =>   'manage Document Categories'], 'route' => 'document_categories', 'module' => 'document_categories', 'as' => 'document_categories.index', 'icon' => 'far fa-file-alt', 'parent' => $manageDocumentCategories->id, 'parent_original' => $manageDocumentCategories->id, 'parent_show' => $manageDocumentCategories->id, 'sidebar_link' => '0', 'appear' => '0']);
