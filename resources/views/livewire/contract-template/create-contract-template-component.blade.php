@@ -537,7 +537,7 @@
                             });
 
                             // Handle select changes for inserting variables
-                            document.querySelector('select[name="pv_name"]').addEventListener('change',
+                            document.querySelector('select[name="cv_name"]').addEventListener('change',
                                 function() {
                                     const selectedValue = this.value;
                                     const selectedText = this.options[this.selectedIndex].text;
