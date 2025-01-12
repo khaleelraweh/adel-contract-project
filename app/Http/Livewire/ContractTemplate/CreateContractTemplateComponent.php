@@ -115,6 +115,7 @@ class CreateContractTemplateComponent extends Component
         return view(
             'livewire.contract-template.create-contract-template-component',
             [
+                'documentTemplateId'    => $this->documentTemplateId,
                 'documentTemplate'      => $documentTemplate, // Pass the DocumentTemplate instance
                 'doc_template_text'     => $this->doc_template_text, // Pass the doc_template_text to the view
 
