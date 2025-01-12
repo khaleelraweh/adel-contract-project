@@ -10,7 +10,7 @@
                         </span>
                         <span class="number">1</span>
                         <span class="title">
-                            {{ __('panel.document_template_data') }}
+                            {{ __('panel.contract_template_data') }}
                         </span>
                     </a>
                 </li>
@@ -18,21 +18,21 @@
                     class="disabled {{ $currentStep == 2 ? 'current' : '' }}" aria-disabled="true">
                     <a id="wizard1-t-1" href="#wizard1-h-1" aria-controls="wizard1-p-1">
                         <span class="number">2</span>
-                        <span class="title"> {{ __('panel.document_template_text') }} </span>
+                        <span class="title"> {{ __('panel.contract_template_text') }} </span>
                     </a>
                 </li>
                 <li role="tab" wire:click="directMoveToStep(3)"
                     class="disabled {{ $currentStep == 3 ? 'current' : '' }}" aria-disabled="true">
                     <a id="wizard1-t-1" href="#wizard1-h-1" aria-controls="wizard1-p-1">
                         <span class="number">3</span>
-                        <span class="title"> {{ __('panel.document_template_variables') }} </span>
+                        <span class="title"> {{ __('panel.contract_template_variables') }} </span>
                     </a>
                 </li>
                 <li role="tab" wire:click="directMoveToStep(4)"
                     class="disabled last {{ $currentStep == 4 ? 'current' : '' }}" aria-disabled="true">
                     <a id="wizard1-t-2" href="#wizard1-h-2" aria-controls="wizard1-p-2"><span class="number">4</span>
                         <span class="title">
-                            {{ __('panel.document_and_template_formatting') }}
+                            {{ __('panel.contract_and_template_formatting') }}
                         </span>
                     </a>
                 </li>
@@ -43,7 +43,7 @@
 
             {{-- step 1 : بيانات نموذج الوثيقة --}}
             <h3 id="wizard1-h-0" tabindex="-1" class="title {{ $currentStep == 1 ? 'current' : '' }} ">
-                {{ __('panel.document_template_data') }}
+                {{ __('panel.contract_template_data') }}
             </h3>
 
             <section id="wizard1-p-0" role="tabpanel" aria-labelledby="wizard1-h-0"
@@ -59,7 +59,7 @@
 
                     <div class="row">
                         <div class="col-sm-12 col-md-2 pt-3">
-                            <label for="contract_template_name"> {{ __('panel.document_template_name') }}
+                            <label for="contract_template_name"> {{ __('panel.contract_template_name') }}
                             </label>
                         </div>
                         <div class="col-sm-12 col-md-10 pt-3">
@@ -155,7 +155,7 @@
 
             {{-- step 2 : نص نموذج الوثيقة  --}}
             <h3 id="wizard1-h-0" tabindex="-1" class="title {{ $currentStep == 2 ? 'current' : '' }} ">
-                {{ __('panel.document_template_text') }}
+                {{ __('panel.contract_template_text') }}
             </h3>
 
             <section id="wizard1-p-0" role="tabpanel" aria-labelledby="wizard1-h-0"
@@ -281,11 +281,11 @@
 
                 <div class="row align-items-end mb-4 mb-md-0">
                     <div class="col-md mb-4 mb-md-0">
-                        <h4>{{ __('panel.document_template_variables') }}</h4>
+                        <h4>{{ __('panel.contract_template_variables') }}</h4>
                     </div>
                     <div class="col-md-auto aos-init aos-animate" data-aos="fade-start">
                         <button wire:click="saveStepThreeDataUsingBtn" class="btn btn-primary">
-                            {{ __('panel.document_template_variables_save') }}
+                            {{ __('panel.contract_template_variables_save') }}
                         </button>
                     </div>
                 </div>
@@ -430,7 +430,7 @@
 
             {{-- step 4 : تنسيق الوثيقة والمستند --}}
             <h3 id="wizard1-h-0" tabindex="-1" class="title {{ $currentStep == 4 ? 'current' : '' }} ">
-                {{ __('panel.document_and_template_formatting') }}
+                {{ __('panel.contract_and_template_formatting') }}
             </h3>
             <section id="wizard1-p-3" role="tabpanel" aria-labelledby="wizard1-h-3"
                 class="body {{ $currentStep == 4 ? 'current' : '' }}  step"
@@ -601,12 +601,12 @@
                     <a href="#next" wire:click="nextStep" role="menuitem">
                         {{-- Next --}}
                         @if ($currentStep == 1)
-                            {{ __('panel.document_template_text') }} >>
+                            {{ __('panel.contract_template_text') }} >>
                         @else
                             @if ($currentStep == 2)
-                                {{ __('panel.document_template_variables') }} >>
+                                {{ __('panel.contract_template_variables') }} >>
                             @else
-                                {{ __('panel.document_and_template_formatting') }} >>
+                                {{ __('panel.contract_and_template_formatting') }} >>
                             @endif
                         @endif
                     </a>
