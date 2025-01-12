@@ -187,16 +187,11 @@
 
 
 
-    {{-- End added new  --}}
 
-    <!-- Custom js for this page -->
-    {{-- <script src="{{ asset('backend/js/dashboard-light.js') }}"></script> --}}
     <!-- End custom js for this page -->
     <script src="<?php echo asset($dark != '' ? 'backend/js/dashboard-dark.js' : 'backend/js/dashboard-light.js'); ?>"></script>
 
 
-    <!-- Alpine v2 -->
-    {{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script> --}}
 
     <!-- Alpine v3 -->
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -261,44 +256,6 @@
             matcher: matchStart
         });
     </script>
-
-
-    {{-- <script>
-        let editorInstance;
-
-        ClassicEditor
-            .create(document.querySelector('#khaleel2'), {
-                language: 'ar', // Set language to Arabic
-                toolbar: {
-                    items: [
-                        'heading', '|',
-                        'bold', 'italic', 'underline', 'strikethrough', 'link', '|',
-                        'bulletedList', 'numberedList', 'blockQuote', 'insertTable', '|',
-                        'alignment', 'outdent', 'indent', '|',
-                        'imageUpload', 'mediaEmbed', '|',
-                        'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
-                        'codeBlock', 'removeFormat', '|',
-                        'undo', 'redo'
-                    ]
-                },
-                image: {
-                    toolbar: [
-                        'imageTextAlternative', 'imageStyle:full', 'imageStyle:side'
-                    ]
-                },
-                table: {
-                    contentToolbar: [
-                        'tableColumn', 'tableRow', 'mergeTableCells'
-                    ]
-                }
-            })
-            .then(editor => {
-                editorInstance = editor;
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    </script> --}}
 
     @livewireScripts
 
