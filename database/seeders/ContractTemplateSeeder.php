@@ -20,7 +20,7 @@ class ContractTemplateSeeder extends Seeder
 
         ContractTemplate::create([
             'name'              =>  ['ar'   =>  'عقد باسم العميل 1', 'en'  =>  'Contract named by Customer 1'],
-            'text'              =>  ['ar'   =>  $faker->text(), 'en'  =>  $faker->text()],
+            'contract_text'              =>  ['ar'   =>  $faker->text(), 'en'  =>  $faker->text()],
             'file'              =>  '1.pdf',
             'created_by'        => 'Admin System',
             'status'            => true,
@@ -29,7 +29,7 @@ class ContractTemplateSeeder extends Seeder
 
         ContractTemplate::create([
             'name'              =>  ['ar'   =>  'عقد باسم العميل 2', 'en'  =>  'Contract named by Customer 2'],
-            'text'              =>  ['ar'   =>  $faker->text(), 'en'  =>  $faker->text()],
+            'contract_text'              =>  ['ar'   =>  $faker->text(), 'en'  =>  $faker->text()],
             'file'              =>  '2.pdf',
             'created_by'        => 'Admin System',
             'status'            => true,
