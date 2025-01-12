@@ -361,6 +361,50 @@
                                         </div>
                                     </div>
 
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6 pt-3">
+                                            <label for="{{ $variables[$currentVariableIndex]['cv_type'] }}">
+                                                {{ __('panel.cv_type') }}
+                                            </label>
+                                            <select name="pv_type" class="form-control"
+                                                id="variables.{{ $index }}.cv_type"
+                                                wire:model.defer="variables.{{ $currentVariableIndex }}.cv_type">
+                                                <option value="0"
+                                                    {{ old('cv_type') == '0' ? 'selected' : null }}>
+                                                    {{ __('panel.cv_type_text') }}
+                                                </option>
+                                                <option value="1"
+                                                    {{ old('pv_type') == '1' ? 'selected' : null }}>
+                                                    {{ __('panel.cv_type_number') }}
+                                                </option>
+                                            </select>
+                                            @error('variables.' . $currentVariableIndex . '.cv_type')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 pt-3">
+                                            <label for="{{ $variables[$currentVariableIndex]['cv_required'] }}">
+                                                {{ __('panel.cv_required') }}
+                                            </label>
+                                            <select name="pv_type" class="form-control"
+                                                id="variables.{{ $index }}.cv_required"
+                                                wire:model.defer="variables.{{ $currentVariableIndex }}.cv_required">
+                                                <option value="1"
+                                                    {{ old('cv_required') == '1' ? 'selected' : null }}>
+                                                    {{ __('panel.yes') }}
+                                                </option>
+                                                <option value="0"
+                                                    {{ old('cv_required') == '0' ? 'selected' : null }}>
+                                                    {{ __('panel.no') }}
+                                                </option>
+                                            </select>
+                                            @error('variables.' . $currentVariableIndex . '.cv_required')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         @endif
