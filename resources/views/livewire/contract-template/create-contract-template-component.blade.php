@@ -334,8 +334,9 @@
                                 <div class="card-body mt-0 pt-0">
                                     <div class="row">
                                         <div class="col-sm-12 col-md-4 pt-3">
-                                            <label
-                                                for="{{ $variables[$currentVariableIndex]['cv_name'] }}">{{ __('panel.cv_name') }}</label>
+                                            <label for="{{ $variables[$currentVariableIndex]['cv_name'] }}">
+                                                {{ __('panel.cv_name') }}
+                                            </label>
 
                                             <input type="text" class="form-control"
                                                 id="variables.{{ $index }}.cv_name"
@@ -400,6 +401,21 @@
                                                 </option>
                                             </select>
                                             @error('variables.' . $currentVariableIndex . '.cv_required')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 pt-3">
+                                            <label for="{{ $variables[$currentVariableIndex]['cv_details'] }}">
+                                                {{ __('panel.cv_details') }}
+                                            </label>
+                                            <textarea name="variables.{{ $index }}.cv_details" id="variables.{{ $index }}.cv_details"
+                                                rows="10" class="form-control" wire:model.defer="variables.{{ $currentVariableIndex }}.cv_details">
+                                                {!! old('pv_details') !!}
+                                            </textarea>
+                                            @error('variables.' . $currentVariableIndex . '.cv_details')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -597,8 +613,8 @@
                         @endif
                     </a>
                 </li>
-                <li aria-hidden="true" style="display: {{ $currentStep == 4 ? 'block' : 'none' }}"><a href="#finish"
-                        wire:click="finish" role="menuitem">{{ __('panel.finish') }}</a>
+                <li aria-hidden="true" style="display: {{ $currentStep == 4 ? 'block' : 'none' }}"><a
+                        href="#finish" wire:click="finish" role="menuitem">{{ __('panel.finish') }}</a>
                 </li>
             </ul>
         </div>
