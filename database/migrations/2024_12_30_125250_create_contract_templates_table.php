@@ -19,7 +19,7 @@ return new class extends Migration
             $table->json('contract_template_name');
             $table->json('slug');
             $table->tinyInteger('language')->default(1); // 1 = arabic , 2 = english , 3 = both
-            $table->json('contract_text')->nullable();
+            $table->json('contract_template_text')->nullable();
             $table->string('contract_template_file')->nullable();
 
 

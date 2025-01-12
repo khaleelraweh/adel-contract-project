@@ -17,7 +17,7 @@ class ContractTemplate extends Model
     use HasFactory, HasTranslations, HasTranslatableSlug, SearchableTrait, SoftDeletes;
     protected $guarded = [];
 
-    public $translatable = ['contract_template_name', 'slug', 'contract_text'];
+    public $translatable = ['contract_template_name', 'slug', 'contract_template_text'];
 
     public function getSlugOptions(): SlugOptions
     {

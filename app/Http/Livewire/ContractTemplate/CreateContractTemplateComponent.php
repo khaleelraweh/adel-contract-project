@@ -22,7 +22,6 @@ class CreateContractTemplateComponent extends Component
 
 
 
-    // this is for sending data to document template table 
     //step1
 
     public $contract_template_name;
@@ -31,8 +30,8 @@ class CreateContractTemplateComponent extends Component
     public $status = 1; // Default status value
 
     //step2
-    public $documentTemplateId;
-    public $doc_template_text;
+    public $contractTemplateId;
+    public $contract_template_text;
 
     // step3 
     public $pages = [];
@@ -49,7 +48,7 @@ class CreateContractTemplateComponent extends Component
         'step4' => '',
     ];
 
-    public function mount($documentTemplateId = null)
+    public function mount($contractTemplateId = null)
     {
 
 
@@ -83,17 +82,17 @@ class CreateContractTemplateComponent extends Component
             ];
         }
 
-        $this->documentTemplateId = $documentTemplateId;
+        $this->contractTemplateId = $contractTemplateId;
 
-        if ($documentTemplateId) {
-            $documentTemplate = DocumentTemplate::find($documentTemplateId);
+        if ($contractTemplateId) {
+            $contractTemplate = ContractTemplate::find($contractTemplateId);
 
-            if ($documentTemplate) {
-                $this->contract_template_name    =   $documentTemplate->contract_template_name;
-                $this->language             =   $documentTemplate->language;
-                $this->published_on         =   $documentTemplate->published_on;
-                $this->status               =   $documentTemplate->status;
-                $this->doc_template_text    =   $documentTemplate->doc_template_text;
+            if ($contractTemplate) {
+                $this->contract_template_name    =   $contractTemplate->contract_template_name;
+                $this->language             =   $contractTemplate->language;
+                $this->published_on         =   $contractTemplate->published_on;
+                $this->status               =   $contractTemplate->status;
+                $this->contract_template_text    =   $contractTemplate->contract_template_text;
                 // Initialize other fields as needed
             }
 
@@ -108,16 +107,16 @@ class CreateContractTemplateComponent extends Component
         // -------- for document categories and types ---------//
 
 
-        // Fetch the DocumentTemplate instance
-        $documentTemplate = $this->documentTemplateId ? DocumentTemplate::find($this->documentTemplateId) : null;
+        // Fetch the contractTemplate instance
+        $contractTemplate = $this->contractTemplateId ? ContractTemplate::find($this->contractTemplateId) : null;
 
 
         return view(
             'livewire.contract-template.create-contract-template-component',
             [
-                'documentTemplateId'    => $this->documentTemplateId,
-                'documentTemplate'      => $documentTemplate, // Pass the DocumentTemplate instance
-                'doc_template_text'     => $this->doc_template_text, // Pass the doc_template_text to the view
+                'contractTemplateId'        => $this->contractTemplateId,
+                'contractTemplate'          => $contractTemplate, // Pass the contractTemplate instance
+                'contract_template_text'     => $this->contract_template_text, // Pass the contract_template_text to the view
 
 
             ]
@@ -162,14 +161,14 @@ class CreateContractTemplateComponent extends Component
             ]);
         } elseif ($this->currentStep == 2) {
             $this->validate([
-                'doc_template_text' => 'required',
+                'contract_template_text' => 'required',
             ]);
         } elseif ($this->currentStep == 3) {
             // Perform validation
             $this->validateStepThree();
         } elseif ($this->currentStep == 4) {
             $this->validate([
-                'doc_template_text' => 'required', // Validation rule for textarea
+                'contract_template_text' => 'required', // Validation rule for textarea
             ]);
         }
     }
@@ -177,9 +176,9 @@ class CreateContractTemplateComponent extends Component
     public function saveStepData()
     {
         if ($this->currentStep == 1) {
-            if ($this->documentTemplateId) {
-                $documentTemplate = ContractTemplate::updateOrCreate(
-                    ['id' => $this->documentTemplateId],
+            if ($this->contractTemplateId) {
+                $contractTemplate = ContractTemplate::updateOrCreate(
+                    ['id' => $this->contractTemplateId],
                     [
                         'contract_template_name'     => $this->contract_template_name,
                         'language'                  => $this->language,
@@ -188,7 +187,7 @@ class CreateContractTemplateComponent extends Component
                     ]
                 );
             } else {
-                $documentTemplate = ContractTemplate::updateOrCreate(
+                $contractTemplate = ContractTemplate::updateOrCreate(
                     [
                         'contract_template_name'     => $this->contract_template_name,
                         'language'              => $this->language,
@@ -200,25 +199,25 @@ class CreateContractTemplateComponent extends Component
 
 
 
-            $this->documentTemplateId = $documentTemplate->id;
+            $this->contractTemplateId = $contractTemplate->id;
             $this->alert('success', __('panel.document_template_data_saved'));
         } elseif ($this->currentStep == 2) {
-            DocumentTemplate::updateOrCreate(
-                ['id' => $this->documentTemplateId],
+            ContractTemplate::updateOrCreate(
+                ['id' => $this->contractTemplateId],
                 [
-                    'doc_template_text'     => $this->doc_template_text,
+                    'contract_template_text'     => $this->contract_template_text,
                 ]
             );
             $this->alert('success', __('panel.document_template_text_saved'));
-            $this->emit('updateDocTemplateText', $this->doc_template_text); // Emit event to update CKEditor
+            $this->emit('updateDocTemplateText', $this->contract_template_text); // Emit event to update CKEditor
         } elseif ($this->currentStep == 3) {
             $this->saveStepThree();
             $this->alert('success', __('panel.document_template_variables_saved'));
         } elseif ($this->currentStep == 4) {
-            DocumentTemplate::updateOrCreate(
-                ['id' => $this->documentTemplateId],
+            ContractTemplate::updateOrCreate(
+                ['id' => $this->contractTemplateId],
                 [
-                    'doc_template_text' => $this->doc_template_text,
+                    'contract_template_text' => $this->contract_template_text,
                 ]
             );
             $this->alert('success', __('panel.document_and_template_formatting_saved'));
@@ -398,7 +397,7 @@ class CreateContractTemplateComponent extends Component
             $pageData = [
                 'doc_page_name'         => $page['doc_page_name'],
                 'doc_page_description'  => $page['doc_page_description'],
-                'document_template_id'  => $this->documentTemplateId,
+                'document_template_id'  => $this->contractTemplateId,
             ];
 
             $pageModel = DocumentPage::updateOrCreate($pageData);

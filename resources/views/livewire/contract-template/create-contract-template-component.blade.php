@@ -163,20 +163,20 @@
                 aria-hidden="{{ $currentStep == 2 ? 'false' : 'true' }}"
                 style="display: {{ $currentStep == 2 ? 'block' : 'none' }}">
 
-                {{-- <textarea name="doc_template_text" wire:model="doc_template_text" rows="10" class="form-control summernote">{!! old('doc_template_text') !!}</textarea> --}}
+                {{-- <textarea name="contract_template_text" wire:model="contract_template_text" rows="10" class="form-control summernote">{!! old('contract_template_text') !!}</textarea> --}}
 
                 <div wire:ignore>
-                    {{-- <textarea name="doc_template_text" id="ckEditor2" wire:model="doc_template_text" rows="10"
-                        class="form-control">{{ $doc_template_text }}</textarea> --}}
+                    {{-- <textarea name="contract_template_text" id="ckEditor2" wire:model="contract_template_text" rows="10"
+                        class="form-control">{{ $contract_template_text }}</textarea> --}}
 
-                    <textarea name="doc_template_text" id="tinymceExample" rows="10" class="form-control"
-                        wire:model.defer="doc_template_text" placeholder=""></textarea>
+                    <textarea name="contract_template_text" id="tinymceExample" rows="10" class="form-control"
+                        wire:model.defer="contract_template_text" placeholder=""></textarea>
                     @error('tinymceExample')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
-                @error('doc_template_text')
+                @error('contract_template_text')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
 
@@ -247,7 +247,7 @@
 
                                 // Sync TinyMCE data with Livewire when content changes
                                 editor.on('change keyup', () => {
-                                    @this.set('doc_template_text', editor.getContent());
+                                    @this.set('contract_template_text', editor.getContent());
                                 });
 
                                 // Add alignment toolbar for images
@@ -579,11 +579,11 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-4 pt-3">
                         <label for="pv_name">{{ __('panel.select_pv_name') }}</label>
-                        <select name="pv_name" class="form-control">
+                        {{-- <select name="pv_name" class="form-control">
                             <option value="" selected>-- {{ __('panel.select_variable') }} --</option>
-                            @if ($documentTemplate)
-                                @if ($documentTemplate->documentPages->isNotEmpty())
-                                    @foreach ($documentTemplate->documentPages as $page)
+                            @if ($contractTemplate)
+                                @if ($contractTemplate->documentPages->isNotEmpty())
+                                    @foreach ($contractTemplate->documentPages as $page)
                                         @foreach ($page->pageGroups as $group)
                                             @foreach ($group->pageVariables as $variable)
                                                 <option value="{{ $variable->id }}">{{ $variable->pv_name }}
@@ -597,10 +597,10 @@
                             @else
                                 <p>No document template found.</p>
                             @endif
-                        </select>
+                        </select> --}}
                     </div>
                     <div class="col-sm-12 col-md-8 pt-3" wire:ignore>
-                        <textarea name="doc_template_text" id="tinymceEditor" class="form-control">{{ $doc_template_text }}</textarea>
+                        <textarea name="contract_template_text" id="tinymceEditor" class="form-control">{{ $contract_template_text }}</textarea>
                     </div>
                 </div>
             </section>
@@ -691,7 +691,7 @@
 
                             // Sync TinyMCE data with Livewire
                             editor.on('change', function() {
-                                @this.set('doc_template_text', editor.getContent());
+                                @this.set('contract_template_text', editor.getContent());
                             });
 
                             // Add custom image alignment toolbar
