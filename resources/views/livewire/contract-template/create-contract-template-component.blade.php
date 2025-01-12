@@ -303,13 +303,16 @@
                             @foreach ($variables as $index => $variable)
                                 <li class="w-100 mb-1 d-flex justify-content-between"
                                     style="background-color: {{ $currentVariableIndex == $index ? '#0162e8' : '#b9c2d8' }} ; border-width: 0;">
-                                    <a class="d-block" wire:click="setActiveVariable({{ $index }})"
-                                        href="#" style="padding: 9px 20px;line-height: 1.538;color:#fff;">
+                                    <a class=" "
+                                        style="flex: 1;color:white;display: flex;align-items: center;justify-content: flex-start; padding: 10px"
+                                        wire:click="setActiveVariable({{ $index }})" href="#"
+                                        style="padding: 9px 20px;line-height: 1.538;color:#fff;">
                                         {{ $variable['cv_name'] }} </a>
 
                                     <a href=""
                                         wire:click.prevent="removeVariable({{ $currentVariableIndex }})"
-                                        class="d-block pt-2" style="padding: 9px 20px;line-height: 1.538;color:#fff;">
+                                        class=""
+                                        style="color:#fff;display: flex;justify-content: center;align-items: center">
                                         <i
                                             class="fas fa-trash-alt {{ $currentVariableIndex == $index ? 'text-white' : 'text-danger' }}  me-3"></i>
                                     </a>
