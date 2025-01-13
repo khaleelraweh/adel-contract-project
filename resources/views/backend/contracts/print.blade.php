@@ -5,7 +5,7 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    {!! $document->doc_content !!}
+                    {!! $contract->contract_content !!}
                 </div>
             </div>
         </div>
