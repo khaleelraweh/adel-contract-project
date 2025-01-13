@@ -316,7 +316,7 @@
 
                         {{-- start new part  --}}
 
-                        @isset($document)
+                        @isset($contract)
                             <div class="row row-sm ">
                                 <div class="col-xl-12">
                                     <div class="card">
