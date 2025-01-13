@@ -15,7 +15,7 @@
                         </span>
                         <span class="number">1</span>
                         <span class="title">
-                            {{ __('panel.document_template_data') }}
+                            {{ __('panel.contract_template_data') }}
                         </span>
                     </a>
                 </li>
@@ -23,21 +23,21 @@
                     class="disabled {{ $currentStep == 2 ? 'current' : '' }}" aria-disabled="true">
                     <a id="wizard1-t-1" href="#wizard1-h-1" aria-controls="wizard1-p-1">
                         <span class="number">2</span>
-                        <span class="title"> {{ __('panel.document_template_text') }} </span>
+                        <span class="title"> {{ __('panel.contract_template_text') }} </span>
                     </a>
                 </li>
                 <li role="tab" wire:click="directMoveToStep(3)"
                     class="disabled {{ $currentStep == 3 ? 'current' : '' }}" aria-disabled="true">
                     <a id="wizard1-t-1" href="#wizard1-h-1" aria-controls="wizard1-p-1">
                         <span class="number">3</span>
-                        <span class="title"> {{ __('panel.document_template_variables') }} </span>
+                        <span class="title"> {{ __('panel.contract_template_variables') }} </span>
                     </a>
                 </li>
                 <li role="tab" wire:click="directMoveToStep(4)"
                     class="disabled last {{ $currentStep == 4 ? 'current' : '' }}" aria-disabled="true">
                     <a id="wizard1-t-2" href="#wizard1-h-2" aria-controls="wizard1-p-2"><span class="number">4</span>
                         <span class="title">
-                            {{ __('panel.document_and_template_formatting') }}
+                            {{ __('panel.contract_and_template_formatting') }}
                         </span>
                     </a>
                 </li>
@@ -48,7 +48,7 @@
 
             {{-- step 1 : بيانات نموذج الوثيقة --}}
             <h3 id="wizard1-h-0" tabindex="-1" class="title {{ $currentStep == 1 ? 'current' : '' }} ">
-                {{ __('panel.document_template_data') }}
+                {{ __('panel.contract_template_data') }}
             </h3>
 
             <section id="wizard1-p-0" role="tabpanel" aria-labelledby="wizard1-h-0"
@@ -57,68 +57,21 @@
                 style="display: {{ $currentStep == 1 ? 'block' : 'none' }}">
 
 
-                <form action="{{ route('admin.document_templates.update', $documentTemplate->id) }}" method="post">
+                <form action="{{ route('admin.contract_templates.update', $contractTemplate->id) }}" method="post">
                     @csrf
                     @method('PATCH')
 
                     <div class="row">
                         <div class="col-sm-12 col-md-2 pt-3">
-                            <label for="document_category_id" class="text-small text-uppercase">
-                                {{ __('panel.document_category_name') }}
-                            </label>
-                        </div>
-
-                        <div class="col-sm-12 col-md-10 pt-3">
-                            <select class="form-control form-control-lg" wire:model="document_category_id">
-                                <option value="">---</option>
-                                @forelse ($document_categories as $document_category)
-                                    <option value="{{ $document_category->id }}">
-                                        {{ $document_category->doc_cat_name }}
-                                    </option>
-                                @empty
-                                @endforelse
-                            </select>
-                            @error('document_category_id')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-12 col-md-2 pt-3">
-                            <label for="document_type_id" class="text-small text-uppercase">
-                                {{ __('panel.document_type_name') }}
-                            </label>
-                        </div>
-
-                        <div class="col-sm-12 col-md-10 pt-3">
-
-                            <select class="form-control form-control-lg" wire:model="document_type_id">
-                                <option value="">---</option>
-                                @forelse ($document_types as $document_type)
-                                    <option value="{{ $document_type->id }}">
-                                        {{ $document_type->doc_type_name }}</option>
-                                @empty
-                                @endforelse
-                            </select>
-                            @error('document_type_id')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-12 col-md-2 pt-3">
-                            <label for="doc_template_name"> {{ __('panel.document_template_name') }}
+                            <label for="contract_template_name"> {{ __('panel.contract_template_name') }}
                             </label>
                         </div>
                         <div class="col-sm-12 col-md-10 pt-3">
 
-                            <input type="text" id="doc_template_name" wire:model="doc_template_name"
-                                name="doc_template_name" value="{{ old('doc_template_name') }}" class="form-control"
-                                placeholder="">
-                            @error('doc_template_name')
+                            <input type="text" id="contract_template_name" wire:model="contract_template_name"
+                                name="contract_template_name" value="{{ old('contract_template_name') }}"
+                                class="form-control" placeholder="">
+                            @error('contract_template_name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -207,18 +160,19 @@
 
             {{-- step 2 : نص نموذج الوثيقة  --}}
             <h3 id="wizard1-h-0" tabindex="-1" class="title {{ $currentStep == 2 ? 'current' : '' }} ">
-                {{ __('panel.document_template_text') }}
+                {{ __('panel.contract_template_text') }}
             </h3>
 
             <section id="wizard1-p-0" role="tabpanel" aria-labelledby="wizard1-h-0"
                 class="body {{ $currentStep == 2 ? 'current' : '' }}  step"
                 aria-hidden="{{ $currentStep == 2 ? 'false' : 'true' }}"
                 style="display: {{ $currentStep == 2 ? 'block' : 'none' }}">
+
                 <div wire:ignore>
-                    <textarea name="doc_template_text" id="tinymceEditor" wire:model.defer="doc_template_text" rows="10"
-                        class="form-control">{{ $doc_template_text }}</textarea>
+                    <textarea name="contract_template_text" id="tinymceEditor" wire:model.defer="contract_template_text" rows="10"
+                        class="form-control">{{ $contract_template_text }}</textarea>
                 </div>
-                @error('doc_template_text')
+                @error('contract_template_text')
                     <span class="text-danger">{{ $message }}</span>
                 @enderror
 
@@ -291,7 +245,7 @@
 
                             // Sync TinyMCE data with Livewire when content changes
                             editor.on('change keyup', () => {
-                                @this.set('doc_template_text', editor.getContent());
+                                @this.set('contract_template_text', editor.getContent());
                             });
 
                             // Add alignment toolbar for images
@@ -321,24 +275,24 @@
 
                 <div class="row align-items-end mb-4 mb-md-0">
                     <div class="col-md mb-4 mb-md-0">
-                        <h4>{{ __('panel.document_template_variables') }}</h4>
+                        <h4>{{ __('panel.contract_template_variables') }}</h4>
                     </div>
                     <div class="col-md-auto aos-init aos-animate" data-aos="fade-start">
                         <button wire:click="saveStepThreeDataUsingBtn" class="btn btn-primary">
-                            {{ __('panel.document_template_variables_save') }}
+                            {{ __('panel.contract_template_variables_save') }}
                         </button>
                     </div>
                 </div>
             </h3>
 
-            <section id="wizard1-p-0" role="tabpanel" aria-labelledby="wizard1-h-0"
+            {{-- <section id="wizard1-p-0" role="tabpanel" aria-labelledby="wizard1-h-0"
                 class="body {{ $currentStep == 3 ? 'current' : '' }}  step"
                 aria-hidden="{{ $currentStep == 3 ? 'false' : 'true' }}"
                 style="display: {{ $currentStep == 3 ? 'block' : 'none' }}">
 
                 <div class="row">
                     <div class="col-sm-12 col-md-2 pt-3">
-                        <h2>صفحات النموذج</h2>
+                        <h2> متغيرات العقد</h2>
                         <ul style="list-style: none;margin:0;padding:0;">
                             @foreach ($pages as $index => $page)
                                 <li class="w-100 mb-1 d-flex justify-content-between"
@@ -445,8 +399,7 @@
                                                         </div>
 
                                                     </div>
-                                                    @error('pages.' . $currentPageIndex . '.groups.' . $groupIndex .
-                                                        '.pg_name')
+                                                    @error('pages.' . $currentPageIndex . '.groups.' . $groupIndex . '.pg_name')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -454,7 +407,6 @@
                                         </div>
                                         <div class="col-sm-12 col-md-8 pt-5">
                                             @foreach ($pages[$currentPageIndex]['groups'] as $groupIndex => $group)
-                                                {{-- variables  --}}
                                                 @if ($groupIndex == $activeGroupIndex)
                                                     <div class="row align-items-end mb-4 mb-md-0">
                                                         <div class="col-md mb-4 mb-md-0">
@@ -471,7 +423,6 @@
                                                             </a>
                                                         </div>
                                                     </div>
-                                                    {{-- @foreach ($group['variables'] as $variableIndex => $variable) --}}
                                                     @foreach ($pages[$currentPageIndex]['groups'][$activeGroupIndex]['variables'] as $variableIndex => $variable)
                                                         <div class="card">
                                                             <div class="card-header mb-0">
@@ -501,9 +452,7 @@
                                                                                 for="pv_name">{{ __('panel.pv_name') }}</label>
                                                                             <input type="text" class="form-control"
                                                                                 wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $groupIndex }}.variables.{{ $variableIndex }}.pv_name">
-                                                                            @error('pages.' . $currentPageIndex .
-                                                                                '.groups.' . $groupIndex . '.variables.' .
-                                                                                $variableIndex . '.pv_name')
+                                                                            @error('pages.' . $currentPageIndex . '.groups.' . $groupIndex . '.variables.' . $variableIndex . '.pv_name')
                                                                                 <span
                                                                                     class="text-danger">{{ $message }}</span>
                                                                             @enderror
@@ -515,9 +464,7 @@
                                                                                 for="pv_question">{{ __('panel.pv_question') }}</label>
                                                                             <input type="text" class="form-control"
                                                                                 wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $groupIndex }}.variables.{{ $variableIndex }}.pv_question">
-                                                                            @error('pages.' . $currentPageIndex .
-                                                                                '.groups.' . $groupIndex . '.variables.' .
-                                                                                $variableIndex . '.pv_question')
+                                                                            @error('pages.' . $currentPageIndex . '.groups.' . $groupIndex . '.variables.' . $variableIndex . '.pv_question')
                                                                                 <span
                                                                                     class="text-danger">{{ $message }}</span>
                                                                             @enderror
@@ -543,9 +490,7 @@
                                                                                 {{ __('panel.pv_type_date') }}
                                                                             </option>
                                                                         </select>
-                                                                        @error('pages.' . $currentPageIndex . '.groups.'
-                                                                            . $groupIndex . '.variables.' . $variableIndex .
-                                                                            '.pv_type')
+                                                                        @error('pages.' . $currentPageIndex . '.groups.' . $groupIndex . '.variables.' . $variableIndex . '.pv_type')
                                                                             <span
                                                                                 class="text-danger">{{ $message }}</span>
                                                                         @enderror
@@ -566,15 +511,12 @@
                                                                                 {{ __('panel.no') }}
                                                                             </option>
                                                                         </select>
-                                                                        @error('pages.' . $currentPageIndex . '.groups.'
-                                                                            . $groupIndex . '.variables.' . $variableIndex .
-                                                                            '.pv_required')
+                                                                        @error('pages.' . $currentPageIndex . '.groups.' . $groupIndex . '.variables.' . $variableIndex . '.pv_required')
                                                                             <span
                                                                                 class="text-danger">{{ $message }}</span>
                                                                         @enderror
                                                                     </div>
                                                                 </div>
-                                                                {{--  pv_details field --}}
                                                                 <div class="row">
                                                                     <div class="col-sm-12 col-md-12 pt-3">
                                                                         <label for="pv_details">
@@ -584,9 +526,7 @@
                                                                             wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $groupIndex }}.variables.{{ $variableIndex }}.pv_details">
                                                                             {!! old('pv_details') !!}
                                                                         </textarea>
-                                                                        @error('pages.' . $currentPageIndex . '.groups.'
-                                                                            . $groupIndex . '.variables.' . $variableIndex .
-                                                                            '.pv_details')
+                                                                        @error('pages.' . $currentPageIndex . '.groups.' . $groupIndex . '.variables.' . $variableIndex . '.pv_details')
                                                                             <span
                                                                                 class="text-danger">{{ $message }}</span>
                                                                         @enderror
@@ -605,13 +545,13 @@
                         @endif
                     </div>
                 </div>
-            </section>
+            </section> --}}
 
             {{-- step 4 :   تنسيق الوثيقة والمستند  --}}
             <h3 id="wizard1-h-0" tabindex="-1" class="title {{ $currentStep == 4 ? 'current' : '' }} ">
-                {{ __('panel.document_and_template_formatting') }}
+                {{ __('panel.contract_and_template_formatting') }}
             </h3>
-            <section id="wizard1-p-3" role="tabpanel" aria-labelledby="wizard1-h-3"
+            {{-- <section id="wizard1-p-3" role="tabpanel" aria-labelledby="wizard1-h-3"
                 class="body {{ $currentStep == 4 ? 'current' : '' }}  step"
                 aria-hidden="{{ $currentStep == 4 ? 'false' : 'true' }}"
                 style="display: {{ $currentStep == 4 ? 'block' : 'none' }}">
@@ -619,12 +559,11 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-4 pt-3">
                         <label for="pv_name">{{ __('panel.select_pv_name') }}</label>
-                        {{-- <select name="pv_name" class="form-control" wire:model="selectedVariable"> --}}
                         <select name="pv_name" class="form-control">
                             <option value="" selected>-- {{ __('panel.select_variable') }} --</option>
-                            @if ($documentTemplate)
-                                @if ($documentTemplate->documentPages->isNotEmpty())
-                                    @foreach ($documentTemplate->documentPages as $page)
+                            @if ($contractTemplate)
+                                @if ($contractTemplate->documentPages->isNotEmpty())
+                                    @foreach ($contractTemplate->documentPages as $page)
                                         @foreach ($page->pageGroups as $group)
                                             @foreach ($group->pageVariables as $variable)
                                                 <option value="{{ $variable->id }}">{{ $variable->pv_name }}
@@ -641,12 +580,12 @@
                         </select>
                     </div>
                     <div class="col-sm-12 col-md-8 pt-3" wire:ignore>
-                        <textarea name="doc_template_text" id="tinymceEditor2" class="form-control">{{ $doc_template_text }}</textarea>
+                        <textarea name="contract_template_text" id="tinymceEditor2" class="form-control">{{ $contract_template_text }}</textarea>
                     </div>
                 </div>
 
 
-            </section>
+            </section> --}}
 
             <!-- With this script -->
             <script>
@@ -727,7 +666,7 @@
 
                             // Sync TinyMCE data with Livewire when content changes
                             editor.on('change keyup', () => {
-                                @this.set('doc_template_text', editor.getContent());
+                                @this.set('contract_template_text', editor.getContent());
                             });
 
                             // Add alignment toolbar for images
@@ -774,18 +713,18 @@
                     <a href="#next" wire:click="nextStep" role="menuitem">
                         {{-- Next --}}
                         @if ($currentStep == 1)
-                            {{ __('panel.document_template_text') }} >>
+                            {{ __('panel.contract_template_text') }} >>
                         @else
                             @if ($currentStep == 2)
-                                {{ __('panel.document_template_variables') }} >>
+                                {{ __('panel.contract_template_variables') }} >>
                             @else
-                                {{ __('panel.document_and_template_formatting') }} >>
+                                {{ __('panel.contract_and_template_formatting') }} >>
                             @endif
                         @endif
                     </a>
                 </li>
-                <li aria-hidden="true" style="display: {{ $currentStep == 4 ? 'block' : 'none' }}"><a
-                        href="#finish" wire:click="finish" role="menuitem">{{ __('panel.finish') }}</a>
+                <li aria-hidden="true" style="display: {{ $currentStep == 4 ? 'block' : 'none' }}"><a href="#finish"
+                        wire:click="finish" role="menuitem">{{ __('panel.finish') }}</a>
                 </li>
             </ul>
         </div>

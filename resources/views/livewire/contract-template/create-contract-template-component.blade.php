@@ -55,8 +55,6 @@
                 <form action="{{ route('admin.document_templates.store') }}" method="post">
                     @csrf
 
-
-
                     <div class="row">
                         <div class="col-sm-12 col-md-2 pt-3">
                             <label for="contract_template_name"> {{ __('panel.contract_template_name') }}
