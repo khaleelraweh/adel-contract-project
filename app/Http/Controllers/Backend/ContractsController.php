@@ -37,9 +37,9 @@ class ContractsController extends Controller
             return redirect('admin/index');
         }
 
-        $document = Document::query()->where('id', $id)->first();
+        $contract = Contract::query()->where('id', $id)->first();
 
-        return view('backend.contracts.edit', compact('document'));
+        return view('backend.contracts.edit', compact('contract'));
     }
 
     public function show($id)
@@ -47,8 +47,8 @@ class ContractsController extends Controller
         if (!auth()->user()->ability('admin', 'display_contracts')) {
             return redirect('admin/index');
         }
-        $document = Document::findOrFail($id);
-        return view('backend.contracts.show', compact('document'));
+        $contract = Contract::findOrFail($id);
+        return view('backend.contracts.show', compact('contract'));
     }
 
     public function destroy($id)
@@ -57,13 +57,13 @@ class ContractsController extends Controller
             return redirect('admin/index');
         }
 
-        $document = Document::findOrFail($id);
+        $contract = Contract::findOrFail($id);
 
-        $document->deleted_by = auth()->user()->full_name;
-        $document->save();
-        $document->delete();
+        $contract->deleted_by = auth()->user()->full_name;
+        $contract->save();
+        $contract->delete();
 
-        if ($document) {
+        if ($contract) {
             return redirect()->route('admin.contracts.index')->with([
                 'message' => __('panel.deleted_successfully'),
                 'alert-type' => 'success'
@@ -78,29 +78,29 @@ class ContractsController extends Controller
 
     public function print($id)
     {
-        $document = Document::findOrFail($id);
-        return view('backend.contracts.print', compact('document'));
+        $contract = Contract::findOrFail($id);
+        return view('backend.contracts.print', compact('contract'));
     }
 
 
     public function pdf($id)
     {
-        $document = Document::findOrFail($id);
+        $contract = Contract::findOrFail($id);
 
-        $data['doc_content']         =  $document->doc_content;
+        $data['contract_content']         =  $contract->doc_content;
 
         // المكان الذي يوجد فيه ملف ال pdf.blade.php  
         // نقوم بارسال البيانات اليه من اجل عرضها في ذلك الملف 
         $pdf = PDF::loadView('backend.contracts.pdf', $data);
         // لطباعة ملف البيدي اف باسم معين وفي المسار المعين 
-        return $pdf->stream($document->id . '.pdf');
+        return $pdf->stream($contract->id . '.pdf');
 
-        return view('backend.contracts.pdf', compact('document'));
+        return view('backend.contracts.pdf', compact('contract'));
     }
 
 
 
-    public function updateDocumentStatus(Request $request)
+    public function updateContractStatus(Request $request)
     {
         if ($request->ajax()) {
             $data = $request->all();
@@ -109,8 +109,8 @@ class ContractsController extends Controller
             } else {
                 $status = 1;
             }
-            Document::where('id', $data['document_id'])->update(['status' => $status]);
-            return response()->json(['status' => $status, 'document_id' => $data['document_id']]);
+            Contract::where('id', $data['contract_id'])->update(['status' => $status]);
+            return response()->json(['status' => $status, 'contract_id' => $data['contract_id']]);
         }
     }
 }
