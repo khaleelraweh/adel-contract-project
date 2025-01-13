@@ -227,16 +227,14 @@ class CreateContractComponent extends Component
         }
         // Save data for dynamic steps (between 2 and totalSteps - 1)
         elseif ($this->currentStep > 1 && $this->currentStep < $this->totalSteps) {
-            // Determine the index of the documentPage we're on
             $variableIndex = $this->currentStep - 2;
-
             foreach ($this->contractData as $variableIndex => $contractVariable) {
                 ContractData::updateOrCreate(
                     [
-                        'contract_id'       => $this->contract_id,
+                        'contract_id'           => $this->contract_id,
                         'contract_variable_id'  => $contractVariable['cv_id'],
                     ],
-                    ['value' => $contractVariable['cv_value']]
+                    ['value'                    => $contractVariable['cv_value']]
                 );
             }
             if ($this->chosen_template->contract_template_text) {
