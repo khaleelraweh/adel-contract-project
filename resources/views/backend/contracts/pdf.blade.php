@@ -110,7 +110,7 @@
 
 <body>
     <div class="invoice-box {{ config('app.locale') == 'ar' ? 'rtl' : '' }}">
-        {!! $contract_content !!}
+        {!! $contract->contract_content !!}
     </div>
 </body>
 
