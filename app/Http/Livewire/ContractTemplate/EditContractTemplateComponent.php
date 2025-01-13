@@ -131,7 +131,7 @@ class EditContractTemplateComponent extends Component
             $this->validate([
                 'contract_template_name'    => 'required|string',
                 'language'                  => 'required|numeric',
-                'published_on'              => 'required|date',
+                'published_on'              => 'required',
             ]);
         } elseif ($this->currentStep == 2) {
             $this->validate([
