@@ -58,15 +58,15 @@ class ContractTemplateController extends Controller
     }
 
 
-    public function edit($documentTemplate)
+    public function edit($contractTemplate)
     {
         if (!auth()->user()->ability('admin', 'update_contract_templates')) {
             return redirect('admin/index');
         }
 
-        $documentTemplate = DocumentTemplate::with('documentPages')->where('id', $documentTemplate)->first();
+        $contractTemplate = ContractTemplate::with('contractVariables')->where('id', $contractTemplate)->first();
 
-        return view('backend.contract_templates.edit', compact('documentTemplate'));
+        return view('backend.contract_templates.edit', compact('contractTemplate'));
     }
 
     public function update(Request $request,  $documentTemplate) {}
