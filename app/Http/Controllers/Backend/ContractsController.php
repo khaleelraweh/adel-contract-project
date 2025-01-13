@@ -33,7 +33,7 @@ class ContractsController extends Controller
 
     public function edit($id)
     {
-        if (!auth()->user()->ability('admin', 'update_document_templates')) {
+        if (!auth()->user()->ability('admin', 'update_contracts')) {
             return redirect('admin/index');
         }
 
