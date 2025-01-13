@@ -43,7 +43,7 @@
         {{-- body part  --}}
         <div class="card-body">
             <div class="card-body">
-                @livewire('documents.create-document-component')
+                @livewire('contracts.create-contract-component')
 
             </div>
         </div>
