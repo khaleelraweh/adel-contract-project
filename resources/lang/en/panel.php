@@ -465,6 +465,50 @@ return [
     'document_review'                                       =>  'Document Review',
 
 
+    // #################### Manage Contracts ################### //
+    'manage_contracts'                                  =>  'Manage Contracts',
+
+    // --------------- Contracts --------------//
+    'show_contracts'                                    => 'Contracts',
+    'add_new_contract'                                  => 'New Contract',
+    'edit_existing_contract'                            => 'Edit Existing Contract',
+
+    // ........... commons in Contracts ....... //
+    'contract_name'                                     => ' Contract Name',
+    'contract_content'                                  =>  'Contract Content',
+    'contract_number'                                   =>  'Contract No',
+    'contract_type'                                     =>   'Contract Type',
+    'contract_type_inner'                               =>   'Inner',
+    'contract_type_outer'                               =>   'Outer',
+    'contract_content'                                      =>  'Contract Content',
+
+    'contract_status'                                       =>  'Contract Status',
+    'contract_status_draft'                                 =>  'Draft',
+    'contract_status_completed'                            =>  'Completed',
+
+    'contract_file'                                         =>  'Contract File',
+
+    'contract_print'                                        =>  'Print',
+    'contract_export_pdf'                                   =>  'Export PDF',
+    'contract_send_to_email'                                =>  'Send to email',
+
+
+    'contract_status'                                       =>  'Contract Status',
+    'contract_status_draft'                                 =>  'Draft',
+    'contract_status_completed'                            =>  'Completed',
+
+    'contract_file'                                         =>  'Contract File',
+
+    'contract_print'                                        =>  'Print',
+    'contract_export_pdf'                                   =>  'Export PDF',
+    'contract_send_to_email'                                =>  'Send to email',
+
+
+    'contract_created_at'                                   =>  'Created at',
+    'contract_created_by'                                   =>  'Created by',
+    'contract_review'                                       =>  'Contract Review',
+
+
 
 
     // --------------- Document Archive  --------------//

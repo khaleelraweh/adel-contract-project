@@ -469,6 +469,41 @@ return [
     'document_review'                                   =>  'مراجعة الوثيقة',
 
 
+    // #################### Manage Contract ################### //
+    // --------------- Contracts --------------//
+    'manage_contracts'                                  => 'إدارة العقود',
+    'show_contracts'                                    => 'العقود',
+    'add_new_contract'                                  => 'عقد جديدة',
+    'edit_existing_contract'                            => 'تعديل بيانات العقد',
+
+    // ........... commons in documents ....... //
+    'contract_name'                                     => 'إسم العقد',
+    'contract_content'                                  =>  'تقاصيل العقد',
+    'contract_number'                                   =>  'رقم العقد',
+    'contract_type'                                     =>  'نوع العقد',
+    'contract_type_inner'                               =>   'داخلي',
+    'contract_type_outer'                               =>   'خارجي',
+    'contract_text'                                     =>  'محتوى العقد',
+
+
+    'contract_status'                                       =>  'حالة العقد',
+    'contract_status_draft'                                 =>  'مسودة',
+    'contract_status_completed'                            =>  'مكتملة',
+
+    'contract_file'                                         =>  'ملف المسودة',
+
+    'contract_print'                                        =>  'طباعة',
+    'contract_export_pdf'                                   =>  'تصدير الى PDF',
+    'contract_send_to_email'                                =>  'إرسال الى بريد',
+
+
+
+
+    'contract_created_at'                               =>  'تاريخ الإنشاء',
+    'contract_created_by'                               =>  'انشات بواسطة',
+    'contract_review'                                   =>  'مراجعة العقد',
+
+
     // --------------- Document Archive  --------------//
     'manage_document_archive'                               =>  'إدارة ارشيف الوثائق',
     'show_document_archives'                               => 'إرشيف الوثائق',
