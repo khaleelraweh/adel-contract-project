@@ -234,7 +234,7 @@
                         content_style: `
                 body { font-family:Helvetica,Arial,sans-serif; font-size:14px }
                 img { display: block; margin-left: auto; margin-right: auto; }
-            `,
+             `,
                         setup: function(editor) {
                             editorInstance = editor;
 
