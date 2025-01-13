@@ -178,7 +178,7 @@ class EntrustSeeder extends Seeder
         $deleteDocumentTemplates  =  Permission::create(['name' => 'delete_document_templates', 'display_name'     =>    ['ar'   =>  'حذف نموذج وثيقة',   'en'    =>  'Delete Document Template'],    'route' => 'document_templates', 'module' => 'document_templates', 'as' => 'document_templates.destroy', 'icon' => null, 'parent' => '0', 'parent_original' => '0', 'parent_show' => '0', 'sidebar_link' => '0', 'appear' => '0']);
 
 
-        //manage Document Templates
+        //manage Document 
         $manageDocuments = Permission::create(['name' => 'manage_documents', 'display_name' => ['ar'    =>  ' إدارة الوثائق',   'en'    =>  '’Manage Documents'], 'route' => 'documents', 'module' => 'documents', 'as' => 'documents.index', 'icon' => 'fas fa-file-signature', 'parent' => '0', 'parent_original' => '0', 'sidebar_link' => '1', 'appear' => '1', 'ordering' => '25',]);
         $manageDocuments->parent_show = $manageDocuments->id;
         $manageDocuments->save();
@@ -198,6 +198,16 @@ class EntrustSeeder extends Seeder
         $displayContractTemplates =  Permission::create(['name' => 'display_contract_templates', 'display_name'    =>    ['ar'   =>  ' عرض نموذج عقد',   'en'    =>  'Display Contract Template'],    'route' => 'contract_templates', 'module' => 'contract_templates', 'as' => 'contract_templates.show', 'icon' => null, 'parent' => '0', 'parent_original' => '0', 'parent_show' => '0', 'sidebar_link' => '0', 'appear' => '0']);
         $updateContractTemplates  =  Permission::create(['name' => 'update_contract_templates', 'display_name'     =>    ['ar'   =>  'تعديل نموذج عقد',   'en'    =>  'Edit Contract Template'],    'route' => 'contract_templates', 'module' => 'contract_templates', 'as' => 'contract_templates.edit', 'icon' => null, 'parent' => '0', 'parent_original' => '0', 'parent_show' => '0', 'sidebar_link' => '0', 'appear' => '0']);
         $deleteContractTemplates  =  Permission::create(['name' => 'delete_contract_templates', 'display_name'     =>    ['ar'   =>  'حذف نموذج عقد',   'en'    =>  'Delete Contract Template'],    'route' => 'contract_templates', 'module' => 'contract_templates', 'as' => 'contract_templates.destroy', 'icon' => null, 'parent' => '0', 'parent_original' => '0', 'parent_show' => '0', 'sidebar_link' => '0', 'appear' => '0']);
+
+        //manage Contracts
+        $manageContracts = Permission::create(['name' => 'manage_contracts', 'display_name' => ['ar'    =>  ' إدارة العقود',   'en'    =>  '’Manage Contracts'], 'route' => 'contracts', 'module' => 'contracts', 'as' => 'contracts.index', 'icon' => 'fas fa-file-signature', 'parent' => '0', 'parent_original' => '0', 'sidebar_link' => '1', 'appear' => '1', 'ordering' => '35',]);
+        $manageContracts->parent_show = $manageContracts->id;
+        $manageContracts->save();
+        $showContracts    =  Permission::create(['name' => 'show_contracts', 'display_name'       =>    ['ar'   =>  ' العقود',   'en'    =>  ' Contracts'],   'route' => 'contracts', 'module' => 'contracts', 'as' => 'contracts.index', 'icon' => 'fas fa-file-signature', 'parent' => '0', 'parent_original' => '0', 'parent_show' => '0', 'sidebar_link' => '0', 'appear' => '0']);
+        $createContracts  =  Permission::create(['name' => 'create_contracts', 'display_name'     =>    ['ar'   =>  'إضافة عقد',   'en'    =>  'Add Contract'],    'route' => 'contracts', 'module' => 'contracts', 'as' => 'contracts.create', 'icon' => null, 'parent' => '0', 'parent_original' => '0', 'parent_show' => '0', 'sidebar_link' => '0', 'appear' => '0']);
+        $displayContracts =  Permission::create(['name' => 'display_contracts', 'display_name'    =>    ['ar'   =>  ' عرض عقد',   'en'    =>  'Display Contract'],    'route' => 'contracts', 'module' => 'contracts', 'as' => 'contracts.show', 'icon' => null, 'parent' => '0', 'parent_original' => '0', 'parent_show' => '0', 'sidebar_link' => '0', 'appear' => '0']);
+        $updateContracts  =  Permission::create(['name' => 'update_contracts', 'display_name'     =>    ['ar'   =>  'تعديل عقد',   'en'    =>  'Edit Contract'],    'route' => 'contracts', 'module' => 'contracts', 'as' => 'contracts.edit', 'icon' => null, 'parent' => '0', 'parent_original' => '0', 'parent_show' => '0', 'sidebar_link' => '0', 'appear' => '0']);
+        $deleteContracts  =  Permission::create(['name' => 'delete_contracts', 'display_name'     =>    ['ar'   =>  'حذف عقد',   'en'    =>  'Delete Contract'],    'route' => 'contracts', 'module' => 'contracts', 'as' => 'contracts.destroy', 'icon' => null, 'parent' => '0', 'parent_original' => '0', 'parent_show' => '0', 'sidebar_link' => '0', 'appear' => '0']);
 
 
         //manage Document Archives

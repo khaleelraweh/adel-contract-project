@@ -39,6 +39,7 @@ use App\Http\Controllers\Backend\ImportantLinkMenuController;
 use App\Http\Controllers\Backend\DocumentCategoriesController;
 use App\Http\Controllers\Backend\AcademicProgramMenuController;
 use App\Http\Controllers\Backend\CommonQuestionVideoController;
+use App\Http\Controllers\Backend\ContractsController;
 use App\Http\Controllers\Backend\ContractTemplateController;
 use App\Http\Controllers\Backend\DocumentsController;
 use App\Http\Controllers\Backend\DocumentTemplatesController;
@@ -105,6 +106,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::resource('contract_templates', ContractTemplateController::class);
 
 
+        // ==============   contract  Tab   ==============  //
+        Route::post('contracts/update-contract-status', [ContractsController::class, 'updateContractStatus'])->name('contracts.update_contract_status');
+        Route::get('contract/print/{id}', [ContractsController::class, 'print'])->name('contracts.print');
+        Route::get('contract/pdf/{id}', [ContractsController::class, 'pdf'])->name('contracts.pdf');
+        Route::resource('contracts', ContractsController::class);
+
 
 
 
@@ -119,32 +126,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::resource('document_archives', DocumentArchivesController::class);
 
 
-
-
-
-
-
-        // ==============   Site Setting  Tab   ==============  //
-        Route::get('site_setting/site_infos', [SiteSettingsController::class, 'show_main_informations'])->name('settings.site_main_infos.show');
-        Route::post('site_setting/update_site_info/{id?}', [SiteSettingsController::class, 'update_main_informations'])->name('settings.site_main_infos.update');
-        Route::post('site_setting/site_infos/remove-image', [SiteSettingsController::class, 'remove_image'])->name('site_infos.remove_image');
-        //to remove album 
-        Route::post('site_setting/site_infos/remove-site_settings_albums', [SiteSettingsController::class, 'remove_site_settings_albums'])->name('site_infos.remove_site_settings_albums');
-        //for logos 
-        Route::post('site_setting/site_infos/remove-site-logo-large-light', [SiteSettingsController::class, 'remove_site_logo_large_light'])->name('site_infos.remove_site_logo_large_light');
-        Route::post('site_setting/site_infos/remove_site_logo_small_light', [SiteSettingsController::class, 'remove_site_logo_small_light'])->name('site_infos.remove_site_logo_small_light');
-        //---------------
-        Route::post('site_setting/site_infos/remove_site_logo_large_dark', [SiteSettingsController::class, 'remove_site_logo_large_dark'])->name('site_infos.remove_site_logo_large_dark');
-        Route::post('site_setting/site_infos/remove_site_logo_small_dark', [SiteSettingsController::class, 'remove_site_logo_small_dark'])->name('site_infos.remove_site_logo_small_dark');
-
-        Route::get('site_setting/site_contacts', [SiteSettingsController::class, 'show_contact_informations'])->name('settings.site_contacts.show');
-        Route::post('site_setting/update_site_contact/{id?}', [SiteSettingsController::class, 'update_contact_informations'])->name('settings.site_contacts.update');
-
-        Route::get('site_setting/site_socials', [SiteSettingsController::class, 'show_socail_informations'])->name('settings.site_socials.show');
-        Route::post('site_setting/update_site_social/{id?}', [SiteSettingsController::class, 'update_social_informations'])->name('settings.site_socials.update');
-
-        Route::get('site_setting/site_metas', [SiteSettingsController::class, 'show_meta_informations'])->name('settings.site_meta.show');
-        Route::post('site_setting/update_site_meta/{id?}', [SiteSettingsController::class, 'update_meta_informations'])->name('settings.site_meta.update');
 
         // ==============   Admin Acount Tab   ==============  //
         Route::get('account_settings', [BackendController::class, 'account_settings'])->name('account_settings');
