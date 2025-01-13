@@ -40,7 +40,7 @@
                         </span>
                         <span class="number">1</span>
                         <span class="title">
-                            {{ __('panel.document_template_data') }}
+                            {{ __('panel.contract_template_data') }}
                         </span>
                     </a>
                 </li>
@@ -53,7 +53,7 @@
                                 aria-controls="wizard1-p-{{ $key + 2 }}">
                                 <span class="number">{{ $key + 2 }}</span>
                                 <span class="title">
-                                    {!! Str::words($documentPage['doc_page_name'], 3, ' ...') !!}
+                                    {{-- {!! Str::words($documentPage['doc_page_name'], 3, ' ...') !!} --}}
                                 </span>
                             </a>
                         </li>
@@ -61,7 +61,7 @@
                 @endisset
 
                 @if ($chosen_template)
-                    @if (count($chosen_template->documentPages) > 0)
+                    @if (count($chosen_template->contractVariables) > 0)
                         <li role="tab" wire:click="directMoveToStep({{ $totalSteps }})"
                             class="first {{ $currentStep == $totalSteps ? 'current' : '' }}" aria-disabled="false"
                             aria-selected="true">
@@ -70,7 +70,7 @@
                                 </span>
                                 <span class="number">{{ $totalSteps }}</span>
                                 <span class="title">
-                                    {{ __('panel.document_review') }}
+                                    {{ __('panel.contract_review') }}
                                 </span>
                             </a>
                         </li>
@@ -88,7 +88,7 @@
             <!---- related to step 1 ----->
 
             <h3 id="wizard1-h-0" tabindex="-1" class="title {{ $currentStep == 1 ? 'current' : '' }} ">
-                {{ __('panel.document_template_data') }}
+                {{ __('panel.contract_template_data') }}
             </h3>
 
             <section id="wizard1-p-0" role="tabpanel" aria-labelledby="wizard1-h-0"
@@ -103,101 +103,65 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
 
+
+
                             <div class="row">
                                 <div class="col-sm-12 col-md-2 pt-3">
-                                    <label for="document_category_id" class="text-small text-uppercase">
-                                        {{ __('panel.document_category_name') }}
+                                    <label for="contract_template_name"> {{ __('panel.contract_template_name') }}
                                     </label>
                                 </div>
                                 <div class="col-sm-12 col-md-10 pt-3">
-                                    <select class="form-control form-control-lg" wire:model="document_category_id">
+                                    <select class="form-control form-control-lg" wire:model="contract_template_id">
                                         <option value="">---</option>
-                                        @forelse ($document_categories as $document_category)
-                                            <option value="{{ $document_category->id }}">
-                                                {{ $document_category->doc_cat_name }}
-                                            </option>
+                                        @forelse ($contract_templates as $contract_template)
+                                            <option value="{{ $contract_template->id }}">
+                                                {{ $contract_template->contract_template_name }}</option>
                                         @empty
                                         @endforelse
                                     </select>
-                                    @error('document_category_id')
+                                    @error('contract_template_id')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-12 col-md-2 pt-3">
+                                    <label for="contract_name">
+                                        {{ __('panel.contract_name') }}
+                                    </label>
+                                </div>
+                                <div class="col-sm-12 col-md-10 pt-3">
+                                    <input type="text" id="contract_name" wire:model="contract_name"
+                                        name="contract_name" value="{{ old('contract_name') }}" class="form-control"
+                                        placeholder="">
+                                    @error('contract_name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12 col-md-2 pt-3">
-                                    <label for="document_type_id" class="text-small text-uppercase">
-                                        {{ __('panel.document_type_name') }}
+                                    <label for="contract_type_id">
+                                        {{ __('panel.contract_type') }}
                                     </label>
                                 </div>
                                 <div class="col-sm-12 col-md-10 pt-3">
-                                    <select class="form-control form-control-lg" wire:model="document_type_id">
+                                    <select name="contract_type_id" wire:model.defer="contract_type_id"
+                                        class="form-control">
                                         <option value="">---</option>
-                                        @forelse ($document_types as $document_type)
-                                            <option value="{{ $document_type->id }}">
-                                                {{ $document_type->doc_type_name }}</option>
-                                        @empty
-                                        @endforelse
-                                    </select>
-                                    @error('document_type_id')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12 col-md-2 pt-3">
-                                    <label for="doc_template_name"> {{ __('panel.document_template_name') }}
-                                    </label>
-                                </div>
-                                <div class="col-sm-12 col-md-10 pt-3">
-                                    <select class="form-control form-control-lg" wire:model="document_template_id">
-                                        <option value="">---</option>
-                                        @forelse ($document_templates as $doc_template)
-                                            <option value="{{ $doc_template->id }}">
-                                                {{ $doc_template->doc_template_name }}</option>
-                                        @empty
-                                        @endforelse
-                                    </select>
-                                    @error('document_template_id')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-sm-12 col-md-2 pt-3">
-                                    <label for="doc_name">
-                                        {{ __('panel.document_name') }}
-                                    </label>
-                                </div>
-                                <div class="col-sm-12 col-md-10 pt-3">
-                                    <input type="text" id="doc_name" wire:model="doc_name" name="doc_name"
-                                        value="{{ old('doc_name') }}" class="form-control" placeholder="">
-                                    @error('doc_name')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12 col-md-2 pt-3">
-                                    <label for="doc_type_id">
-                                        {{ __('panel.document_type') }}
-                                    </label>
-                                </div>
-                                <div class="col-sm-12 col-md-10 pt-3">
-                                    <select name="doc_type_id" wire:model.defer="doc_type_id" class="form-control">
-                                        <option value="">---</option>
-                                        <option value="0" {{ old('doc_type_id') == '0' ? 'selected' : null }}>
-                                            {{ __('panel.document_type_inner') }}
+                                        <option value="0"
+                                            {{ old('contract_type_id') == '0' ? 'selected' : null }}>
+                                            {{ __('panel.contract_type_inner') }}
                                         </option>
-                                        <option value="1" {{ old('doc_type_id') == '1' ? 'selected' : null }}>
-                                            {{ __('panel.document_type_outer') }}
+                                        <option value="1"
+                                            {{ old('contract_type_id') == '1' ? 'selected' : null }}>
+                                            {{ __('panel.contract_type_outer') }}
                                         </option>
                                     </select>
-                                    @error('doc_type_id')
+                                    @error('contract_type_id')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -339,10 +303,10 @@
 
             <!------ review step ----->
             @if ($chosen_template)
-                @if (count($chosen_template->documentPages) > 0)
+                @if (count($chosen_template->contractVariables) > 0)
                     <h3 id="wizard1-h-0" tabindex="-1"
                         class="title {{ $currentStep == $totalSteps ? 'current' : '' }} ">
-                        {{ __('panel.document_review') }}
+                        {{ __('panel.contract_review') }}
                     </h3>
                     <section id="wizard1-p-0" role="tabpanel" aria-labelledby="wizard1-h-0"
                         class="body {{ $currentStep == $totalSteps ? 'current' : '' }}  step"
@@ -369,27 +333,27 @@
                                             <div class="table-responsive">
                                                 <table class="table">
                                                     <tr>
-                                                        <th>{{ __('panel.document_name') }}</th>
-                                                        <td>{{ $document->doc_name }}</td>
-                                                        <th>{{ __('panel.document_number') }}</th>
+                                                        <th>{{ __('panel.contract_name') }}</th>
+                                                        <td>{{ $document->contract_name }}</td>
+                                                        <th>{{ __('panel.contract_number') }}</th>
                                                         <td>{{ $document->doc_no ?? '-' }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>{{ __('panel.document_type') }}</th>
+                                                        <th>{{ __('panel.contract_type') }}</th>
                                                         <td>{{ $document->doc_type() }}</td>
                                                         <th>{{ __('panel.created_at') }}</th>
                                                         <td>{{ $document->created_at }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>{{ __('panel.document_status') }}</th>
+                                                        <th>{{ __('panel.contract_status') }}</th>
                                                         <td>{{ $document->doc_status() }}</td>
-                                                        <th>{{ __('panel.document_file') }}</th>
+                                                        <th>{{ __('panel.contract_file') }}</th>
                                                         <td>{{ $document->doc_file ?? '-' }} </td>
                                                     </tr>
 
                                                 </table>
 
-                                                <h3>{{ __('panel.document_text') }}</h3>
+                                                <h3>{{ __('panel.contract_text') }}</h3>
                                                 <div class="card">
                                                     <div class="card-body">
                                                         {!! $viewText !!}
