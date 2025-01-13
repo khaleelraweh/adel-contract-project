@@ -230,7 +230,7 @@ class CreateContractComponent extends Component
             // Determine the index of the documentPage we're on
             $variableIndex = $this->currentStep - 2;
 
-            foreach ($this->contractData[$variableIndex] as $variableIndex => $contractVariable) {
+            foreach ($this->contractData as $variableIndex => $contractVariable) {
                 ContractData::updateOrCreate(
                     [
                         'contract_id'       => $this->contract_id,
