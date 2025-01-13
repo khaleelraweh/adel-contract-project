@@ -45,15 +45,15 @@
                     </a>
                 </li>
 
-                @isset($docData)
-                    @foreach ($docData as $key => $documentPage)
+                @isset($contractData)
+                    @foreach ($contractData as $key => $contractVariable)
                         <li role="tab" wire:click="directMoveToStep({{ $key + 2 }})"
                             class="disabled {{ $currentStep == $key + 2 ? 'current' : '' }}" aria-disabled="true">
                             <a id="wizard1-t-{{ $key + 2 }}" href="#wizard1-h-1"
                                 aria-controls="wizard1-p-{{ $key + 2 }}">
                                 <span class="number">{{ $key + 2 }}</span>
                                 <span class="title">
-                                    {{-- {!! Str::words($documentPage['doc_page_name'], 3, ' ...') !!} --}}
+                                    {!! Str::words($contractVariable['cv_name'], 3, ' ...') !!}
                                 </span>
                             </a>
                         </li>
@@ -103,8 +103,6 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
 
-
-
                             <div class="row">
                                 <div class="col-sm-12 col-md-2 pt-3">
                                     <label for="contract_template_name"> {{ __('panel.contract_template_name') }}
@@ -125,7 +123,6 @@
 
                                 </div>
                             </div>
-
 
                             <div class="row">
                                 <div class="col-sm-12 col-md-2 pt-3">
@@ -168,11 +165,6 @@
                             </div>
 
 
-
-
-
-
-
                         </div>
 
 
@@ -183,90 +175,80 @@
             <!---- related to step 1 end ----->
 
             <!---- related to dynamic steps --->
-            @isset($docData)
-                @foreach ($docData as $pageIndex => $documentPage)
+            @isset($contractData)
+                @foreach ($contractData as $variableIndex => $contractVariable)
                     <h3 id="wizard1-h-0" tabindex="-1"
-                        class="title {{ $currentStep == $pageIndex + 2 ? 'current' : '' }} ">
+                        class="title {{ $currentStep == $variableIndex + 2 ? 'current' : '' }} ">
                         <div class="row align-items-end mb-4 mb-md-0">
                             <div class="col-md mb-4 mb-md-0">
-                                <h4>{{ $documentPage['doc_page_name'] }}</h4>
+                                <h4>{{ $contractVariable['cv_name'] }}</h4>
                             </div>
                             <div class="col-md-auto aos-init aos-animate" data-aos="fade-start">
                             </div>
                         </div>
                     </h3>
                     <section id="wizard1-p-0" role="tabpanel" aria-labelledby="wizard1-h-0"
-                        class="body {{ $currentStep == $pageIndex + 2 ? 'current' : '' }}  step"
-                        aria-hidden="{{ $currentStep == $pageIndex + 2 ? 'false' : 'true' }}"
-                        style="display: {{ $currentStep == $pageIndex + 2 ? 'block' : 'none' }}">
+                        class="body {{ $currentStep == $variableIndex + 2 ? 'current' : '' }}  step"
+                        aria-hidden="{{ $currentStep == $variableIndex + 2 ? 'false' : 'true' }}"
+                        style="display: {{ $currentStep == $variableIndex + 2 ? 'block' : 'none' }}">
                         <form method="post">
                             @csrf
                             <div class="row" wire:ignore.self>
                                 <div class="col-sm-12 col-md-12">
-                                    @foreach ($documentPage['groups'] as $groupIndex => $pageGroup)
-                                        <fieldset>
-                                            <legend>{{ $pageGroup['pg_name'] }}</legend>
-                                            @foreach ($pageGroup['variables'] as $variableIndex => $pageVariable)
-                                                <div class="row">
-                                                    <div class="col-sm-12 {{ $loop->first ? '' : 'pt-3' }} ">
-                                                        <label for="{{ 'text_' . $pageVariable['pv_id'] }}">
-                                                            {{ $pageVariable['pv_name'] }}:
-                                                            (<small>{{ $pageVariable['pv_question'] }}</small>)
-                                                        </label>
-                                                        @switch($pageVariable['pv_type'])
-                                                            @case(0)
-                                                                <input type="text" name="{{ $pageVariable['pv_id'] }}"
-                                                                    id="{{ 'text_' . $pageVariable['pv_id'] }}"
-                                                                    wire:model.defer="docData.{{ $pageIndex }}.groups.{{ $groupIndex }}.variables.{{ $variableIndex }}.pv_value"
-                                                                    value="{{ $pageVariable['pv_value'] }}" class="form-control"
-                                                                    {{ $pageVariable['pv_required'] == 0 ? '' : 'required' }}
-                                                                    class="form-control">
-                                                                <small>{{ $pageVariable['pv_details'] }}</small>
-                                                                @error('docData.' . $pageIndex . '.groups.' . $groupIndex .
-                                                                    '.variables.' . $variableIndex . '.pv_value')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                            @break
+                                    <fieldset>
+                                        <div class="row">
+                                            <div class="col-sm-12 {{ $loop->first ? '' : 'pt-3' }} ">
+                                                <label for="{{ 'text_' . $contractVariable['cv_id'] }}">
+                                                    {{ $contractVariable['cv_name'] }}:
+                                                    (<small>{{ $contractVariable['cv_question'] }}</small>)
+                                                </label>
+                                                @switch($contractVariable['cv_type'])
+                                                    @case(0)
+                                                        <input type="text" name="{{ $contractVariable['cv_id'] }}"
+                                                            id="{{ 'text_' . $contractVariable['cv_id'] }}"
+                                                            wire:model.defer="contractData.{{ $variableIndex }}.cv_value"
+                                                            value="{{ $contractVariable['cv_value'] }}" class="form-control"
+                                                            {{ $contractVariable['cv_required'] == 0 ? '' : 'required' }}
+                                                            class="form-control">
+                                                        <small>{{ $contractVariable['cv_details'] }}</small>
+                                                        @error('contractData.' . $variableIndex . '.cv_value')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    @break
 
-                                                            @case(1)
-                                                                <input type="number" name="{{ $pageVariable['pv_id'] }}"
-                                                                    id="{{ 'text_' . $pageVariable['pv_id'] }}"
-                                                                    wire:model.defer="docData.{{ $pageIndex }}.groups.{{ $groupIndex }}.variables.{{ $variableIndex }}.pv_value"
-                                                                    value="{{ $pageVariable['pv_value'] }}" class="form-control"
-                                                                    {{ $pageVariable['pv_required'] == 0 ? '' : 'required' }}
-                                                                    class="form-control">
-                                                                <small>{{ $pageVariable['pv_details'] }}</small>
-                                                                @error('docData.' . $pageIndex . '.groups.' . $groupIndex .
-                                                                    '.variables.' . $variableIndex . '.pv_value')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                            @break
+                                                    @case(1)
+                                                        <input type="number" name="{{ $contractVariable['cv_id'] }}"
+                                                            id="{{ 'text_' . $contractVariable['cv_id'] }}"
+                                                            wire:model.defer="contractData.{{ $variableIndex }}.cv_value"
+                                                            value="{{ $contractVariable['cv_value'] }}" class="form-control"
+                                                            {{ $contractVariable['cv_required'] == 0 ? '' : 'required' }}
+                                                            class="form-control">
+                                                        <small>{{ $contractVariable['cv_details'] }}</small>
+                                                        @error('contractData.' . $variableIndex . '.cv_value')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    @break
 
-                                                            @case(2)
-                                                                <div class="input-group flatpickr" id="flatpickr-datetime"
-                                                                    wire:ignore>
-                                                                    <input type="text" name="published_on"
-                                                                        wire:model.defer="docData.{{ $pageIndex }}.groups.{{ $groupIndex }}.variables.{{ $variableIndex }}.pv_value"
-                                                                        value="{{ $pageVariable['pv_value'] }}"
-                                                                        class="form-control" placeholder="Select date" data-input
-                                                                        readonly>
-                                                                    <span class="input-group-text input-group-addon" data-toggle>
-                                                                        <i data-feather="calendar"></i>
-                                                                    </span>
-                                                                </div>
-                                                                @error('docData.' . $pageIndex . '.groups.' . $groupIndex .
-                                                                    '.variables.' . $variableIndex . '.pv_value')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                            @break
+                                                    @case(2)
+                                                        <div class="input-group flatpickr" id="flatpickr-datetime" wire:ignore>
+                                                            <input type="text" name="published_on"
+                                                                wire:model.defer="contractData.{{ $variableIndex }}.cv_value"
+                                                                value="{{ $contractVariable['cv_value'] }}" class="form-control"
+                                                                placeholder="Select date" data-input readonly>
+                                                            <span class="input-group-text input-group-addon" data-toggle>
+                                                                <i data-feather="calendar"></i>
+                                                            </span>
+                                                        </div>
+                                                        @error('contractData.' . $variableIndex . '.cv_value')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    @break
 
-                                                            @default
-                                                        @endswitch
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </fieldset>
-                                    @endforeach
+                                                    @default
+                                                @endswitch
+                                            </div>
+                                        </div>
+                                    </fieldset>
                                 </div>
                             </div>
                         </form>
@@ -324,7 +306,7 @@
                                             <div class="d-flex justify-content-between">
                                                 <h4 class="card-title mg-b-0">
                                                     <i class="fa fa-plus-square me-3 " style="font-size: 20px;"></i>
-                                                    {{ __('panel.show_documents') }}
+                                                    {{ __('panel.show_contracts') }}
                                                 </h4>
                                                 <i class="mdi mdi-dots-horizontal text-gray"></i>
                                             </div>
@@ -334,21 +316,21 @@
                                                 <table class="table">
                                                     <tr>
                                                         <th>{{ __('panel.contract_name') }}</th>
-                                                        <td>{{ $document->contract_name }}</td>
+                                                        <td>{{ $contract->contract_name }}</td>
                                                         <th>{{ __('panel.contract_number') }}</th>
-                                                        <td>{{ $document->doc_no ?? '-' }}</td>
+                                                        <td>{{ $contract->contract_no ?? '-' }}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>{{ __('panel.contract_type') }}</th>
-                                                        <td>{{ $document->doc_type() }}</td>
+                                                        <td>{{ $contract->contract_type() }}</td>
                                                         <th>{{ __('panel.created_at') }}</th>
-                                                        <td>{{ $document->created_at }}</td>
+                                                        <td>{{ $contract->created_at }}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>{{ __('panel.contract_status') }}</th>
-                                                        <td>{{ $document->doc_status() }}</td>
+                                                        <td>{{ $contract->contract_status() }}</td>
                                                         <th>{{ __('panel.contract_file') }}</th>
-                                                        <td>{{ $document->doc_file ?? '-' }} </td>
+                                                        <td>{{ $contract->contract_file ?? '-' }} </td>
                                                     </tr>
 
                                                 </table>

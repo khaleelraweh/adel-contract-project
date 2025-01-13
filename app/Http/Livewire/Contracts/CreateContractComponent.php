@@ -39,7 +39,7 @@ class CreateContractComponent extends Component
     public $contract_name;
     public $contract_type_id;
 
-    public $docData = [];
+    public $contractData = [];
 
     public $viewText;
 
@@ -63,7 +63,7 @@ class CreateContractComponent extends Component
             $this->totalSteps = $this->chosen_template->contractVariables()->count() + 2;
             if ($this->contract->contractData) {
 
-                $this->docData = $this->chosen_template->contractVariables->map(function ($variable) {
+                $this->contractData = $this->chosen_template->contractVariables->map(function ($variable) {
                     return [
 
                         'cv_id'     =>  $variable->id,
@@ -93,7 +93,7 @@ class CreateContractComponent extends Component
             $this->totalSteps = $this->chosen_template->contractVariables()->count() + 2;
             if ($this->contract->contractData) {
 
-                $this->docData = $this->chosen_template->contractVariables->map(function ($variable) {
+                $this->contractData = $this->chosen_template->contractVariables->map(function ($variable) {
                     return [
                         'cv_id'     =>  $variable->id,
                         'cv_name' => $variable->cv_name,
@@ -172,8 +172,8 @@ class CreateContractComponent extends Component
             $variableIndex = $this->currentStep - 2; // Since steps start at 1 and pages at 0
 
             // Loop through the groups and variables to build dynamic validation rules
-            foreach ($this->docData[$variableIndex] as $contractVariable) {
-                $fieldName = 'docData.'  . $variableIndex . '.cv_value';
+            foreach ($this->contractData[$variableIndex] as $contractVariable) {
+                $fieldName = 'contractData.'  . $variableIndex . '.cv_value';
                 $rules[$fieldName] = $contractVariable['cv_required'] ? 'required' : 'nullable';
 
                 // Create a user-friendly name for this field using the cv_name
@@ -216,7 +216,7 @@ class CreateContractComponent extends Component
             // Determine the index of the documentPage we're on
             $variableIndex = $this->currentStep - 2;
 
-            foreach ($this->docData[$variableIndex] as $variableIndex => $contractVariable) {
+            foreach ($this->contractData[$variableIndex] as $variableIndex => $contractVariable) {
                 ContractData::updateOrCreate(
                     [
                         'contract_id'       => $this->contract_id,
@@ -256,10 +256,10 @@ class CreateContractComponent extends Component
 
         if (isset($matches[1]) && isset($matches[0])) {
             foreach ($matches[1] as $index => $contractVariableId) {
-                // Iterate over all steps in docData to find the value
-                foreach ($this->docData as $stepData) {
+                // Iterate over all steps in contractData to find the value
+                foreach ($this->contractData as $stepData) {
                     if ($stepData['cv_id'] == $contractVariableId) {
-                        // Map the placeholder to the value in docData
+                        // Map the placeholder to the value in contractData
                         $forReplacement[$matches[0][$index]] = $stepData['cv_value'];
                     }
                 }
