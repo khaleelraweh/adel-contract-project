@@ -54,20 +54,20 @@ class Contract extends Model
         return 'slug';
     }
 
-    public function doc_status()
+    public function contract_status()
     {
-        if ($this->doc_status == 0) {
+        if ($this->contract_status == 0) {
             return __('panel.document_status_draft');
-        } elseif ($this->doc_status == 1) {
+        } elseif ($this->contract_status == 1) {
             return __('panel.document_status_completed');
         }
     }
 
-    public function doc_type()
+    public function contract_type()
     {
-        if ($this->doc_type == 0) {
+        if ($this->contract_type == 0) {
             return __('panel.document_type_inner');
-        } elseif ($this->doc_type == 1) {
+        } elseif ($this->contract_type == 1) {
             return __('panel.document_type_outer');
         }
     }
