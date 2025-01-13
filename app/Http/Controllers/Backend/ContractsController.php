@@ -87,7 +87,7 @@ class ContractsController extends Controller
     {
         $contract = Contract::findOrFail($id);
 
-        $data['contract_content']         =  $contract->doc_content;
+        $data['contract_content']         =  $contract->contract_content;
 
         // المكان الذي يوجد فيه ملف ال pdf.blade.php  
         // نقوم بارسال البيانات اليه من اجل عرضها في ذلك الملف 
