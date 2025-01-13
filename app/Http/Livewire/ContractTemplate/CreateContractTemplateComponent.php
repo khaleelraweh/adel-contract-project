@@ -54,7 +54,7 @@ class CreateContractTemplateComponent extends Component
         if (empty($this->variables)) {
             $this->variables = [
                 [
-                    'variableId' => 1,
+                    'variableId'            => 1,
                     'cv_name'               =>  __('panel.variable') . (count($this->variables) + 1),
                     'cv_question'           =>  '',
                     'cv_type'               =>   0,
@@ -71,11 +71,11 @@ class CreateContractTemplateComponent extends Component
             $contractTemplate = ContractTemplate::find($contractTemplateId);
 
             if ($contractTemplate) {
-                $this->contract_template_name    =   $contractTemplate->contract_template_name;
-                $this->language             =   $contractTemplate->language;
-                $this->published_on         =   $contractTemplate->published_on;
-                $this->status               =   $contractTemplate->status;
-                $this->contract_template_text    =   $contractTemplate->contract_template_text;
+                $this->contract_template_name       =   $contractTemplate->contract_template_name;
+                $this->language                     =   $contractTemplate->language;
+                $this->published_on                 =   $contractTemplate->published_on;
+                $this->status                       =   $contractTemplate->status;
+                $this->contract_template_text       =   $contractTemplate->contract_template_text;
                 // Initialize other fields as needed
             }
 
@@ -233,8 +233,6 @@ class CreateContractTemplateComponent extends Component
             'cv_required'       =>  1,
             'cv_details'        =>  '',
 
-
-
             'saved' => false, // Initialize saved as false
         ];
 
@@ -253,8 +251,6 @@ class CreateContractTemplateComponent extends Component
         // Ensure the index is within bounds
         if ($index >= 0 && $index < count($this->variables)) {
             $this->currentVariableIndex = $index;
-            $this->activeGroupIndex = 0; // Reset the active group index
-
         }
     }
 
