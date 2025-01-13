@@ -174,10 +174,24 @@ class CreateContractComponent extends Component
             // Loop through the groups and variables to build dynamic validation rules
             foreach ($this->contractData[$variableIndex] as $contractVariable) {
                 $fieldName = 'contractData.'  . $variableIndex . '.cv_value';
-                $rules[$fieldName] = $contractVariable['cv_required'] ? 'required' : 'nullable';
+                // $rules[$fieldName] = $contractVariable['cv_required'] ? 'required' : 'nullable';
+
+                if (is_array($contractVariable) && isset($contractVariable['cv_required'])) {
+                    $rules[$fieldName] = $contractVariable['cv_required'] ? 'required' : 'nullable';
+                } else {
+                    // Handle the case where $contractVariable is not an array or missing the 'cv_required' key.
+                    $rules[$fieldName] = 'nullable'; // Default rule or log an error
+                }
+
 
                 // Create a user-friendly name for this field using the cv_name
-                $validationAttributes[$fieldName] = $contractVariable['cv_name'];
+                // $validationAttributes[$fieldName] = $contractVariable['cv_name'];
+                if (is_array($contractVariable) && isset($contractVariable['cv_name'])) {
+                    $validationAttributes[$fieldName] = $contractVariable['cv_name'];
+                } else {
+                    // Handle the case where $contractVariable is not valid
+                    $validationAttributes[$fieldName] = 'Unknown Field'; // Default fallback
+                }
             }
         }
 
