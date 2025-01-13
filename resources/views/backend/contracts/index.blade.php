@@ -8,7 +8,7 @@
             <div class="card-naving">
                 <h3 class="font-weight-bold text-primary">
                     <i class="fa fa-folder"></i>
-                    {{ __('panel.manage_documents') }}
+                    {{ __('panel.manage_contracts') }}
                 </h3>
                 <ul class="breadcrumb pt-3">
                     <li>
@@ -20,13 +20,13 @@
                         @endif
                     </li>
                     <li class="ms-1">
-                        {{ __('panel.show_documents') }}
+                        {{ __('panel.show_contracts') }}
                     </li>
                 </ul>
             </div>
             <div class="ml-auto">
-                @ability('admin', 'create_documents')
-                    <a href="{{ route('admin.documents.create') }}" class="btn btn-primary">
+                @ability('admin', 'create_contracts')
+                    <a href="{{ route('admin.contracts.create') }}" class="btn btn-primary">
                         <span class="icon text-white-50 d-none d-sm-inline-block">
                             <i class="fa fa-plus-square">
 
@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        @include('backend.documents.filter.filter')
+        @include('backend.contracts.filter.filter')
 
         <div class="card-body">
 
@@ -47,7 +47,7 @@
                 <thead>
                     <tr>
                         <th class="wd-5p border-bottom-0">#</th>
-                        <th class="wd-40p border-bottom-0">{{ __('panel.document_name') }}</th>
+                        <th class="wd-40p border-bottom-0">{{ __('panel.contract_name') }}</th>
                         <th class="wd-15p border-bottom-0 d-none d-sm-table-cell ">{{ __('panel.author') }}</th>
                         <th class="wd-15p border-bottom-0 d-none d-sm-table-cell ">{{ __('panel.status') }}</th>
                         <th class="wd-15p border-bottom-0 d-none d-sm-table-cell ">{{ __('panel.published_on') }}</th>
@@ -57,33 +57,33 @@
 
 
                 <tbody>
-                    @forelse ($documents as $document)
+                    @forelse ($contracts as $contract)
                         <tr>
-                            <td class="text-center"><input type="checkbox" name="checkfilter" value="{{ $document->id }}">
+                            <td class="text-center"><input type="checkbox" name="checkfilter" value="{{ $contract->id }}">
                             </td>
                             <td>
-                                {{ $document->doc_name }}
+                                {{ $contract->contract_name }}
                             </td>
                             <td class="d-none d-sm-table-cell">
-                                {{ $document->created_by }}
+                                {{ $contract->created_by }}
                             </td>
                             <td class="d-none d-sm-table-cell">
-                                @if ($document->status == 1)
-                                    <a href="javascript:void(0);" class="updateDocumentStatus "
-                                        id="document-{{ $document->id }}" document_id="{{ $document->id }}">
+                                @if ($contract->status == 1)
+                                    <a href="javascript:void(0);" class="updateContractStatus "
+                                        id="contract-{{ $contract->id }}" contract_id="{{ $contract->id }}">
                                         <i class="fas fa-toggle-on fa-lg text-success" aria-hidden="true" status="Active"
                                             style="font-size: 1.6em"></i>
                                     </a>
                                 @else
-                                    <a href="javascript:void(0);" class="updateDocumentStatus"
-                                        id="document-{{ $document->id }}" document_id="{{ $document->id }}">
+                                    <a href="javascript:void(0);" class="updateContractStatus"
+                                        id="contract-{{ $contract->id }}" contract_id="{{ $contract->id }}">
                                         <i class="fas fa-toggle-off fa-lg text-warning" aria-hidden="true" status="Inactive"
                                             style="font-size: 1.6em"></i>
                                     </a>
                                 @endif
                             </td>
                             <td class="d-none d-sm-table-cell">
-                                {{ \Carbon\Carbon::parse($document->published_on)->diffForHumans() }}
+                                {{ \Carbon\Carbon::parse($contract->published_on)->diffForHumans() }}
                             </td>
                             <td>
                                 <div class="btn-group btn-group-sm">
@@ -101,19 +101,19 @@
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item d-flex align-items-center"
-                                                href="{{ route('admin.documents.edit', $document->id) }}">
+                                                href="{{ route('admin.contracts.edit', $contract->id) }}">
                                                 <i data-feather="edit-2" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_edit') }}</span>
                                             </a>
 
 
                                             <a href="javascript:void(0);" class="dropdown-item d-flex align-items-center"
-                                                onclick="confirmDelete('delete-document-{{ $document->id }}', '{{ __('panel.confirm_delete_message') }}', '{{ __('panel.yes_delete') }}', '{{ __('panel.cancel') }}')">
+                                                onclick="confirmDelete('delete-contract-{{ $contract->id }}', '{{ __('panel.confirm_delete_message') }}', '{{ __('panel.yes_delete') }}', '{{ __('panel.cancel') }}')">
                                                 <i data-feather="trash" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_delete') }}</span>
                                             </a>
-                                            <form action="{{ route('admin.documents.destroy', $document->id) }}"
-                                                method="post" class="d-none" id="delete-document-{{ $document->id }}">
+                                            <form action="{{ route('admin.contracts.destroy', $contract->id) }}"
+                                                method="post" class="d-none" id="delete-contract-{{ $contract->id }}">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
@@ -121,13 +121,13 @@
 
                                             <a href="javascript:void(0);"
                                                 class="dropdown-item d-flex align-items-center btn btn-success copyButton"
-                                                data-copy-text="https://ibbuniv.era-t.com/documents/{{ $document->slug }}"
-                                                data-id="{{ $document->id }}" title="Copy the link">
+                                                data-copy-text="https://ibbuniv.era-t.com/contracts/{{ $contract->slug }}"
+                                                data-id="{{ $contract->id }}" title="Copy the link">
                                                 <i data-feather="copy" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_copy_link') }}</span>
                                             </a>
                                         </div>
-                                        <span class="copyMessage" data-id="{{ $document->id }}" style="display:none;">
+                                        <span class="copyMessage" data-id="{{ $contract->id }}" style="display:none;">
                                             {{ __('panel.copied') }}
                                         </span>
                                     </div>
