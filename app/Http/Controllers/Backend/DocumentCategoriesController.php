@@ -80,7 +80,10 @@ class DocumentCategoriesController extends Controller
         if (!auth()->user()->ability('admin', 'display_document_categories')) {
             return redirect('admin/index');
         }
-        return view('backend.document_categories.show');
+
+        $document_category = DocumentCategory::where('id', $id)->first();
+
+        return view('backend.document_categories.show', compact('document_category'));
     }
 
     public function edit($document_category)
