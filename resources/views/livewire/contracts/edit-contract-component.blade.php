@@ -321,21 +321,21 @@
                                                 <table class="table">
                                                     <tr>
                                                         <th>{{ __('panel.contract_name') }}</th>
-                                                        <td>{{ $document->contract_name }}</td>
+                                                        <td>{{ $contract->contract_name }}</td>
                                                         <th>{{ __('panel.contract_number') }}</th>
-                                                        <td>{{ $document->contract_no ?? '-' }}</td>
+                                                        <td>{{ $contract->contract_no ?? '-' }}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>{{ __('panel.contract_type') }}</th>
-                                                        <td>{{ $document->contract_type() }}</td>
+                                                        <td>{{ $contract->contract_type() }}</td>
                                                         <th>{{ __('panel.created_at') }}</th>
-                                                        <td>{{ $document->created_at }}</td>
+                                                        <td>{{ $contract->created_at }}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>{{ __('panel.contract_status') }}</th>
-                                                        <td>{{ $document->contract_status() }}</td>
+                                                        <td>{{ $contract->contract_status() }}</td>
                                                         <th>{{ __('panel.contract_file') }}</th>
-                                                        <td>{{ $document->contract_file ?? '-' }} </td>
+                                                        <td>{{ $contract->contract_file ?? '-' }} </td>
                                                     </tr>
 
                                                 </table>
@@ -355,7 +355,7 @@
                             </div>
                         @endisset
 
-                        {{-- end new part review Document --}}
+                        {{-- end new part review Contract --}}
 
                     </section>
                 @endif
