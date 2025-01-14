@@ -36,17 +36,20 @@
 
         /* Modal Content */
         .modal-content {
-            position: relative;
-            background-color: #fefefe;
-            margin: auto;
-            padding: 0;
-            border: 1px solid #888;
-            width: 80%;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            /* position: relative;
+                             background-color: #fefefe;
+                        margin: auto;
+                        padding: 0;
+                        border: 1px solid #888;
+                        
+                        width: 80%; */
+            /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
             -webkit-animation-name: animatetop;
             -webkit-animation-duration: 0.4s;
             animation-name: animatetop;
-            animation-duration: 0.4s
+            animation-duration: 0.4s;
+            background-color: transparent;
+            border: none;
         }
 
         /* Add Animation */
@@ -126,8 +129,67 @@
     <div id="myModal" class="modal">
 
         <!-- Modal content -->
-        <div class="modal-content">
-            <div class="modal-header">
+        <div class="container-fluid modal-content">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow-lg border-0 rounded-lg">
+                        <!-- Card Header -->
+                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                            <h3 class="mb-0">{{ __('Document Category Details') }}</h3>
+                            <a href="javascript:void(0);">
+                                <span class="close">&times;</span>
+                            </a>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <!-- Name Section -->
+                            <div class="mb-4">
+                                <label class="form-label text-muted small mb-1">{{ __('Name') }}</label>
+                                <h4 class="fw-bold">{{ $document_category_show->name }}</h4>
+                            </div>
+
+                            <!-- Description Section -->
+                            <div class="mb-4">
+                                <label class="form-label text-muted small mb-1">{{ __('Description') }}</label>
+                                <p class="lead">{{ $document_category_show->description }}</p>
+                            </div>
+
+                            <!-- Status Section -->
+                            <div class="mb-4">
+                                <label class="form-label text-muted small mb-1">{{ __('Status') }}</label>
+                                <p>
+                                    <span
+                                        class="badge {{ $document_category_show->status ? 'bg-success' : 'bg-secondary' }}">
+                                        {{ $document_category_show->status ? __('Active') : __('Inactive') }}
+                                    </span>
+                                </p>
+                            </div>
+
+                            <!-- Timestamps Section -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="form-label text-muted small mb-1">{{ __('Created At') }}</label>
+                                    <p class="fw-semibold">{{ $document_category_show->created_at }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-muted small mb-1">{{ __('Updated At') }}</label>
+                                    <p class="fw-semibold">{{ $document_category_show->updated_at }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Footer -->
+                        <div class="card-footer bg-light d-flex justify-content-end">
+                            <a href="{{ route('admin.document_categories.index') }}" class="btn btn-primary">
+                                <i class="fas fa-arrow-left me-1"></i> {{ __('Back to List') }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- <div class="modal-header">
                 <span class="close">&times;</span>
                 <h2>{{ $document_category_show->doc_cat_name }}</h2>
             </div>
@@ -137,8 +199,8 @@
             </div>
             <div class="modal-footer">
                 <h3>Modal Footer</h3>
-            </div>
-        </div>
+            </div> --}}
+
 
     </div>
 
