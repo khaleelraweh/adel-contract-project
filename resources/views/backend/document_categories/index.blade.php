@@ -155,7 +155,7 @@
 
                                             <a href="javascript:void(0);"
                                                 class="dropdown-item d-flex align-items-center btn btn-success copyButton"
-                                                data-copy-text="admin/document_categories/{{ $document_category->slug }}"
+                                                data-copy-text="{{ config('app.url') }}/admin/document_categories/{{ $document_category->id }}"
                                                 data-id="{{ $document_category->id }}" title="Copy the link">
                                                 <i data-feather="copy" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_copy_link') }}</span>
