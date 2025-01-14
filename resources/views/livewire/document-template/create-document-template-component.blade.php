@@ -208,11 +208,8 @@
                 aria-hidden="{{ $currentStep == 2 ? 'false' : 'true' }}"
                 style="display: {{ $currentStep == 2 ? 'block' : 'none' }}">
 
-                {{-- <textarea name="doc_template_text" wire:model="doc_template_text" rows="10" class="form-control summernote">{!! old('doc_template_text') !!}</textarea> --}}
 
                 <div wire:ignore>
-                    {{-- <textarea name="doc_template_text" id="ckEditor2" wire:model="doc_template_text" rows="10"
-                        class="form-control">{{ $doc_template_text }}</textarea> --}}
 
                     <textarea name="doc_template_text" id="tinymceExample" rows="10" class="form-control"
                         wire:model.defer="doc_template_text" placeholder=""></textarea>
@@ -343,7 +340,7 @@
 
                 <div class="row">
                     <div class="col-sm-12 col-md-2 pt-3">
-                        <h2>صفحات النموذج</h2>
+                        <h4>{{ __('panel.template_pages') }}</h4>
                         <ul style="list-style: none;margin:0;padding:0;">
                             @foreach ($pages as $index => $page)
                                 <li class="w-100 mb-1 d-flex justify-content-between"

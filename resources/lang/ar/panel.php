@@ -1728,6 +1728,7 @@ return [
 
 
 
+    'template_pages'                                        =>  'صفحات القالب',
 
     'page'                                                  =>  'صفحة',
     'add_page'                                              =>  'إضافة صفحة',
