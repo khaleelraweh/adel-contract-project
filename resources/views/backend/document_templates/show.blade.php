@@ -203,7 +203,7 @@
                                                 <!-- Page Variable Info -->
 
                                                 <div class="page-variable ms-4 mb-4">
-                                                    <h5 class="form-label text-muted small mb-1 ">
+                                                    <h5 class="form-label text-muted small mb-2 ">
                                                         {{ __('panel.document_page_group_variable_info') }}
                                                     </h5>
 
