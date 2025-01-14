@@ -24,7 +24,8 @@ class DocumentType extends Model
     // searchable lab 
     protected $searchable = [
         'columns' => [
-            'pages.doc_type_name' => 10,
+            'document_types.doc_type_name' => 10,
+            'document_types.doc_type_note' => 10,
         ]
     ];
 
