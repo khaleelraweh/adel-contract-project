@@ -37,12 +37,12 @@
         /* Modal Content */
         .modal-content {
             /* position: relative;
-                             background-color: #fefefe;
-                        margin: auto;
-                        padding: 0;
-                        border: 1px solid #888;
-                        
-                        width: 80%; */
+                                 background-color: #fefefe;
+                            margin: auto;
+                            padding: 0;
+                            border: 1px solid #888;
+                            
+                            width: 80%; */
             /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
             -webkit-animation-name: animatetop;
             -webkit-animation-duration: 0.4s;
@@ -351,7 +351,7 @@
                                                 <span class="">{{ __('panel.operation_show') }}</span>
                                             </a> --}}
                                             <a class="dropdown-item d-flex align-items-center btn btn-success"
-                                                href="document_categories?show=<?php echo $document_category->id; ?>">
+                                                id="myBtn" href="document_categories?show=<?php echo $document_category->id; ?>">
                                                 <i data-feather="eye" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_show') }}</span>
                                             </a>
