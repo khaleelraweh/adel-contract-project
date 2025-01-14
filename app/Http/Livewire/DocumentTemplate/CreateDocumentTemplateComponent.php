@@ -519,4 +519,10 @@ class CreateDocumentTemplateComponent extends Component
     }
 
     public function updateDocTemplateText() {}
+
+    public function syncAndNextStep()
+    {
+        $this->emit('syncTinyMCE');
+        $this->nextStep();
+    }
 }

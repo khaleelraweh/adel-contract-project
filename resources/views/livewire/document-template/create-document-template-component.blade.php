@@ -810,8 +810,8 @@
                 </li>
                 <li aria-hidden="false" aria-disabled="false"
                     style="display: {{ $currentStep == 4 ? 'none' : 'block' }}">
-                    <a href="#next" wire:click="nextStep" role="menuitem">
-                        {{-- Next --}}
+                    {{-- <a href="#next" wire:click="nextStep" role="menuitem">
+                        <!-- next -->
                         @if ($currentStep == 1)
                             {{ __('panel.document_template_text') }} >>
                         @else
@@ -820,6 +820,15 @@
                             @else
                                 {{ __('panel.document_and_template_formatting') }} >>
                             @endif
+                        @endif
+                    </a> --}}
+                    <a href="#next" wire:click="syncAndNextStep" role="menuitem">
+                        @if ($currentStep == 1)
+                            {{ __('panel.document_template_text') }} >>
+                        @elseif ($currentStep == 2)
+                            {{ __('panel.document_template_variables') }} >>
+                        @else
+                            {{ __('panel.document_and_template_formatting') }} >>
                         @endif
                     </a>
                 </li>
