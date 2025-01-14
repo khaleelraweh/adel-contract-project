@@ -47,20 +47,21 @@ class CreateContractComponent extends Component
 
     public function mount($contract_id = null)
     {
-        $this->contract_id = $contract_id;
+        $this->contract_id              = $contract_id;
 
         $this->contract_templates       =  ContractTemplate::whereStatus(true)->get();
-        $this->contract                 = Contract::find($this->contract_id);
+        $this->contract                 =  Contract::find($this->contract_id);
 
         if ($this->contract) {
             $this->contract_template_id = $this->contract->contractTemplate->id;
-            $this->contract_name = $this->contract->contract_name;
-            $this->contract_type_id = $this->contract->contract_type;
+            $this->contract_name        = $this->contract->contract_name;
+            $this->contract_type_id     = $this->contract->contract_type;
 
-            $this->chosen_template = ContractTemplate::find($this->contract->contract_template_id);
-            $this->chosen_template_id = $this->contract->contract_template_id;
+            $this->chosen_template      = ContractTemplate::find($this->contract->contract_template_id);
+            $this->chosen_template_id   = $this->contract->contract_template_id;
 
-            $this->totalSteps = $this->chosen_template->contractVariables()->count() + 2;
+            $this->totalSteps           = $this->chosen_template->contractVariables()->count() + 2;
+
             if ($this->contract->contractData) {
 
                 $this->contractData = $this->chosen_template->contractVariables->map(function ($variable) {
@@ -88,23 +89,25 @@ class CreateContractComponent extends Component
         $this->contract                 =  Contract::find($this->contract_id);
 
         if ($this->contract != null) {
-            $this->chosen_template = ContractTemplate::find($this->contract->contract_template_id);
-            $this->chosen_template_id = $this->contract->contract_template_id;
-            $this->totalSteps = $this->chosen_template->contractVariables()->count() + 2;
+
+            $this->chosen_template      = ContractTemplate::find($this->contract->contract_template_id);
+            $this->chosen_template_id   = $this->contract->contract_template_id;
+            $this->totalSteps           = $this->chosen_template->contractVariables()->count() + 2;
+
             if ($this->contract->contractData) {
 
-                $this->contractData = $this->chosen_template->contractVariables->map(function ($variable) {
+                $this->contractData     = $this->chosen_template->contractVariables->map(function ($variable) {
                     return [
-                        'cv_id'     =>  $variable->id,
-                        'cv_name' => $variable->cv_name,
-                        'cv_question' => $variable->cv_question,
-                        'cv_type' => $variable->cv_type,
-                        'cv_required' => $variable->cv_required,
-                        'cv_details' => $variable->cv_details,
-                        'cv_value'  =>  ContractData::where('contract_id', $this->contract_id)
+                        'cv_id'         =>  $variable->id,
+                        'cv_name'       =>  $variable->cv_name,
+                        'cv_question'   =>  $variable->cv_question,
+                        'cv_type'       =>  $variable->cv_type,
+                        'cv_required'   =>  $variable->cv_required,
+                        'cv_details'    =>  $variable->cv_details,
+                        'cv_value'      =>  ContractData::where('contract_id', $this->contract_id)
                             ->where('contract_variable_id', $variable->id)
                             ->value('value') ?? '',
-                        'saved' => true,
+                        'saved'         => true,
                     ];
                 })->toArray();
             }
@@ -227,6 +230,7 @@ class CreateContractComponent extends Component
         }
         // Save data for dynamic steps (between 2 and totalSteps - 1)
         elseif ($this->currentStep > 1 && $this->currentStep < $this->totalSteps) {
+
             $variableIndex = $this->currentStep - 2;
             foreach ($this->contractData as $variableIndex => $contractVariable) {
                 ContractData::updateOrCreate(
