@@ -1677,7 +1677,7 @@ return [
     'ok'                                            =>  'نعم',
     'yes_delete'                                    =>  'نعم،قم بالحذف',
     'document_type_can_not_be_deleted'              =>  'لا يمكن حذف هذا النوع حاليا',
-    'document_type_have_document_templates_you_must_delete_document_templates_related_to_this_document_type_before' =>  'هذا النوع لديه نماذج وثائق تابعة له ، يجب عليك حذف نماذج الوثائق التابعة له اولا',
+    'document_type_have_document_templates_you_must_delete_document_templates_related_to_this_document_type_before' =>  'هذا النوع لديه قالب وثائق تابعة له ، يجب عليك حذف قالب الوثائق التابعة له اولا',
     'operation_options'                                       =>  'خيارات',
     'operation_edit'                                          =>  'تعديل',
     'operation_show'                                          =>  'عرض',
@@ -1687,8 +1687,8 @@ return [
 
 
     // --------------- manage  Document Template  --------------//
-    'manage_document_templates'                                 => 'إدارة نماذج الوثائق',
-    'show_document_templates'                               => 'نماذج الوثائق',
+    'manage_document_templates'                                 => 'إدارة قالب الوثائق',
+    'show_document_templates'                               => 'قالب الوثائق',
     'add_new_document_template'                             => 'قالب وثيقة جديد',
     'edit_existing_document_template'                       => 'التعديل على قالب وثيقة',
 
@@ -1783,8 +1783,8 @@ return [
 
 
     // --------------- Contract Template  --------------//
-    'manage_contract_templates'                             => 'إدارة نماذج العقود',
-    'show_contract_templates'                               => 'نماذج العقود',
+    'manage_contract_templates'                             => 'إدارة قالب العقود',
+    'show_contract_templates'                               => 'قالب العقود',
     'add_new_contract_template'                             => 'قالب عقد جديد',
     'edit_existing_contract_template'                       => 'التعديل على قالب عقد',
 
