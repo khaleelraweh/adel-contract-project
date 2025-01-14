@@ -12,7 +12,7 @@
 
 
 @section('content')
-    {{-- main holder document  --}}
+    {{-- main holder contract  --}}
     <div class="card shadow mb-4">
         {{-- breadcrumb part  --}}
         <div class="card-header py-3 d-flex justify-content-between">
@@ -20,7 +20,7 @@
             <div class="card-naving">
                 <h3 class="font-weight-bold text-primary">
                     <i class="fa fa-plus-square"></i>
-                    {{ __('panel.add_new_document_template') }}
+                    {{ __('panel.add_new_contract_template') }}
                 </h3>
                 <ul class="breadcrumb pt-3">
                     <li>
@@ -32,8 +32,8 @@
                         @endif
                     </li>
                     <li class="ms-1">
-                        <a href="{{ route('admin.document_templates.index') }}">
-                            {{ __('panel.show_document_templates') }}
+                        <a href="{{ route('admin.contract_templates.index') }}">
+                            {{ __('panel.show_contract_templates') }}
                         </a>
                     </li>
                 </ul>
