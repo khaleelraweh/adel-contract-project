@@ -2,6 +2,13 @@
 
 namespace App\Http\Livewire\Contracts;
 
+use App\Models\Document;
+use App\Models\DocumentCategory;
+use App\Models\DocumentData;
+use App\Models\DocumentTemplate;
+use App\Models\DocumentType;
+use App\Models\PageVariable;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class EditContractComponent extends Component
