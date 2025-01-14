@@ -1651,7 +1651,7 @@ return [
     'ok'                                            =>  'نعم',
     'yes_delete'                                    =>  'نعم،قم بالحذف',
     'document_category_can_not_be_deleted'              =>  'لا يمكن حذف هذالتصنيف حاليا',
-    'document_category_have_pages_you_must_delete_pages_before' =>  'هذا التصنيف لدية صفحات ، يجب عليك حذف صفحات التصنيف اولا',
+    'document_category_have_document_types_you_must_delete_document_types_related_to_this_document_category_before' =>  'هذا التصنيف لديه انواع وثائق تابعة له ، يجب عليك حذف انواع الوثائق التابعة لها اولا',
     'operation_options'                                       =>  'خيارات',
     'operation_edit'                                          =>  'تعديل',
     'operation_delete'                                        =>  'حذف',

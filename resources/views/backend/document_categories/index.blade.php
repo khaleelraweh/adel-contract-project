@@ -131,7 +131,7 @@
                                                     onclick="showAlert(
                                                         'warning', 
                                                         '{{ __('panel.document_category_can_not_be_deleted') }}', 
-                                                        '{{ __('panel.document_category_have_pages_you_must_delete_pages_before') }}', 
+                                                        '{{ __('panel.document_category_have_document_types_you_must_delete_document_types_related_to_this_document_category_before') }}', 
                                                         '{{ __('panel.ok') }}'
                                                     )">
                                                     <i data-feather="alert-circle" class="icon-sm me-2"></i>
