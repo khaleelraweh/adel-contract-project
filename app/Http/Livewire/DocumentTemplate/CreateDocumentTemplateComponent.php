@@ -199,6 +199,8 @@ class CreateDocumentTemplateComponent extends Component
                         // 'published_on'          => $this->published_on,
                         'published_on'          => Carbon::now(),
                         'status'                => $this->status,
+                        'created_by'            => auth()->user()->full_name,
+
                     ]
                 );
             } else {
@@ -211,6 +213,7 @@ class CreateDocumentTemplateComponent extends Component
                         // 'published_on'          => $this->published_on,
                         'published_on'          => Carbon::now(),
                         'status'                => $this->status,
+                        'created_by'            => auth()->user()->full_name,
                     ]
                 );
             }
