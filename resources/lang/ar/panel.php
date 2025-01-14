@@ -1717,7 +1717,7 @@ return [
     'document_template_pages_and_variables'                 =>  'الصفحات والمتغيرات',
     'document_page_name'                                    =>  'اسم الصفحة',
     'document_page_group_name'                              =>  'اسم المجموعة',
-    'document_page_group_variable_name'                     =>  'اسم المتغير',
+    'document_page_group_variable_info'                     =>  'بيانات المتغير',
 
 
 

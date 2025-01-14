@@ -200,15 +200,35 @@
                                             <div class="mb-3"></div>
 
                                             @forelse ($pageGroup->pageVariables as $pageVariable)
-                                                <!-- Page Variable Name -->
+                                                <!-- Page Variable Info -->
+
                                                 <div class="page-variable ms-4">
+                                                    <h5 class="mb-1">
+                                                        {{ __('panel.document_page_group_variable_info') }}
+                                                    </h5>
                                                     <label class="form-label text-muted small mb-1">
-                                                        {{ __('panel.document_page_group_variable_name') }}
+                                                        {{ __('panel.pv_name') }}
                                                     </label>
-                                                    <h4 class="fw-bold">
+                                                    <h4 class="fw-bold mb-3">
                                                         <i class="fas fa-tag me-2"></i> {{ $pageVariable->pv_name }}
                                                     </h4>
+
+                                                    <label class="form-label text-muted small mb-1">
+                                                        {{ __('panel.pv_question') }}
+                                                    </label>
+                                                    <h4 class="fw-bold mb-3">
+                                                        <i class="fas fa-tag me-2"></i> {{ $pageVariable->pv_question }}
+                                                    </h4>
+
+                                                    <label class="form-label text-muted small mb-1">
+                                                        {{ __('panel.pv_type') }}
+                                                    </label>
+                                                    <h4 class="fw-bold mb-3">
+                                                        <i class="fas fa-tag me-2"></i> {{ $pageVariable->pv_type() }}
+                                                    </h4>
+
                                                 </div>
+
                                             @empty
                                                 <p class="text-muted ms-4">{{ __('panel.no_variables_found') }}</p>
                                             @endforelse
