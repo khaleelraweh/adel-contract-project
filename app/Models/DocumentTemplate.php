@@ -59,6 +59,16 @@ class DocumentTemplate extends Model
     {
         return $this->status ? __('panel.status_active') : __('panel.status_inactive');
     }
+    public function language()
+    {
+        if ($this->language == '1') {
+            return __('panel.language_ar');
+        } elseif ($this->language == '2') {
+            return __('panel.language_en');
+        } elseif ($this->language == '3') {
+            return __('panel.language_both');
+        }
+    }
 
     protected $searchable = [
         'columns' => [

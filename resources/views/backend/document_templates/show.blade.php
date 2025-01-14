@@ -90,24 +90,53 @@
                         <!-- Basic Info Section -->
                         <fieldset>
                             <legend>{{ __('panel.document_template_basic_info') }}</legend>
-                            <!-- Name Section -->
+                            <!-- document template category  name-->
                             <div class="mb-4">
-                                <label
-                                    class="form-label text-muted small mb-1">{{ __('panel.document_template_name') }}</label>
-                                <h4 class="fw-bold">{{ $document_template->getTranslation('doc_template_name', 'ar') }}</h4>
+                                <label class="form-label text-muted small mb-1">
+                                    {{ __('panel.document_category_name') }}
+                                </label>
+                                <h4 class="fw-bold">
+                                    {{ $document_template->documentType->documentCategory->getTranslation('doc_cat_name', 'ar') }}
+                                </h4>
+                            </div>
+                            <!-- Document Template Type name-->
+                            <div class="mb-4">
+                                <label class="form-label text-muted small mb-1">
+                                    {{ __('panel.document_type_name') }}
+                                </label>
+                                <h4 class="fw-bold">
+                                    {{ $document_template->documentType->getTranslation('doc_type_name', 'ar') }}</h4>
                             </div>
 
-                            <!-- Description Section -->
+                            <!-- Document Template name -->
                             <div class="mb-4">
-                                <label
-                                    class="form-label text-muted small mb-1">{{ __('panel.document_template_text') }}</label>
-                                <p class="lead">{!! $document_template->doc_template_text !!}</p>
+                                <label class="form-label text-muted small mb-1">
+                                    {{ __('panel.document_template_name') }}
+                                </label>
+                                <h4 class="fw-bold">{{ $document_template->getTranslation('doc_template_name', 'ar') }}</h4>
                             </div>
+                            <!-- Document Template Language -->
+                            <div class="mb-4">
+                                <label class="form-label text-muted small mb-1">
+                                    {{ __('panel.language') }}
+                                </label>
+                                <h4 class="fw-bold">{{ $document_template->language() }}</h4>
+                            </div>
+
+
+                            {{-- <div class="mb-4">
+                                <label class="form-label text-muted small mb-1">
+                                    {{ __('panel.document_template_text') }}
+                                </label>
+                                <p class="lead">{!! $document_template->doc_template_text !!}</p>
+                            </div> --}}
                         </fieldset>
 
                         <!-- Status Section -->
                         <div class="mb-4">
-                            <label class="form-label text-muted small mb-1">{{ __('panel.status') }}</label>
+                            <label class="form-label text-muted small mb-1">
+                                {{ __('panel.status') }}
+                            </label>
                             <p>
                                 <span class="badge {{ $document_template->status ? 'bg-success' : 'bg-secondary' }}">
                                     {{ $document_template->status ? __('Active') : __('Inactive') }}
