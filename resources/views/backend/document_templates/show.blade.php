@@ -156,6 +156,15 @@
                                     <h4 class="fw-bold">
                                         {{ $documentPage->doc_page_name }}
                                     </h4>
+                                    @forelse ($documentPage->pageGroups as $pageGroup)
+                                        <label class="form-label text-muted small mb-1">
+                                            {{ __('panel.document_page_group_name') }}
+                                        </label>
+                                        <h4 class="fw-bold">
+                                            {{ $pageGroup->pg_name }}
+                                        </h4>
+                                    @empty
+                                    @endforelse
                                 </div>
                             @empty
                             @endforelse
