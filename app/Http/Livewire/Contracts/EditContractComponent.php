@@ -221,7 +221,7 @@ class EditContractComponent extends Component
                 ContractData::updateOrCreate(
                     [
                         'contract_id'       => $this->contract_id,
-                        'page_variable_id'  => $contractVariable['cv_id'],
+                        'contract_variable_id'  => $contractVariable['cv_id'],
                     ],
                     ['value'             => $contractVariable['cv_value']]
                 );
