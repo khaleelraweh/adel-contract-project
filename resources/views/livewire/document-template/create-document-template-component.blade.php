@@ -577,7 +577,7 @@
                                                                     </div>
                                                                 </div>
                                                                 {{--  pv_details field --}}
-                                                                <div class="row">
+                                                                {{-- <div class="row">
                                                                     <div class="col-sm-12 col-md-12 pt-3" wire:ignore>
                                                                         <label for="pv_details">
                                                                             {{ __('panel.pv_details') }}
@@ -586,9 +586,7 @@
                                                                             wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $groupIndex }}.variables.{{ $variableIndex }}.pv_details">
                                                                             {!! old('pv_details') !!}
                                                                         </textarea>
-                                                                        @error('pages.' . $currentPageIndex . '.groups.'
-                                                                            . $groupIndex . '.variables.' . $variableIndex .
-                                                                            '.pv_details')
+                                                                        @error('pages.' . $currentPageIndex . '.groups.' . $groupIndex . '.variables.' . $variableIndex . '.pv_details')
                                                                             <span
                                                                                 class="text-danger">{{ $message }}</span>
                                                                         @enderror
@@ -622,7 +620,77 @@
                                                                             });
                                                                         </script>
                                                                     </div>
+                                                                </div> --}}
+
+                                                                <div class="row">
+                                                                    <div class="col-sm-12 col-md-12 pt-3" wire:ignore>
+                                                                        <label for="pv_details">
+                                                                            {{ __('panel.pv_details') }}
+                                                                        </label>
+                                                                        <textarea name="pv_details" id="tinymceExample_{{ $variableIndex }}" rows="10" class="form-control"
+                                                                            wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.variables.{{ $variableIndex }}.pv_details">
+                                                                            {!! old('pv_details') !!}
+                                                                        </textarea>
+                                                                        @error('pages.' . $currentPageIndex . '.groups.'
+                                                                            . $groupIndex . '.variables.' . $variableIndex .
+                                                                            '.pv_details')
+                                                                            <span
+                                                                                class="text-danger">{{ $message }}</span>
+                                                                        @enderror
+
+                                                                        <script>
+                                                                            document.addEventListener('DOMContentLoaded', function() {
+                                                                                // Function to initialize TinyMCE for a specific field
+                                                                                function initTinyMCE(editorId) {
+                                                                                    tinymce.init({
+                                                                                        selector: `#${editorId}`,
+                                                                                        language: 'ar',
+                                                                                        min_height: 350,
+                                                                                        plugins: [
+                                                                                            "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                                                                                            "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                                                                                            "save table contextmenu directionality emoticons template paste textcolor image",
+                                                                                        ],
+                                                                                        toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                                                                                        setup: function(editor) {
+                                                                                            editor.on('change', function() {
+                                                                                                const variableIndex = editorId.split('_')[
+                                                                                                1]; // Extract the variable index
+                                                                                                @this.set(
+                                                                                                    `pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.variables.${variableIndex}.pv_details`,
+                                                                                                    editor.getContent()
+                                                                                                );
+                                                                                            });
+
+                                                                                            Livewire.on('syncTinyMCE', () => {
+                                                                                                const variableIndex = editorId.split('_')[
+                                                                                                1]; // Extract the variable index
+                                                                                                @this.set(
+                                                                                                    `pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.variables.${variableIndex}.pv_details`,
+                                                                                                    editor.getContent()
+                                                                                                );
+                                                                                            });
+                                                                                        }
+                                                                                    });
+                                                                                }
+
+                                                                                // Initialize TinyMCE for all existing pv_details fields
+                                                                                document.querySelectorAll('textarea[id^="tinymceExample_"]').forEach(textarea => {
+                                                                                    initTinyMCE(textarea.id);
+                                                                                });
+
+                                                                                // Listen for Livewire events to initialize TinyMCE for new fields
+                                                                                Livewire.on('initTinyMCE', (variableIndex) => {
+                                                                                    const editorId = `tinymceExample_${variableIndex}`;
+                                                                                    if (!tinymce.get(editorId)) {
+                                                                                        initTinyMCE(editorId);
+                                                                                    }
+                                                                                });
+                                                                            });
+                                                                        </script>
+                                                                    </div>
                                                                 </div>
+
 
                                                             </div>
                                                         </div>

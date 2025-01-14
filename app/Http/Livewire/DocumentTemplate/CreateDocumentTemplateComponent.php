@@ -359,6 +359,10 @@ class CreateDocumentTemplateComponent extends Component
             'pv_required'       =>  1,
             'pv_details'        =>  '',
         ];
+
+        // Emit an event to initialize TinyMCE for the new variable
+        $variableIndex = count($this->pages[$pageIndex]['groups'][$groupIndex]['variables']) - 1;
+        $this->emit('initTinyMCE', $variableIndex);
     }
 
     public function setActivePage($index)
