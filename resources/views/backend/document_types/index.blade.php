@@ -114,18 +114,6 @@
                                             </a>
 
 
-                                            {{-- <a href="javascript:void(0);"
-                                                onclick="confirmDelete('delete-page-{{ $document_type->id }}', '{{ __('panel.confirm_delete_message') }}', '{{ __('panel.yes_delete') }}', '{{ __('panel.cancel') }}')"
-                                                class="dropdown-item d-flex align-items-center">
-                                                <i data-feather="trash" class="icon-sm me-2"></i>
-                                                <span class="">{{ __('panel.operation_delete') }}</span>
-                                            </a>
-                                            <form action="{{ route('admin.document_types.destroy', $document_type->id) }}"
-                                                method="post" class="d-none" id="delete-page-{{ $document_type->id }}">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form> --}}
-
                                             @if ($document_type->documentTemplates->count() > 0)
                                                 <a href="javascript:void(0);"
                                                     class="dropdown-item d-flex align-items-center"
