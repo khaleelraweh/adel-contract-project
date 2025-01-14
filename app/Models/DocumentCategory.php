@@ -23,6 +23,7 @@ class DocumentCategory extends Model
     protected $searchable = [
         'columns' => [
             'document_categories.doc_cat_name' => 10,
+            'document_categories.doc_cat_note' => 10,
         ]
     ];
 
