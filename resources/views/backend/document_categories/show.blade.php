@@ -34,7 +34,7 @@
                 <div class="card shadow-lg border-0 rounded-lg">
                     <!-- Card Header -->
                     <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                        <h3 class="mb-0">{{ __('panel.document_category_deails') }}</h3>
+                        <h3 class="mb-0">{{ __('panel.document_category_details') }}</h3>
                         {{-- <a href="{{ route('admin.document_categories.index') }}" class="btn btn-light btn-sm">
                             <i class="fas fa-arrow-left me-1"></i> {{ __('panel.back_to_list') }}
                         </a> --}}

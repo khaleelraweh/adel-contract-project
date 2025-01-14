@@ -84,7 +84,9 @@ class DocumentTypesController extends Controller
         if (!auth()->user()->ability('admin', 'display_document_types')) {
             return redirect('admin/index');
         }
-        return view('backend.document_types.show');
+
+        $document_type = DocumentType::where('id', $id)->first();
+        return view('backend.document_types.show', compact('document_type'));
     }
 
     public function edit($document_type)
