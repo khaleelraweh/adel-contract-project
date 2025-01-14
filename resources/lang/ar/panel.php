@@ -1752,6 +1752,16 @@ return [
     'pv_required'                                           =>  'إلزامي',
     'pv_details'                                            =>  'التفاصيل',
 
+
+    'pages.*.doc_page_name'                     => 'اسم الصفحة',
+    'pages.*.doc_page_description'              => 'وصف الصفحة',
+    'pages.*.groups.*.pg_name'                  => 'اسم المجموعة',
+    'pages.*.groups.*.variables.*.pv_name'      => 'اسم المتغير',
+    'pages.*.groups.*.variables.*.pv_question'  => 'السؤال',
+    'pages.*.groups.*.variables.*.pv_type'      => 'نوع المتغير',
+    'pages.*.groups.*.variables.*.pv_required'  => 'مطلوب',
+    'pages.*.groups.*.variables.*.pv_details'   => 'التفاصيل',
+
     'attributes' => [
         'document_category_id'                              => 'فئة المستند',
         'document_type_id'                                  => 'نوع المستند',

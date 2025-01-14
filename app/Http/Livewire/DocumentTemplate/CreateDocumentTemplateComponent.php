@@ -427,6 +427,20 @@ class CreateDocumentTemplateComponent extends Component
     }
 
 
+    // public function validateStepThree()
+    // {
+    //     $this->validate([
+    //         'pages.*.doc_page_name'                     => 'required|string',
+    //         'pages.*.doc_page_description'              => 'required|string',
+    //         'pages.*.groups.*.pg_name'                  => 'required|string',
+    //         'pages.*.groups.*.variables.*.pv_name'      => 'required|string',
+    //         'pages.*.groups.*.variables.*.pv_question'  => 'required|string',
+    //         'pages.*.groups.*.variables.*.pv_type'      => 'required|numeric',
+    //         'pages.*.groups.*.variables.*.pv_required'  => 'required|boolean',
+    //         'pages.*.groups.*.variables.*.pv_details'   => 'required|string',
+    //     ]);
+    // }
+
     public function validateStepThree()
     {
         $this->validate([
@@ -438,9 +452,17 @@ class CreateDocumentTemplateComponent extends Component
             'pages.*.groups.*.variables.*.pv_type'      => 'required|numeric',
             'pages.*.groups.*.variables.*.pv_required'  => 'required|boolean',
             'pages.*.groups.*.variables.*.pv_details'   => 'required|string',
+        ], [], [
+            'pages.*.doc_page_name'                     => __('panel.pages.*.doc_page_name'),
+            'pages.*.doc_page_description'              => __('panel.pages.*.doc_page_description'),
+            'pages.*.groups.*.pg_name'                  => __('panel.pages.*.groups.*.pg_name'),
+            'pages.*.groups.*.variables.*.pv_name'      => __('panel.pages.*.groups.*.variables.*.pv_name'),
+            'pages.*.groups.*.variables.*.pv_question'  => __('panel.pages.*.groups.*.variables.*.pv_question'),
+            'pages.*.groups.*.variables.*.pv_type'      => __('panel.pages.*.groups.*.variables.*.pv_type'),
+            'pages.*.groups.*.variables.*.pv_required'  => __('panel.pages.*.groups.*.variables.*.pv_required'),
+            'pages.*.groups.*.variables.*.pv_details'   => __('panel.pages.*.groups.*.variables.*.pv_details'),
         ]);
     }
-
 
 
 
