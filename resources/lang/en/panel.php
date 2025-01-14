@@ -1284,9 +1284,11 @@ return [
     'desc'                  => 'Descending',
     'created_at'            => 'Created at',
     'published_on'          => 'Published On',
+    'updated_at'            =>  'Updated at',
     'published_by'          =>  'Published by',
     'author'                => 'Author',
     'id'                    => 'ID',
+    'back_to_list'          =>  'Back To List',
 
 
     // ============= Message Responsive ================ //
