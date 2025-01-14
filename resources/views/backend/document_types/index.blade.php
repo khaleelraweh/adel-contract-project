@@ -100,17 +100,19 @@
                                             </svg>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item d-flex align-items-center"
-                                                href="{{ route('admin.document_types.edit', $document_type->id) }}">
-                                                <i data-feather="edit-2" class="icon-sm me-2"></i>
-                                                <span class="">{{ __('panel.operation_edit') }}</span>
-                                            </a>
 
                                             <a class="dropdown-item d-flex align-items-center btn btn-success"
                                                 href="{{ route('admin.document_types.show', $document_type->id) }}">
                                                 <i data-feather="eye" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_show') }}</span>
                                             </a>
+
+                                            <a class="dropdown-item d-flex align-items-center"
+                                                href="{{ route('admin.document_types.edit', $document_type->id) }}">
+                                                <i data-feather="edit-2" class="icon-sm me-2"></i>
+                                                <span class="">{{ __('panel.operation_edit') }}</span>
+                                            </a>
+
 
                                             {{-- <a href="javascript:void(0);"
                                                 onclick="confirmDelete('delete-page-{{ $document_type->id }}', '{{ __('panel.confirm_delete_message') }}', '{{ __('panel.yes_delete') }}', '{{ __('panel.cancel') }}')"
