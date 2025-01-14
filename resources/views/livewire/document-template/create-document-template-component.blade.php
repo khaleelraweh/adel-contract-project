@@ -141,7 +141,7 @@
                         </div>
                     </div>
 
-                    <div class="row" wire:ignore.self>
+                    <div class="row" wire:ignore>
                         <div class="col-sm-12 col-md-2 pt-3">
                             <label for="published_on">
                                 {{ __('panel.published_on') }}
