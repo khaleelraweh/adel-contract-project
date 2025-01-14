@@ -72,6 +72,38 @@
             line-height: 1.6;
         }
     </style>
+    <style>
+        /* تنسيق المستويات الهرمية */
+        .document-page {
+            border-right: 4px solid #007bff;
+            padding-right: 15px;
+            margin-bottom: 20px;
+        }
+
+        .page-group {
+            border-right: 4px solid #28a745;
+            padding-right: 15px;
+            margin-bottom: 15px;
+        }
+
+        .page-variable {
+            border-right: 4px solid #dc3545;
+            padding-right: 15px;
+            margin-bottom: 10px;
+        }
+
+        /* تنسيق الرموز */
+        .fa-file-alt,
+        .fa-folder,
+        .fa-tag {
+            color: #6c757d;
+        }
+
+        /* تحسين المسافات */
+        .ms-4 {
+            margin-right: 1.5rem !important;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -143,7 +175,7 @@
                             </div> --}}
                         </fieldset>
 
-                        <!-- Basic Info Section -->
+                        {{-- <!-- Document Template Pages and Variables -->
                         <fieldset>
                             <legend>{{ __('panel.document_template_pages_and_variables') }}</legend>
 
@@ -179,8 +211,58 @@
                             @endforelse
 
 
-                        </fieldset>
+                        </fieldset> --}}
 
+                        <!-- Document Template Pages and Variables -->
+                        <fieldset>
+                            <legend>{{ __('panel.document_template_pages_and_variables') }}</legend>
+
+                            @forelse ($document_template->documentPages as $documentPage)
+                                <div class="mb-4">
+                                    <!-- Document Page Name -->
+                                    <div class="document-page">
+                                        <label class="form-label text-muted small mb-1">
+                                            {{ __('panel.document_page_name') }}
+                                        </label>
+                                        <h4 class="fw-bold">
+                                            <i class="fas fa-file-alt me-2"></i> {{ $documentPage->doc_page_name }}
+                                        </h4>
+                                    </div>
+
+                                    @forelse ($documentPage->pageGroups as $pageGroup)
+                                        <!-- Page Group Name -->
+                                        <div class="page-group ms-4">
+                                            <label class="form-label text-muted small mb-1">
+                                                {{ __('panel.document_page_group_name') }}
+                                            </label>
+                                            <h4 class="fw-bold">
+                                                <i class="fas fa-folder me-2"></i> {{ $pageGroup->pg_name }}
+                                            </h4>
+
+                                            <div class="mb-3"></div>
+
+                                            @forelse ($pageGroup->pageVariables as $pageVariable)
+                                                <!-- Page Variable Name -->
+                                                <div class="page-variable ms-4">
+                                                    <label class="form-label text-muted small mb-1">
+                                                        {{ __('panel.document_page_group_variable_name') }}
+                                                    </label>
+                                                    <h4 class="fw-bold">
+                                                        <i class="fas fa-tag me-2"></i> {{ $pageVariable->pv_name }}
+                                                    </h4>
+                                                </div>
+                                            @empty
+                                                <p class="text-muted ms-4">{{ __('panel.no_variables_found') }}</p>
+                                            @endforelse
+                                        </div>
+                                    @empty
+                                        <p class="text-muted ms-4">{{ __('panel.no_groups_found') }}</p>
+                                    @endforelse
+                                </div>
+                            @empty
+                                <p class="text-muted">{{ __('panel.no_pages_found') }}</p>
+                            @endforelse
+                        </fieldset>
 
 
                         <!-- Timestamps Section -->
