@@ -243,43 +243,6 @@ class EditContractComponent extends Component
         }
     }
 
-    // public function replacePlaceholders()
-    // {
-    //     $viewText = $this->chosen_template->contract_template_text;
-
-    //     // Initialize an empty array for replacements
-    //     $forReplacement = [];
-
-    //     // Match all placeholders in the format {!-number-Description!}
-    //     preg_match_all('/{\!-([0-9]+)-[^\!]+\!}/', $viewText, $matches);
-
-    //     if (isset($matches[1]) && isset($matches[0])) {
-    //         foreach ($matches[1] as $index => $pageVariableId) {
-    //             // Iterate over all steps in contractData to find the value
-    //             foreach ($this->contractData as $stepData) {
-    //                 foreach ($stepData['groups'] as $groupData) {
-    //                     foreach ($groupData['variables'] as $variableData) {
-    //                         if ($variableData['pv_id'] == $pageVariableId) {
-    //                             // Map the placeholder to the value in contractData
-    //                             $forReplacement[$matches[0][$index]] = $variableData['pv_value'];
-    //                             break 3; // Exit all three loops once the value is found
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-
-    //     // Replace all placeholders in viewText with their corresponding values
-    //     $viewText = strtr($viewText, $forReplacement);
-
-    //     // Update the viewText property with the replaced content
-    //     $this->viewText = $viewText;
-
-    //     // Optionally, return or display the replaced text
-    //     return $viewText;
-    // }
-
     public function replacePlaceholders()
     {
         $viewText = $this->chosen_template->contract_template_text;
