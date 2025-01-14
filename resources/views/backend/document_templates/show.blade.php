@@ -154,7 +154,7 @@
                                         {{ __('panel.document_page_name') }}
                                     </label>
                                     <h4 class="fw-bold">
-                                        {{ $document_template->documentType->documentCategory->getTranslation('doc_cat_name', 'ar') }}
+                                        {{ $documentPage->doc_page_name }}
                                     </h4>
                                 </div>
                             @empty
