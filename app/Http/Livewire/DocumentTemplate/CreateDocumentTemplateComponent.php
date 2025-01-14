@@ -231,7 +231,8 @@ class CreateDocumentTemplateComponent extends Component
                         'doc_template_name'     => $this->doc_template_name,
                         'language'              => $this->language,
                         // 'published_on'          => $this->published_on,
-                        'published_on'          => Carbon::now(),
+                        // 'published_on'          => Carbon::now(),
+                        'published_on'          => $this->published_on,
                         'status'                => $this->status,
                         'created_by'            => auth()->user()->full_name,
 
