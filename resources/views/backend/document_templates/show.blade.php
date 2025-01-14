@@ -28,14 +28,13 @@
 @endsection
 
 @section('content')
-    {{ dd($document_template) }}
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card shadow-lg border-0 rounded-lg">
                     <!-- Card Header -->
                     <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                        <h3 class="mb-0">{{ __('panel.document_category_details') }}</h3>
+                        <h3 class="mb-0">{{ __('panel.document_template_details') }}</h3>
                         {{-- <a href="{{ route('admin.document_categories.index') }}" class="btn btn-light btn-sm">
                             <i class="fas fa-arrow-left me-1"></i> {{ __('panel.back_to_list') }}
                         </a> --}}
@@ -45,22 +44,22 @@
                     <div class="card-body">
                         <!-- Name Section -->
                         <div class="mb-4">
-                            <label class="form-label text-muted small mb-1">{{ __('panel.document_category_name') }}</label>
-                            <h4 class="fw-bold">{{ $document_category->getTranslation('doc_cat_name', 'ar') }}</h4>
+                            <label class="form-label text-muted small mb-1">{{ __('panel.document_template_name') }}</label>
+                            <h4 class="fw-bold">{{ $document_template->getTranslation('doc_template_name', 'ar') }}</h4>
                         </div>
 
                         <!-- Description Section -->
                         <div class="mb-4">
-                            <label class="form-label text-muted small mb-1">{{ __('panel.document_category_note') }}</label>
-                            <p class="lead">{!! $document_category->getTranslation('doc_cat_note', 'ar') !!}</p>
+                            <label class="form-label text-muted small mb-1">{{ __('panel.document_template_text') }}</label>
+                            <p class="lead">{!! $document_template->doc_template_text !!}</p>
                         </div>
 
                         <!-- Status Section -->
                         <div class="mb-4">
                             <label class="form-label text-muted small mb-1">{{ __('panel.status') }}</label>
                             <p>
-                                <span class="badge {{ $document_category->status ? 'bg-success' : 'bg-secondary' }}">
-                                    {{ $document_category->status ? __('Active') : __('Inactive') }}
+                                <span class="badge {{ $document_template->status ? 'bg-success' : 'bg-secondary' }}">
+                                    {{ $document_template->status ? __('Active') : __('Inactive') }}
                                 </span>
                             </p>
                         </div>
@@ -69,11 +68,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label class="form-label text-muted small mb-1">{{ __('panel.published_on') }}</label>
-                                <p class="fw-semibold">{{ $document_category->published_on }}</p>
+                                <p class="fw-semibold">{{ $document_template->published_on }}</p>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label text-muted small mb-1">{{ __('panel.updated_at') }}</label>
-                                <p class="fw-semibold">{{ $document_category->updated_at }}</p>
+                                <p class="fw-semibold">{{ $document_template->updated_at }}</p>
                             </div>
                         </div>
                     </div>
