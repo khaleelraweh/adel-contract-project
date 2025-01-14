@@ -143,6 +143,26 @@
                             </div> --}}
                         </fieldset>
 
+                        <!-- Basic Info Section -->
+                        <fieldset>
+                            <legend>{{ __('panel.document_template_pages_and_variables') }}</legend>
+
+
+                            @forelse ($document_template->documentPages as $documentPage)
+                                <div class="mb-4">
+                                    <label class="form-label text-muted small mb-1">
+                                        {{ __('panel.document_page_name') }}
+                                    </label>
+                                    <h4 class="fw-bold">
+                                        {{ $document_template->documentType->documentCategory->getTranslation('doc_cat_name', 'ar') }}
+                                    </h4>
+                                </div>
+                            @empty
+                            @endforelse
+
+
+                        </fieldset>
+
 
 
                         <!-- Timestamps Section -->
