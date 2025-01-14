@@ -1636,7 +1636,7 @@ return [
     'manage_document_categories'                          => 'إدارة تصنيف الوثائق',
     'document_category_name'                              => 'اسم التصنيف',
     'document_category_note'                              => 'ملاحظة التصنيف',
-    'document_category_deails'                            =>    'تفاصيل فئة الوثيقة',
+    'document_category_deails'                            =>    'تفاصيل تصنيف الوثيقة',
 
     // --------------- Document Categories  --------------//
     'show_document_categories'                            => 'تصنيف الوثائق',
