@@ -167,51 +167,9 @@
                                 </p>
                             </div>
 
-                            {{-- <div class="mb-4">
-                                <label class="form-label text-muted small mb-1">
-                                    {{ __('panel.document_template_text') }}
-                                </label>
-                                <p class="lead">{!! $document_template->doc_template_text !!}</p>
-                            </div> --}}
                         </fieldset>
 
-                        {{-- <!-- Document Template Pages and Variables -->
-                        <fieldset>
-                            <legend>{{ __('panel.document_template_pages_and_variables') }}</legend>
 
-
-                            @forelse ($document_template->documentPages as $documentPage)
-                                <div class="mb-4">
-                                    <label class="form-label text-muted small mb-1">
-                                        {{ __('panel.document_page_name') }}
-                                    </label>
-                                    <h4 class="fw-bold">
-                                        {{ $documentPage->doc_page_name }}
-                                    </h4>
-                                    @forelse ($documentPage->pageGroups as $pageGroup)
-                                        <label class="form-label text-muted small mb-1">
-                                            {{ __('panel.document_page_group_name') }}
-                                        </label>
-                                        <h4 class="fw-bold">
-                                            {{ $pageGroup->pg_name }}
-                                        </h4>
-                                        @forelse ($pageGroup->pageVariables as $pageVariable)
-                                            <label class="form-label text-muted small mb-1">
-                                                {{ __('panel.document_page_group_variable_name') }}
-                                            </label>
-                                            <h4 class="fw-bold">
-                                                {{ $pageVariable->pv_name }}
-                                            </h4>
-                                        @empty
-                                        @endforelse
-                                    @empty
-                                    @endforelse
-                                </div>
-                            @empty
-                            @endforelse
-
-
-                        </fieldset> --}}
 
                         <!-- Document Template Pages and Variables -->
                         <fieldset>
@@ -264,6 +222,17 @@
                             @endforelse
                         </fieldset>
 
+
+                        <!-- Document Template Pages and Variables -->
+                        <fieldset>
+                            <legend>{{ __('panel.document_template_text') }}</legend>
+                            <div class="mb-4">
+                                <label class="form-label text-muted small mb-1">
+                                    {{ __('panel.document_template_text') }}
+                                </label>
+                                <p class="lead">{!! $document_template->doc_template_text !!}</p>
+                            </div>
+                        </fieldset>
 
                         <!-- Timestamps Section -->
                         <div class="row">
