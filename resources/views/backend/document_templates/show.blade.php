@@ -258,7 +258,7 @@
                         </fieldset>
 
 
-                        <!-- Document Template Pages and Variables -->
+                        <!-- Document Template Text -->
                         <fieldset>
                             <legend>{{ __('panel.document_template_text') }}</legend>
                             <div class="mb-4">
@@ -267,6 +267,24 @@
                                 </label>
                                 <p class="lead">{!! $document_template->doc_template_text !!}</p>
                             </div>
+                        </fieldset>
+
+                        <!-- Document Template Documents -->
+                        <fieldset>
+                            <legend>{{ __('panel.document_template_Documents') }}</legend>
+                            @forelse ($document_template->documents as $document)
+                                <div class="mb-2">
+                                    <p class="lead">
+                                        <a href="">
+                                            <i class="fas fa-file-alt me-2"></i>
+                                            {{ $document->getTranslation('doc_name', 'ar') }}
+                                        </a>
+                                    </p>
+
+                                </div>
+                            @empty
+                            @endforelse
+
                         </fieldset>
 
                         <!-- Timestamps Section -->
