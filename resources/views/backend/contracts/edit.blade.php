@@ -43,7 +43,7 @@
         {{-- body part  --}}
         <div class="card-body">
             <div class="card-body">
-                @livewire('contracts.edit-contract-component', ['document_id' => $contract->id])
+                @livewire('contracts.edit-contract-component', ['contract_id' => $contract->id])
             </div>
         </div>
     @endsection
