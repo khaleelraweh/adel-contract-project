@@ -109,6 +109,13 @@
                                                 <span class="">{{ __('panel.operation_edit') }}</span>
                                             </a>
 
+                                            <a class="dropdown-item d-flex align-items-center btn btn-success"
+                                                href="{{ route('admin.document_categories.show', $document_category->id) }}">
+                                                <i data-feather="eye" class="icon-sm me-2"></i>
+                                                <span class="">{{ __('panel.operation_show') }}</span>
+                                            </a>
+
+
                                             @if ($document_category->documentTypes->count() > 0)
                                                 <a href="javascript:void(0);"
                                                     class="dropdown-item d-flex align-items-center"

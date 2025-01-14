@@ -338,6 +338,7 @@ return [
     'page_category_have_pages_you_must_delete_pages_before' =>  'Page category have pages , You must delete pages before',
     'operation_options'                                       =>  'Options',
     'operation_edit'                                          =>  'Edit',
+    'operation_show'                                          =>  'Show',
     'operation_delete'                                        =>  'Delete',
     'operation_copy_link'                                     =>  'Copy Link',
 

@@ -1677,6 +1677,7 @@ return [
     'document_type_have_pages_you_must_delete_pages_before' =>  'نوع هذه الوثيقة لدية بيانات فرعية ، يجب عليك حذف البيانات الفرعية  اولا',
     'operation_options'                                       =>  'خيارات',
     'operation_edit'                                          =>  'تعديل',
+    'operation_show'                                          =>  'عرض',
     'operation_delete'                                        =>  'حذف',
     'operation_copy_link'                                     =>  'نسخ الرابط',
 
