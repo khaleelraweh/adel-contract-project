@@ -62,7 +62,8 @@ class DocumentTemplate extends Model
 
     protected $searchable = [
         'columns' => [
-            'course_templates.doc_template_name' => 10,
+            'document_templates.doc_template_name' => 10,
+            'document_templates.doc_template_text' => 10,
         ]
     ];
 
