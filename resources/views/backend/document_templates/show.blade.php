@@ -163,6 +163,15 @@
                                         <h4 class="fw-bold">
                                             {{ $pageGroup->pg_name }}
                                         </h4>
+                                        @forelse ($pageGroup->pageVariables as $pageVariable)
+                                            <label class="form-label text-muted small mb-1">
+                                                {{ __('panel.document_page_group_variable_name') }}
+                                            </label>
+                                            <h4 class="fw-bold">
+                                                {{ $pageVariable->pv_name }}
+                                            </h4>
+                                        @empty
+                                        @endforelse
                                     @empty
                                     @endforelse
                                 </div>
