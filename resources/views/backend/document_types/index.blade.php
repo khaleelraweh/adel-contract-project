@@ -56,7 +56,8 @@
                 <tbody>
                     @forelse ($document_types as $document_type)
                         <tr>
-                            <td class="text-center"><input type="checkbox" name="checkfilter" value="{{ $document_type->id }}">
+                            <td class="text-center"><input type="checkbox" name="checkfilter"
+                                    value="{{ $document_type->id }}">
                             </td>
                             <td>
                                 {{ $document_type->doc_type_name }}
@@ -66,13 +67,15 @@
                             </td>
                             <td class="d-none d-sm-table-cell">
                                 @if ($document_type->status == 1)
-                                    <a href="javascript:void(0);" class="updateDocumentTypeStatus " id="document-type-{{ $document_type->id }}"
+                                    <a href="javascript:void(0);" class="updateDocumentTypeStatus "
+                                        id="document-type-{{ $document_type->id }}"
                                         document_type_id="{{ $document_type->id }}">
                                         <i class="fas fa-toggle-on fa-lg text-success" aria-hidden="true" status="Active"
                                             style="font-size: 1.6em"></i>
                                     </a>
                                 @else
-                                    <a href="javascript:void(0);" class="updateDocumentTypeStatus" id="document-type-{{ $document_type->id }}"
+                                    <a href="javascript:void(0);" class="updateDocumentTypeStatus"
+                                        id="document-type-{{ $document_type->id }}"
                                         document_type_id="{{ $document_type->id }}">
                                         <i class="fas fa-toggle-off fa-lg text-warning" aria-hidden="true" status="Inactive"
                                             style="font-size: 1.6em"></i>
@@ -103,14 +106,20 @@
                                                 <span class="">{{ __('panel.operation_edit') }}</span>
                                             </a>
 
+                                            <a class="dropdown-item d-flex align-items-center btn btn-success"
+                                                href="{{ route('admin.document_types.show', $document_type->id) }}">
+                                                <i data-feather="eye" class="icon-sm me-2"></i>
+                                                <span class="">{{ __('panel.operation_show') }}</span>
+                                            </a>
+
                                             <a href="javascript:void(0);"
                                                 onclick="confirmDelete('delete-page-{{ $document_type->id }}', '{{ __('panel.confirm_delete_message') }}', '{{ __('panel.yes_delete') }}', '{{ __('panel.cancel') }}')"
                                                 class="dropdown-item d-flex align-items-center">
                                                 <i data-feather="trash" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_delete') }}</span>
                                             </a>
-                                            <form action="{{ route('admin.document_types.destroy', $document_type->id) }}" method="post"
-                                                class="d-none" id="delete-page-{{ $document_type->id }}">
+                                            <form action="{{ route('admin.document_types.destroy', $document_type->id) }}"
+                                                method="post" class="d-none" id="delete-page-{{ $document_type->id }}">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
@@ -124,7 +133,8 @@
                                             </a>
 
                                         </div>
-                                        <span class="copyMessage" data-id="{{ $document_type->id }}" style="display:none;">
+                                        <span class="copyMessage" data-id="{{ $document_type->id }}"
+                                            style="display:none;">
                                             {{ __('panel.copied') }}
                                         </span>
                                     </div>
