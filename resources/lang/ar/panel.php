@@ -1711,6 +1711,8 @@ return [
 
     'document_and_template_formatting'                      =>  'تنسيق الوثيقة والمستند',
     'document_and_template_formatting_saved'                =>  'تم حفظ تنسيق الوثيقة والمستند بنجاح',
+    'document_template_details'                             =>    'تفاصيل نموذج الوثيقة',
+    'document_template_basic_info'                          =>    'البيانات الاساسية',
 
 
 
