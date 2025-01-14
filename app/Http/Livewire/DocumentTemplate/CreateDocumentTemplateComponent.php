@@ -161,6 +161,30 @@ class CreateDocumentTemplateComponent extends Component
         $this->currentStep = $choseStep;
     }
 
+    // public function validateStep()
+    // {
+    //     if ($this->currentStep == 1) {
+    //         $this->validate([
+    //             'document_category_id'  => 'required|numeric',
+    //             'document_type_id'      => 'required|numeric',
+    //             'doc_template_name'     => 'required|string',
+    //             'language'              => 'required|numeric',
+    //             'published_on'          => 'required',
+    //         ]);
+    //     } elseif ($this->currentStep == 2) {
+    //         $this->validate([
+    //             'doc_template_text' => 'required',
+    //         ]);
+    //     } elseif ($this->currentStep == 3) {
+    //         // Perform validation
+    //         $this->validateStepThree();
+    //     } elseif ($this->currentStep == 4) {
+    //         $this->validate([
+    //             'doc_template_text' => 'required', // Validation rule for textarea
+    //         ]);
+    //     }
+    // }
+
     public function validateStep()
     {
         if ($this->currentStep == 1) {
@@ -170,10 +194,18 @@ class CreateDocumentTemplateComponent extends Component
                 'doc_template_name'     => 'required|string',
                 'language'              => 'required|numeric',
                 'published_on'          => 'required',
+            ], [], [
+                'document_category_id'  => __('panel.attributes.document_category_id'),
+                'document_type_id'      => __('panel.attributes.document_type_id'),
+                'doc_template_name'     => __('panel.attributes.doc_template_name'),
+                'language'              => __('panel.attributes.language'),
+                'published_on'          => __('panel.attributes.published_on'),
             ]);
         } elseif ($this->currentStep == 2) {
             $this->validate([
                 'doc_template_text' => 'required',
+            ], [], [
+                'doc_template_text' => __('panel.attributes.doc_template_text'),
             ]);
         } elseif ($this->currentStep == 3) {
             // Perform validation
@@ -181,6 +213,8 @@ class CreateDocumentTemplateComponent extends Component
         } elseif ($this->currentStep == 4) {
             $this->validate([
                 'doc_template_text' => 'required', // Validation rule for textarea
+            ], [], [
+                'doc_template_text' => __('panel.attributes.doc_template_text'),
             ]);
         }
     }

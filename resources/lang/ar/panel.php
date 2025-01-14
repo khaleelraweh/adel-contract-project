@@ -1669,7 +1669,7 @@ return [
     'add_new_document_type'                          => 'اضافة نوع وثيقة جديد',
     'edit_existing_document_type'                    => 'تعديل نوع وثيقة',
 
-    // ........... commons in Page Categories ....... //
+    // ........... commons in Document type ....... //
     'metadata_title'                                =>  'عنوان صفحة تعريفية ( Page Title)',
     'metadata_description'                          =>  'وصف صفحة تعريفية (Page Description)',
     'metadata_keywords'                             =>  'وصف الكلمات التعريفية (Page Keywords)',
@@ -1686,14 +1686,14 @@ return [
     'document_type_details'                           =>    'تفاصيل نوع الوثيقة',
 
 
-    // --------------- Document Template  --------------//
+    // --------------- manage  Document Template  --------------//
     'manage_document_templates'                                 => 'إدارة نماذج الوثائق',
     'show_document_templates'                               => 'نماذج الوثائق',
     'add_new_document_template'                             => 'نموذج وثيقة جديد',
     'edit_existing_document_template'                       => 'التعديل على نموذج وثيقة',
 
 
-    // ........... commons in Template   ....... //
+    // ........... commons in Document Template   ....... //
     'document_template_data'                                =>  'بيانات نموذج الوثيقة',
     'document_template_name'                                =>  'نموذج الوثيقة',
     'document_template_status'                              =>  'حالة نموذج الوثيقة',
@@ -1751,6 +1751,15 @@ return [
     'pv_type_date'                                          =>  'تاريخ',
     'pv_required'                                           =>  'إلزامي',
     'pv_details'                                            =>  'التفاصيل',
+
+    'attributes' => [
+        'document_category_id'                              => 'فئة المستند',
+        'document_type_id'                                  => 'نوع المستند',
+        'doc_template_name'                                 => 'اسم القالب',
+        'language'                                          => 'اللغة',
+        'published_on'                                      => 'تاريخ النشر',
+        'doc_template_text'                                 => 'نص القالب',
+    ],
 
     'select_variable'                                       =>  'حدد متغير',
     'text'                                                  =>  'نص',
