@@ -123,6 +123,17 @@
                                 <h4 class="fw-bold">{{ $document_template->language() }}</h4>
                             </div>
 
+                            <!-- Document Template Status -->
+                            <div class="mb-4">
+                                <label class="form-label text-muted small mb-1">
+                                    {{ __('panel.status') }}
+                                </label>
+                                <p>
+                                    <span class="badge {{ $document_template->status ? 'bg-success' : 'bg-secondary' }}">
+                                        {{ $document_template->status ? __('Active') : __('Inactive') }}
+                                    </span>
+                                </p>
+                            </div>
 
                             {{-- <div class="mb-4">
                                 <label class="form-label text-muted small mb-1">
@@ -132,17 +143,7 @@
                             </div> --}}
                         </fieldset>
 
-                        <!-- Status Section -->
-                        <div class="mb-4">
-                            <label class="form-label text-muted small mb-1">
-                                {{ __('panel.status') }}
-                            </label>
-                            <p>
-                                <span class="badge {{ $document_template->status ? 'bg-success' : 'bg-secondary' }}">
-                                    {{ $document_template->status ? __('Active') : __('Inactive') }}
-                                </span>
-                            </p>
-                        </div>
+
 
                         <!-- Timestamps Section -->
                         <div class="row">
