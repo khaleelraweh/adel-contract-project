@@ -202,10 +202,11 @@
                                             @forelse ($pageGroup->pageVariables as $pageVariable)
                                                 <!-- Page Variable Info -->
 
-                                                <div class="page-variable ms-4">
-                                                    <h5 class="mb-1">
+                                                <div class="page-variable ms-4 mb-4">
+                                                    <h5 class="form-label text-muted small mb-1 ">
                                                         {{ __('panel.document_page_group_variable_info') }}
                                                     </h5>
+
                                                     <label class="form-label text-muted small mb-1">
                                                         {{ __('panel.pv_name') }}
                                                     </label>
@@ -225,6 +226,20 @@
                                                     </label>
                                                     <h4 class="fw-bold mb-3">
                                                         <i class="fas fa-tag me-2"></i> {{ $pageVariable->pv_type() }}
+                                                    </h4>
+
+                                                    <label class="form-label text-muted small mb-1">
+                                                        {{ __('panel.pv_required') }}
+                                                    </label>
+                                                    <h4 class="fw-bold mb-3">
+                                                        <i class="fas fa-tag me-2"></i> {{ $pageVariable->pv_required() }}
+                                                    </h4>
+
+                                                    <label class="form-label text-muted small mb-1">
+                                                        {{ __('panel.pv_details') }}
+                                                    </label>
+                                                    <h4 class="fw-bold mb-3">
+                                                        <i class="fas fa-tag me-2"></i> {{ $pageVariable->pv_details }}
                                                     </h4>
 
                                                 </div>

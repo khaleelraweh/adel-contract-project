@@ -1747,6 +1747,9 @@ return [
     'pv_details'                                            =>  'التفاصيل',
 
     'select_variable'                                       =>  'حدد متغير',
+    'text'                                                  =>  'نص',
+    'number'                                                =>  'رقم',
+    'date'                                                  =>  'تاريخ',
 
 
     'finish'                                                =>  'إنهاء',

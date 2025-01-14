@@ -26,12 +26,12 @@ class PageVariable extends Model
 
     public function pv_type()
     {
-        if ($this->pv_type == 1) {
-            return 'text';
+        if ($this->pv_type == 0) {
+            return __('panel.pv_type_text');
+        } elseif ($this->pv_type == 1) {
+            return __('panel.pv_type_number');
         } elseif ($this->pv_type == 2) {
-            return 'number';
-        } elseif ($this->pv_type == 3) {
-            return '';
+            return __('panel.pv_type_date');
         } else {
             return '';
         }
@@ -40,9 +40,9 @@ class PageVariable extends Model
     public function pv_required()
     {
         if ($this->pv_required == 0) {
-            return '';
+            return __('panel.yes');
         } elseif ($this->pv_required == 1) {
-            return 'required';
+            return __('panel.no');
         }
     }
 }
