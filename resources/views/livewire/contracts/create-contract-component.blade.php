@@ -85,7 +85,6 @@
         <!------------- part 2 : Content ------------->
         <div class="mycontent">
 
-            <!---- related to step 1 ----->
 
             <h3 id="wizard1-h-0" tabindex="-1" class="title {{ $currentStep == 1 ? 'current' : '' }} ">
                 {{ __('panel.contract_template_data') }}
@@ -294,9 +293,6 @@
                         class="body {{ $currentStep == $totalSteps ? 'current' : '' }}  step"
                         aria-hidden="{{ $currentStep == $totalSteps ? 'false' : 'true' }}"
                         style="display: {{ $currentStep == $totalSteps ? 'block' : 'none' }}">
-
-
-                        {{-- start new part  --}}
 
                         @isset($contract)
                             <div class="row row-sm ">
