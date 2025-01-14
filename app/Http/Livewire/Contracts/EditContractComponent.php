@@ -212,9 +212,9 @@ class EditContractComponent extends Component
             $this->contract                 = $contract;
             $this->contract_id              = $contract->id;
 
-            $this->alert('success', __('panel.document_data_saved'));
+            $this->alert('success', __('panel.contract_data_saved'));
         } elseif ($this->currentStep > 1 && $this->currentStep < $this->totalSteps) {
-            // Determine the index of the documentPage we're on
+            // Determine the index of the contractVariable we're on
             $variableIndex = $this->currentStep - 2;
 
             foreach ($this->contractData as $variableIndex => $contractVariable) {
