@@ -1689,38 +1689,38 @@ return [
     // --------------- manage  Document Template  --------------//
     'manage_document_templates'                                 => 'إدارة نماذج الوثائق',
     'show_document_templates'                               => 'نماذج الوثائق',
-    'add_new_document_template'                             => 'نموذج وثيقة جديد',
-    'edit_existing_document_template'                       => 'التعديل على نموذج وثيقة',
+    'add_new_document_template'                             => 'قالب وثيقة جديد',
+    'edit_existing_document_template'                       => 'التعديل على قالب وثيقة',
 
 
     // ........... commons in Document Template   ....... //
-    'document_template_data'                                =>  'بيانات نموذج الوثيقة',
-    'document_template_name'                                =>  'نموذج الوثيقة',
-    'document_template_status'                              =>  'حالة نموذج الوثيقة',
+    'document_template_data'                                =>  'بيانات قالب الوثيقة',
+    'document_template_name'                                =>  'قالب الوثيقة',
+    'document_template_status'                              =>  'حالة قالب الوثيقة',
 
 
-    'document_template_data'                                =>  'بيانات نموذج الوثيقة',
-    'document_template_data_saved'                          =>  'تم حفظ بيانات نموذج الوثيقة بنجاح',
+    'document_template_data'                                =>  'بيانات قالب الوثيقة',
+    'document_template_data_saved'                          =>  'تم حفظ بيانات قالب الوثيقة بنجاح',
 
-    'document_template_text'                                =>  'نص نموذج الوثيقة',
-    'document_template_text_saved'                          =>  'تم حفظ نص نموذج الوثيقة بنجاح',
+    'document_template_text'                                =>  'نص قالب الوثيقة',
+    'document_template_text_saved'                          =>  'تم حفظ نص قالب الوثيقة بنجاح',
 
-    'document_template_variables'                           =>  'متغيرات نموذج الوثيقة',
+    'document_template_variables'                           =>  'متغيرات قالب الوثيقة',
     'document_template_variables_save'                      =>  'حفظ',
-    'document_template_variables_saved'                     =>  'تم حفظ متغيرات نموذج الوثيقة بنجاح',
+    'document_template_variables_saved'                     =>  'تم حفظ متغيرات قالب الوثيقة بنجاح',
 
     'document_and_template_formatting'                      =>  'تنسيق الوثيقة والمستند',
     'document_and_template_formatting_saved'                =>  'تم حفظ تنسيق الوثيقة والمستند بنجاح',
-    'document_template_details'                             =>  'تفاصيل نموذج الوثيقة',
+    'document_template_details'                             =>  'تفاصيل قالب الوثيقة',
     'document_template_basic_info'                          =>  'البيانات الاساسية',
     'document_template_pages_and_variables'                 =>  'الصفحات والمتغيرات',
     'document_template_pages_and_variables'                 =>  'الصفحات والمتغيرات',
     'document_page_name'                                    =>  'اسم الصفحة',
     'document_page_group_name'                              =>  'اسم المجموعة',
     'document_page_group_variable_info'                     =>  'بيانات المتغير',
-    'document_template_can_not_be_deleted'                  =>  'لا يمكن حذف هذا النموذج حاليا',
-    'document_template_have_documents_you_must_delete_documents_related_to_this_document_template_before' =>  'هذا النموذج لديه وثائق تابعة له ، يجب عليك حذف الوثائق التابعة له اولا',
-    'document_template_Documents'                           =>  'وثائق النموذج',
+    'document_template_can_not_be_deleted'                  =>  'لا يمكن حذف هذا القالب حاليا',
+    'document_template_have_documents_you_must_delete_documents_related_to_this_document_template_before' =>  'هذا القالب لديه وثائق تابعة له ، يجب عليك حذف الوثائق التابعة له اولا',
+    'document_template_Documents'                           =>  'وثائق القالب',
 
 
 
@@ -1785,23 +1785,23 @@ return [
     // --------------- Contract Template  --------------//
     'manage_contract_templates'                             => 'إدارة نماذج العقود',
     'show_contract_templates'                               => 'نماذج العقود',
-    'add_new_contract_template'                             => 'نموذج عقد جديد',
-    'edit_existing_contract_template'                       => 'التعديل على نموذج عقد',
+    'add_new_contract_template'                             => 'قالب عقد جديد',
+    'edit_existing_contract_template'                       => 'التعديل على قالب عقد',
 
     // ........... commons in contract Template   ....... //
-    'contract_template_name'                                =>  'نموذج العقد',
-    'contract_template_status'                              =>  'حالة نموذج العقد',
+    'contract_template_name'                                =>  'قالب العقد',
+    'contract_template_status'                              =>  'حالة قالب العقد',
 
 
-    'contract_template_data'                                =>  'بيانات نموذج العقد',
-    'contract_template_data_saved'                          =>  'تم حفظ بيانات نموذج العقد بنجاح',
+    'contract_template_data'                                =>  'بيانات قالب العقد',
+    'contract_template_data_saved'                          =>  'تم حفظ بيانات قالب العقد بنجاح',
 
-    'contract_template_text'                                =>  'نص نموذج العقد',
-    'contract_template_text_saved'                          =>  'تم حفظ نص نموذج العقد بنجاح',
+    'contract_template_text'                                =>  'نص قالب العقد',
+    'contract_template_text_saved'                          =>  'تم حفظ نص قالب العقد بنجاح',
 
-    'contract_template_variables'                           =>  'متغيرات نموذج العقد',
+    'contract_template_variables'                           =>  'متغيرات قالب العقد',
     'contract_template_variables_save'                      =>  'حفظ',
-    'contract_template_variables_saved'                     =>  'تم حفظ متغيرات نموذج العقد بنجاح',
+    'contract_template_variables_saved'                     =>  'تم حفظ متغيرات قالب العقد بنجاح',
 
     'contract_and_template_formatting'                      =>  'تنسيق العقد والمستند',
     'contract_and_template_formatting_saved'                =>  'تم حفظ تنسيق العقد والمستند بنجاح',
