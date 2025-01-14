@@ -115,8 +115,11 @@
     <?php
     if (isset($_GET['show'])) {
         $document_category_id = $_GET['show'];
-        echo $document_category_id;
+        $document_category_show = App\Models\DocumentCategory::where('id', $document_category_id)->first();
+    
+        echo $document_category_show;
     }
+    
     ?>
 
     <!-- The Modal -->
