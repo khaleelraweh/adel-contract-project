@@ -10,7 +10,7 @@
             <div class="col-md-2 d-none d-md-block">
                 <div class="form-group">
                     <select name="status" class="form-control">
-                        <option value=""> {{ __('panel.show_all') }}</option>
+                        <option value=""> {{ __('panel.status') }}</option>
                         <option value="1" {{ old('status', request()->input('status')) == '1' ? 'selected' : '' }}>
                             {{ __('panel.status_active') }}
                         </option>
