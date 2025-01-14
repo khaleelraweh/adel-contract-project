@@ -85,6 +85,17 @@ class DocumentTemplatesController extends Controller
         return view('backend.document_templates.edit', compact('documentTemplate'));
     }
 
+    public function show($id)
+    {
+        if (!auth()->user()->ability('admin', 'display_document_templates')) {
+            return redirect('admin/index');
+        }
+
+        $document_template = DocumentTemplate::where('id', $id)->first();
+
+        return view('backend.document_templates.show', compact('document_template'));
+    }
+
     public function update(Request $request,  $documentTemplate) {}
 
     public function destroy($documentTemplate)
