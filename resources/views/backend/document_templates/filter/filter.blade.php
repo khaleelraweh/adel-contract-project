@@ -23,7 +23,7 @@
             <div class="col-md-2 d-none d-sm-block col-sm-2 ">
                 <div class="form-group">
                     <select name="sort_by" class="form-control">
-                        <option value="" selected>{{ __('panel.show_all') }}</option>
+                        <option value="" selected>{{ __('panel.sort_by') }}</option>
                         <option value="published_on"
                             {{ old('sort_by', request()->input('sort_by')) == 'published_on' ? 'selected' : '' }}>
                             {{ __('panel.published_on') }}
