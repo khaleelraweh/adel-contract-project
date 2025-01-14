@@ -51,7 +51,7 @@
                         <!-- Description Section -->
                         <div class="mb-4">
                             <label class="form-label text-muted small mb-1">{{ __('panel.document_category_note') }}</label>
-                            <p class="lead">{{ $document_category->getTranslation('doc_cat_note', 'ar') }}</p>
+                            <p class="lead">{!! $document_category->getTranslation('doc_cat_note', 'ar') !!}</p>
                         </div>
 
                         <!-- Status Section -->
