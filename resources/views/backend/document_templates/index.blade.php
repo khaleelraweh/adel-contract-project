@@ -123,14 +123,41 @@
                                                 <span class="">{{ __('panel.operation_edit') }}</span>
                                             </a>
 
-                                            {{-- @if ($document_template->documentPages->count() > 0) --}}
-                                            @if ($document_template)
+                                            {{-- @if ($document_template)
                                                 <a href="javascript:void(0);"
                                                     class="dropdown-item d-flex align-items-center"
                                                     onclick="showAlert(
                                                         'warning', 
                                                         '{{ __('panel.document_template_can_not_be_deleted') }}', 
                                                         '{{ __('panel.document_template_have_pages_you_must_delete_pages_before') }}', 
+                                                        '{{ __('panel.ok') }}'
+                                                    )">
+                                                    <i data-feather="alert-circle" class="icon-sm me-2"></i>
+                                                    <span class="">{{ __('panel.operation_delete') }}</span>
+                                                </a>
+                                            @else
+                                                <a href="javascript:void(0);"
+                                                    class="dropdown-item d-flex align-items-center"
+                                                    onclick="confirmDelete('delete-document-template-{{ $document_template->id }}', '{{ __('panel.confirm_delete_message') }}', '{{ __('panel.yes_delete') }}', '{{ __('panel.cancel') }}')">
+                                                    <i data-feather="trash" class="icon-sm me-2"></i>
+                                                    <span class="">{{ __('panel.operation_delete') }}</span>
+                                                </a>
+                                                <form
+                                                    action="{{ route('admin.document_templates.destroy', $document_template->id) }}"
+                                                    method="post" class="d-none"
+                                                    id="delete-document-template-{{ $document_template->id }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
+                                            @endif --}}
+
+                                            @if ($document_template->documents->count() > 0)
+                                                <a href="javascript:void(0);"
+                                                    class="dropdown-item d-flex align-items-center"
+                                                    onclick="showAlert(
+                                                        'warning', 
+                                                        '{{ __('panel.document_template_can_not_be_deleted') }}', 
+                                                        '{{ __('panel.document_template_have_documents_you_must_delete_documents_related_to_this_document_template_before') }}', 
                                                         '{{ __('panel.ok') }}'
                                                     )">
                                                     <i data-feather="alert-circle" class="icon-sm me-2"></i>
