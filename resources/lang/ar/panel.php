@@ -21,6 +21,8 @@ return [
     'number_of_document_today'          =>  'عدد الوثائق اليوم',
     'number_of_completed_documents'     =>  'عدد الوثائق المكتملة',
     'number_of_incomplete_documents'    =>  'عدد الوثائق الغير مكتملة',
+    'monthly_documents'                 =>  'الوثائق الشهرية',
+    'Monthly_documents_are_documents_that_have_been_added_within_the_last_12_months_so_far' =>   'الوثائق الشهرية هي الوثائق التي تم اضافتها ضمن اخر 12 شهر حتى الان',
 
 
 
