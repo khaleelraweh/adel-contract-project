@@ -19,6 +19,8 @@ return [
     'univercity'                        =>  'نظام',
     'customer_view'                     =>  'واجهة العملاء',
     'number_of_document_today'          =>  'عدد الوثائق اليوم',
+    'number_of_completed_documents'     =>  'عدد الوثائق المكتملة',
+    'number_of_incomplete_documents'    =>  'عدد الوثائق الغير مكتملة',
 
 
 

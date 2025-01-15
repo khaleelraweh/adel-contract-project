@@ -65,6 +65,9 @@ class BackendController extends Controller
             ->orderBy('date')
             ->get();
 
+        $numberOfCompletedDocuments = Document::where('doc_status', 1)->count();
+
+
         // Prepare data for the chart
         $dates = $documentCounts->pluck('date')->map(function ($date) {
             return Carbon::parse($date)->format('M d Y'); // Format dates for the chart
@@ -83,7 +86,8 @@ class BackendController extends Controller
                 'dates',
                 'counts',
                 'totalDocuments',
-                'percentageIncrease'
+                'percentageIncrease',
+                'numberOfCompletedDocuments'
             ));
         }
 
