@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    {{ $numberOfDocumentsToday }}
+
 
     <div class="row">
         <div class="col-12 col-xl-12 stretch-card">
@@ -34,29 +34,6 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-baseline">
                                 <h6 class="card-title mb-0">{{ __('panel.number_of_document_today') }}</h6>
-                                <div class="dropdown mb-2">
-                                    <a type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                                data-feather="eye" class="icon-sm me-2"></i> <span
-                                                class="">View</span></a>
-                                        <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                                data-feather="edit-2" class="icon-sm me-2"></i> <span
-                                                class="">Edit</span></a>
-                                        <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                                data-feather="trash" class="icon-sm me-2"></i> <span
-                                                class="">Delete</span></a>
-                                        <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                                data-feather="printer" class="icon-sm me-2"></i> <span
-                                                class="">Print</span></a>
-                                        <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                                data-feather="download" class="icon-sm me-2"></i> <span
-                                                class="">Download</span></a>
-                                    </div>
-                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-6 col-md-12 col-xl-5">
