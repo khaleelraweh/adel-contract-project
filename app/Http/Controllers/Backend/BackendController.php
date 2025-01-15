@@ -66,6 +66,7 @@ class BackendController extends Controller
             ->get();
 
         $numberOfCompletedDocuments = Document::where('doc_status', 1)->count();
+        $numberOfCompletedDocuments = Document::where('doc_status', 0)->count();
 
 
         // Prepare data for the chart
