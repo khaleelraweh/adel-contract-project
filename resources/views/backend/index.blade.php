@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+
+
 @section('content')
     <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
         <div>
@@ -21,6 +23,8 @@
             </button> --}}
         </div>
     </div>
+
+    {{ $numberOfDocumentsToday }}
 
     <div class="row">
         <div class="col-12 col-xl-12 stretch-card">

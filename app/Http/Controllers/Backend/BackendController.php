@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\AdminInfoRequest;
+use App\Models\Document;
 use App\Models\Menu;
 use App\Models\Page;
 use App\Models\Post;
@@ -42,8 +43,10 @@ class BackendController extends Controller
     public function index()
     {
 
+        $numberOfDocumentsToday = Document::whereDate('created_at', today())->count(); //filter the created_at to today 
+
         if (Auth::check()) {
-            return view('backend.index');
+            return view('backend.index', compact('numberOfDocumentsToday'));
         }
 
         return view('backend.admin-login');
