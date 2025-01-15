@@ -4,25 +4,23 @@
     </a>
     <div class="navbar-content">
         <form class="search-form">
-            <div class="input-group">
+            {{-- <div class="input-group">
                 <div class="input-group-text">
                     <i data-feather="search"></i>
                 </div>
                 <input type="text" class="form-control" id="navbarForm" placeholder="Search here...">
-            </div>
+            </div> --}}
         </form>
         <ul class="navbar-nav">
             <li class="nav-item ">
                 <a class="nav-link " href="{{ route('admin.index') }}" role="button" aria-haspopup="true"
                     aria-expanded="false" title="{{ __('panel.customer_view') }}">
-                    <span class="ms-1 me-1 d-none d-md-inline-block">
-                        <i class="fa fa-home"></i>
+                    <span class="ms-1 me-1 d-none d-md-inline-block ">
+                        <i class="fa fa-home" style="font-size: 1.6em; "></i>
                     </span>
                 </a>
-
-
             </li>
-            <li class="nav-item dropdown">
+            {{-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="flag-icon flag-icon-{{ app()->getLocale() == 'ar' ? 'ye' : 'us' }} mt-1"
@@ -45,8 +43,8 @@
 
 
                 </div>
-            </li>
-            <li class="nav-item dropdown">
+            </li> --}}
+            {{-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i data-feather="grid"></i>
@@ -90,8 +88,8 @@
                         <a href="javascript:;">View all</a>
                     </div>
                 </div>
-            </li>
-            <li class="nav-item dropdown">
+            </li> --}}
+            {{-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i data-feather="mail"></i>
@@ -182,8 +180,8 @@
                         <a href="javascript:;">View all</a>
                     </div>
                 </div>
-            </li>
-            <li class="nav-item dropdown">
+            </li> --}}
+            {{-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i data-feather="bell"></i>
@@ -253,8 +251,19 @@
                         <a href="javascript:;">View all</a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
             <li class="nav-item dropdown">
+                @php
+                    if (auth()->user() && auth()->user()->user_image != null) {
+                        $user_img = asset('assets/users/' . auth()->user()->user_image);
+
+                        if (!file_exists(public_path('assets/users/' . auth()->user()->user_image))) {
+                            $user_img = asset('image/not_found/avator2.webp');
+                        }
+                    } else {
+                        $user_img = asset('image/not_found/avator2.webp');
+                    }
+                @endphp
                 <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="wd-30 ht-30 rounded-circle" src="{{ $user_img }}" alt="profile">
