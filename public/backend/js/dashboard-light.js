@@ -487,204 +487,204 @@ $(function() {
 
 
 
-  // Monthly Sales Chart
-  if($('#monthlySalesChart').length) {
-    var options = {
-      chart: {
-        type: 'bar',
-        height: '318',
-        parentHeightOffset: 0,
-        foreColor: colors.bodyColor,
-        background: colors.cardBg,
-        toolbar: {
-          show: false
-        },
-      },
-      theme: {
-        mode: 'light'
-      },
-      tooltip: {
-        theme: 'light'
-      },
-      colors: [colors.primary],  
-      fill: {
-        opacity: .9
-      } , 
-      grid: {
-        padding: {
-          bottom: -4
-        },
-        borderColor: colors.gridBorder,
-        xaxis: {
-          lines: {
-            show: true
-          }
-        }
-      },
-      series: [{
-        name: 'Sales',
-        data: [152,109,93,113,126,161,188,143,102,113,116,124]
-      }],
-      xaxis: {
-        type: 'datetime',
-        categories: ['01/01/2022','02/01/2022','03/01/2022','04/01/2022','05/01/2022','06/01/2022','07/01/2022', '08/01/2022','09/01/2022','10/01/2022', '11/01/2022', '12/01/2022'],
-        axisBorder: {
-          color: colors.gridBorder,
-        },
-        axisTicks: {
-          color: colors.gridBorder,
-        },
-      },
-      yaxis: {
-        title: {
-          text: 'Number of Sales',
-          style:{
-            size: 9,
-            color: colors.muted
-          }
-        },
-      },
-      legend: {
-        show: true,
-        position: "top",
-        horizontalAlign: 'center',
-        fontFamily: fontFamily,
-        itemMargin: {
-          horizontal: 8,
-          vertical: 0
-        },
-      },
-      stroke: {
-        width: 0
-      },
-      dataLabels: {
-        enabled: true,
-        style: {
-          fontSize: '10px',
-          fontFamily: fontFamily,
-        },
-        offsetY: -27
-      },
-      plotOptions: {
-        bar: {
-          columnWidth: "50%",
-          borderRadius: 4,
-          dataLabels: {
-            position: 'top',
-            orientation: 'vertical',
-          }
-        },
-      },
-    }
+  // // Monthly Sales Chart
+  // if($('#monthlySalesChart').length) {
+  //   var options = {
+  //     chart: {
+  //       type: 'bar',
+  //       height: '318',
+  //       parentHeightOffset: 0,
+  //       foreColor: colors.bodyColor,
+  //       background: colors.cardBg,
+  //       toolbar: {
+  //         show: false
+  //       },
+  //     },
+  //     theme: {
+  //       mode: 'light'
+  //     },
+  //     tooltip: {
+  //       theme: 'light'
+  //     },
+  //     colors: [colors.primary],  
+  //     fill: {
+  //       opacity: .9
+  //     } , 
+  //     grid: {
+  //       padding: {
+  //         bottom: -4
+  //       },
+  //       borderColor: colors.gridBorder,
+  //       xaxis: {
+  //         lines: {
+  //           show: true
+  //         }
+  //       }
+  //     },
+  //     series: [{
+  //       name: 'Sales',
+  //       data: [152,109,93,113,126,161,188,143,102,113,116,124]
+  //     }],
+  //     xaxis: {
+  //       type: 'datetime',
+  //       categories: ['01/01/2022','02/01/2022','03/01/2022','04/01/2022','05/01/2022','06/01/2022','07/01/2022', '08/01/2022','09/01/2022','10/01/2022', '11/01/2022', '12/01/2022'],
+  //       axisBorder: {
+  //         color: colors.gridBorder,
+  //       },
+  //       axisTicks: {
+  //         color: colors.gridBorder,
+  //       },
+  //     },
+  //     yaxis: {
+  //       title: {
+  //         text: 'Number of Sales',
+  //         style:{
+  //           size: 9,
+  //           color: colors.muted
+  //         }
+  //       },
+  //     },
+  //     legend: {
+  //       show: true,
+  //       position: "top",
+  //       horizontalAlign: 'center',
+  //       fontFamily: fontFamily,
+  //       itemMargin: {
+  //         horizontal: 8,
+  //         vertical: 0
+  //       },
+  //     },
+  //     stroke: {
+  //       width: 0
+  //     },
+  //     dataLabels: {
+  //       enabled: true,
+  //       style: {
+  //         fontSize: '10px',
+  //         fontFamily: fontFamily,
+  //       },
+  //       offsetY: -27
+  //     },
+  //     plotOptions: {
+  //       bar: {
+  //         columnWidth: "50%",
+  //         borderRadius: 4,
+  //         dataLabels: {
+  //           position: 'top',
+  //           orientation: 'vertical',
+  //         }
+  //       },
+  //     },
+  //   }
     
-    var apexBarChart = new ApexCharts(document.querySelector("#monthlySalesChart"), options);
-    apexBarChart.render();
-  }
-  // Monthly Sales Chart - END
+  //   var apexBarChart = new ApexCharts(document.querySelector("#monthlySalesChart"), options);
+  //   apexBarChart.render();
+  // }
+  // // Monthly Sales Chart - END
 
 
 
 
-  // Monthly Sales Chart - RTL
-  if($('#monthlySalesChartRTL').length) {
-    var options = {
-      chart: {
-        type: 'bar',
-        height: '318',
-        parentHeightOffset: 0,
-        foreColor: colors.bodyColor,
-        background: colors.cardBg,
-        toolbar: {
-          show: false
-        },
-      },
-      theme: {
-        mode: 'light'
-      },
-      tooltip: {
-        theme: 'light'
-      },
-      colors: [colors.primary],  
-      fill: {
-        opacity: .9
-      } , 
-      grid: {
-        padding: {
-          bottom: -4
-        },
-        borderColor: colors.gridBorder,
-        xaxis: {
-          lines: {
-            show: true
-          }
-        }
-      },
-      series: [{
-        name: 'Sales',
-        data: [152,109,93,113,126,161,188,143,102,113,116,124]
-      }],
-      xaxis: {
-        type: 'datetime',
-        categories: ['01/01/2022','02/01/2022','03/01/2022','04/01/2022','05/01/2022','06/01/2022','07/01/2022', '08/01/2022','09/01/2022','10/01/2022', '11/01/2022', '12/01/2022'],
-        axisBorder: {
-          color: colors.gridBorder,
-        },
-        axisTicks: {
-          color: colors.gridBorder,
-        },
-      },
-      yaxis: {
-        opposite: true,
-        title: {
-          text: 'Number of Sales',
-          offsetX: -100,
-          style:{
-            size: 9,
-            color: colors.muted
-          }
-        },
-        labels: {
-          align: 'left',
-          offsetX: -20,
-        },
-      },
-      legend: {
-        show: true,
-        position: "top",
-        horizontalAlign: 'center',
-        fontFamily: fontFamily,
-        itemMargin: {
-          horizontal: 8,
-          vertical: 0
-        },
-      },
-      stroke: {
-        width: 0
-      },
-      dataLabels: {
-        enabled: true,
-        style: {
-          fontSize: '10px',
-          fontFamily: fontFamily,
-        },
-        offsetY: -27
-      },
-      plotOptions: {
-        bar: {
-          columnWidth: "50%",
-          borderRadius: 4,
-          dataLabels: {
-            position: 'top',
-            orientation: 'vertical',
-          }
-        },
-      },
-    }
+  // // Monthly Sales Chart - RTL
+  // if($('#monthlySalesChartRTL').length) {
+  //   var options = {
+  //     chart: {
+  //       type: 'bar',
+  //       height: '318',
+  //       parentHeightOffset: 0,
+  //       foreColor: colors.bodyColor,
+  //       background: colors.cardBg,
+  //       toolbar: {
+  //         show: false
+  //       },
+  //     },
+  //     theme: {
+  //       mode: 'light'
+  //     },
+  //     tooltip: {
+  //       theme: 'light'
+  //     },
+  //     colors: [colors.primary],  
+  //     fill: {
+  //       opacity: .9
+  //     } , 
+  //     grid: {
+  //       padding: {
+  //         bottom: -4
+  //       },
+  //       borderColor: colors.gridBorder,
+  //       xaxis: {
+  //         lines: {
+  //           show: true
+  //         }
+  //       }
+  //     },
+  //     series: [{
+  //       name: 'Sales',
+  //       data: [152,109,93,113,126,161,188,143,102,113,116,124]
+  //     }],
+  //     xaxis: {
+  //       type: 'datetime',
+  //       categories: ['01/01/2022','02/01/2022','03/01/2022','04/01/2022','05/01/2022','06/01/2022','07/01/2022', '08/01/2022','09/01/2022','10/01/2022', '11/01/2022', '12/01/2022'],
+  //       axisBorder: {
+  //         color: colors.gridBorder,
+  //       },
+  //       axisTicks: {
+  //         color: colors.gridBorder,
+  //       },
+  //     },
+  //     yaxis: {
+  //       opposite: true,
+  //       title: {
+  //         text: 'Number of Sales',
+  //         offsetX: -100,
+  //         style:{
+  //           size: 9,
+  //           color: colors.muted
+  //         }
+  //       },
+  //       labels: {
+  //         align: 'left',
+  //         offsetX: -20,
+  //       },
+  //     },
+  //     legend: {
+  //       show: true,
+  //       position: "top",
+  //       horizontalAlign: 'center',
+  //       fontFamily: fontFamily,
+  //       itemMargin: {
+  //         horizontal: 8,
+  //         vertical: 0
+  //       },
+  //     },
+  //     stroke: {
+  //       width: 0
+  //     },
+  //     dataLabels: {
+  //       enabled: true,
+  //       style: {
+  //         fontSize: '10px',
+  //         fontFamily: fontFamily,
+  //       },
+  //       offsetY: -27
+  //     },
+  //     plotOptions: {
+  //       bar: {
+  //         columnWidth: "50%",
+  //         borderRadius: 4,
+  //         dataLabels: {
+  //           position: 'top',
+  //           orientation: 'vertical',
+  //         }
+  //       },
+  //     },
+  //   }
     
-    var apexBarChart = new ApexCharts(document.querySelector("#monthlySalesChartRTL"), options);
-    apexBarChart.render();
-  }
-  // Monthly Sales Chart - RTL - END
+  //   var apexBarChart = new ApexCharts(document.querySelector("#monthlySalesChartRTL"), options);
+  //   apexBarChart.render();
+  // }
+  // // Monthly Sales Chart - RTL - END
 
 
 

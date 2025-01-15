@@ -81,6 +81,26 @@ class BackendController extends Controller
         $previousPeriodCount = Document::where('created_at', '<', Carbon::now()->subDays(30))->count();
         $percentageIncrease = $previousPeriodCount > 0 ? round((($totalDocuments - $previousPeriodCount) / $previousPeriodCount) * 100, 2) : 100;
 
+
+        // =================== start monthly salys =================//
+        // Fetch monthly sales data (e.g., number of documents created per month)
+        $monthlySalesData = Document::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as count')
+            ->where('created_at', '>=', Carbon::now()->subMonths(12)) // Last 12 months
+            ->groupBy('year', 'month')
+            ->orderBy('year')
+            ->orderBy('month')
+            ->get();
+
+        // Prepare data for the chart
+        $monthlySalesCategories = $monthlySalesData->map(function ($item) {
+            return Carbon::create($item->year, $item->month)->format('M Y'); // Format as "Jan 2022"
+        });
+
+        $monthlySalesCounts = $monthlySalesData->pluck('count');
+
+        // =================== end monthly salys =================//
+
+
         if (Auth::check()) {
             return view('backend.index', compact(
                 'numberOfDocumentsToday',
@@ -88,7 +108,11 @@ class BackendController extends Controller
                 'counts',
                 'totalDocuments',
                 'percentageIncrease',
-                'numberOfCompletedDocuments'
+                'numberOfCompletedDocuments',
+
+                'monthlySalesCategories',
+                'monthlySalesCounts'
+
             ));
         }
 
