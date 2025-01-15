@@ -10,6 +10,7 @@ use App\Models\Page;
 use App\Models\Post;
 use App\Models\Slider;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -40,13 +41,50 @@ class BackendController extends Controller
         return view('backend.admin-recoverpw');
     }
 
+    // public function index()
+    // {
+
+    //     $numberOfDocumentsToday = Document::whereDate('created_at', today())->count(); //filter the created_at to today 
+
+    //     if (Auth::check()) {
+    //         return view('backend.index', compact('numberOfDocumentsToday'));
+    //     }
+
+    //     return view('backend.admin-login');
+    // }
+
     public function index()
     {
+        // Number of documents added today
+        $numberOfDocumentsToday = Document::whereDate('created_at', today())->count();
 
-        $numberOfDocumentsToday = Document::whereDate('created_at', today())->count(); //filter the created_at to today 
+        // Fetch document counts for the last 30 days
+        $documentCounts = Document::selectRaw('DATE(created_at) as date, COUNT(*) as count')
+            ->where('created_at', '>=', Carbon::now()->subDays(30)) // Last 30 days
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+
+        // Prepare data for the chart
+        $dates = $documentCounts->pluck('date')->map(function ($date) {
+            return Carbon::parse($date)->format('M d Y'); // Format dates for the chart
+        });
+
+        $counts = $documentCounts->pluck('count');
+
+        // Calculate total documents and percentage increase
+        $totalDocuments = $documentCounts->sum('count');
+        $previousPeriodCount = Document::where('created_at', '<', Carbon::now()->subDays(30))->count();
+        $percentageIncrease = $previousPeriodCount > 0 ? round((($totalDocuments - $previousPeriodCount) / $previousPeriodCount) * 100, 2) : 100;
 
         if (Auth::check()) {
-            return view('backend.index', compact('numberOfDocumentsToday'));
+            return view('backend.index', compact(
+                'numberOfDocumentsToday',
+                'dates',
+                'counts',
+                'totalDocuments',
+                'percentageIncrease'
+            ));
         }
 
         return view('backend.admin-login');

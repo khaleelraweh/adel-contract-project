@@ -37,17 +37,23 @@
                             </div>
                             <div class="row">
                                 <div class="col-6 col-md-12 col-xl-5">
-                                    <h3 class="mb-2">3,897</h3>
+                                    <h3 class="mb-2">{{ $numberOfDocumentsToday }}</h3>
                                     <div class="d-flex align-items-baseline">
+                                        <p class="text-success">
+                                            <span>+{{ $percentageIncrease }}%</span> <!-- Percentage increase -->
+                                            <i data-feather="arrow-up" class="icon-sm mb-1"></i>
+                                        </p>
+                                    </div>
+                                    {{-- <div class="d-flex align-items-baseline">
                                         <p class="text-success">
                                             <span>+3.3%</span>
                                             <i data-feather="arrow-up" class="icon-sm mb-1"></i>
                                         </p>
-                                    </div>
+                                    </div> --}}
                                 </div>
-                                <div class="col-6 col-md-12 col-xl-7">
+                                {{-- <div class="col-6 col-md-12 col-xl-7">
                                     <div id="customersChart" class="mt-md-3 mt-xl-0"></div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
