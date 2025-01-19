@@ -176,7 +176,7 @@
 
                                 </div>
                             @empty
-                                <p class="text-muted">{{ __('panel.no_pages_found') }}</p>
+                                <p class="text-muted">{{ __('panel.contracts_variales_not_found') }}</p>
                             @endforelse
                         </fieldset>
 
