@@ -100,6 +100,12 @@
                                             </svg>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item d-flex align-items-center btn btn-success"
+                                                href="{{ route('admin.contracts.show', $contract->id) }}">
+                                                <i data-feather="eye" class="icon-sm me-2"></i>
+                                                <span class="">{{ __('panel.operation_show') }}</span>
+                                            </a>
+
                                             <a class="dropdown-item d-flex align-items-center"
                                                 href="{{ route('admin.contracts.edit', $contract->id) }}">
                                                 <i data-feather="edit-2" class="icon-sm me-2"></i>
