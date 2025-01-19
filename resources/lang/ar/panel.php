@@ -1835,6 +1835,8 @@ return [
     'contract_template_details'                             =>  'تفاصيل قالب العقد',
     'contract_template_basic_info'                          =>  'البيانات الاساسية',
     'contracts_variales_not_found'                          =>  'لا يوجد اي متغيرات',
+    'contract_template_contracts'                           =>  'عقود القالب',
+
 
 
 
