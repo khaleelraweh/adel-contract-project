@@ -1,5 +1,5 @@
 <div class="card-body">
-    <form action="{{ route('admin.document_categories.index') }}" method="get">
+    <form action="{{ route('admin.documents.index') }}" method="get">
         <div class="row">
             <div class="col-md-3 col-lg-3 col-8 col-sm-7 ">
                 <div class="form-group">
