@@ -181,7 +181,7 @@ class CreateContractTemplateComponent extends Component
 
 
             $this->contractTemplateId = $contractTemplate->id;
-            $this->alert('success', __('panel.document_template_data_saved'));
+            $this->alert('success', __('panel.contract_template_data_saved'));
         } elseif ($this->currentStep == 2) {
             ContractTemplate::updateOrCreate(
                 ['id' => $this->contractTemplateId],
