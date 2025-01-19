@@ -80,4 +80,15 @@ class ContractTemplate extends Model
     {
         return $this->hasMany(Contract::class);
     }
+
+    public function language()
+    {
+        if ($this->language == '1') {
+            return __('panel.language_ar');
+        } elseif ($this->language == '2') {
+            return __('panel.language_en');
+        } elseif ($this->language == '3') {
+            return __('panel.language_both');
+        }
+    }
 }
