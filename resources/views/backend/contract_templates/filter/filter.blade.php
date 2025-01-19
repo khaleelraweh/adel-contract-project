@@ -10,7 +10,8 @@
             <div class="col-md-2 d-none d-md-block">
                 <div class="form-group">
                     <select name="status" class="form-control">
-                        <option value=""> {{ __('panel.show_all') }}</option>
+                        {{-- <option value=""> {{ __('panel.show_all') }}</option> --}}
+                        <option value=""> {{ __('panel.status') }}</option>
                         <option value="1" {{ old('status', request()->input('status')) == '1' ? 'selected' : '' }}>
                             {{ __('panel.status_active') }}
                         </option>
@@ -23,7 +24,8 @@
             <div class="col-md-2 d-none d-sm-block col-sm-2 ">
                 <div class="form-group">
                     <select name="sort_by" class="form-control">
-                        <option value="" selected>{{ __('panel.show_all') }}</option>
+                        {{-- <option value="" selected>{{ __('panel.show_all') }}</option> --}}
+                        <option value="" selected>{{ __('panel.sort_by') }}</option>
                         <option value="published_on"
                             {{ old('sort_by', request()->input('sort_by')) == 'published_on' ? 'selected' : '' }}>
                             {{ __('panel.published_on') }}
@@ -61,7 +63,7 @@
             <div class="col-md-1 d-none d-md-block">
                 <div class="form-group">
                     <select name="limit_by" class="form-control">
-                        <option value="">---</option>
+                        {{-- <option value="">---</option> --}}
                         <option value="10"
                             {{ old('limit_by', request()->input('limit_by')) == '10' ? 'selected' : '' }}>10</option>
                         <option value="20"
