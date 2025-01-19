@@ -35,6 +35,13 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
+    protected $searchable = [
+        'columns' => [
+            'users.first_name' => 10,
+            'users.last_name' => 10,
+            'users.email' => 10,
+        ]
+    ];
 
     protected $hidden = [
         'password',
