@@ -1,5 +1,5 @@
 <div class="card-body">
-    <form action="{{ route('admin.document_templates.index') }}" method="get">
+    <form action="{{ route('admin.contract_templates.index') }}" method="get">
         <div class="row">
             <div class="col-md-3 col-lg-3 col-8 col-sm-7 ">
                 <div class="form-group">
@@ -36,9 +36,9 @@
                             {{ old('sort_by', request()->input('sort_by')) == 'id' ? 'selected' : '' }}>
                             {{ __('panel.id') }}
                         </option>
-                        <option value="title"
-                            {{ old('sort_by', request()->input('sort_by')) == 'title' ? 'selected' : '' }}>
-                            {{ __('panel.title') }}
+                        <option value="contract_template_name"
+                            {{ old('sort_by', request()->input('sort_by')) == 'contract_template_name' ? 'selected' : '' }}>
+                            {{ __('panel.contract_template_name') }}
                         </option>
                     </select>
                 </div>
