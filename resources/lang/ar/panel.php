@@ -512,6 +512,9 @@ return [
     'contract_created_by'                               =>  'انشات بواسطة',
     'contract_review'                                   =>  'مراجعة العقد',
 
+    'contract_data_saved'                               =>  'تم حفظ بيانات العقد!!',
+
+
 
     // --------------- Document Archive  --------------//
     'manage_document_archive'                               =>  'إدارة ارشيف الوثائق',
