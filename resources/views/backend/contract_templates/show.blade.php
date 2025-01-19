@@ -192,15 +192,15 @@
                             </div>
                         </fieldset>
 
-                        <!-- Document Template Documents -->
-                        {{-- <fieldset>
-                            <legend>{{ __('panel.contract_template_Documents') }}</legend>
-                            @forelse ($contract_template->documents as $document)
+                        <!-- Contract Template Contracts -->
+                        <fieldset>
+                            <legend>{{ __('panel.contract_template_contracts') }}</legend>
+                            @forelse ($contract_template->contracts as $contract)
                                 <div class="mb-2">
                                     <p class="lead">
                                         <a href="">
                                             <i class="fas fa-file-alt me-2"></i>
-                                            {{ $document->getTranslation('doc_name', 'ar') }}
+                                            {{ $contract->getTranslation('contract_name', 'ar') }}
                                         </a>
                                     </p>
 
@@ -208,7 +208,7 @@
                             @empty
                             @endforelse
 
-                        </fieldset> --}}
+                        </fieldset>
 
                         <!-- Timestamps Section -->
                         <div class="row">
