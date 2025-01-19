@@ -40,7 +40,7 @@
                         </option>
                         <option value="doc_name"
                             {{ old('sort_by', request()->input('sort_by')) == 'doc_name' ? 'selected' : '' }}>
-                            {{ __('panel.doc_name') }}
+                            {{ __('panel.document_name') }}
                         </option>
                     </select>
                 </div>
