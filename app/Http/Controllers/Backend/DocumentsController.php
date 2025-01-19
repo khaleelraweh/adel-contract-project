@@ -17,7 +17,19 @@ class DocumentsController extends Controller
             return redirect('admin/index');
         }
 
-        $documents = Document::all();
+        $documents = Document::query()
+            ->when(\request()->keyword != null, function ($query) {
+                $query->search(\request()->keyword);
+            })
+            ->when(\request()->status != null, function ($query) {
+                $query->where('status', \request()->status);
+            })
+            ->orderByRaw(request()->sort_by == 'published_on'
+                ? 'published_on IS NULL, published_on ' . (request()->order_by ?? 'desc')
+                : (request()->sort_by ?? 'created_at') . ' ' . (request()->order_by ?? 'desc'))
+            ->paginate(\request()->limit_by ?? 100);
+
+        // $documents = Document::all();
 
         return view('backend.documents.index', compact('documents'));
     }
