@@ -71,15 +71,4 @@ class User extends Authenticatable implements MustVerifyEmail
             $query->where('name', $role);
         });
     }
-
-
-    public function specializations(): BelongsToMany
-    {
-        return $this->belongsToMany(Specialization::class);
-    }
-
-    public function posts(): MorphToMany
-    {
-        return $this->morphedByMany(Post::class, 'userable');
-    }
 }
