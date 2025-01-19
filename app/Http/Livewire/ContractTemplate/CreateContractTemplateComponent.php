@@ -189,11 +189,11 @@ class CreateContractTemplateComponent extends Component
                     'contract_template_text'     => $this->contract_template_text,
                 ]
             );
-            $this->alert('success', __('panel.document_template_text_saved'));
+            $this->alert('success', __('panel.contract_template_text_saved'));
             $this->emit('updateDocTemplateText', $this->contract_template_text); // Emit event to update CKEditor
         } elseif ($this->currentStep == 3) {
             $this->saveStepThree();
-            $this->alert('success', __('panel.document_template_variables_saved'));
+            $this->alert('success', __('panel.contract_template_variables_saved'));
         } elseif ($this->currentStep == 4) {
             ContractTemplate::updateOrCreate(
                 ['id' => $this->contractTemplateId],
@@ -201,7 +201,7 @@ class CreateContractTemplateComponent extends Component
                     'contract_template_text' => $this->contract_template_text,
                 ]
             );
-            $this->alert('success', __('panel.document_and_template_formatting_saved'));
+            $this->alert('success', __('panel.contract_and_template_formatting_saved'));
         }
     }
 
