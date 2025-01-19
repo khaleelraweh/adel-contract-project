@@ -123,6 +123,16 @@
                         <fieldset>
                             <legend>{{ __('panel.contract_template_basic_info') }}</legend>
 
+
+                            <!-- Document Template name -->
+                            <div class="mb-4">
+                                <label class="form-label text-muted small mb-1">
+                                    {{ __('panel.contract_template_name') }}
+                                </label>
+                                <h4 class="fw-bold">{{ $contract_template->getTranslation('contract_template_name', 'ar') }}
+                                </h4>
+                            </div>
+
                             <!-- Contract Template Language -->
                             <div class="mb-4">
                                 <label class="form-label text-muted small mb-1">
