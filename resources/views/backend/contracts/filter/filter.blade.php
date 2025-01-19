@@ -63,7 +63,7 @@
             <div class="col-md-1 d-none d-md-block">
                 <div class="form-group">
                     <select name="limit_by" class="form-control">
-                        <option value="">---</option>
+                        {{-- <option value="">---</option> --}}
                         <option value="10"
                             {{ old('limit_by', request()->input('limit_by')) == '10' ? 'selected' : '' }}>10</option>
                         <option value="20"
