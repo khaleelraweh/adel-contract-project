@@ -67,7 +67,7 @@ class CreateDocumentTemplateComponent extends Component
                     'doc_page_description' => 'Page Description 1',
                     'groups' => [
                         [
-                            'pg_name' =>  '',
+                            'pg_name' =>  __('panel.group_name') . ' 1',
                             'variables' => [
                                 [
                                     'pv_name'               =>  '',
@@ -285,7 +285,7 @@ class CreateDocumentTemplateComponent extends Component
             'doc_page_description'  => 'Page description ' . $this->count,
             'groups' => [
                 [
-                    'pg_name'   =>  '',
+                    'pg_name'   =>  __('panel.group_name'),
                     'variables' => [
                         [
                             'pv_name'       =>  '',
@@ -311,7 +311,7 @@ class CreateDocumentTemplateComponent extends Component
     {
 
         $this->pages[$pageIndex]['groups'][] = [
-            'pg_name'   => '',
+            'pg_name'   => __('panel.group_name'),
             'variables' => [
                 [
                     'pv_name'           =>  '',

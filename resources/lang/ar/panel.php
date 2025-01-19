@@ -1738,6 +1738,7 @@ return [
     'document_template_can_not_be_deleted'                  =>  'لا يمكن حذف هذا القالب حاليا',
     'document_template_have_documents_you_must_delete_documents_related_to_this_document_template_before' =>  'هذا القالب لديه وثائق تابعة له ، يجب عليك حذف الوثائق التابعة له اولا',
     'document_template_Documents'                           =>  'وثائق القالب',
+    'group_name'                                            =>  'إسم المجموعة',
 
 
 
