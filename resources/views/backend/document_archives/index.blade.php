@@ -55,7 +55,7 @@
                             <th class="wd-15p border-bottom-0">{{ __('panel.published_on') }}</th>
                             <th class="wd-15p border-bottom-0">{{ __('panel.published_by') }}</th>
                             <th class="wd-15p border-bottom-0">{{ __('panel.status') }}</th>
-                            <th class="wd-15p border-bottom-0">Download pdf</th>
+                            <th class="wd-15p border-bottom-0">{{ __('panel.download_pdf') }}</th>
                             <th class="wd-15p border-bottom-0">{{ __('panel.actions') }}</th>
                         </tr>
                     </thead>

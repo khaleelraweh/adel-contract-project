@@ -528,6 +528,7 @@ return [
     'document_archive_name'                                =>  'إسم ارشيف الوثيقة',
     'attach_the_document'                                   =>  'ارفاق المستند',
     'document_format_message'                               =>  'يجب أن تكون الوثيقة بالتنسيقات التالية ( PDF - Docx ) ',
+    'download_pdf'                                          =>  'تنزيل PDF',
 
     // --------------- Document Statistics  --------------//
     'manage_statistics'                                     =>  'إدارة إحصائيات النظام',
