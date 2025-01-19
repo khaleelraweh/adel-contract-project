@@ -181,16 +181,16 @@
                         </fieldset>
 
 
-                        <!-- Document Template Text -->
-                        {{-- <fieldset>
+                        <!-- contract Template Text -->
+                        <fieldset>
                             <legend>{{ __('panel.contract_template_text') }}</legend>
                             <div class="mb-4">
                                 <label class="form-label text-muted small mb-1">
                                     {{ __('panel.contract_template_text') }}
                                 </label>
-                                <p class="lead">{!! $contract_template->doc_template_text !!}</p>
+                                <p class="lead">{!! $contract_template->contract_template_text !!}</p>
                             </div>
-                        </fieldset> --}}
+                        </fieldset>
 
                         <!-- Document Template Documents -->
                         {{-- <fieldset>
