@@ -410,20 +410,6 @@ class CreateDocumentTemplateComponent extends Component
     }
 
 
-    // public function validateStepThree()
-    // {
-    //     $this->validate([
-    //         'pages.*.doc_page_name'                     => 'required|string',
-    //         'pages.*.doc_page_description'              => 'required|string',
-    //         'pages.*.groups.*.pg_name'                  => 'required|string',
-    //         'pages.*.groups.*.variables.*.pv_name'      => 'required|string',
-    //         'pages.*.groups.*.variables.*.pv_question'  => 'required|string',
-    //         'pages.*.groups.*.variables.*.pv_type'      => 'required|numeric',
-    //         'pages.*.groups.*.variables.*.pv_required'  => 'required|boolean',
-    //         'pages.*.groups.*.variables.*.pv_details'   => 'required|string',
-    //     ]);
-    // }
-
     public function validateStepThree()
     {
         $this->validate([
