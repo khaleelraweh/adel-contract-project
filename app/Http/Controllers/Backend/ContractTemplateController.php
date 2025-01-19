@@ -58,6 +58,18 @@ class ContractTemplateController extends Controller
     }
 
 
+    public function show($id)
+    {
+        if (!auth()->user()->ability('admin', 'display_document_templates')) {
+            return redirect('admin/index');
+        }
+
+        $contract_template = ContractTemplate::with('contracts')->where('id', $id)->first();
+
+        return view('backend.contract_templates.show', compact('contract_template'));
+    }
+
+
     public function edit($contractTemplate)
     {
         if (!auth()->user()->ability('admin', 'update_contract_templates')) {

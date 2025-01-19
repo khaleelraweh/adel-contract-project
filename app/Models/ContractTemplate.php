@@ -75,4 +75,9 @@ class ContractTemplate extends Model
     {
         return $this->hasMany(ContractVariable::class);
     }
+
+    public function contracts(): HasMany
+    {
+        return $this->hasMany(Contract::class);
+    }
 }
