@@ -475,6 +475,8 @@ return [
     'document_created_by'                               =>  'انشات بواسطة',
     'document_review'                                   =>  'مراجعة الوثيقة',
 
+    'document_data_saved'                               =>  'تم حفظ بيانات الوثيقة!!',
+
 
     // #################### Manage Contract ################### //
     // --------------- Contracts --------------//
