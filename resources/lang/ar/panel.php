@@ -576,6 +576,10 @@ return [
     'add_new_supervisor'            => 'إضافة حساب مشرف جديد',
     'edit_existing_supervisor'      => 'تعديل بيانات حساب مشرف ',
 
+    // ----------------- common in supervisors --------------//
+    'show_supervisor_details'       =>  'عرض تفاصيل المشرف',
+
+
 
     // --------------- instructors  --------------//
     'show_instructors'              => 'المحاضرين',
