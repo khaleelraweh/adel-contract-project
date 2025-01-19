@@ -257,7 +257,7 @@
                                                                     value="{{ $pageVariable['pv_value'] }}" class="form-control"
                                                                     {{ $pageVariable['pv_required'] == 0 ? '' : 'required' }}
                                                                     class="form-control">
-                                                                <small>{{ $pageVariable['pv_details'] }}</small>
+                                                                <small>{!! $pageVariable['pv_details'] !!}</small>
                                                                 @error('docData.' . $pageIndex . '.groups.' . $groupIndex .
                                                                     '.variables.' . $variableIndex . '.pv_value')
                                                                     <span class="text-danger">{{ $message }}</span>
