@@ -115,7 +115,7 @@
                                                     onclick="showAlert(
                                                         'warning', 
                                                         '{{ __('panel.contract_template_can_not_be_deleted') }}', 
-                                                        '{{ __('panel.contract_template_have_pages_you_must_delete_pages_before') }}', 
+                                                        '{{ __('panel.contract_template_have_contracts_you_must_delete_contracts_related_to_this_contract_template_before') }}', 
                                                         '{{ __('panel.ok') }}'
                                                     )">
                                                     <i data-feather="alert-circle" class="icon-sm me-2"></i>
