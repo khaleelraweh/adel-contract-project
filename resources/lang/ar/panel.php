@@ -1829,5 +1829,10 @@ return [
     'cv_required'                                           =>  'إلزامي',
     'cv_details'                                            =>  'التفاصيل',
 
+    'contract_template_can_not_be_deleted'                  =>  'لا يمكن حذف هذا القالب حاليا',
+    'contract_template_have_contracts_you_must_delete_contracts_related_to_this_contract_template_before' =>  'هذا القالب لديه عقود تابعة له ، يجب عليك حذف العقود التابعة له اولا',
+
+
+
 
 ];
