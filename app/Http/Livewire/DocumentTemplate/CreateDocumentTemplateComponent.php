@@ -161,29 +161,6 @@ class CreateDocumentTemplateComponent extends Component
         $this->currentStep = $choseStep;
     }
 
-    // public function validateStep()
-    // {
-    //     if ($this->currentStep == 1) {
-    //         $this->validate([
-    //             'document_category_id'  => 'required|numeric',
-    //             'document_type_id'      => 'required|numeric',
-    //             'doc_template_name'     => 'required|string',
-    //             'language'              => 'required|numeric',
-    //             'published_on'          => 'required',
-    //         ]);
-    //     } elseif ($this->currentStep == 2) {
-    //         $this->validate([
-    //             'doc_template_text' => 'required',
-    //         ]);
-    //     } elseif ($this->currentStep == 3) {
-    //         // Perform validation
-    //         $this->validateStepThree();
-    //     } elseif ($this->currentStep == 4) {
-    //         $this->validate([
-    //             'doc_template_text' => 'required', // Validation rule for textarea
-    //         ]);
-    //     }
-    // }
 
     public function validateStep()
     {
