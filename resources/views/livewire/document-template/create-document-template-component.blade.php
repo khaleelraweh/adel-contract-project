@@ -37,30 +37,51 @@
         }
 
         .tree-item-header {
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .tree-item-header:hover {
-            background-color: #f8f9fa !important;
+            background-color: #e9ecef !important;
+            color: #000 !important;
         }
 
         .tree-item-content {
-            padding-left: 20px;
-            border-left: 2px solid #ddd;
-            margin-left: 10px;
+            padding-right: 20px;
+            border-right: 2px solid #ddd;
+            margin-right: 10px;
         }
 
         .list-group-item {
             padding: 0.5rem 1rem;
             border: 1px solid rgba(0, 0, 0, 0.125);
-            margin-bottom: -1px;
-            background-color: #fff;
+            margin-bottom: 5px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
         }
 
         .list-group-item:hover {
             background-color: #f8f9fa;
             cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #0162e8;
+            border-color: #0162e8;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0152c8;
+            border-color: #0152c8;
+        }
+
+        .text-danger {
+            transition: color 0.3s ease;
+        }
+
+        .text-danger:hover {
+            color: #c82333 !important;
         }
     </style>
 
@@ -405,18 +426,18 @@
                 <div class="row">
                     {{-- start template --}}
                     <div class="col-sm-12 col-md-4 pt-3">
-                        <h4>{{ __('panel.the_pages') }}</h4>
+                        <h4 class="mb-3">{{ __('panel.the_pages') }}</h4>
                         <div class="tree">
                             @foreach ($pages as $pageIndex => $page)
-                                <div class="tree-item">
+                                <div class="tree-item mb-2">
                                     <!-- Page Header -->
-                                    <div class="tree-item-header d-flex align-items-center justify-content-between p-2 cursor-pointer"
+                                    <div class="tree-item-header d-flex align-items-center justify-content-between p-2 cursor-pointer rounded"
                                         wire:click="setActivePage({{ $pageIndex }})"
-                                        style="background: {{ $currentPageIndex == $pageIndex ? '#0162e8' : '#DDE2EF' }}; color: {{ $currentPageIndex == $pageIndex ? '#fff' : '#000' }};">
+                                        style="background: {{ $currentPageIndex == $pageIndex ? '#0162e8' : '#f8f9fa' }}; color: {{ $currentPageIndex == $pageIndex ? '#fff' : '#000' }};">
                                         <div class="d-flex align-items-center">
                                             <i
                                                 class="fas fa-chevron-{{ $currentPageIndex == $pageIndex ? 'down' : 'right' }} me-2"></i>
-                                            <span>{{ $page['doc_page_name'] }}</span>
+                                            <span class="font-weight-bold">{{ $page['doc_page_name'] }}</span>
                                         </div>
                                         <div>
                                             <a href="#" wire:click.prevent="removePage({{ $pageIndex }})"
@@ -428,17 +449,18 @@
 
                                     <!-- Page Content (Groups) -->
                                     @if ($currentPageIndex == $pageIndex)
-                                        <div class="tree-item-content">
+                                        <div class="tree-item-content pl-3 mt-2">
                                             @foreach ($page['groups'] as $groupIndex => $group)
-                                                <div class="tree-item">
+                                                <div class="tree-item mb-2">
                                                     <!-- Group Header -->
-                                                    <div class="tree-item-header d-flex align-items-center justify-content-between p-2 cursor-pointer"
+                                                    <div class="tree-item-header d-flex align-items-center justify-content-between p-2 cursor-pointer rounded"
                                                         wire:click="setActiveGroup({{ $pageIndex }}, {{ $groupIndex }})"
-                                                        style="background: {{ $activeGroupIndex == $groupIndex ? '#01616D' : '#DDE2EF' }}; color: {{ $activeGroupIndex == $groupIndex ? '#fff' : '#000' }};">
+                                                        style="background: {{ $activeGroupIndex == $groupIndex ? '#01616D' : '#f8f9fa' }}; color: {{ $activeGroupIndex == $groupIndex ? '#fff' : '#000' }};">
                                                         <div class="d-flex align-items-center">
                                                             <i
                                                                 class="fas fa-chevron-{{ $activeGroupIndex == $groupIndex ? 'down' : 'right' }} me-2"></i>
-                                                            <span>{{ $group['pg_name'] }}</span>
+                                                            <span
+                                                                class="font-weight-medium">{{ $group['pg_name'] }}</span>
                                                         </div>
                                                         <div>
                                                             <a href="#"
@@ -451,12 +473,12 @@
 
                                                     <!-- Group Content (Variables) -->
                                                     @if ($activeGroupIndex == $groupIndex)
-                                                        <div class="tree-item-content">
+                                                        <div class="tree-item-content pl-3 mt-2">
                                                             <ul class="list-group list-group-flush">
                                                                 @foreach ($group['variables'] as $variableIndex => $variable)
-                                                                    <li class="list-group-item d-flex justify-content-between align-items-center p-2 cursor-pointer"
+                                                                    <li class="list-group-item d-flex justify-content-between align-items-center p-2 cursor-pointer rounded mb-1"
                                                                         wire:click="setActiveVariable({{ $pageIndex }}, {{ $groupIndex }}, {{ $variableIndex }})"
-                                                                        style="background: {{ $activeVariableIndex == $variableIndex ? '#f8f9fa' : '#fff' }};">
+                                                                        style="background: {{ $activeVariableIndex == $variableIndex ? '#e9ecef' : '#fff' }};">
                                                                         <span>{{ $variable['pv_name'] }}</span>
                                                                         <a href="#"
                                                                             wire:click.prevent="removeVariable({{ $pageIndex }}, {{ $groupIndex }}, {{ $variableIndex }})">
@@ -465,7 +487,7 @@
                                                                         </a>
                                                                     </li>
                                                                 @endforeach
-                                                                <li class="list-group-item p-2">
+                                                                <li class="list-group-item p-2 rounded">
                                                                     <a href="#"
                                                                         wire:click.prevent="addVariable({{ $pageIndex }}, {{ $groupIndex }})"
                                                                         style="cursor: pointer;">
