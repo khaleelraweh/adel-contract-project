@@ -43,6 +43,8 @@ class CreateDocumentTemplateComponent extends Component
     public $currentPageIndex = 0; // Track the currently active page
     public $activeGroupIndex = 0; // Track the currently active group within a page
 
+    public $activeVariableIndex = 0; // Initialize to 0 or any default value
+
 
 
     public $stepData = [
@@ -54,9 +56,9 @@ class CreateDocumentTemplateComponent extends Component
 
     public function mount($documentTemplateId = null)
     {
-
-
         $this->currentPageIndex = 0;
+        $this->activeGroupIndex = 0;
+        $this->activeVariableIndex = 0;
 
         // Initialize the pages array with a default page if it's empty
         if (empty($this->pages)) {
@@ -306,42 +308,6 @@ class CreateDocumentTemplateComponent extends Component
         $this->setActivePage($this->currentPageIndex);
     }
 
-
-    public function addGroup($pageIndex)
-    {
-
-        $this->pages[$pageIndex]['groups'][] = [
-            'pg_name'   => __('panel.group_name'),
-            'variables' => [
-                [
-                    'pv_name'           =>  '',
-                    'pv_question'       =>  '',
-                    'pv_type'           =>  0,
-                    'pv_required'       =>  1,
-                    'pv_details'        =>  '',
-                ],
-            ]
-        ];
-
-        // Set the new group as the active group
-        $this->activeGroupIndex = count($this->pages[$pageIndex]['groups']) - 1;
-    }
-
-    public function addVariable($pageIndex, $groupIndex)
-    {
-        $this->pages[$pageIndex]['groups'][$groupIndex]['variables'][] = [
-            'pv_name'           =>  '',
-            'pv_question'       =>  '',
-            'pv_type'           =>  0,
-            'pv_required'       =>  1,
-            'pv_details'        =>  '',
-        ];
-
-        // Emit an event to initialize TinyMCE for the new variable
-        $variableIndex = count($this->pages[$pageIndex]['groups'][$groupIndex]['variables']) - 1;
-        $this->emit('initTinyMCE', $variableIndex);
-    }
-
     public function setActivePage($index)
     {
         // Ensure the index is within bounds
@@ -351,19 +317,6 @@ class CreateDocumentTemplateComponent extends Component
 
         }
     }
-
-    public function setActiveGroup($pageIndex, $groupIndex)
-    {
-        // Ensure the indexes are within bounds
-        if (
-            $pageIndex >= 0 && $pageIndex < count($this->pages) &&
-            $groupIndex >= 0 && $groupIndex < count($this->pages[$pageIndex]['groups'])
-        ) {
-            $this->currentPageIndex = $pageIndex;
-            $this->activeGroupIndex = $groupIndex;
-        }
-    }
-
 
     // Method to remove a page
     public function removePage($pageIndex)
@@ -383,6 +336,45 @@ class CreateDocumentTemplateComponent extends Component
         }
     }
 
+    public function addGroup($pageIndex)
+    {
+        // Add a new group with at least one variable
+        $this->pages[$pageIndex]['groups'][] = [
+            'pg_name' => __('panel.group_name'),
+            'variables' => [
+                [
+                    'pv_name'       => '',
+                    'pv_question'   => '',
+                    'pv_type'       => 0,
+                    'pv_required'   => 1,
+                    'pv_details'    => '',
+                ],
+            ],
+        ];
+
+        // Set the new group as the active group
+        $this->activeGroupIndex = count($this->pages[$pageIndex]['groups']) - 1;
+        $this->activeVariableIndex = 0; // Set the first variable as active
+    }
+
+    public function setActiveGroup($pageIndex, $groupIndex)
+    {
+        // Ensure the group has at least one variable
+        if (empty($this->pages[$pageIndex]['groups'][$groupIndex]['variables'])) {
+            $this->pages[$pageIndex]['groups'][$groupIndex]['variables'][] = [
+                'pv_name'       => '',
+                'pv_question'   => '',
+                'pv_type'       => 0,
+                'pv_required'   => 1,
+                'pv_details'    => '',
+            ];
+        }
+
+        // Set the active group and variable
+        $this->currentPageIndex = $pageIndex;
+        $this->activeGroupIndex = $groupIndex;
+        $this->activeVariableIndex = 0; // Set the first variable as active
+    }
 
     // Method to remove a group
     public function removeGroup($pageIndex, $groupIndex)
@@ -400,6 +392,22 @@ class CreateDocumentTemplateComponent extends Component
             }
         }
     }
+
+    public function addVariable($pageIndex, $groupIndex)
+    {
+        $this->pages[$pageIndex]['groups'][$groupIndex]['variables'][] = [
+            'pv_name'           =>  '',
+            'pv_question'       =>  '',
+            'pv_type'           =>  0,
+            'pv_required'       =>  1,
+            'pv_details'        =>  '',
+        ];
+
+        // Emit an event to initialize TinyMCE for the new variable
+        $variableIndex = count($this->pages[$pageIndex]['groups'][$groupIndex]['variables']) - 1;
+        $this->emit('initTinyMCE', $variableIndex);
+    }
+
 
     // Method to remove a variable
     public function removeVariable($pageIndex, $groupIndex, $variableIndex)
@@ -486,4 +494,19 @@ class CreateDocumentTemplateComponent extends Component
     }
 
     public function updateDocTemplateText() {}
+
+    public function syncAndNextStep()
+    {
+        $this->emit('syncTinyMCE');
+        $this->nextStep();
+    }
+
+
+
+    public function setActiveVariable($pageIndex, $groupIndex, $variableIndex)
+    {
+        $this->currentPageIndex = $pageIndex;
+        $this->activeGroupIndex = $groupIndex;
+        $this->activeVariableIndex = $variableIndex;
+    }
 }
