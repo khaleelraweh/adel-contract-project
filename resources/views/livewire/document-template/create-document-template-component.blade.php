@@ -26,74 +26,6 @@
         }
     </style>
 
-    <style>
-        /* RTL-specific styles */
-        .tree {
-            list-style: none;
-            /* padding-right: 20px; */
-            padding-right: 35px;
-            /* Adjust for RTL */
-            padding-left: 0;
-            /* Remove left padding */
-            text-align: right;
-            /* Align text to the right */
-        }
-
-        .tree li {
-            position: relative;
-            padding: 5px 0;
-        }
-
-        .tree li .toggle {
-            cursor: pointer;
-            margin-left: 5px;
-            /* Adjust for RTL */
-            margin-right: 0;
-            /* Remove right margin */
-        }
-
-        .tree li .item {
-            display: flex;
-            align-items: center;
-            flex-direction: row;
-            /* Reverse flex direction for RTL */
-            padding: 5px;
-            border-radius: 4px;
-        }
-
-        .tree li .item:hover {
-            background-color: #f8f9fa;
-        }
-
-        /* .tree li .item.active {
-            background-color: #0162e8;
-            color: white;
-        } */
-
-        .tree li .item.active {
-            color: #0162e8;
-        }
-
-        .tree li .item .actions {
-            margin-right: auto;
-            /* Adjust for RTL */
-            margin-left: 0;
-            /* Remove left margin */
-        }
-
-        .tree li .item .actions a {
-            margin-right: 10px;
-            /* Adjust for RTL */
-            margin-left: 0;
-            /* Remove left margin */
-            color: #dc3545;
-        }
-
-        .tree li .item .actions a:hover {
-            color: #c82333;
-        }
-    </style>
-
     <div class="mywizard">
         <div class="steps clearfix">
             <ul role="tablist">
@@ -434,103 +366,115 @@
 
                 <div class="row">
                     <div class="col-sm-12 col-md-4 pt-3">
-                        <div class="d-flex justify-content-between" style="border-bottom: 4px solid gray">
-                            <h4>
-                                {{ __('panel.the_pages') }}
-                            </h4>
-                            <a href="#" wire:click.prevent="addPage()" style="cursor: pointer;">
+                        <h4>{{ __('panel.template_pages') }}</h4>
+                        <div class="accordion" id="pagesAccordion">
+                            @foreach ($pages as $index => $page)
+                                <div class="card mb-2">
+                                    <div class="card-header p-0" id="pageHeading{{ $index }}">
+                                        <button
+                                            class="btn btn-link btn-block text-left p-2 d-flex justify-content-between align-items-center w-100"
+                                            type="button" data-toggle="collapse"
+                                            data-target="#pageCollapse{{ $index }}"
+                                            aria-expanded="{{ $currentPageIndex == $index ? 'true' : 'false' }}"
+                                            aria-controls="pageCollapse{{ $index }}"
+                                            wire:click="setActivePage({{ $index }})"
+                                            style="background: {{ $currentPageIndex == $index ? '#0162e8' : '#DDE2EF' }}; color: {{ $currentPageIndex == $index ? '#fff' : '#000' }};">
+                                            <span>{{ $page['doc_page_name'] }}</span>
+                                            <div>
+                                                <a href="#"
+                                                    wire:click.prevent="removePage({{ $index }})"
+                                                    class="text-danger ml-2">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                                <i
+                                                    class="fas fa-chevron-{{ $currentPageIndex == $index ? 'up' : 'down' }}"></i>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <div id="pageCollapse{{ $index }}"
+                                        class="collapse {{ $currentPageIndex == $index ? 'show' : '' }}"
+                                        aria-labelledby="pageHeading{{ $index }}"
+                                        data-parent="#pagesAccordion">
+                                        <div class="card-body p-2">
+                                            <div class="accordion" id="groupsAccordion{{ $index }}">
+                                                @foreach ($page['groups'] as $groupIndex => $group)
+                                                    <div class="card mb-2">
+                                                        <div class="card-header p-0"
+                                                            id="groupHeading{{ $index }}{{ $groupIndex }}">
+                                                            <button
+                                                                class="btn btn-link btn-block text-left p-2 d-flex justify-content-between align-items-center w-100"
+                                                                type="button" data-toggle="collapse"
+                                                                data-target="#groupCollapse{{ $index }}{{ $groupIndex }}"
+                                                                aria-expanded="{{ $activeGroupIndex == $groupIndex ? 'true' : 'false' }}"
+                                                                aria-controls="groupCollapse{{ $index }}{{ $groupIndex }}"
+                                                                wire:click="setActiveGroup({{ $index }}, {{ $groupIndex }})"
+                                                                style="background: {{ $activeGroupIndex == $groupIndex ? '#01616D' : '#DDE2EF' }}; color: {{ $activeGroupIndex == $groupIndex ? '#fff' : '#000' }};">
+                                                                <span>{{ $group['pg_name'] }}</span>
+                                                                <div>
+                                                                    <a href="#"
+                                                                        wire:click.prevent="removeGroup({{ $index }}, {{ $groupIndex }})"
+                                                                        class="text-danger ml-2">
+                                                                        <i class="fas fa-trash-alt"></i>
+                                                                    </a>
+                                                                    <i
+                                                                        class="fas fa-chevron-{{ $activeGroupIndex == $groupIndex ? 'up' : 'down' }}"></i>
+                                                                </div>
+                                                            </button>
+                                                        </div>
+                                                        <div id="groupCollapse{{ $index }}{{ $groupIndex }}"
+                                                            class="collapse {{ $activeGroupIndex == $groupIndex ? 'show' : '' }}"
+                                                            aria-labelledby="groupHeading{{ $index }}{{ $groupIndex }}"
+                                                            data-parent="#groupsAccordion{{ $index }}">
+                                                            <div class="card-body p-2">
+                                                                <ul class="list-group list-group-flush">
+                                                                    @foreach ($group['variables'] as $variableIndex => $variable)
+                                                                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                                                                            wire:click="setActiveVariable({{ $index }}, {{ $groupIndex }}, {{ $variableIndex }})"
+                                                                            style="cursor: pointer; background: {{ $activeVariableIndex == $variableIndex ? '#f8f9fa' : '#fff' }};">
+                                                                            <span>{{ $variable['pv_name'] }}</span>
+                                                                            <a href="#"
+                                                                                wire:click.prevent="removeVariable({{ $index }}, {{ $groupIndex }}, {{ $variableIndex }})">
+                                                                                <i
+                                                                                    class="fas fa-trash-alt text-danger"></i>
+                                                                            </a>
+                                                                        </li>
+                                                                    @endforeach
+                                                                    <li class="list-group-item">
+                                                                        <a href="#"
+                                                                            wire:click.prevent="addVariable({{ $index }}, {{ $groupIndex }})"
+                                                                            style="cursor: pointer;">
+                                                                            <i class="fas fa-plus-circle me-2"></i>
+                                                                            {{ __('panel.add_variable') }}
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                                <div class="d-flex justify-content-between mt-2">
+                                                    <a href="#"
+                                                        wire:click.prevent="addGroup({{ $index }})"
+                                                        class="btn btn-primary btn-sm">
+                                                        <i class="fas fa-plus-circle me-2"></i>
+                                                        {{ __('panel.add_group') }}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="d-flex justify-content-between mt-3">
+                            <a href="#" wire:click.prevent="addPage()" class="btn btn-primary btn-sm">
                                 <i class="fas fa-plus-circle me-2"></i>
                                 {{ __('panel.add_page') }}
                             </a>
                         </div>
-
-
-
-                        <ul class="tree">
-                            @foreach ($pages as $pageIndex => $page)
-                                <li>
-                                    <div class="item {{ $currentPageIndex == $pageIndex ? 'active' : '' }} cursor-pointer"
-                                        wire:click="setActivePage({{ $pageIndex }})">
-                                        <span class="toggle">
-                                            <i
-                                                class="fas fa-chevron-{{ $currentPageIndex == $pageIndex ? 'down' : 'left' }}"></i>
-                                        </span>
-                                        <span>{{ $page['doc_page_name'] }}</span>
-                                        <div class="actions">
-
-                                            @if ($currentPageIndex == $pageIndex)
-                                                <a href="#" wire:click.prevent="addGroup({{ $pageIndex }})"
-                                                    style="cursor: pointer;" title="{{ __('panel.add_group') }}">
-                                                    <i class="fas fa-plus-circle me-2"></i>
-                                                    {{-- {{ __('panel.add_group') }} --}}
-                                                </a>
-                                            @endif
-                                            <a href="#" wire:click.prevent="removePage({{ $pageIndex }})">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    @if ($currentPageIndex == $pageIndex)
-                                        <ul class="tree">
-                                            @foreach ($page['groups'] as $groupIndex => $group)
-                                                <li>
-                                                    <div class="item {{ $activeGroupIndex == $groupIndex ? 'active' : '' }} cursor-pointer"
-                                                        wire:click="setActiveGroup({{ $pageIndex }}, {{ $groupIndex }})">
-                                                        <span class="toggle">
-                                                            <i
-                                                                class="fas fa-chevron-{{ $activeGroupIndex == $groupIndex ? 'down' : 'left' }}"></i>
-                                                        </span>
-                                                        <span>{{ $group['pg_name'] }}</span>
-                                                        <div class="actions">
-
-                                                            @if ($activeGroupIndex == $groupIndex)
-                                                                <a href="#"
-                                                                    wire:click.prevent="addVariable({{ $pageIndex }}, {{ $groupIndex }})"
-                                                                    style="cursor: pointer;"
-                                                                    title="{{ __('panel.add_variable') }}">
-                                                                    <i class="fas fa-plus-circle me-2"></i>
-                                                                    {{-- {{ __('panel.add_variable') }} --}}
-                                                                </a>
-                                                            @endif
-
-
-                                                            <a href="#"
-                                                                wire:click.prevent="removeGroup({{ $pageIndex }}, {{ $groupIndex }})">
-                                                                <i class="fas fa-trash-alt"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    @if ($activeGroupIndex == $groupIndex)
-                                                        <ul class="tree">
-                                                            @foreach ($group['variables'] as $variableIndex => $variable)
-                                                                <li>
-                                                                    <div class="item {{ $activeVariableIndex == $variableIndex ? 'active' : '' }} cursor-pointer"
-                                                                        wire:click="setActiveVariable({{ $pageIndex }}, {{ $groupIndex }}, {{ $variableIndex }})">
-                                                                        <span>{{ $variable['pv_name'] }}</span>
-                                                                        <div class="actions">
-                                                                            <a href="#"
-                                                                                wire:click.prevent="removeVariable({{ $pageIndex }}, {{ $groupIndex }}, {{ $variableIndex }})">
-                                                                                <i class="fas fa-trash-alt"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                            @endforeach
-
-                                                        </ul>
-                                                    @endif
-                                                </li>
-                                            @endforeach
-
-                                        </ul>
-                                    @endif
-                                </li>
-                            @endforeach
-
-                        </ul>
                     </div>
+
                     <div class="col-sm-12 col-md-8 pt-3">
-                        <!-- Page, Group, and Variable Details Section -->
                         @if (isset($pages[$currentPageIndex]))
                             <div class="card">
                                 <div class="card-header mb-0 pb-0">
@@ -538,7 +482,6 @@
                                         {{ $currentPageIndex + 1 }}</h2>
                                 </div>
                                 <div class="card-body mt-0 pt-0">
-                                    <!-- Page Details -->
                                     <div class="row">
                                         <div class="col-sm-12 col-md-4 pt-3">
                                             <label
@@ -562,25 +505,29 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <!-- Group Details -->
-                                    @if (isset($pages[$currentPageIndex]['groups'][$activeGroupIndex]))
-                                        <div class="row">
-                                            <div class="col-sm-12 col-md-12 pt-3">
-                                                <label for="pg_name">{{ __('panel.group_name') }}</label>
-                                                <input type="text" class="form-control"
-                                                    wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.pg_name"
-                                                    placeholder="{{ __('panel.enter_group_name') }}">
-                                                @error('pages.' . $currentPageIndex . '.groups.' . $activeGroupIndex .
-                                                    '.pg_name')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
+                                    <!-- Add Input Field for Group Name -->
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 pt-3">
+                                            <label for="pg_name">{{ __('panel.group_name') }}</label>
+                                            <input type="text" class="form-control"
+                                                wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.pg_name"
+                                                placeholder="{{ __('panel.enter_group_name') }}">
+                                            @error('pages.' . $currentPageIndex . '.groups.' . $activeGroupIndex .
+                                                '.pg_name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
-                                    @endif
-                                    <!-- Variable Details -->
-                                    @if (isset($pages[$currentPageIndex]['groups'][$activeGroupIndex]['variables'][$activeVariableIndex]))
-                                        <div class="row">
-                                            <div class="col-sm-12 col-md-12 pt-4">
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 pt-4">
+                                            @if (isset($pages[$currentPageIndex]['groups'][$activeGroupIndex]['variables'][$activeVariableIndex]))
+                                                @php
+                                                    $variable =
+                                                        $pages[$currentPageIndex]['groups'][$activeGroupIndex][
+                                                            'variables'
+                                                        ][$activeVariableIndex];
+                                                @endphp
                                                 <div class="card">
                                                     <div class="card-header mb-0">
                                                         <h3 class="mb-0">{{ __('panel.variable') }}
@@ -618,12 +565,66 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-md-6 pt-3">
+                                                                <label
+                                                                    for="pv_type">{{ __('panel.pv_type') }}</label>
+                                                                <select name="pv_type" class="form-control"
+                                                                    wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.variables.{{ $activeVariableIndex }}.pv_type">
+                                                                    <option value="0">
+                                                                        {{ __('panel.pv_type_text') }}</option>
+                                                                    <option value="1">
+                                                                        {{ __('panel.pv_type_number') }}</option>
+                                                                    <option value="2">
+                                                                        {{ __('panel.pv_type_date') }}</option>
+                                                                </select>
+                                                                @error('pages.' . $currentPageIndex . '.groups.' .
+                                                                    $activeGroupIndex . '.variables.' . $activeVariableIndex
+                                                                    . '.pv_type')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                            <div class="col-sm-12 col-md-6 pt-3">
+                                                                <label
+                                                                    for="pv_required">{{ __('panel.pv_required') }}</label>
+                                                                <select name="pv_required" class="form-control"
+                                                                    wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.variables.{{ $activeVariableIndex }}.pv_required">
+                                                                    <option value="1">{{ __('panel.yes') }}
+                                                                    </option>
+                                                                    <option value="0">{{ __('panel.no') }}
+                                                                    </option>
+                                                                </select>
+                                                                @error('pages.' . $currentPageIndex . '.groups.' .
+                                                                    $activeGroupIndex . '.variables.' . $activeVariableIndex
+                                                                    . '.pv_required')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                        {{--  pv_details field --}}
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-md-12 pt-3">
+                                                                <label for="pv_details">
+                                                                    {{ __('panel.pv_details') }}
+                                                                </label>
+                                                                <textarea name="pv_details" rows="10" class="form-control summernote"
+                                                                    wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.variables.{{ $activeVariableIndex }}.pv_details">
+                                                                    {!! old('pv_details') !!}
+                                                                </textarea>
+                                                                @error('pages.' . $currentPageIndex . '.groups.' .
+                                                                    $groupIndex . '.variables.' . $variableIndex .
+                                                                    '.pv_details')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
                                                         <!-- Additional fields for variable details -->
                                                     </div>
                                                 </div>
-                                            </div>
+                                            @endif
                                         </div>
-                                    @endif
+                                    </div>
                                 </div>
                             </div>
                         @endif
