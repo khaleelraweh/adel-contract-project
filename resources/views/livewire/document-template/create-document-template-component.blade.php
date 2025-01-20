@@ -447,6 +447,15 @@
                                                     </div>
                                                 </div>
                                             @endforeach
+                                            <!-- this will be for add group  -->
+                                            <div class="d-flex justify-content-between">
+                                                <a wire:click.prevent="addGroup({{ $currentPageIndex }})"
+                                                    class="d-block pt-2" style="cursor: pointer;">
+                                                    <i class="fas fa-plus-square text-primary me-3"></i>
+                                                    {{ __('panel.add_group') }}
+                                                </a>
+
+                                            </div>
                                         </div>
                                     </div>
                                 @endif
