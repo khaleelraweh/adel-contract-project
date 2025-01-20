@@ -72,7 +72,7 @@ class CreateDocumentTemplateComponent extends Component
                             'pg_name' =>  __('panel.group_name') . ' 1',
                             'variables' => [
                                 [
-                                    'pv_name'               =>  '',
+                                    'pv_name'               =>  __('panel.pv_name_holder'),
                                     'pv_question'           =>  '',
                                     'pv_type'               =>   0,
                                     'pv_required'           =>   1,
@@ -290,7 +290,7 @@ class CreateDocumentTemplateComponent extends Component
                     'pg_name'   =>  __('panel.group_name'),
                     'variables' => [
                         [
-                            'pv_name'       =>  '',
+                            'pv_name'       =>  __('panel.pv_name_holder'),
                             'pv_question'   =>  '',
                             'pv_type'       =>   0,
                             'pv_required'   =>   1,
@@ -343,7 +343,7 @@ class CreateDocumentTemplateComponent extends Component
             'pg_name' => __('panel.group_name'),
             'variables' => [
                 [
-                    'pv_name'       => '',
+                    'pv_name'       => __('panel.pv_name_holder'),
                     'pv_question'   => '',
                     'pv_type'       => 0,
                     'pv_required'   => 1,
@@ -362,7 +362,7 @@ class CreateDocumentTemplateComponent extends Component
         // Ensure the group has at least one variable
         if (empty($this->pages[$pageIndex]['groups'][$groupIndex]['variables'])) {
             $this->pages[$pageIndex]['groups'][$groupIndex]['variables'][] = [
-                'pv_name'       => '',
+                'pv_name'       => __('panel.pv_name_holder'),
                 'pv_question'   => '',
                 'pv_type'       => 0,
                 'pv_required'   => 1,
@@ -396,7 +396,7 @@ class CreateDocumentTemplateComponent extends Component
     public function addVariable($pageIndex, $groupIndex)
     {
         $this->pages[$pageIndex]['groups'][$groupIndex]['variables'][] = [
-            'pv_name'           =>  '',
+            'pv_name'           => __('panel.pv_name_holder'),
             'pv_question'       =>  '',
             'pv_type'           =>  0,
             'pv_required'       =>  1,

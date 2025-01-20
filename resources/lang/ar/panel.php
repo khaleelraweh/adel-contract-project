@@ -1762,6 +1762,7 @@ return [
     'add_variable'                                          =>  'إضافة متغير',
 
     'pv_name'                                               =>  'الإسم',
+    'pv_name_holder'                                        =>  'إسم المتغير',
     'select_pv_name'                                        =>  'إختر المتغير',
     'pv_question'                                           =>  'السؤال',
     'pv_type'                                               =>  'النوع',
