@@ -511,25 +511,12 @@
                                                                     </div>
                                                                 </li>
                                                             @endforeach
-                                                            {{-- <li>
-                                                                <a href="#"
-                                                                    wire:click.prevent="addVariable({{ $pageIndex }}, {{ $groupIndex }})"
-                                                                    style="cursor: pointer;">
-                                                                    <i class="fas fa-plus-circle me-2"></i>
-                                                                    {{ __('panel.add_variable') }}
-                                                                </a>
-                                                            </li> --}}
+
                                                         </ul>
                                                     @endif
                                                 </li>
                                             @endforeach
-                                            <li>
-                                                <a href="#" wire:click.prevent="addGroup({{ $pageIndex }})"
-                                                    style="cursor: pointer;">
-                                                    <i class="fas fa-plus-circle me-2"></i>
-                                                    {{ __('panel.add_group') }}
-                                                </a>
-                                            </li>
+
                                         </ul>
                                     @endif
                                 </li>
