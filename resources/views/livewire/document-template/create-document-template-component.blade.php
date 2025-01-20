@@ -14,6 +14,18 @@
         }
     </style>
 
+    <style>
+        .activePage {
+            background-color: #0162e8;
+            color: white;
+        }
+
+        .unActivePage {
+            background-color: #DDE2EF;
+            color: black;
+        }
+    </style>
+
     <div class="mywizard">
         <div class="steps clearfix">
             <ul role="tablist">
@@ -357,18 +369,27 @@
                         <h4>{{ __('panel.template_pages') }}</h4>
                         <ul style="list-style: none; margin: 0; padding: 0;">
                             @foreach ($pages as $index => $page)
-                                <li class="w-100 mb-1 d-flex justify-content-between"
-                                    style="background-color: {{ $currentPageIndex == $index ? '#0162e8' : '#b9c2d8' }}; border-width: 0;">
-                                    <a class="d-block" wire:click="setActivePage({{ $index }})"
-                                        href="#" style="padding: 9px 20px; line-height: 1.538; color: #fff;">
+                                {{-- <li class="w-100 mb-1 d-flex justify-content-between"
+                                    style="background-color: {{ $currentPageIndex == $index ? '#0162e8' : '#b9c2d8' }}; border-width: 0;"> --}}
+                                <li class="input-group p-2 mb-1"
+                                    style="background: {{ $currentPageIndex == $index ? '#0162e8' : '#DDE2EF' }}">
+
+                                    <span
+                                        class="input-group-text cursor-pointer {{ $currentPageIndex == $index ? 'activePage' : 'unActivePage' }}"
+                                        style="flex:1;border:none; " wire:click="setActivePage({{ $index }})"
+                                        style="border: none;">
                                         {{ $page['doc_page_name'] }}
-                                    </a>
-                                    <a href="" wire:click.prevent="removePage({{ $currentPageIndex }})"
-                                        class="d-block pt-2"
-                                        style="padding: 9px 20px; line-height: 1.538; color: #fff;">
-                                        <i
-                                            class="fas fa-trash-alt {{ $currentPageIndex == $index ? 'text-white' : 'text-danger' }} me-3"></i>
-                                    </a>
+                                    </span>
+
+                                    <div class="input-group-text p-1">
+                                        <a class="" wire:click.prevent="removePage({{ $currentPageIndex }})">
+                                            <i class="far fa-trash-alt "></i>
+                                        </a>
+                                        <a class="input-group-text p-1 "
+                                            wire:click="setActivePage({{ $index }})" style="border: none;">
+                                            <i class="far fa-edit"></i>
+                                        </a>
+                                    </div>
                                 </li>
                                 @if (isset($pages[$currentPageIndex]) && $currentPageIndex == $index)
                                     <div class="row">
