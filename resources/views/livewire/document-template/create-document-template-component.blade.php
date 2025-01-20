@@ -429,10 +429,9 @@
 
                 <div class="row">
                     <div class="col-sm-12 col-md-4 pt-3">
-                        <div class="d-flex justify-content-between">
+                        <div class="d-flex justify-content-between" style="border-bottom: 4px solid gray">
                             <h4>
                                 {{ __('panel.the_pages') }}
-
                             </h4>
                             <a href="#" wire:click.prevent="addPage()" style="cursor: pointer;">
                                 <i class="fas fa-plus-circle me-2"></i>
