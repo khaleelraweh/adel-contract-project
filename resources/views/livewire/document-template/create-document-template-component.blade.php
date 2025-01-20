@@ -372,7 +372,7 @@
                                 <div class="card mb-2">
                                     <div class="card-header p-0" id="pageHeading{{ $index }}">
                                         <button
-                                            class="btn btn-link btn-block text-left p-2 d-flex justify-content-between align-items-center"
+                                            class="btn btn-link btn-block text-left p-2 d-flex justify-content-between align-items-center w-100"
                                             type="button" data-toggle="collapse"
                                             data-target="#pageCollapse{{ $index }}"
                                             aria-expanded="{{ $currentPageIndex == $index ? 'true' : 'false' }}"
@@ -395,7 +395,7 @@
                                                         <div class="card-header p-0"
                                                             id="groupHeading{{ $index }}{{ $groupIndex }}">
                                                             <button
-                                                                class="btn btn-link btn-block text-left p-2 d-flex justify-content-between align-items-center"
+                                                                class="btn btn-link btn-block text-left p-2 d-flex justify-content-between align-items-center w-100"
                                                                 type="button" data-toggle="collapse"
                                                                 data-target="#groupCollapse{{ $index }}{{ $groupIndex }}"
                                                                 aria-expanded="{{ $activeGroupIndex == $groupIndex ? 'true' : 'false' }}"
