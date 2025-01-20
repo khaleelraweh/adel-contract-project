@@ -558,19 +558,19 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
+                                                        {{--  pv_details field --}}
                                                         <div class="row">
-                                                            <div class="col-sm-12 col-md-12 pt-3" wire:ignore>
-                                                                <label
-                                                                    for="pv_details">{{ __('panel.pv_details') }}</label>
-                                                                <textarea name="pv_details"
-                                                                    id="tinymceEditor_{{ $currentPageIndex }}_{{ $activeGroupIndex }}_{{ $activeVariableIndex }}" rows="10"
-                                                                    class="form-control"
+                                                            <div class="col-sm-12 col-md-12 pt-3">
+                                                                <label for="pv_details">
+                                                                    {{ __('panel.pv_details') }}
+                                                                </label>
+                                                                <textarea name="pv_details" rows="10" class="form-control summernote"
                                                                     wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.variables.{{ $activeVariableIndex }}.pv_details">
                                                                     {!! old('pv_details') !!}
                                                                 </textarea>
                                                                 @error('pages.' . $currentPageIndex . '.groups.' .
-                                                                    $activeGroupIndex . '.variables.' . $activeVariableIndex
-                                                                    . '.pv_details')
+                                                                    $groupIndex . '.variables.' . $variableIndex .
+                                                                    '.pv_details')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
@@ -759,7 +759,7 @@
                 </li>
                 <li aria-hidden="false" aria-disabled="false"
                     style="display: {{ $currentStep == 4 ? 'none' : 'block' }}">
-                    {{-- <a href="#next" wire:click="nextStep" role="menuitem">
+                    <a href="#next" wire:click="nextStep" role="menuitem">
                         <!-- next -->
                         @if ($currentStep == 1)
                             {{ __('panel.document_template_text') }} >>
@@ -770,16 +770,8 @@
                                 {{ __('panel.document_and_template_formatting') }} >>
                             @endif
                         @endif
-                    </a> --}}
-                    <a href="#next" wire:click="syncAndNextStep" role="menuitem">
-                        @if ($currentStep == 1)
-                            {{ __('panel.document_template_text') }} >>
-                        @elseif ($currentStep == 2)
-                            {{ __('panel.document_template_variables') }} >>
-                        @else
-                            {{ __('panel.document_and_template_formatting') }} >>
-                        @endif
                     </a>
+
                 </li>
                 <li aria-hidden="true" style="display: {{ $currentStep == 4 ? 'block' : 'none' }}"><a
                         href="#finish" wire:click="finish" role="menuitem">{{ __('panel.finish') }}</a>
