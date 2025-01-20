@@ -380,8 +380,15 @@
                                             wire:click="setActivePage({{ $index }})"
                                             style="background: {{ $currentPageIndex == $index ? '#0162e8' : '#DDE2EF' }}; color: {{ $currentPageIndex == $index ? '#fff' : '#000' }};">
                                             <span>{{ $page['doc_page_name'] }}</span>
-                                            <i
-                                                class="fas fa-chevron-{{ $currentPageIndex == $index ? 'up' : 'down' }}"></i>
+                                            <div>
+                                                <a href="#"
+                                                    wire:click.prevent="removePage({{ $index }})"
+                                                    class="text-danger ml-2">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                                <i
+                                                    class="fas fa-chevron-{{ $currentPageIndex == $index ? 'up' : 'down' }}"></i>
+                                            </div>
                                         </button>
                                     </div>
                                     <div id="pageCollapse{{ $index }}"
@@ -401,10 +408,17 @@
                                                                 aria-expanded="{{ $activeGroupIndex == $groupIndex ? 'true' : 'false' }}"
                                                                 aria-controls="groupCollapse{{ $index }}{{ $groupIndex }}"
                                                                 wire:click="setActiveGroup({{ $index }}, {{ $groupIndex }})"
-                                                                style="background: {{ $activeGroupIndex == $groupIndex ? '#0162e8' : '#DDE2EF' }}; color: {{ $activeGroupIndex == $groupIndex ? '#fff' : '#000' }};">
+                                                                style="background: {{ $activeGroupIndex == $groupIndex ? '#01616D' : '#DDE2EF' }}; color: {{ $activeGroupIndex == $groupIndex ? '#fff' : '#000' }};">
                                                                 <span>{{ $group['pg_name'] }}</span>
-                                                                <i
-                                                                    class="fas fa-chevron-{{ $activeGroupIndex == $groupIndex ? 'up' : 'down' }}"></i>
+                                                                <div>
+                                                                    <a href="#"
+                                                                        wire:click.prevent="removeGroup({{ $index }}, {{ $groupIndex }})"
+                                                                        class="text-danger ml-2">
+                                                                        <i class="fas fa-trash-alt"></i>
+                                                                    </a>
+                                                                    <i
+                                                                        class="fas fa-chevron-{{ $activeGroupIndex == $groupIndex ? 'up' : 'down' }}"></i>
+                                                                </div>
                                                             </button>
                                                         </div>
                                                         <div id="groupCollapse{{ $index }}{{ $groupIndex }}"
@@ -459,6 +473,7 @@
                             </a>
                         </div>
                     </div>
+
                     <div class="col-sm-12 col-md-8 pt-3">
                         @if (isset($pages[$currentPageIndex]))
                             <div class="card">
