@@ -369,8 +369,6 @@
                         <h4>{{ __('panel.template_pages') }}</h4>
                         <ul style="list-style: none; margin: 0; padding: 0;">
                             @foreach ($pages as $index => $page)
-                                {{-- <li class="w-100 mb-1 d-flex justify-content-between"
-                                    style="background-color: {{ $currentPageIndex == $index ? '#0162e8' : '#b9c2d8' }}; border-width: 0;"> --}}
                                 <li class="input-group p-2 mb-1"
                                     style="background: {{ $currentPageIndex == $index ? '#0162e8' : '#DDE2EF' }}">
 
