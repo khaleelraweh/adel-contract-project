@@ -48,6 +48,9 @@ class CreateDocumentTemplateComponent extends Component
     // Add a property to track the group counter for each page
     public $groupCounters = [];
 
+    // Add a property to track the variable counter for each group in each page
+    public $variableCounters = [];
+
 
 
 
@@ -76,7 +79,7 @@ class CreateDocumentTemplateComponent extends Component
                             'pg_name' =>  __('panel.group_name') . ' 1',
                             'variables' => [
                                 [
-                                    'pv_name'               =>  __('panel.pv_name_holder'),
+                                    'pv_name' => __('panel.pv_name_holder') . ' 1',
                                     'pv_question'           =>  '',
                                     'pv_type'               =>   0,
                                     'pv_required'           =>   1,
@@ -92,6 +95,8 @@ class CreateDocumentTemplateComponent extends Component
             ];
             // Initialize the group counter for the first page
             $this->groupCounters[0] = 1; // Start counting from 1
+            $this->variableCounters[0][0] = 1; // Start counting variables from 1 for the first group
+
         }
 
         $this->documentTemplateId = $documentTemplateId;
@@ -359,7 +364,7 @@ class CreateDocumentTemplateComponent extends Component
 
             'variables' => [
                 [
-                    'pv_name'       => __('panel.pv_name_holder'),
+                    'pv_name' => __('panel.pv_name_holder') . ' 1',
                     'pv_question'   => '',
                     'pv_type'       => 0,
                     'pv_required'   => 1,
@@ -417,13 +422,26 @@ class CreateDocumentTemplateComponent extends Component
 
     public function addVariable($pageIndex, $groupIndex)
     {
+        // Initialize the variable counter for the group if it doesn't exist
+        if (!isset($this->variableCounters[$pageIndex][$groupIndex])) {
+            $this->variableCounters[$pageIndex][$groupIndex] = 0;
+        }
+
+        // Increment the variable counter for the group
+        $this->variableCounters[$pageIndex][$groupIndex]++;
+
+
         $this->pages[$pageIndex]['groups'][$groupIndex]['variables'][] = [
-            'pv_name'           => __('panel.pv_name_holder') . ' 1',
+            'pv_name' => __('panel.pv_name_holder') . ' ' . $this->variableCounters[$pageIndex][$groupIndex],
             'pv_question'       =>  '',
             'pv_type'           =>  0,
             'pv_required'       =>  1,
             'pv_details'        =>  '',
         ];
+
+        // Set the new variable as the active variable
+        $this->activeVariableIndex = count($this->pages[$pageIndex]['groups'][$groupIndex]['variables']) - 1;
+
 
         // Emit an event to initialize TinyMCE for the new variable
         $variableIndex = count($this->pages[$pageIndex]['groups'][$groupIndex]['variables']) - 1;
@@ -432,12 +450,37 @@ class CreateDocumentTemplateComponent extends Component
 
 
     // Method to remove a variable
+    // public function removeVariable($pageIndex, $groupIndex, $variableIndex)
+    // {
+    //     if (isset($this->pages[$pageIndex]['groups'][$groupIndex]['variables'][$variableIndex])) {
+    //         array_splice($this->pages[$pageIndex]['groups'][$groupIndex]['variables'], $variableIndex, 1);
+    //     }
+
+    // }
+
     public function removeVariable($pageIndex, $groupIndex, $variableIndex)
     {
         if (isset($this->pages[$pageIndex]['groups'][$groupIndex]['variables'][$variableIndex])) {
+            // Remove the variable
             array_splice($this->pages[$pageIndex]['groups'][$groupIndex]['variables'], $variableIndex, 1);
+
+            // Decrement the variable counter for the group
+            if (isset($this->variableCounters[$pageIndex][$groupIndex])) {
+                $this->variableCounters[$pageIndex][$groupIndex]--;
+            }
+
+            // Adjust the activeVariableIndex if necessary
+            if ($this->activeVariableIndex >= count($this->pages[$pageIndex]['groups'][$groupIndex]['variables'])) {
+                $this->activeVariableIndex = count($this->pages[$pageIndex]['groups'][$groupIndex]['variables']) - 1;
+            }
+
+            if ($this->activeVariableIndex < 0) {
+                $this->activeVariableIndex = 0;
+            }
         }
     }
+
+
 
 
     public function validateStepThree()
