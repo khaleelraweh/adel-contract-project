@@ -45,6 +45,10 @@ class CreateDocumentTemplateComponent extends Component
 
     public $activeVariableIndex = 0; // Initialize to 0 or any default value
 
+    // Add a property to track the group counter for each page
+    public $groupCounters = [];
+
+
 
 
     public $stepData = [
@@ -86,6 +90,8 @@ class CreateDocumentTemplateComponent extends Component
                     'saved' => false, // Initialize saved as false
                 ]
             ];
+            // Initialize the group counter for the first page
+            $this->groupCounters[0] = 1; // Start counting from 1
         }
 
         $this->documentTemplateId = $documentTemplateId;
@@ -338,9 +344,19 @@ class CreateDocumentTemplateComponent extends Component
 
     public function addGroup($pageIndex)
     {
+
+        // Initialize the group counter for the page if it doesn't exist
+        if (!isset($this->groupCounters[$pageIndex])) {
+            $this->groupCounters[$pageIndex] = 0;
+        }
+
+        // Increment the group counter for the page
+        $this->groupCounters[$pageIndex]++;
+
         // Add a new group with at least one variable
         $this->pages[$pageIndex]['groups'][] = [
-            'pg_name' => __('panel.group_name'),
+            'pg_name' => __('panel.group_name') . ' ' . $this->groupCounters[$pageIndex],
+
             'variables' => [
                 [
                     'pv_name'       => __('panel.pv_name_holder'),
@@ -381,6 +397,12 @@ class CreateDocumentTemplateComponent extends Component
     {
         if (isset($this->pages[$pageIndex]['groups'][$groupIndex])) {
             array_splice($this->pages[$pageIndex]['groups'], $groupIndex, 1);
+
+            // Decrement the group counter for the page
+            if (isset($this->groupCounters[$pageIndex])) {
+                $this->groupCounters[$pageIndex]--;
+            }
+
 
             // Adjust the activeGroupIndex if necessary
             if ($this->activeGroupIndex >= count($this->pages[$pageIndex]['groups'])) {
