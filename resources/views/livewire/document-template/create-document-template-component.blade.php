@@ -491,22 +491,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-12 col-md-4 pt-5">
-                                            <div class="row align-items-end mb-4 mb-md-0">
-                                                <div class="col-md mb-4 mb-md-0">
-                                                    <h4>{{ __('panel.groups') }}</h4>
-                                                </div>
-                                                <div class="col-md-auto aos-init aos-animate" data-aos="fade-start">
-                                                    <a href="#"
-                                                        wire:click.prevent="addGroup({{ $currentPageIndex }})">
-                                                        <i class="fas fa-plus-circle me-2"></i>
-                                                        <span>{{ __('panel.add_group') }}</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <!-- Groups and variables are already displayed in the accordion -->
-                                        </div>
-                                        <div class="col-sm-12 col-md-8 pt-5">
+                                        <div class="col-sm-12 col-md-12 pt-5">
                                             @if (isset($pages[$currentPageIndex]['groups'][$activeGroupIndex]['variables'][$activeVariableIndex]))
                                                 @php
                                                     $variable =
