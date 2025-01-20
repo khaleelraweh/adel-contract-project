@@ -405,7 +405,7 @@
                 <div class="row">
                     {{-- start template --}}
                     <div class="col-sm-12 col-md-4 pt-3">
-                        <h4>{{ __('panel.template_pages') }}</h4>
+                        <h4>{{ __('panel.the_pages') }}</h4>
                         <div class="tree">
                             @foreach ($pages as $pageIndex => $page)
                                 <div class="tree-item">
