@@ -418,7 +418,7 @@ class CreateDocumentTemplateComponent extends Component
     public function addVariable($pageIndex, $groupIndex)
     {
         $this->pages[$pageIndex]['groups'][$groupIndex]['variables'][] = [
-            'pv_name'           => __('panel.pv_name_holder'),
+            'pv_name'           => __('panel.pv_name_holder') . ' 1',
             'pv_question'       =>  '',
             'pv_type'           =>  0,
             'pv_required'       =>  1,
