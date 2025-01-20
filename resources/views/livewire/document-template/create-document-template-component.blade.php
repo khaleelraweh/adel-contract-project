@@ -370,7 +370,7 @@
                                             class="fas fa-trash-alt {{ $currentPageIndex == $index ? 'text-white' : 'text-danger' }} me-3"></i>
                                     </a>
                                 </li>
-                                {{-- @if (isset($pages[$currentPageIndex]) && $currentPageIndex == $index)
+                                @if (isset($pages[$currentPageIndex]) && $currentPageIndex == $index)
                                     <div class="row">
                                         <div class="col-sm-12">
                                             @foreach ($pages[$currentPageIndex]['groups'] as $groupIndex => $group)
@@ -399,7 +399,8 @@
                                                                 <i class="far fa-edit"></i>
                                                             </a>
                                                         </div>
-                                                        @error('pages.' . $currentPageIndex . '.groups.' . $groupIndex . '.pg_name')
+                                                        @error('pages.' . $currentPageIndex . '.groups.' . $groupIndex .
+                                                            '.pg_name')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
                                                     </div>
@@ -427,7 +428,7 @@
                                             @endforeach
                                         </div>
                                     </div>
-                                @endif --}}
+                                @endif
                             @endforeach
                         </ul>
                         <div class="d-flex justify-content-between">
