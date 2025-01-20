@@ -457,7 +457,7 @@
                                                 <a href="#" wire:click.prevent="addGroup({{ $pageIndex }})"
                                                     style="cursor: pointer;" title="{{ __('panel.add_group') }}">
                                                     <i class="fas fa-plus-circle me-2"></i>
-                                                    {{-- {{ __('panel.add_group') }} --}}
+                                                    {{ __('panel.add_group') }}
                                                 </a>
                                             @endif
                                             <a href="#" wire:click.prevent="removePage({{ $pageIndex }})">
@@ -484,7 +484,7 @@
                                                                     style="cursor: pointer;"
                                                                     title="{{ __('panel.add_variable') }}">
                                                                     <i class="fas fa-plus-circle me-2"></i>
-                                                                    {{-- {{ __('panel.add_variable') }} --}}
+                                                                    {{ __('panel.add_variable') }}
                                                                 </a>
                                                             @endif
 
@@ -521,12 +521,7 @@
                                     @endif
                                 </li>
                             @endforeach
-                            <li>
-                                <a href="#" wire:click.prevent="addPage()" style="cursor: pointer;">
-                                    <i class="fas fa-plus-circle me-2"></i>
-                                    {{ __('panel.add_page') }}
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
                     <div class="col-sm-12 col-md-8 pt-3">
