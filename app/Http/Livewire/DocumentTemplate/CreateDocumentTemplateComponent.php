@@ -298,10 +298,10 @@ class CreateDocumentTemplateComponent extends Component
             'doc_page_description'  => 'Page description ' . $this->count,
             'groups' => [
                 [
-                    'pg_name'   =>  __('panel.group_name'),
+                    'pg_name' => __('panel.group_name') . ' 1',
                     'variables' => [
                         [
-                            'pv_name'       =>  __('panel.pv_name_holder'),
+                            'pv_name'       =>  __('panel.pv_name_holder') . ' 1',
                             'pv_question'   =>  '',
                             'pv_type'       =>   0,
                             'pv_required'   =>   1,
@@ -312,6 +312,12 @@ class CreateDocumentTemplateComponent extends Component
             ],
             'saved' => false, // Initialize saved as false
         ];
+
+        // Initialize the group counter for the new page
+        $this->groupCounters[count($this->pages) - 1] = 1;
+
+        // Initialize the variable counter for the first group in the new page
+        $this->variableCounters[count($this->pages) - 1][0] = 1;
 
         // Set the current page index to the new page
         $this->currentPageIndex = count($this->pages) - 1;
@@ -372,6 +378,9 @@ class CreateDocumentTemplateComponent extends Component
                 ],
             ],
         ];
+
+        // Initialize the variable counter for the new group
+        $this->variableCounters[$pageIndex][count($this->pages[$pageIndex]['groups']) - 1] = 1;
 
         // Set the new group as the active group
         $this->activeGroupIndex = count($this->pages[$pageIndex]['groups']) - 1;
@@ -441,7 +450,6 @@ class CreateDocumentTemplateComponent extends Component
 
         // Set the new variable as the active variable
         $this->activeVariableIndex = count($this->pages[$pageIndex]['groups'][$groupIndex]['variables']) - 1;
-
 
         // Emit an event to initialize TinyMCE for the new variable
         $variableIndex = count($this->pages[$pageIndex]['groups'][$groupIndex]['variables']) - 1;
