@@ -462,7 +462,7 @@
                                                 <a href="#" wire:click.prevent="addGroup({{ $pageIndex }})"
                                                     style="cursor: pointer;" title="{{ __('panel.add_group') }}">
                                                     <i class="fas fa-plus-circle me-2"></i>
-                                                    {{ __('panel.add_group') }}
+                                                    {{-- {{ __('panel.add_group') }} --}}
                                                 </a>
                                             @endif
                                             <a href="#" wire:click.prevent="removePage({{ $pageIndex }})">
@@ -474,7 +474,7 @@
                                         <ul class="tree">
                                             @foreach ($page['groups'] as $groupIndex => $group)
                                                 <li>
-                                                    <div class="item {{ $activeGroupIndex == $groupIndex ? 'active' : '' }}"
+                                                    <div class="item {{ $activeGroupIndex == $groupIndex ? 'active' : '' }} cursor-pointer"
                                                         wire:click="setActiveGroup({{ $pageIndex }}, {{ $groupIndex }})">
                                                         <span class="toggle">
                                                             <i
@@ -489,7 +489,7 @@
                                                                     style="cursor: pointer;"
                                                                     title="{{ __('panel.add_variable') }}">
                                                                     <i class="fas fa-plus-circle me-2"></i>
-                                                                    {{ __('panel.add_variable') }}
+                                                                    {{-- {{ __('panel.add_variable') }} --}}
                                                                 </a>
                                                             @endif
 
@@ -504,7 +504,7 @@
                                                         <ul class="tree">
                                                             @foreach ($group['variables'] as $variableIndex => $variable)
                                                                 <li>
-                                                                    <div class="item {{ $activeVariableIndex == $variableIndex ? 'active' : '' }}"
+                                                                    <div class="item {{ $activeVariableIndex == $variableIndex ? 'active' : '' }} cursor-pointer"
                                                                         wire:click="setActiveVariable({{ $pageIndex }}, {{ $groupIndex }}, {{ $variableIndex }})">
                                                                         <span>{{ $variable['pv_name'] }}</span>
                                                                         <div class="actions">
