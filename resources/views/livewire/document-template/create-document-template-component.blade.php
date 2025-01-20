@@ -30,7 +30,8 @@
         /* RTL-specific styles */
         .tree {
             list-style: none;
-            padding-right: 20px;
+            /* padding-right: 20px; */
+            padding-right: 35px;
             /* Adjust for RTL */
             padding-left: 0;
             /* Remove left padding */
@@ -68,6 +69,10 @@
             background-color: #0162e8;
             color: white;
         } */
+
+        .tree li .item.active {
+            color: #0162e8;
+        }
 
         .tree li .item .actions {
             margin-right: auto;
