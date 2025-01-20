@@ -490,8 +490,22 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    <!-- Add Input Field for Group Name -->
                                     <div class="row">
-                                        <div class="col-sm-12 col-md-12 pt-5">
+                                        <div class="col-sm-12 col-md-12 pt-3">
+                                            <label for="pg_name">{{ __('panel.group_name') }}</label>
+                                            <input type="text" class="form-control"
+                                                wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.pg_name"
+                                                placeholder="{{ __('panel.enter_group_name') }}">
+                                            @error('pages.' . $currentPageIndex . '.groups.' . $activeGroupIndex .
+                                                '.pg_name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 pt-4">
                                             @if (isset($pages[$currentPageIndex]['groups'][$activeGroupIndex]['variables'][$activeVariableIndex]))
                                                 @php
                                                     $variable =
