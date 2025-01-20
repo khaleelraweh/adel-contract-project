@@ -444,7 +444,7 @@
                         <ul class="tree">
                             @foreach ($pages as $pageIndex => $page)
                                 <li>
-                                    <div class="item {{ $currentPageIndex == $pageIndex ? 'active' : '' }}"
+                                    <div class="item {{ $currentPageIndex == $pageIndex ? 'active' : '' }} cursor-pointer"
                                         wire:click="setActivePage({{ $pageIndex }})">
                                         <span class="toggle">
                                             <i
@@ -452,6 +452,16 @@
                                         </span>
                                         <span>{{ $page['doc_page_name'] }}</span>
                                         <div class="actions">
+
+                                            @if ($currentPageIndex == $pageIndex)
+                                                <a href="#" wire:click.prevent="addGroup({{ $pageIndex }})"
+                                                    style="cursor: pointer;" title="{{ __('panel.add_group') }}">
+                                                    <i class="fas fa-plus-circle me-2"></i>
+                                                    {{-- {{ __('panel.add_group') }} --}}
+                                                </a>
+                                            @endif
+
+
                                             <a href="#" wire:click.prevent="removePage({{ $pageIndex }})">
                                                 <i class="fas fa-trash-alt"></i>
                                             </a>
