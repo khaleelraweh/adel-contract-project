@@ -26,6 +26,44 @@
         }
     </style>
 
+    <style>
+        .tree {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tree-item {
+            margin-bottom: 5px;
+        }
+
+        .tree-item-header {
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .tree-item-header:hover {
+            background-color: #f8f9fa !important;
+        }
+
+        .tree-item-content {
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
+            margin-left: 10px;
+        }
+
+        .list-group-item {
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            margin-bottom: -1px;
+            background-color: #fff;
+        }
+
+        .list-group-item:hover {
+            background-color: #f8f9fa;
+            cursor: pointer;
+        }
+    </style>
+
     <div class="mywizard">
         <div class="steps clearfix">
             <ul role="tablist">
@@ -365,112 +403,102 @@
                 style="display: {{ $currentStep == 3 ? 'block' : 'none' }}">
 
                 <div class="row">
+                    {{-- start template --}}
                     <div class="col-sm-12 col-md-4 pt-3">
                         <h4>{{ __('panel.template_pages') }}</h4>
-                        <div class="accordion" id="pagesAccordion">
-                            @foreach ($pages as $index => $page)
-                                <div class="card mb-2">
-                                    <div class="card-header p-0" id="pageHeading{{ $index }}">
-                                        <button
-                                            class="btn btn-link btn-block text-left p-2 d-flex justify-content-between align-items-center w-100"
-                                            type="button" data-toggle="collapse"
-                                            data-target="#pageCollapse{{ $index }}"
-                                            aria-expanded="{{ $currentPageIndex == $index ? 'true' : 'false' }}"
-                                            aria-controls="pageCollapse{{ $index }}"
-                                            wire:click="setActivePage({{ $index }})"
-                                            style="background: {{ $currentPageIndex == $index ? '#0162e8' : '#DDE2EF' }}; color: {{ $currentPageIndex == $index ? '#fff' : '#000' }};">
+                        <div class="tree">
+                            @foreach ($pages as $pageIndex => $page)
+                                <div class="tree-item">
+                                    <!-- Page Header -->
+                                    <div class="tree-item-header d-flex align-items-center justify-content-between p-2 cursor-pointer"
+                                        wire:click="setActivePage({{ $pageIndex }})"
+                                        style="background: {{ $currentPageIndex == $pageIndex ? '#0162e8' : '#DDE2EF' }}; color: {{ $currentPageIndex == $pageIndex ? '#fff' : '#000' }};">
+                                        <div class="d-flex align-items-center">
+                                            <i
+                                                class="fas fa-chevron-{{ $currentPageIndex == $pageIndex ? 'down' : 'right' }} me-2"></i>
                                             <span>{{ $page['doc_page_name'] }}</span>
-                                            <div>
-                                                <a href="#"
-                                                    wire:click.prevent="removePage({{ $index }})"
-                                                    class="text-danger ml-2">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </a>
-                                                <i
-                                                    class="fas fa-chevron-{{ $currentPageIndex == $index ? 'up' : 'down' }}"></i>
-                                            </div>
-                                        </button>
-                                    </div>
-                                    <div id="pageCollapse{{ $index }}"
-                                        class="collapse {{ $currentPageIndex == $index ? 'show' : '' }}"
-                                        aria-labelledby="pageHeading{{ $index }}"
-                                        data-parent="#pagesAccordion">
-                                        <div class="card-body p-2">
-                                            <div class="accordion" id="groupsAccordion{{ $index }}">
-                                                @foreach ($page['groups'] as $groupIndex => $group)
-                                                    <div class="card mb-2">
-                                                        <div class="card-header p-0"
-                                                            id="groupHeading{{ $index }}{{ $groupIndex }}">
-                                                            <button
-                                                                class="btn btn-link btn-block text-left p-2 d-flex justify-content-between align-items-center w-100"
-                                                                type="button" data-toggle="collapse"
-                                                                data-target="#groupCollapse{{ $index }}{{ $groupIndex }}"
-                                                                aria-expanded="{{ $activeGroupIndex == $groupIndex ? 'true' : 'false' }}"
-                                                                aria-controls="groupCollapse{{ $index }}{{ $groupIndex }}"
-                                                                wire:click="setActiveGroup({{ $index }}, {{ $groupIndex }})"
-                                                                style="background: {{ $activeGroupIndex == $groupIndex ? '#01616D' : '#DDE2EF' }}; color: {{ $activeGroupIndex == $groupIndex ? '#fff' : '#000' }};">
-                                                                <span>{{ $group['pg_name'] }}</span>
-                                                                <div>
-                                                                    <a href="#"
-                                                                        wire:click.prevent="removeGroup({{ $index }}, {{ $groupIndex }})"
-                                                                        class="text-danger ml-2">
-                                                                        <i class="fas fa-trash-alt"></i>
-                                                                    </a>
-                                                                    <i
-                                                                        class="fas fa-chevron-{{ $activeGroupIndex == $groupIndex ? 'up' : 'down' }}"></i>
-                                                                </div>
-                                                            </button>
-                                                        </div>
-                                                        <div id="groupCollapse{{ $index }}{{ $groupIndex }}"
-                                                            class="collapse {{ $activeGroupIndex == $groupIndex ? 'show' : '' }}"
-                                                            aria-labelledby="groupHeading{{ $index }}{{ $groupIndex }}"
-                                                            data-parent="#groupsAccordion{{ $index }}">
-                                                            <div class="card-body p-2">
-                                                                <ul class="list-group list-group-flush">
-                                                                    @foreach ($group['variables'] as $variableIndex => $variable)
-                                                                        <li class="list-group-item d-flex justify-content-between align-items-center"
-                                                                            wire:click="setActiveVariable({{ $index }}, {{ $groupIndex }}, {{ $variableIndex }})"
-                                                                            style="cursor: pointer; background: {{ $activeVariableIndex == $variableIndex ? '#f8f9fa' : '#fff' }};">
-                                                                            <span>{{ $variable['pv_name'] }}</span>
-                                                                            <a href="#"
-                                                                                wire:click.prevent="removeVariable({{ $index }}, {{ $groupIndex }}, {{ $variableIndex }})">
-                                                                                <i
-                                                                                    class="fas fa-trash-alt text-danger"></i>
-                                                                            </a>
-                                                                        </li>
-                                                                    @endforeach
-                                                                    <li class="list-group-item">
-                                                                        <a href="#"
-                                                                            wire:click.prevent="addVariable({{ $index }}, {{ $groupIndex }})"
-                                                                            style="cursor: pointer;">
-                                                                            <i class="fas fa-plus-circle me-2"></i>
-                                                                            {{ __('panel.add_variable') }}
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                                <div class="d-flex justify-content-between mt-2">
-                                                    <a href="#"
-                                                        wire:click.prevent="addGroup({{ $index }})"
-                                                        class="btn btn-primary btn-sm">
-                                                        <i class="fas fa-plus-circle me-2"></i>
-                                                        {{ __('panel.add_group') }}
-                                                    </a>
-                                                </div>
-                                            </div>
+                                        </div>
+                                        <div>
+                                            <a href="#" wire:click.prevent="removePage({{ $pageIndex }})"
+                                                class="text-danger ms-2">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
                                         </div>
                                     </div>
+
+                                    <!-- Page Content (Groups) -->
+                                    @if ($currentPageIndex == $pageIndex)
+                                        <div class="tree-item-content">
+                                            @foreach ($page['groups'] as $groupIndex => $group)
+                                                <div class="tree-item">
+                                                    <!-- Group Header -->
+                                                    <div class="tree-item-header d-flex align-items-center justify-content-between p-2 cursor-pointer"
+                                                        wire:click="setActiveGroup({{ $pageIndex }}, {{ $groupIndex }})"
+                                                        style="background: {{ $activeGroupIndex == $groupIndex ? '#01616D' : '#DDE2EF' }}; color: {{ $activeGroupIndex == $groupIndex ? '#fff' : '#000' }};">
+                                                        <div class="d-flex align-items-center">
+                                                            <i
+                                                                class="fas fa-chevron-{{ $activeGroupIndex == $groupIndex ? 'down' : 'right' }} me-2"></i>
+                                                            <span>{{ $group['pg_name'] }}</span>
+                                                        </div>
+                                                        <div>
+                                                            <a href="#"
+                                                                wire:click.prevent="removeGroup({{ $pageIndex }}, {{ $groupIndex }})"
+                                                                class="text-danger ms-2">
+                                                                <i class="fas fa-trash-alt"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Group Content (Variables) -->
+                                                    @if ($activeGroupIndex == $groupIndex)
+                                                        <div class="tree-item-content">
+                                                            <ul class="list-group list-group-flush">
+                                                                @foreach ($group['variables'] as $variableIndex => $variable)
+                                                                    <li class="list-group-item d-flex justify-content-between align-items-center p-2 cursor-pointer"
+                                                                        wire:click="setActiveVariable({{ $pageIndex }}, {{ $groupIndex }}, {{ $variableIndex }})"
+                                                                        style="background: {{ $activeVariableIndex == $variableIndex ? '#f8f9fa' : '#fff' }};">
+                                                                        <span>{{ $variable['pv_name'] }}</span>
+                                                                        <a href="#"
+                                                                            wire:click.prevent="removeVariable({{ $pageIndex }}, {{ $groupIndex }}, {{ $variableIndex }})">
+                                                                            <i
+                                                                                class="fas fa-trash-alt text-danger"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                @endforeach
+                                                                <li class="list-group-item p-2">
+                                                                    <a href="#"
+                                                                        wire:click.prevent="addVariable({{ $pageIndex }}, {{ $groupIndex }})"
+                                                                        style="cursor: pointer;">
+                                                                        <i class="fas fa-plus-circle me-2"></i>
+                                                                        {{ __('panel.add_variable') }}
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            @endforeach
+
+                                            <!-- Add Group Button -->
+                                            <div class="d-flex justify-content-between mt-2 p-2">
+                                                <a href="#" wire:click.prevent="addGroup({{ $pageIndex }})"
+                                                    class="btn btn-primary btn-sm">
+                                                    <i class="fas fa-plus-circle me-2"></i>
+                                                    {{ __('panel.add_group') }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
                             @endforeach
-                        </div>
-                        <div class="d-flex justify-content-between mt-3">
-                            <a href="#" wire:click.prevent="addPage()" class="btn btn-primary btn-sm">
-                                <i class="fas fa-plus-circle me-2"></i>
-                                {{ __('panel.add_page') }}
-                            </a>
+
+                            <!-- Add Page Button -->
+                            <div class="d-flex justify-content-between mt-3">
+                                <a href="#" wire:click.prevent="addPage()" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-plus-circle me-2"></i>
+                                    {{ __('panel.add_page') }}
+                                </a>
+                            </div>
                         </div>
                     </div>
 
