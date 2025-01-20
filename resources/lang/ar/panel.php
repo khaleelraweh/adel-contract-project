@@ -1749,6 +1749,9 @@ return [
     'template_pages'                                        =>  'صفحات القالب',
 
     'page'                                                  =>  'صفحة',
+    'the_page'                                              =>  'الصفحة',
+    'pages'                                                 =>  'صفحات',
+    'the_pages'                                             =>  'الصفحات',
     'add_page'                                              =>  'إضافة صفحة',
     'page_title'                                            =>  'عنوان الصفحة',
     'page_description'                                      =>  'وصف الصفحة',
