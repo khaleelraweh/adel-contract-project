@@ -370,6 +370,64 @@
                                             class="fas fa-trash-alt {{ $currentPageIndex == $index ? 'text-white' : 'text-danger' }} me-3"></i>
                                     </a>
                                 </li>
+                                {{-- @if (isset($pages[$currentPageIndex]) && $currentPageIndex == $index)
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            @foreach ($pages[$currentPageIndex]['groups'] as $groupIndex => $group)
+                                                <div class="card mb-2">
+                                                    <div class="card-body p-0">
+                                                        <div class="input-group p-2"
+                                                            style="background: {{ $groupIndex == $activeGroupIndex ? '#0162e8' : '#DDE2EF' }};">
+                                                            <span
+                                                                class="input-group-text {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
+                                                                style="border: none;">
+                                                                <span>{{ __('panel.group') }}
+                                                                    {{ $groupIndex + 1 }}</span>
+                                                            </span>
+                                                            <input type="text" class="form-control"
+                                                                wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $groupIndex }}.pg_name"
+                                                                aria-label="{{ __('panel.Enter a Group Name') }}">
+                                                            <a class="input-group-text {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
+                                                                style="border: none; cursor: pointer;"
+                                                                wire:click.prevent="removeGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
+                                                                <i
+                                                                    class="fas fa-trash-alt {{ $groupIndex == $activeGroupIndex ? 'text-white' : 'text-danger' }}"></i>
+                                                            </a>
+                                                            <a class="input-group-text p-1 {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
+                                                                style="border: none; cursor: pointer;"
+                                                                wire:click="setActiveGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
+                                                                <i class="far fa-edit"></i>
+                                                            </a>
+                                                        </div>
+                                                        @error('pages.' . $currentPageIndex . '.groups.' . $groupIndex . '.pg_name')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="card-footer p-0">
+                                                        <ul class="list-group list-group-flush">
+                                                            @foreach ($group['variables'] as $variableIndex => $variable)
+                                                                <li class="list-group-item"
+                                                                    wire:click="setActiveVariable({{ $currentPageIndex }}, {{ $groupIndex }}, {{ $variableIndex }})"
+                                                                    style="cursor: pointer;">
+                                                                    {{ $variable['pv_name'] }}
+                                                                </li>
+                                                            @endforeach
+                                                            <!-- Add Variable Button -->
+                                                            <li class="list-group-item">
+                                                                <a href=""
+                                                                    wire:click.prevent="addVariable({{ $currentPageIndex }}, {{ $groupIndex }})"
+                                                                    style="cursor: pointer;">
+                                                                    <i class="fas fa-plus-circle me-2"></i>
+                                                                    {{ __('panel.add_variable') }}
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif --}}
                             @endforeach
                         </ul>
                         <div class="d-flex justify-content-between">
