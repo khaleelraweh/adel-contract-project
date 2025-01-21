@@ -34,6 +34,10 @@
         .activeGroup {
             background-color: #01616D !important;
         }
+
+        .activeVaraible {
+            background-color: #f8f9fa;
+        }
     </style>
 
     <style>
@@ -530,7 +534,7 @@
                                                                 <div class="tree-item-content pl-3 mt-2 mb-1">
                                                                     <ul class="list-group list-group-flush">
                                                                         @foreach ($group['variables'] as $variableIndex => $variable)
-                                                                            <li class="list-group-item"
+                                                                            <li class="list-group-item {{ $variableIndex == $activeVariableIndex ? 'activeVaraible' : '' }}"
                                                                                 wire:click="setActiveVariable({{ $currentPageIndex }}, {{ $groupIndex }}, {{ $variableIndex }})"
                                                                                 style="cursor: pointer;">
                                                                                 <div
