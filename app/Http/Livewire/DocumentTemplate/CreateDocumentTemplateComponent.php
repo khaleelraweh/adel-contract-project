@@ -331,6 +331,7 @@ class CreateDocumentTemplateComponent extends Component
         if ($index >= 0 && $index < count($this->pages)) {
             $this->currentPageIndex = $index;
             $this->activeGroupIndex = 0; // Reset the active group index
+            $this->activeVariableIndex = 0; // Reset the active group index
 
         }
     }
