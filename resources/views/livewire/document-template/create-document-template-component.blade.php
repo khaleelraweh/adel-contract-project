@@ -23,6 +23,7 @@
 
         .activePage:hover {
             color: #ffee99;
+            cursor: pointer;
         }
 
         .unActivePage {
@@ -479,8 +480,11 @@
                                                             <span
                                                                 class="input-group-text {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
                                                                 style="border: none;">
-                                                                <span>{{ __('panel.group') }}
-                                                                    {{ $groupIndex + 1 }}</span>
+                                                                <span>
+                                                                    {{ $group['pg_name'] }}
+                                                                    {{-- {{ __('panel.group') }}
+                                                                    {{ $groupIndex + 1 }} --}}
+                                                                </span>
                                                             </span>
                                                             <input type="text" class="form-control"
                                                                 wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $groupIndex }}.pg_name"
