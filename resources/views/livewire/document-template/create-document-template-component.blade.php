@@ -486,29 +486,29 @@
                                                             <div class="input-group p-2"
                                                                 style="background: {{ $groupIndex == $activeGroupIndex ? '#01616D' : '#DDE2EF' }};">
                                                                 <span
-                                                                    class=" {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }} d-flex align-items-center"
+                                                                    class="px-2 d-flex align-items-center {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }} "
                                                                     style="flex:1;border: none;cursor: pointer;"
                                                                     wire:click="setActiveGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
                                                                     {{ $group['pg_name'] }}
 
                                                                 </span>
                                                                 {{-- <input type="text" class="form-control"
-                                                                wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $groupIndex }}.pg_name"
-                                                                aria-label="{{ __('panel.Enter a Group Name') }}"> --}}
+                                                                    wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $groupIndex }}.pg_name"
+                                                                    aria-label="{{ __('panel.Enter a Group Name') }}"> --}}
 
                                                                 <div class="d-flex align-items-center">
-                                                                    <a class="p-2 {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
+                                                                    <a class="px-2 {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
                                                                         style="border: none; cursor: pointer;"
                                                                         wire:click.prevent="removeGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
                                                                         <i
                                                                             class="fas fa-trash-alt {{ $groupIndex == $activeGroupIndex ? 'text-white' : 'text-danger' }}"></i>
                                                                     </a>
-                                                                    <a class="p-2 {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
+                                                                    <a class="px-2 {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
                                                                         style="border: none; cursor: pointer;"
                                                                         wire:click="setActiveGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
                                                                         <i class="far fa-edit"></i>
                                                                     </a>
-                                                                    <a class="p-2 {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
+                                                                    <a class="px-2 {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
                                                                         wire:click.prevent="addVariable({{ $currentPageIndex }}, {{ $groupIndex }})"
                                                                         style="border: none; cursor: pointer;">
                                                                         <i class="fas fa-plus-circle "></i>
