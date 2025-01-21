@@ -548,13 +548,13 @@
                                                                         @endforeach
                                                                         <!-- Add Variable Button -->
                                                                         {{-- <li class="list-group-item">
-                                                                <a href=""
-                                                                    wire:click.prevent="addVariable({{ $currentPageIndex }}, {{ $groupIndex }})"
-                                                                    style="cursor: pointer;">
-                                                                    <i class="fas fa-plus-circle me-2"></i>
-                                                                    {{ __('panel.add_variable') }}
-                                                                </a>
-                                                            </li> --}}
+                                                                            <a href=""
+                                                                                wire:click.prevent="addVariable({{ $currentPageIndex }}, {{ $groupIndex }})"
+                                                                                style="cursor: pointer;">
+                                                                                <i class="fas fa-plus-circle me-2"></i>
+                                                                                {{ __('panel.add_variable') }}
+                                                                            </a>
+                                                                        </li> --}}
                                                                     </ul>
                                                                 </div>
                                                             </div>
