@@ -652,8 +652,12 @@
                                                 @endphp
                                                 <div class="card">
                                                     <div class="card-header mb-0">
-                                                        <h3 class="mb-0">{{ __('panel.variable') }}
-                                                            {{ $activeVariableIndex + 1 }}</h3>
+                                                        <h3 class="mb-0">
+                                                            {{-- {{ __('panel.variable') }}
+                                                            {{ $activeVariableIndex + 1 }} --}}
+
+                                                            {{ $pages[$currentPageIndex]['groups'][$activeGroupIndex]['variables'][$activeVariableIndex]['pv_name'] }}
+                                                        </h3>
                                                     </div>
                                                     <div class="card-body mt-0">
                                                         <!-- Variable details form -->
