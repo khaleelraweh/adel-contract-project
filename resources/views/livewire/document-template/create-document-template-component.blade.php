@@ -489,7 +489,7 @@
                                                                     style="background: {{ $groupIndex == $activeGroupIndex ? '#01616D' : '#DDE2EF' }};">
                                                                     <span
                                                                         class="px-2 d-flex align-items-center {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }} "
-                                                                        style="flex:1;border: none;cursor: pointer;"
+                                                                        style="flex:1;border: none;cursor: pointer; border:0.25em;"
                                                                         wire:click="setActiveGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
                                                                         {{ $group['pg_name'] }}
 
@@ -524,7 +524,7 @@
                                                                 @enderror
                                                             </div>
                                                             <div class="card-footer p-0">
-                                                                <div class="tree-item-content pl-3 mt-2">
+                                                                <div class="tree-item-content pl-3 mt-2 mb-1">
                                                                     <ul class="list-group list-group-flush">
                                                                         @foreach ($group['variables'] as $variableIndex => $variable)
                                                                             <li class="list-group-item"
