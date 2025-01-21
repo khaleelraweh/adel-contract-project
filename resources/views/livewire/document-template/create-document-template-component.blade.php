@@ -18,6 +18,11 @@
         .activePage {
             background-color: #0162e8;
             color: white;
+            cursor: pointer;
+        }
+
+        .activePage:hover {
+            color: #ffee99;
         }
 
         .unActivePage {
@@ -443,13 +448,19 @@
                                         {{ $page['doc_page_name'] }}
                                     </span>
 
-                                    <div class="input-group-text p-1">
-                                        <a class="" wire:click.prevent="removePage({{ $currentPageIndex }})">
+                                    <div class="  d-flex align-items-center">
+                                        <a class="p-2 {{ $currentPageIndex == $index ? 'activePage' : '' }}"
+                                            wire:click.prevent="removePage({{ $currentPageIndex }})">
                                             <i class="far fa-trash-alt"></i>
                                         </a>
-                                        <a class="input-group-text p-1"
+                                        <a class="p-2 {{ $currentPageIndex == $index ? 'activePage' : '' }}"
                                             wire:click="setActivePage({{ $index }})" style="border: none;">
                                             <i class="far fa-edit"></i>
+                                        </a>
+                                        <a class="p-2 {{ $currentPageIndex == $index ? 'activePage' : '' }}"
+                                            wire:click.prevent="addGroup({{ $currentPageIndex }})">
+                                            <i class="fas fa-plus-square "></i>
+                                            {{-- {{ __('panel.add_group') }} --}}
                                         </a>
                                     </div>
                                 </li>
@@ -510,13 +521,13 @@
                                                 </div>
                                             @endforeach
                                             <!-- this will be for add group  -->
-                                            <div class="d-flex justify-content-between">
+                                            {{-- <div class="d-flex justify-content-between">
                                                 <a wire:click.prevent="addGroup({{ $currentPageIndex }})"
                                                     class="d-block pt-2" style="cursor: pointer;">
                                                     <i class="fas fa-plus-square text-primary me-3"></i>
                                                     {{ __('panel.add_group') }}
                                                 </a>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 @endif
