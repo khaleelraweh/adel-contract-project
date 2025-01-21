@@ -1753,16 +1753,23 @@ return [
     'pages'                                                 =>  'صفحات',
     'the_pages'                                             =>  'الصفحات',
     'add_page'                                              =>  'إضافة صفحة',
+    'remove_page'                                           =>  'حذف صفحة',
+    'set_active'                                            =>  'اجعلة مفعل',
     'page_title'                                            =>  'عنوان الصفحة',
     'page_description'                                      =>  'وصف الصفحة',
 
     'groups'                                                =>  'المجموعات',
     'group'                                                 =>  'مجموعة',
     'add_group'                                             =>  'إضافة مجموعة',
+    'remove_group'                                          =>  'حذف مجموعة',
+
+
 
     'variables'                                             =>  'المتغيرات',
     'variable'                                              =>  'متغير',
     'add_variable'                                          =>  'إضافة متغير',
+    'remove_variable'                                       =>  'حذف متغير',
+
 
     'pv_name'                                               =>  'الإسم',
     'pv_name_holder'                                        =>  'إسم المتغير',

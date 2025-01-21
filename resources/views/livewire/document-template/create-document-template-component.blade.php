@@ -456,15 +456,18 @@
 
                                     <div class="  d-flex align-items-center">
                                         <a class="p-2 {{ $currentPageIndex == $index ? 'activePage' : '' }}"
-                                            wire:click.prevent="removePage({{ $index }})">
+                                            wire:click.prevent="removePage({{ $index }})"
+                                            title="{{ __('panel.remove_page') }}">
                                             <i class="far fa-trash-alt"></i>
                                         </a>
                                         <a class="p-2 {{ $currentPageIndex == $index ? 'activePage' : '' }}"
-                                            wire:click="setActivePage({{ $index }})" style="border: none;">
+                                            wire:click="setActivePage({{ $index }})" style="border: none;"
+                                            title="{{ __('panel.set_active') }}">
                                             <i class="far fa-edit"></i>
                                         </a>
                                         <a class="p-2 {{ $currentPageIndex == $index ? 'activePage' : '' }}"
-                                            wire:click.prevent="addGroup({{ $index }})">
+                                            wire:click.prevent="addGroup({{ $index }})"
+                                            title="{{ __('panel.add_group') }}">
                                             <i class="fas fa-plus-square "></i>
                                             {{-- {{ __('panel.add_group') }} --}}
                                         </a>
