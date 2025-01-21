@@ -756,7 +756,15 @@
 
             {{-- step 4 : تنسيق الوثيقة والمستند --}}
             <h3 id="wizard1-h-0" tabindex="-1" class="title {{ $currentStep == 4 ? 'current' : '' }} ">
-                {{ __('panel.document_and_template_formatting') }}
+                <p>{{ __('panel.document_and_template_formatting') }}</p>
+                <p>
+                    <small>
+                        في حال تغيير اسماء الحقول في الخطوة السابقة ، يرجي استبدال اسماء الحقول في نص الوثيقة للحصول على
+                        افضل
+                        اداء
+                    </small>
+                </p>
+
             </h3>
             <section id="wizard1-p-3" role="tabpanel" aria-labelledby="wizard1-h-3"
                 class="body {{ $currentStep == 4 ? 'current' : '' }}  step"
