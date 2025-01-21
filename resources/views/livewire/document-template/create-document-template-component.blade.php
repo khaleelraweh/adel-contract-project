@@ -534,7 +534,7 @@
                                                                 <div class="tree-item-content pl-3 mt-2 mb-1">
                                                                     <ul class="list-group list-group-flush">
                                                                         @foreach ($group['variables'] as $variableIndex => $variable)
-                                                                            <li class="list-group-item {{ $variableIndex == $activeVariableIndex ? 'activeVaraible' : '' }}"
+                                                                            <li class="list-group-item {{ $groupIndex == $activeGroupIndex && $variableIndex == $activeVariableIndex ? 'activeVaraible' : '' }}"
                                                                                 {{-- wire:click="setActiveVariable({{ $currentPageIndex }}, {{ $groupIndex }}, {{ $variableIndex }})" --}}
                                                                                 style="cursor: pointer;">
                                                                                 <div

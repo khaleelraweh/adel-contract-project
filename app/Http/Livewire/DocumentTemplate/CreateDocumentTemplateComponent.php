@@ -454,6 +454,7 @@ class CreateDocumentTemplateComponent extends Component
             'pv_details'        =>  '',
         ];
 
+        $this->setActiveGroup($pageIndex, $groupIndex);
         // Set the new variable as the active variable
         $this->activeVariableIndex = count($this->pages[$pageIndex]['groups'][$groupIndex]['variables']) - 1;
 
@@ -472,27 +473,28 @@ class CreateDocumentTemplateComponent extends Component
 
     // }
 
-    public function removeVariable($pageIndex, $groupIndex, $variableIndex)
-    {
-        if (isset($this->pages[$pageIndex]['groups'][$groupIndex]['variables'][$variableIndex])) {
-            // Remove the variable
-            array_splice($this->pages[$pageIndex]['groups'][$groupIndex]['variables'], $variableIndex, 1);
+    // public function removeVariable($pageIndex, $groupIndex, $variableIndex)
+    // {
+    //     if (isset($this->pages[$pageIndex]['groups'][$groupIndex]['variables'][$variableIndex])) {
+    //         // Remove the variable
+    //         array_splice($this->pages[$pageIndex]['groups'][$groupIndex]['variables'], $variableIndex, 1);
 
-            // Decrement the variable counter for the group
-            if (isset($this->variableCounters[$pageIndex][$groupIndex])) {
-                $this->variableCounters[$pageIndex][$groupIndex]--;
-            }
+    //         // Decrement the variable counter for the group
+    //         if (isset($this->variableCounters[$pageIndex][$groupIndex])) {
+    //             $this->variableCounters[$pageIndex][$groupIndex]--;
+    //         }
 
-            // Adjust the activeVariableIndex if necessary
-            if ($this->activeVariableIndex >= count($this->pages[$pageIndex]['groups'][$groupIndex]['variables'])) {
-                $this->activeVariableIndex = count($this->pages[$pageIndex]['groups'][$groupIndex]['variables']) - 1;
-            }
+    //         $this->setActiveGroup($pageIndex, $groupIndex);
+    //         // Adjust the activeVariableIndex if necessary
+    //         if ($this->activeVariableIndex >= count($this->pages[$pageIndex]['groups'][$groupIndex]['variables'])) {
+    //             $this->activeVariableIndex = count($this->pages[$pageIndex]['groups'][$groupIndex]['variables']) - 1;
+    //         }
 
-            if ($this->activeVariableIndex < 0) {
-                $this->activeVariableIndex = 0;
-            }
-        }
-    }
+    //         if ($this->activeVariableIndex < 0) {
+    //             $this->activeVariableIndex = 0;
+    //         }
+    //     }
+    // }
 
     // public function removeVariable($pageIndex, $groupIndex, $variableIndex)
     // {
@@ -504,6 +506,9 @@ class CreateDocumentTemplateComponent extends Component
     //         if (isset($this->variableCounters[$pageIndex][$groupIndex])) {
     //             $this->variableCounters[$pageIndex][$groupIndex]--;
     //         }
+
+
+    //         $this->activeGroupIndex = $groupIndex;
 
     //         // Adjust the activeVariableIndex if necessary
     //         if ($this->activeVariableIndex == $variableIndex) {
@@ -529,6 +534,48 @@ class CreateDocumentTemplateComponent extends Component
     //         }
     //     }
     // }
+
+    public function removeVariable($pageIndex, $groupIndex, $variableIndex)
+    {
+        if (isset($this->pages[$pageIndex]['groups'][$groupIndex]['variables'][$variableIndex])) {
+            // Remove the variable
+            array_splice($this->pages[$pageIndex]['groups'][$groupIndex]['variables'], $variableIndex, 1);
+
+            // Decrement the variable counter for the group
+            if (isset($this->variableCounters[$pageIndex][$groupIndex])) {
+                $this->variableCounters[$pageIndex][$groupIndex]--;
+            }
+
+            // Check if the removed variable is in the active group
+            if ($this->currentPageIndex == $pageIndex && $this->activeGroupIndex == $groupIndex) {
+                // Adjust the activeVariableIndex only if the removed variable is in the active group
+                if ($this->activeVariableIndex == $variableIndex) {
+                    // If the removed variable was the active one, set the active variable to the previous one
+                    if ($variableIndex > 0) {
+                        $this->activeVariableIndex = $variableIndex - 1;
+                    } else {
+                        // If there are no variables left, set it to 0
+                        $this->activeVariableIndex = 0;
+                    }
+                } elseif ($this->activeVariableIndex > $variableIndex) {
+                    // If the active variable was after the removed one, decrement its index
+                    $this->activeVariableIndex--;
+                }
+
+                // Ensure the activeVariableIndex is within bounds
+                $variableCount = count($this->pages[$pageIndex]['groups'][$groupIndex]['variables']);
+                if ($this->activeVariableIndex >= $variableCount) {
+                    $this->activeVariableIndex = $variableCount - 1;
+                }
+
+                if ($this->activeVariableIndex < 0) {
+                    $this->activeVariableIndex = 0;
+                }
+            }
+        }
+    }
+
+
 
 
 
