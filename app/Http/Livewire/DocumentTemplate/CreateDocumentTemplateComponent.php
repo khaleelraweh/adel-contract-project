@@ -382,9 +382,14 @@ class CreateDocumentTemplateComponent extends Component
         // Initialize the variable counter for the new group
         $this->variableCounters[$pageIndex][count($this->pages[$pageIndex]['groups']) - 1] = 1;
 
+        // To point to this page 
+        $this->setActivePage($pageIndex);
+
         // Set the new group as the active group
         $this->activeGroupIndex = count($this->pages[$pageIndex]['groups']) - 1;
         $this->activeVariableIndex = 0; // Set the first variable as active
+
+
     }
 
     public function setActiveGroup($pageIndex, $groupIndex)
