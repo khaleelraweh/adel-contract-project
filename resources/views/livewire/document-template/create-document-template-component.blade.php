@@ -482,28 +482,34 @@
                                                         <div class="input-group p-2"
                                                             style="background: {{ $groupIndex == $activeGroupIndex ? '#01616D' : '#DDE2EF' }};">
                                                             <span
-                                                                class="input-group-text {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
-                                                                style="border: none;">
-                                                                <span>
-                                                                    {{ $group['pg_name'] }}
-                                                                    {{-- {{ __('panel.group') }}
-                                                                    {{ $groupIndex + 1 }} --}}
-                                                                </span>
+                                                                class=" {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }} d-flex align-items-center"
+                                                                style="flex:1;border: none;">
+                                                                {{ $group['pg_name'] }}
+
                                                             </span>
-                                                            <input type="text" class="form-control"
+                                                            {{-- <input type="text" class="form-control"
                                                                 wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $groupIndex }}.pg_name"
-                                                                aria-label="{{ __('panel.Enter a Group Name') }}">
-                                                            <a class="input-group-text {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
-                                                                style="border: none; cursor: pointer;"
-                                                                wire:click.prevent="removeGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
-                                                                <i
-                                                                    class="fas fa-trash-alt {{ $groupIndex == $activeGroupIndex ? 'text-white' : 'text-danger' }}"></i>
-                                                            </a>
-                                                            <a class="input-group-text p-1 {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
-                                                                style="border: none; cursor: pointer;"
-                                                                wire:click="setActiveGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
-                                                                <i class="far fa-edit"></i>
-                                                            </a>
+                                                                aria-label="{{ __('panel.Enter a Group Name') }}"> --}}
+
+                                                            <div class="d-flex align-items-center">
+                                                                <a class="p-2 {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
+                                                                    style="border: none; cursor: pointer;"
+                                                                    wire:click.prevent="removeGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
+                                                                    <i
+                                                                        class="fas fa-trash-alt {{ $groupIndex == $activeGroupIndex ? 'text-white' : 'text-danger' }}"></i>
+                                                                </a>
+                                                                <a class="p-2 {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
+                                                                    style="border: none; cursor: pointer;"
+                                                                    wire:click="setActiveGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
+                                                                    <i class="far fa-edit"></i>
+                                                                </a>
+                                                                <a class="p-2 {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
+                                                                    wire:click.prevent="addVariable({{ $currentPageIndex }}, {{ $groupIndex }})"
+                                                                    style="border: none; cursor: pointer;">
+                                                                    <i class="fas fa-plus-circle "></i>
+                                                                    {{-- {{ __('panel.add_variable') }} --}}
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                         @error('pages.' . $currentPageIndex . '.groups.' . $groupIndex .
                                                             '.pg_name')
@@ -520,14 +526,14 @@
                                                                 </li>
                                                             @endforeach
                                                             <!-- Add Variable Button -->
-                                                            <li class="list-group-item">
+                                                            {{-- <li class="list-group-item">
                                                                 <a href=""
                                                                     wire:click.prevent="addVariable({{ $currentPageIndex }}, {{ $groupIndex }})"
                                                                     style="cursor: pointer;">
                                                                     <i class="fas fa-plus-circle me-2"></i>
                                                                     {{ __('panel.add_variable') }}
                                                                 </a>
-                                                            </li>
+                                                            </li> --}}
                                                         </ul>
                                                     </div>
                                                 </div>
