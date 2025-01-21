@@ -426,7 +426,12 @@
                 <div class="row">
                     {{-- start template --}}
                     <div class="col-sm-12 col-md-4 pt-3">
-                        <h4>{{ __('panel.template_pages') }}</h4>
+                        <div class="d-flex justify-content-between mb-3 pb-2" style="border-bottom: 4px solid gray">
+                            <h4>{{ __('panel.the_pages') }}</h4>
+                            <a wire:click.prevent="addPage()" class="d-block pt-2" style="cursor: pointer;">
+                                <i class="fas fa-plus-square text-primary me-3"></i> {{ __('panel.add_page') }}
+                            </a>
+                        </div>
                         <ul style="list-style: none; margin: 0; padding: 0;">
                             @foreach ($pages as $index => $page)
                                 <li class="input-group p-2 mb-1"
@@ -517,11 +522,11 @@
                                 @endif
                             @endforeach
                         </ul>
-                        <div class="d-flex justify-content-between">
+                        {{-- <div class="d-flex justify-content-between">
                             <a wire:click.prevent="addPage()" class="d-block pt-2" style="cursor: pointer;">
                                 <i class="fas fa-plus-square text-primary me-3"></i> {{ __('panel.add_page') }}
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="col-sm-12 col-md-8 pt-3">
