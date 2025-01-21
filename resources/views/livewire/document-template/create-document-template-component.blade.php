@@ -591,8 +591,11 @@
                         @if (isset($pages[$currentPageIndex]))
                             <div class="card">
                                 <div class="card-header mb-0 pb-0">
-                                    <h2><i class="far fa-edit" style="color: #0162e8"></i> {{ __('panel.page') }}
-                                        {{ $currentPageIndex + 1 }}</h2>
+                                    <h2><i class="far fa-edit" style="color: #0162e8"></i>
+                                        {{-- {{ __('panel.page') }}
+                                        {{ $currentPageIndex + 1 }} --}}
+                                        {{ $pages[$currentPageIndex]['doc_page_name'] }}
+                                    </h2>
                                 </div>
                                 <div class="card-body mt-0 pt-0">
                                     <div class="row">
