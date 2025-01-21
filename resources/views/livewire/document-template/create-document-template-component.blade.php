@@ -521,7 +521,16 @@
                                                                 <li class="list-group-item"
                                                                     wire:click="setActiveVariable({{ $currentPageIndex }}, {{ $groupIndex }}, {{ $variableIndex }})"
                                                                     style="cursor: pointer;">
-                                                                    {{ $variable['pv_name'] }}
+                                                                    <div class="d-flex justify-content-between">
+                                                                        <span class="d-inline-block">
+                                                                            {{ $variable['pv_name'] }}
+                                                                        </span>
+                                                                        <a
+                                                                            wire:click.prevent="removeVariable({{ $index }}, {{ $groupIndex }}, {{ $variableIndex }})">
+                                                                            <i
+                                                                                class="fas fa-trash-alt text-danger"></i>
+                                                                        </a>
+                                                                    </div>
                                                                 </li>
                                                             @endforeach
                                                             <!-- Add Variable Button -->
