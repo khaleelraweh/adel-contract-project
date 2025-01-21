@@ -453,9 +453,10 @@
                                         {{ $page['doc_page_name'] }}
                                     </span>
 
+
                                     <div class="  d-flex align-items-center">
                                         <a class="p-2 {{ $currentPageIndex == $index ? 'activePage' : '' }}"
-                                            wire:click.prevent="removePage({{ $currentPageIndex }})">
+                                            wire:click.prevent="removePage({{ $index }})">
                                             <i class="far fa-trash-alt"></i>
                                         </a>
                                         <a class="p-2 {{ $currentPageIndex == $index ? 'activePage' : '' }}"
@@ -463,7 +464,7 @@
                                             <i class="far fa-edit"></i>
                                         </a>
                                         <a class="p-2 {{ $currentPageIndex == $index ? 'activePage' : '' }}"
-                                            wire:click.prevent="addGroup({{ $currentPageIndex }})">
+                                            wire:click.prevent="addGroup({{ $index }})">
                                             <i class="fas fa-plus-square "></i>
                                             {{-- {{ __('panel.add_group') }} --}}
                                         </a>
