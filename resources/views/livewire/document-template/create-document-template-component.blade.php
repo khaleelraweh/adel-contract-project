@@ -453,7 +453,6 @@
                                         {{ $page['doc_page_name'] }}
                                     </span>
 
-
                                     <div class="  d-flex align-items-center">
                                         <a class="p-2 {{ $currentPageIndex == $index ? 'activePage' : '' }}"
                                             wire:click.prevent="removePage({{ $index }})"
