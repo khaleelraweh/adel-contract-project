@@ -94,14 +94,14 @@
                             <select class="form-control form-control-lg" wire:model="document_category_id">
                                 <option value="">---</option>
                                 @forelse ($document_categories as $document_category)
-                                    <option value="{{ $document_category->id }}">
-                                        {{ $document_category->doc_cat_name }}
-                                    </option>
+                                <option value="{{ $document_category->id }}">
+                                    {{ $document_category->doc_cat_name }}
+                                </option>
                                 @empty
                                 @endforelse
                             </select>
                             @error('document_category_id')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -116,13 +116,14 @@
                             <select class="form-control form-control-lg" wire:model="document_type_id">
                                 <option value="">---</option>
                                 @forelse ($document_types as $document_type)
-                                    <option value="{{ $document_type->id }}">
-                                        {{ $document_type->doc_type_name }}</option>
+                                <option value="{{ $document_type->id }}">
+                                    {{ $document_type->doc_type_name }}
+                                </option>
                                 @empty
                                 @endforelse
                             </select>
                             @error('document_type_id')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
 
                         </div>
@@ -138,7 +139,7 @@
                                 name="doc_template_name" value="{{ old('doc_template_name') }}" class="form-control"
                                 placeholder="">
                             @error('doc_template_name')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -162,7 +163,7 @@
 
                             </select>
                             @error('language')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -185,7 +186,7 @@
                             </div>
 
                             @error('published_on')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -216,7 +217,7 @@
                                 </label>
                             </div>
                             @error('status')
-                                <span class="text-danger">{{ $message }}</span>
+                            <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -240,12 +241,12 @@
                     <textarea name="doc_template_text" id="tinymceExample" rows="10" class="form-control"
                         wire:model.defer="doc_template_text" placeholder=""></textarea>
                     @error('tinymceExample')
-                        <span class="text-danger">{{ $message }}</span>
+                    <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
 
                 @error('doc_template_text')
-                    <span class="text-danger">{{ $message }}</span>
+                <span class="text-danger">{{ $message }}</span>
                 @enderror
 
                 <script>
@@ -255,8 +256,7 @@
                         // Initialize TinyMCE
                         tinymce.init({
                             selector: '#tinymceExample', // Select the textarea by its ID
-                            language: typeof tinymceLanguage !== 'undefined' ? tinymceLanguage :
-                            'ar', // Default to 'ar' if no language set
+                            language: typeof tinymceLanguage !== 'undefined' ? tinymceLanguage : 'ar', // Default to 'ar' if no language set
                             min_height: 350,
                             default_text_color: 'red',
                             plugins: [
@@ -365,98 +365,101 @@
                 style="display: {{ $currentStep == 3 ? 'block' : 'none' }}">
 
                 <div class="row">
+
+
+
                     <div class="col-sm-12 col-md-4 pt-3">
                         <h4>{{ __('panel.template_pages') }}</h4>
                         <ul style="list-style: none; margin: 0; padding: 0;">
                             @foreach ($pages as $index => $page)
-                                <li class="input-group p-2 mb-1"
-                                    style="background: {{ $currentPageIndex == $index ? '#0162e8' : '#DDE2EF' }}">
+                            <li class="input-group p-2 mb-1"
+                                style="background: {{ $currentPageIndex == $index ? '#0162e8' : '#DDE2EF' }}">
 
-                                    <span
-                                        class="input-group-text cursor-pointer {{ $currentPageIndex == $index ? 'activePage' : 'unActivePage' }}"
-                                        style="flex:1;border:none; " wire:click="setActivePage({{ $index }})"
-                                        style="border: none;">
-                                        {{ $page['doc_page_name'] }}
-                                    </span>
+                                <span
+                                    class="input-group-text cursor-pointer {{ $currentPageIndex == $index ? 'activePage' : 'unActivePage' }}"
+                                    style="flex:1;border:none; " wire:click="setActivePage({{ $index }})"
+                                    style="border: none;">
+                                    {{ $page['doc_page_name'] }}
+                                </span>
 
-                                    <div class="input-group-text p-1">
-                                        <a class="" wire:click.prevent="removePage({{ $currentPageIndex }})">
-                                            <i class="far fa-trash-alt "></i>
-                                        </a>
-                                        <a class="input-group-text p-1 "
-                                            wire:click="setActivePage({{ $index }})" style="border: none;">
-                                            <i class="far fa-edit"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                                @if (isset($pages[$currentPageIndex]) && $currentPageIndex == $index)
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            @foreach ($pages[$currentPageIndex]['groups'] as $groupIndex => $group)
-                                                <div class="card mb-2">
-                                                    <div class="card-body p-0">
-                                                        <div class="input-group p-2"
-                                                            style="background: {{ $groupIndex == $activeGroupIndex ? '#0162e8' : '#DDE2EF' }};">
-                                                            <span
-                                                                class="input-group-text {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
-                                                                style="border: none;">
-                                                                <span>{{ __('panel.group') }}
-                                                                    {{ $groupIndex + 1 }}</span>
-                                                            </span>
-                                                            <input type="text" class="form-control"
-                                                                wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $groupIndex }}.pg_name"
-                                                                aria-label="{{ __('panel.Enter a Group Name') }}">
-                                                            <a class="input-group-text {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
-                                                                style="border: none; cursor: pointer;"
-                                                                wire:click.prevent="removeGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
-                                                                <i
-                                                                    class="fas fa-trash-alt {{ $groupIndex == $activeGroupIndex ? 'text-white' : 'text-danger' }}"></i>
-                                                            </a>
-                                                            <a class="input-group-text p-1 {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
-                                                                style="border: none; cursor: pointer;"
-                                                                wire:click="setActiveGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
-                                                                <i class="far fa-edit"></i>
-                                                            </a>
-                                                        </div>
-                                                        @error('pages.' . $currentPageIndex . '.groups.' . $groupIndex .
-                                                            '.pg_name')
-                                                            <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="card-footer p-0">
-                                                        <ul class="list-group list-group-flush">
-                                                            @foreach ($group['variables'] as $variableIndex => $variable)
-                                                                <li class="list-group-item"
-                                                                    wire:click="setActiveVariable({{ $currentPageIndex }}, {{ $groupIndex }}, {{ $variableIndex }})"
-                                                                    style="cursor: pointer;">
-                                                                    {{ $variable['pv_name'] }}
-                                                                </li>
-                                                            @endforeach
-                                                            <!-- Add Variable Button -->
-                                                            <li class="list-group-item">
-                                                                <a href=""
-                                                                    wire:click.prevent="addVariable({{ $currentPageIndex }}, {{ $groupIndex }})"
-                                                                    style="cursor: pointer;">
-                                                                    <i class="fas fa-plus-circle me-2"></i>
-                                                                    {{ __('panel.add_variable') }}
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                            <!-- this will be for add group  -->
-                                            <div class="d-flex justify-content-between">
-                                                <a wire:click.prevent="addGroup({{ $currentPageIndex }})"
-                                                    class="d-block pt-2" style="cursor: pointer;">
-                                                    <i class="fas fa-plus-square text-primary me-3"></i>
-                                                    {{ __('panel.add_group') }}
+                                <div class="input-group-text p-1">
+                                    <a class="" wire:click.prevent="removePage({{ $currentPageIndex }})">
+                                        <i class="far fa-trash-alt "></i>
+                                    </a>
+                                    <a class="input-group-text p-1 "
+                                        wire:click="setActivePage({{ $index }})" style="border: none;">
+                                        <i class="far fa-edit"></i>
+                                    </a>
+                                </div>
+                            </li>
+                            @if (isset($pages[$currentPageIndex]) && $currentPageIndex == $index)
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    @foreach ($pages[$currentPageIndex]['groups'] as $groupIndex => $group)
+                                    <div class="card mb-2">
+                                        <div class="card-body p-0">
+                                            <div class="input-group p-2"
+                                                style="background: {{ $groupIndex == $activeGroupIndex ? '#0162e8' : '#DDE2EF' }};">
+                                                <span
+                                                    class="input-group-text {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
+                                                    style="border: none;">
+                                                    <span>{{ __('panel.group') }}
+                                                        {{ $groupIndex + 1 }}</span>
+                                                </span>
+                                                <input type="text" class="form-control"
+                                                    wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $groupIndex }}.pg_name"
+                                                    aria-label="{{ __('panel.Enter a Group Name') }}">
+                                                <a class="input-group-text {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
+                                                    style="border: none; cursor: pointer;"
+                                                    wire:click.prevent="removeGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
+                                                    <i
+                                                        class="fas fa-trash-alt {{ $groupIndex == $activeGroupIndex ? 'text-white' : 'text-danger' }}"></i>
                                                 </a>
-
+                                                <a class="input-group-text p-1 {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
+                                                    style="border: none; cursor: pointer;"
+                                                    wire:click="setActiveGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
+                                                    <i class="far fa-edit"></i>
+                                                </a>
                                             </div>
+                                            @error('pages.' . $currentPageIndex . '.groups.' . $groupIndex .
+                                            '.pg_name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="card-footer p-0">
+                                            <ul class="list-group list-group-flush">
+                                                @foreach ($group['variables'] as $variableIndex => $variable)
+                                                <li class="list-group-item"
+                                                    wire:click="setActiveVariable({{ $currentPageIndex }}, {{ $groupIndex }}, {{ $variableIndex }})"
+                                                    style="cursor: pointer;">
+                                                    {{ $variable['pv_name'] }}
+                                                </li>
+                                                @endforeach
+                                                <!-- Add Variable Button -->
+                                                <li class="list-group-item">
+                                                    <a href=""
+                                                        wire:click.prevent="addVariable({{ $currentPageIndex }}, {{ $groupIndex }})"
+                                                        style="cursor: pointer;">
+                                                        <i class="fas fa-plus-circle me-2"></i>
+                                                        {{ __('panel.add_variable') }}
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
-                                @endif
+                                    @endforeach
+                                    <!-- this will be for add group  -->
+                                    <div class="d-flex justify-content-between">
+                                        <a wire:click.prevent="addGroup({{ $currentPageIndex }})"
+                                            class="d-block pt-2" style="cursor: pointer;">
+                                            <i class="fas fa-plus-square text-primary me-3"></i>
+                                            {{ __('panel.add_group') }}
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
                             @endforeach
                         </ul>
                         <div class="d-flex justify-content-between">
@@ -465,210 +468,218 @@
                             </a>
                         </div>
                     </div>
+
+
+
                     <div class="col-sm-12 col-md-8 pt-3">
                         @if (isset($pages[$currentPageIndex]))
-                            <div class="card">
-                                <div class="card-header mb-0 pb-0">
-                                    <h2><i class="far fa-edit" style="color: #0162e8"></i> {{ __('panel.page') }}
-                                        {{ $currentPageIndex + 1 }}</h2>
-                                </div>
-                                <div class="card-body mt-0 pt-0">
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-4 pt-3">
-                                            <label
-                                                for="{{ $pages[$currentPageIndex]['doc_page_name'] }}">{{ __('panel.page_title') }}</label>
-                                            <input type="text" class="form-control"
-                                                id="pages.{{ $index }}.doc_page_name"
-                                                wire:model.defer="pages.{{ $currentPageIndex }}.doc_page_name">
-                                            @error('pages.' . $currentPageIndex . '.doc_page_name')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                        <div class="col-sm-12 col-md-8 pt-3">
-                                            <label for="{{ $pages[$currentPageIndex]['doc_page_description'] }}">
-                                                {{ __('panel.page_description') }}
-                                            </label>
-                                            <input type="text" class="form-control"
-                                                id="{{ $pages[$currentPageIndex]['doc_page_description'] }}"
-                                                wire:model.defer="pages.{{ $currentPageIndex }}.doc_page_description">
-                                            @error('pages.' . $currentPageIndex . '.doc_page_description')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
+                        <div class="card">
+                            <div class="card-header mb-0 pb-0">
+                                <h2><i class="far fa-edit" style="color: #0162e8"></i> {{ __('panel.page') }}
+                                    {{ $currentPageIndex + 1 }}
+                                </h2>
+                            </div>
+                            <div class="card-body mt-0 pt-0">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-4 pt-3">
+                                        <label
+                                            for="{{ $pages[$currentPageIndex]['doc_page_name'] }}">{{ __('panel.page_title') }}</label>
+                                        <input type="text" class="form-control"
+                                            id="pages.{{ $index }}.doc_page_name"
+                                            wire:model.defer="pages.{{ $currentPageIndex }}.doc_page_name">
+                                        @error('pages.' . $currentPageIndex . '.doc_page_name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
-                                    <div class="row">
+                                    <div class="col-sm-12 col-md-8 pt-3">
+                                        <label for="{{ $pages[$currentPageIndex]['doc_page_description'] }}">
+                                            {{ __('panel.page_description') }}
+                                        </label>
+                                        <input type="text" class="form-control"
+                                            id="{{ $pages[$currentPageIndex]['doc_page_description'] }}"
+                                            wire:model.defer="pages.{{ $currentPageIndex }}.doc_page_description">
+                                        @error('pages.' . $currentPageIndex . '.doc_page_description')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row">
 
-                                        <div class="col-sm-12 col-md-4 pt-5">
-                                            <div class="row align-items-end mb-4 mb-md-0">
-                                                <div class="col-md mb-4 mb-md-0">
-                                                    <h4>{{ __('panel.groups') }}</h4>
-                                                </div>
-                                                <div class="col-md-auto aos-init aos-animate" data-aos="fade-start">
-                                                    <a href=""
-                                                        wire:click.prevent="addGroup({{ $currentPageIndex }})">
-                                                        <i class="fas fa-plus-circle me-2"></i>
-                                                        <span>{{ __('panel.add_group') }}</span>
+                                    <div class="col-sm-12 col-md-4 pt-5">
+                                        <div class="row align-items-end mb-4 mb-md-0">
+                                            <div class="col-md mb-4 mb-md-0">
+                                                <h4>{{ __('panel.groups') }}</h4>
+                                            </div>
+                                            <div class="col-md-auto aos-init aos-animate" data-aos="fade-start">
+                                                <a href=""
+                                                    wire:click.prevent="addGroup({{ $currentPageIndex }})">
+                                                    <i class="fas fa-plus-circle me-2"></i>
+                                                    <span>{{ __('panel.add_group') }}</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        @foreach ($pages[$currentPageIndex]['groups'] as $groupIndex => $group)
+                                        <div class="card mb-2">
+                                            <div class="card-body p-0">
+                                                <div class="input-group p-2"
+                                                    style="background: {{ $groupIndex == $activeGroupIndex ? '#0162e8' : '#DDE2EF' }};">
+                                                    <span
+                                                        class="input-group-text {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
+                                                        style="border: none;">
+                                                        <span>{{ __('panel.group') }}
+                                                            {{ $groupIndex + 1 }}</span>
+                                                    </span>
+                                                    <input type="text" class="form-control"
+                                                        wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $groupIndex }}.pg_name"
+                                                        aria-label="{{ __('panel.Enter a Group Name') }}">
+                                                    <a class="input-group-text {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
+                                                        style="border: none; cursor: pointer;"
+                                                        wire:click.prevent="removeGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
+                                                        <i
+                                                            class="fas fa-trash-alt {{ $groupIndex == $activeGroupIndex ? 'text-white' : 'text-danger' }}"></i>
+                                                    </a>
+                                                    <a class="input-group-text p-1 {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
+                                                        style="border: none; cursor: pointer;"
+                                                        wire:click="setActiveGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
+                                                        <i class="far fa-edit"></i>
                                                     </a>
                                                 </div>
+                                                @error('pages.' . $currentPageIndex . '.groups.' . $groupIndex .
+                                                '.pg_name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
-                                            @foreach ($pages[$currentPageIndex]['groups'] as $groupIndex => $group)
-                                                <div class="card mb-2">
-                                                    <div class="card-body p-0">
-                                                        <div class="input-group p-2"
-                                                            style="background: {{ $groupIndex == $activeGroupIndex ? '#0162e8' : '#DDE2EF' }};">
-                                                            <span
-                                                                class="input-group-text {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
-                                                                style="border: none;">
-                                                                <span>{{ __('panel.group') }}
-                                                                    {{ $groupIndex + 1 }}</span>
-                                                            </span>
+                                            <div class="card-footer p-0">
+                                                <ul class="list-group list-group-flush">
+                                                    @foreach ($group['variables'] as $variableIndex => $variable)
+                                                    <li class="list-group-item"
+                                                        wire:click="setActiveVariable({{ $currentPageIndex }}, {{ $groupIndex }}, {{ $variableIndex }})"
+                                                        style="cursor: pointer;">
+                                                        {{ $variable['pv_name'] }}
+                                                    </li>
+                                                    @endforeach
+                                                    <!-- Add Variable Button -->
+                                                    <li class="list-group-item">
+                                                        <a href=""
+                                                            wire:click.prevent="addVariable({{ $currentPageIndex }}, {{ $groupIndex }})"
+                                                            style="cursor: pointer;">
+                                                            <i class="fas fa-plus-circle me-2"></i>
+                                                            {{ __('panel.add_variable') }}
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="col-sm-12 col-md-8 pt-5">
+                                        @if (isset($pages[$currentPageIndex]['groups'][$activeGroupIndex]['variables'][$activeVariableIndex]))
+                                        @php
+                                        $variable =
+                                        $pages[$currentPageIndex]['groups'][$activeGroupIndex][
+                                        'variables'
+                                        ][$activeVariableIndex];
+                                        @endphp
+                                        <div class="card">
+                                            <div class="card-header mb-0">
+                                                <h3 class="mb-0">{{ __('panel.variable') }}
+                                                    {{ $activeVariableIndex + 1 }}
+                                                </h3>
+                                            </div>
+                                            <div class="card-body mt-0">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="pv_name">{{ __('panel.pv_name') }}</label>
                                                             <input type="text" class="form-control"
-                                                                wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $groupIndex }}.pg_name"
-                                                                aria-label="{{ __('panel.Enter a Group Name') }}">
-                                                            <a class="input-group-text {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
-                                                                style="border: none; cursor: pointer;"
-                                                                wire:click.prevent="removeGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
-                                                                <i
-                                                                    class="fas fa-trash-alt {{ $groupIndex == $activeGroupIndex ? 'text-white' : 'text-danger' }}"></i>
-                                                            </a>
-                                                            <a class="input-group-text p-1 {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
-                                                                style="border: none; cursor: pointer;"
-                                                                wire:click="setActiveGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
-                                                                <i class="far fa-edit"></i>
-                                                            </a>
+                                                                wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.variables.{{ $activeVariableIndex }}.pv_name">
+                                                            @error('pages.' . $currentPageIndex . '.groups.' .
+                                                            $activeGroupIndex . '.variables.' .
+                                                            $activeVariableIndex . '.pv_name')
+                                                            <span
+                                                                class="text-danger">{{ $message }}</span>
+                                                            @enderror
                                                         </div>
-                                                        @error('pages.' . $currentPageIndex . '.groups.' . $groupIndex .
-                                                            '.pg_name')
-                                                            <span class="text-danger">{{ $message }}</span>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="pv_question">{{ __('panel.pv_question') }}</label>
+                                                            <input type="text" class="form-control"
+                                                                wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.variables.{{ $activeVariableIndex }}.pv_question">
+                                                            @error('pages.' . $currentPageIndex . '.groups.' .
+                                                            $activeGroupIndex . '.variables.' .
+                                                            $activeVariableIndex . '.pv_question')
+                                                            <span
+                                                                class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6 pt-3">
+                                                        <label
+                                                            for="pv_type">{{ __('panel.pv_type') }}</label>
+                                                        <select name="pv_type" class="form-control"
+                                                            wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.variables.{{ $activeVariableIndex }}.pv_type">
+                                                            <option value="0">
+                                                                {{ __('panel.pv_type_text') }}
+                                                            </option>
+                                                            <option value="1">
+                                                                {{ __('panel.pv_type_number') }}
+                                                            </option>
+                                                            <option value="2">
+                                                                {{ __('panel.pv_type_date') }}
+                                                            </option>
+                                                        </select>
+                                                        @error('pages.' . $currentPageIndex . '.groups.' .
+                                                        $activeGroupIndex . '.variables.' . $activeVariableIndex
+                                                        . '.pv_type')
+                                                        <span class="text-danger">{{ $message }}</span>
                                                         @enderror
                                                     </div>
-                                                    <div class="card-footer p-0">
-                                                        <ul class="list-group list-group-flush">
-                                                            @foreach ($group['variables'] as $variableIndex => $variable)
-                                                                <li class="list-group-item"
-                                                                    wire:click="setActiveVariable({{ $currentPageIndex }}, {{ $groupIndex }}, {{ $variableIndex }})"
-                                                                    style="cursor: pointer;">
-                                                                    {{ $variable['pv_name'] }}
-                                                                </li>
-                                                            @endforeach
-                                                            <!-- Add Variable Button -->
-                                                            <li class="list-group-item">
-                                                                <a href=""
-                                                                    wire:click.prevent="addVariable({{ $currentPageIndex }}, {{ $groupIndex }})"
-                                                                    style="cursor: pointer;">
-                                                                    <i class="fas fa-plus-circle me-2"></i>
-                                                                    {{ __('panel.add_variable') }}
-                                                                </a>
-                                                            </li>
-                                                        </ul>
+                                                    <div class="col-sm-12 col-md-6 pt-3">
+                                                        <label
+                                                            for="pv_required">{{ __('panel.pv_required') }}</label>
+                                                        <select name="pv_required" class="form-control"
+                                                            wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.variables.{{ $activeVariableIndex }}.pv_required">
+                                                            <option value="1">{{ __('panel.yes') }}
+                                                            </option>
+                                                            <option value="0">{{ __('panel.no') }}
+                                                            </option>
+                                                        </select>
+                                                        @error('pages.' . $currentPageIndex . '.groups.' .
+                                                        $activeGroupIndex . '.variables.' . $activeVariableIndex
+                                                        . '.pv_required')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
-                                            @endforeach
-                                        </div>
-                                        <div class="col-sm-12 col-md-8 pt-5">
-                                            @if (isset($pages[$currentPageIndex]['groups'][$activeGroupIndex]['variables'][$activeVariableIndex]))
-                                                @php
-                                                    $variable =
-                                                        $pages[$currentPageIndex]['groups'][$activeGroupIndex][
-                                                            'variables'
-                                                        ][$activeVariableIndex];
-                                                @endphp
-                                                <div class="card">
-                                                    <div class="card-header mb-0">
-                                                        <h3 class="mb-0">{{ __('panel.variable') }}
-                                                            {{ $activeVariableIndex + 1 }}</h3>
-                                                    </div>
-                                                    <div class="card-body mt-0">
-                                                        <div class="row">
-                                                            <div class="col-sm-12 col-md-6">
-                                                                <div class="form-group">
-                                                                    <label
-                                                                        for="pv_name">{{ __('panel.pv_name') }}</label>
-                                                                    <input type="text" class="form-control"
-                                                                        wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.variables.{{ $activeVariableIndex }}.pv_name">
-                                                                    @error('pages.' . $currentPageIndex . '.groups.' .
-                                                                        $activeGroupIndex . '.variables.' .
-                                                                        $activeVariableIndex . '.pv_name')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12 col-md-6">
-                                                                <div class="form-group">
-                                                                    <label
-                                                                        for="pv_question">{{ __('panel.pv_question') }}</label>
-                                                                    <input type="text" class="form-control"
-                                                                        wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.variables.{{ $activeVariableIndex }}.pv_question">
-                                                                    @error('pages.' . $currentPageIndex . '.groups.' .
-                                                                        $activeGroupIndex . '.variables.' .
-                                                                        $activeVariableIndex . '.pv_question')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-sm-12 col-md-6 pt-3">
-                                                                <label
-                                                                    for="pv_type">{{ __('panel.pv_type') }}</label>
-                                                                <select name="pv_type" class="form-control"
-                                                                    wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.variables.{{ $activeVariableIndex }}.pv_type">
-                                                                    <option value="0">
-                                                                        {{ __('panel.pv_type_text') }}</option>
-                                                                    <option value="1">
-                                                                        {{ __('panel.pv_type_number') }}</option>
-                                                                    <option value="2">
-                                                                        {{ __('panel.pv_type_date') }}</option>
-                                                                </select>
-                                                                @error('pages.' . $currentPageIndex . '.groups.' .
-                                                                    $activeGroupIndex . '.variables.' . $activeVariableIndex
-                                                                    . '.pv_type')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="col-sm-12 col-md-6 pt-3">
-                                                                <label
-                                                                    for="pv_required">{{ __('panel.pv_required') }}</label>
-                                                                <select name="pv_required" class="form-control"
-                                                                    wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.variables.{{ $activeVariableIndex }}.pv_required">
-                                                                    <option value="1">{{ __('panel.yes') }}
-                                                                    </option>
-                                                                    <option value="0">{{ __('panel.no') }}
-                                                                    </option>
-                                                                </select>
-                                                                @error('pages.' . $currentPageIndex . '.groups.' .
-                                                                    $activeGroupIndex . '.variables.' . $activeVariableIndex
-                                                                    . '.pv_required')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                        {{--  pv_details field --}}
-                                                        <div class="row">
-                                                            <div class="col-sm-12 col-md-12 pt-3">
-                                                                <label for="pv_details">
-                                                                    {{ __('panel.pv_details') }}
-                                                                </label>
-                                                                <textarea name="pv_details" rows="10" class="form-control summernote"
-                                                                    wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.variables.{{ $activeVariableIndex }}.pv_details">
+                                                {{-- pv_details field --}}
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-12 pt-3">
+                                                        <label for="pv_details">
+                                                            {{ __('panel.pv_details') }}
+                                                        </label>
+                                                        <textarea name="pv_details" rows="10" class="form-control summernote"
+                                                            wire:model.defer="pages.{{ $currentPageIndex }}.groups.{{ $activeGroupIndex }}.variables.{{ $activeVariableIndex }}.pv_details">
                                                                     {!! old('pv_details') !!}
                                                                 </textarea>
-                                                                @error('pages.' . $currentPageIndex . '.groups.' .
-                                                                    $groupIndex . '.variables.' . $variableIndex .
-                                                                    '.pv_details')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
+                                                        @error('pages.' . $currentPageIndex . '.groups.' .
+                                                        $groupIndex . '.variables.' . $variableIndex .
+                                                        '.pv_details')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
-                                            @endif
+                                            </div>
                                         </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         @endif
                     </div>
                 </div>
@@ -689,20 +700,20 @@
                         <select name="pv_name" class="form-control">
                             <option value="" selected>-- {{ __('panel.select_variable') }} --</option>
                             @if ($documentTemplate)
-                                @if ($documentTemplate->documentPages->isNotEmpty())
-                                    @foreach ($documentTemplate->documentPages as $page)
-                                        @foreach ($page->pageGroups as $group)
-                                            @foreach ($group->pageVariables as $variable)
-                                                <option value="{{ $variable->id }}">{{ $variable->pv_name }}
-                                                </option>
-                                            @endforeach
-                                        @endforeach
-                                    @endforeach
-                                @else
-                                    <option value="">No pages available</option>
-                                @endif
+                            @if ($documentTemplate->documentPages->isNotEmpty())
+                            @foreach ($documentTemplate->documentPages as $page)
+                            @foreach ($page->pageGroups as $group)
+                            @foreach ($group->pageVariables as $variable)
+                            <option value="{{ $variable->id }}">{{ $variable->pv_name }}
+                            </option>
+                            @endforeach
+                            @endforeach
+                            @endforeach
                             @else
-                                <p>No document template found.</p>
+                            <option value="">No pages available</option>
+                            @endif
+                            @else
+                            <p>No document template found.</p>
                             @endif
                         </select>
                     </div>
@@ -849,13 +860,13 @@
                     <a href="#next" wire:click="nextStep" role="menuitem">
                         <!-- next -->
                         @if ($currentStep == 1)
-                            {{ __('panel.document_template_text') }} >>
+                        {{ __('panel.document_template_text') }} >>
                         @else
-                            @if ($currentStep == 2)
-                                {{ __('panel.document_template_variables') }} >>
-                            @else
-                                {{ __('panel.document_and_template_formatting') }} >>
-                            @endif
+                        @if ($currentStep == 2)
+                        {{ __('panel.document_template_variables') }} >>
+                        @else
+                        {{ __('panel.document_and_template_formatting') }} >>
+                        @endif
                         @endif
                     </a>
 

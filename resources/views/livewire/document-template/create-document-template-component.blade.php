@@ -424,6 +424,11 @@
                 style="display: {{ $currentStep == 3 ? 'block' : 'none' }}">
 
                 <div class="row">
+
+
+
+
+
                     {{-- start template --}}
                     <div class="col-sm-12 col-md-4 pt-3">
                         <h4 class="mb-3">{{ __('panel.the_pages') }}</h4>
@@ -523,6 +528,9 @@
                             </div>
                         </div>
                     </div>
+
+
+
 
                     <div class="col-sm-12 col-md-8 pt-3">
                         @if (isset($pages[$currentPageIndex]))
