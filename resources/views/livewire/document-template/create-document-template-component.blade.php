@@ -535,11 +535,13 @@
                                                                     <ul class="list-group list-group-flush">
                                                                         @foreach ($group['variables'] as $variableIndex => $variable)
                                                                             <li class="list-group-item {{ $variableIndex == $activeVariableIndex ? 'activeVaraible' : '' }}"
-                                                                                wire:click="setActiveVariable({{ $currentPageIndex }}, {{ $groupIndex }}, {{ $variableIndex }})"
+                                                                                {{-- wire:click="setActiveVariable({{ $currentPageIndex }}, {{ $groupIndex }}, {{ $variableIndex }})" --}}
                                                                                 style="cursor: pointer;">
                                                                                 <div
                                                                                     class="d-flex justify-content-between">
-                                                                                    <span class="d-inline-block">
+                                                                                    <span class="d-inline-block "
+                                                                                        style="flex: 1;"
+                                                                                        wire:click="setActiveVariable({{ $currentPageIndex }}, {{ $groupIndex }}, {{ $variableIndex }})">
                                                                                         {{ $variable['pv_name'] }}
                                                                                     </span>
                                                                                     <a

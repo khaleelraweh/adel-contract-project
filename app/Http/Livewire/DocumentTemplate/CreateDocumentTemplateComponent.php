@@ -494,6 +494,42 @@ class CreateDocumentTemplateComponent extends Component
         }
     }
 
+    // public function removeVariable($pageIndex, $groupIndex, $variableIndex)
+    // {
+    //     if (isset($this->pages[$pageIndex]['groups'][$groupIndex]['variables'][$variableIndex])) {
+    //         // Remove the variable
+    //         array_splice($this->pages[$pageIndex]['groups'][$groupIndex]['variables'], $variableIndex, 1);
+
+    //         // Decrement the variable counter for the group
+    //         if (isset($this->variableCounters[$pageIndex][$groupIndex])) {
+    //             $this->variableCounters[$pageIndex][$groupIndex]--;
+    //         }
+
+    //         // Adjust the activeVariableIndex if necessary
+    //         if ($this->activeVariableIndex == $variableIndex) {
+    //             // If the removed variable was the active one, set the active variable to the previous one
+    //             if ($variableIndex > 0) {
+    //                 $this->activeVariableIndex = $variableIndex - 1;
+    //             } else {
+    //                 // If there are no variables left, set it to 0
+    //                 $this->activeVariableIndex = 0;
+    //             }
+    //         } elseif ($this->activeVariableIndex > $variableIndex) {
+    //             // If the active variable was after the removed one, decrement its index
+    //             $this->activeVariableIndex--;
+    //         }
+
+    //         // Ensure the activeVariableIndex is within bounds
+    //         if ($this->activeVariableIndex >= count($this->pages[$pageIndex]['groups'][$groupIndex]['variables'])) {
+    //             $this->activeVariableIndex = count($this->pages[$pageIndex]['groups'][$groupIndex]['variables']) - 1;
+    //         }
+
+    //         if ($this->activeVariableIndex < 0) {
+    //             $this->activeVariableIndex = 0;
+    //         }
+    //     }
+    // }
+
 
 
 
