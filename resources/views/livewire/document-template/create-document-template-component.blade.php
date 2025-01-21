@@ -501,18 +501,21 @@
                                                                     <div class="d-flex align-items-center">
                                                                         <a class="px-2 {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
                                                                             style="border: none; cursor: pointer;"
-                                                                            wire:click.prevent="removeGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
+                                                                            wire:click.prevent="removeGroup({{ $currentPageIndex }}, {{ $groupIndex }})"
+                                                                            title="{{ __('panel.remove_variable') }}">
                                                                             <i
                                                                                 class="fas fa-trash-alt {{ $groupIndex == $activeGroupIndex ? 'text-white' : 'text-danger' }}"></i>
                                                                         </a>
                                                                         <a class="px-2 {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
                                                                             style="border: none; cursor: pointer;"
-                                                                            wire:click="setActiveGroup({{ $currentPageIndex }}, {{ $groupIndex }})">
+                                                                            wire:click="setActiveGroup({{ $currentPageIndex }}, {{ $groupIndex }})"
+                                                                            title="{{ __('panel.set_active') }}">
                                                                             <i class="far fa-edit"></i>
                                                                         </a>
                                                                         <a class="px-2 {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
                                                                             wire:click.prevent="addVariable({{ $currentPageIndex }}, {{ $groupIndex }})"
-                                                                            style="border: none; cursor: pointer;">
+                                                                            style="border: none; cursor: pointer;"
+                                                                            title="{{ __('panel.add_variable') }}">
                                                                             <i class="fas fa-plus-circle "></i>
                                                                             {{-- {{ __('panel.add_variable') }} --}}
                                                                         </a>
