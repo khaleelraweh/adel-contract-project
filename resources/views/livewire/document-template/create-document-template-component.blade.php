@@ -445,29 +445,29 @@
                         <ul style="list-style: none; margin: 0; padding: 0;">
                             @foreach ($pages as $index => $page)
                                 <li class="input-group p-2 mb-1"
-                                    style="background: {{ $currentPageIndex == $index ? '#0162e8' : '#DDE2EF' }}">
+                                    style="background: {{ $currentPageIndex == $index ? '#0162e8' : '#DDE2EF' }} ; border-radius:0.25em">
 
                                     <span
-                                        class="input-group-text cursor-pointer {{ $currentPageIndex == $index ? 'activePage' : 'unActivePage' }}"
+                                        class="px-2 d-flex align-items-center cursor-pointer {{ $currentPageIndex == $index ? 'activePage' : 'unActivePage' }}"
                                         style="flex:1;border:none;cursor: pointer;"
                                         wire:click="setActivePage({{ $index }})">
                                         {{ $page['doc_page_name'] }}
                                     </span>
 
-                                    <div class="  d-flex align-items-center">
-                                        <a class="p-2 {{ $currentPageIndex == $index ? 'activePage' : '' }}"
+                                    <div class="d-flex align-items-center">
+                                        <a class="px-2 {{ $currentPageIndex == $index ? 'activePage' : '' }}"
                                             wire:click.prevent="removePage({{ $index }})"
                                             style="border: none;cursor: pointer;"
                                             title="{{ __('panel.remove_page') }}">
                                             <i class="far fa-trash-alt"></i>
                                         </a>
-                                        <a class="p-2 {{ $currentPageIndex == $index ? 'activePage' : '' }}"
+                                        <a class="px-2 {{ $currentPageIndex == $index ? 'activePage' : '' }}"
                                             wire:click="setActivePage({{ $index }})"
                                             style="border: none;cursor: pointer;"
                                             title="{{ __('panel.set_active') }}">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <a class="p-2 {{ $currentPageIndex == $index ? 'activePage' : '' }}"
+                                        <a class="px-2 {{ $currentPageIndex == $index ? 'activePage' : '' }}"
                                             wire:click.prevent="addGroup({{ $index }})"
                                             style="border: none;cursor: pointer;"
                                             title="{{ __('panel.add_group') }}">
