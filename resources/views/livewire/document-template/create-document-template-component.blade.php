@@ -29,6 +29,10 @@
             background-color: #DDE2EF;
             color: black;
         }
+
+        .activeGroup {
+            background-color: #01616D !important;
+        }
     </style>
 
     <style>
@@ -471,7 +475,7 @@
                                                 <div class="card mb-2">
                                                     <div class="card-body p-0">
                                                         <div class="input-group p-2"
-                                                            style="background: {{ $groupIndex == $activeGroupIndex ? '#0162e8' : '#DDE2EF' }};">
+                                                            style="background: {{ $groupIndex == $activeGroupIndex ? '#01616D' : '#DDE2EF' }};">
                                                             <span
                                                                 class="input-group-text {{ $groupIndex == $activeGroupIndex ? 'activeGroup' : '' }}"
                                                                 style="border: none;">
