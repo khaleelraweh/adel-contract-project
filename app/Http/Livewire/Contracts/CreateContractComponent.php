@@ -220,6 +220,8 @@ class CreateContractComponent extends Component
                     'contract_type' => $this->contract_type_id,
                     'contract_status' => 0,
                     'contract_template_id' => $this->contract_template_id,
+                    'created_by'            => auth()->user()->full_name,
+
                 ]
             );
 

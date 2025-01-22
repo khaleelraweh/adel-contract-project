@@ -244,6 +244,8 @@ class EditDocumentComponent extends Component
                     'doc_type' => $this->doc_type_id,
                     'doc_status' => 0,
                     'document_template_id' => $this->document_template_id,
+                    'updated_by'            => auth()->user()->full_name,
+
                 ]
             );
 
