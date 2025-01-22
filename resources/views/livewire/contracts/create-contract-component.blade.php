@@ -363,13 +363,20 @@
         <div class="actions clearfix" dir="rtl">
             <div class="d-flex ">
                 <ul role="menu" aria-label="Pagination">
+
                     <li class="{{ $currentStep == 1 ? 'disabled' : '' }}"
                         aria-disabled="{{ $currentStep == 1 ? 'true' : 'false' }}">
-                        <a href="#previous" wire:click="previousStep" role="menuitem"
-                            class="nav-button prev-button">
+
+                        <a href="#previous" style="display: {{ $currentStep == 1 ? 'none' : 'none' }} ;"
+                            role="menuitem">
+                            Previous
+                        </a>
+                        <a href="#previous" wire:click="previousStep" class="nav-button prev-button"
+                            style="display: {{ $currentStep == 1 ? 'none' : 'block' }};" role="menuitem">
                             <i class="fas fa-arrow-right me-1"></i> {{ __('panel.previous') }}
                         </a>
                     </li>
+
                     <li aria-hidden="false" aria-disabled="false"
                         style="display: {{ $currentStep == $totalSteps ? 'none' : 'block' }}">
                         <a href="#next" wire:click="nextStep" role="menuitem" class="nav-button next-button">
