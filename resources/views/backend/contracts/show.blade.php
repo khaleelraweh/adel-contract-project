@@ -1,183 +1,152 @@
 @extends('layouts.admin')
+
 @section('css')
-    <!-- Internal Data table css -->
-    <link href="{{ URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
-    <link href="{{ URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" />
-    <link href="{{ URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
-
-
-    {{-- flat picker --}}
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
+    <!-- Custom Admin CSS -->
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <style>
+        /* Custom Admin Styles */
+        .card {
+            border: none;
+            border-radius: 8px;
+        }
 
+        .card-header {
+            border-radius: 8px 8px 0 0;
+        }
 
-    <!--Internal  Datetimepicker-slider css -->
-    <link href="{{ URL::asset('assets/plugins/amazeui-datetimepicker/css/amazeui.datetimepicker.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.css') }}"
-        rel="stylesheet">
-    <link href="{{ URL::asset('assets/plugins/pickerjs/picker.min.css') }}" rel="stylesheet">
-    <!-- Internal Spectrum-colorpicker css -->
-    <link href="{{ URL::asset('assets/plugins/spectrum-colorpicker/spectrum.css') }}" rel="stylesheet">
+        .table-hover tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-sm {
+            padding: 0.375rem 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+    </style>
     @livewireStyles
 @endsection
 
 @section('page-header')
-    <!-- breadcrumb -->
+    <!-- Breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
-            <div class="d-flex">
+            <div class="d-flex align-items-center">
                 <h4 class="content-title mb-0 my-auto">
-                    <a href="{{ route('admin.contracts.index') }}">{{ __('panel.manage_contracts') }}</a>
-
+                    <a href="{{ route('admin.contracts.index') }}" class="text-decoration-none">
+                        {{ __('panel.manage_contracts') }}
+                    </a>
                 </h4>
-                <span class="text-muted mt-1 tx-13 mr-2 mb-0">
-                    /
-                    {{ __('panel.show_contracts') }}
-                </span>
+                <span class="text-muted mt-1 mx-2">/</span>
+                <span class="text-muted mt-1">{{ __('panel.show_contracts') }}</span>
             </div>
         </div>
         <div class="d-flex my-xl-auto right-content">
-
-
-            <div class="pr-1 mb-3 mb-xl-0">
-                {{-- <button type="button" class="btn btn-warning  btn-icon ml-2"><i class="mdi mdi-refresh"></i></button> --}}
-                <a href="{{ route('admin.contract_templates.create') }}" class="btn btn-warning  btn-icon ml-2">
-                    <i class="mdi mdi-refresh"></i>
-                </a>
-            </div>
-
-
+            <a href="{{ route('admin.contract_templates.create') }}" class="btn btn-warning btn-icon ml-2">
+                <i class="fas fa-sync"></i>
+            </a>
         </div>
     </div>
-    <!-- breadcrumb -->
+    <!-- End Breadcrumb -->
 @endsection
 
 @section('content')
-    <div class="row row-sm ">
-        <div class="col-xl-12">
-            <div class="card">
-                <div class="card-header pb-0">
-                    <div class="d-flex justify-content-between">
-                        <h4 class="card-title mg-b-0">
-                            <i class="fa fa-plus-square me-3 " style="font-size: 20px;"></i>
-                            {{ __('panel.show_contracts') }}
-                        </h4>
-                        <i class="mdi mdi-dots-horizontal text-gray"></i>
-                    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="card-title mb-0">
+                        <i class="fas fa-file-contract me-2"></i>
+                        {{ __('panel.show_contracts') }}
+                    </h4>
                 </div>
                 <div class="card-body">
+                    <!-- Contract Details Table -->
                     <div class="table-responsive">
-                        <table class="table">
-                            <tr>
-                                <th>{{ __('panel.contract_name') }}</th>
-                                <td>{{ $contract->contract_name }}</td>
-                                <th>{{ __('panel.contract_number') }}</th>
-                                <td>{{ $contract->contract_no ?? '-' }}</td>
-                            </tr>
-                            <tr>
-                                <th>{{ __('panel.contract_type') }}</th>
-                                <td>{{ $contract->contract_type() }}</td>
-                                <th>{{ __('panel.created_at') }}</th>
-                                <td>{{ $contract->created_at }}</td>
-                            </tr>
-                            <tr>
-                                <th>{{ __('panel.contract_status') }}</th>
-                                <td>{{ $contract->contract_status() }}</td>
-                                <th>{{ __('panel.contract_file') }}</th>
-                                <td>{{ $contract->contract_file ?? '-' }} </td>
-                            </tr>
-
+                        <table class="table table-hover table-striped">
+                            <tbody>
+                                <tr>
+                                    <th>{{ __('panel.contract_name') }}</th>
+                                    <td>{{ $contract->contract_name }}</td>
+                                    <th>{{ __('panel.contract_number') }}</th>
+                                    <td>{{ $contract->contract_no ?? '-' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>{{ __('panel.contract_type') }}</th>
+                                    <td>{{ $contract->contract_type() }}</td>
+                                    <th>{{ __('panel.created_at') }}</th>
+                                    <td>{{ $contract->created_at }}</td>
+                                </tr>
+                                <tr>
+                                    <th>{{ __('panel.contract_status') }}</th>
+                                    <td>{{ $contract->contract_status() }}</td>
+                                    <th>{{ __('panel.contract_file') }}</th>
+                                    <td>{{ $contract->contract_file ?? '-' }}</td>
+                                </tr>
+                            </tbody>
                         </table>
+                    </div>
 
-                        <h3>{{ __('panel.contract_text') }}</h3>
-                        <div class="card">
-                            <div class="card-body">
-                                {!! $contract->contract_content !!}
-                            </div>
+                    <!-- Contract Content -->
+                    <h3 class="mt-4">{{ __('panel.contract_text') }}</h3>
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            {!! $contract->contract_content !!}
                         </div>
                     </div>
 
-                    <div class="row">
+                    <!-- Action Buttons -->
+                    <div class="row mt-4">
                         <div class="col-12 text-center">
-                            <a href="{{ route('admin.contracts.print', $contract->id) }}"
-                                class="btn btn-primary btn-sm ml-auto">
-                                <i class="fa fa-print"></i>
+                            <a href="{{ route('admin.contracts.print', $contract->id) }}" class="btn btn-primary btn-sm">
+                                <i class="fas fa-print me-2"></i>
                                 {{ __('panel.contract_print') }}
                             </a>
-
                             <a href="{{ route('admin.contracts.pdf', $contract->id) }}"
-                                class="btn btn-secondary btn-sm ml-auto">
-                                <i class="fa fa-file-pdf"></i>
+                                class="btn btn-secondary btn-sm ms-2">
+                                <i class="fas fa-file-pdf me-2"></i>
                                 {{ __('panel.contract_export_pdf') }}
                             </a>
-
-                            {{-- <a href="{{ route('invoice.send_to_email', $invoice->id) }}"
-                                class="btn btn-success btn-sm ml-auto"><i class="fa fa-envelope"></i>
-                                {{ __('Frontend/frontend.send_to_email') }}</a> --}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
 
 @section('js')
-    <!-- Internal Data tables -->
-    <script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/jszip.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/pdfmake.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/vfs_fonts.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/buttons.print.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
-    <!--Internal  Datatable js -->
-    <script src="{{ URL::asset('assets/js/table-data.js') }}"></script>
-
-
-    <!-- Include the Flatpickr JavaScript -->
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Flatpickr JS -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/{{ app()->getLocale() }}.js"></script>
+    <!-- Custom Admin JS -->
+    <script src="{{ asset('js/admin.js') }}"></script>
 
-
-
-    <!--Internal  Datepicker js -->
-    <script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
-    <!--Internal  jquery.maskedinput js -->
-    <script src="{{ URL::asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js') }}"></script>
-    <!--Internal  spectrum-colorpicker js -->
-    <script src="{{ URL::asset('assets/plugins/spectrum-colorpicker/spectrum.js') }}"></script>
-    <!-- Internal Select2.min js -->
-    <script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js') }}"></script>
-
-    <!-- Internal Jquery.steps js -->
-    <script src="{{ URL::asset('assets/plugins/jquery-steps/jquery.steps.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/parsleyjs/parsley.min.js') }}"></script>
-    <!--Internal  Form-wizard js -->
-    <script src="{{ URL::asset('assets/js/form-wizard.js') }}"></script>
-
-
-    <!--Internal Ion.rangeSlider.min js -->
-    <script src="{{ URL::asset('assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js') }}"></script>
-    <!--Internal  jquery-simple-datetimepicker js -->
-    <script src="{{ URL::asset('assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js') }}"></script>
-    <!-- Ionicons js -->
-    <script src="{{ URL::asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js') }}"></script>
-    <!--Internal  pickerjs js -->
-    <script src="{{ URL::asset('assets/plugins/pickerjs/picker.min.js') }}"></script>
-    <!-- Internal form-elements js -->
-    <script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
+    @livewireScripts
 @endsection
