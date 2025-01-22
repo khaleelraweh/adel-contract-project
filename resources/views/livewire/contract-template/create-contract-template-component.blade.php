@@ -1,5 +1,26 @@
 <div>
 
+    <style>
+        .variable {
+            background-color: #DDE2EF;
+            color: #000;
+        }
+
+        .variable-active {
+            background-color: #01616D;
+            color: #fff;
+        }
+
+        .icon {
+            color: #000;
+        }
+
+        .icon-active {
+            background-color: #01616D;
+            color: #fff;
+        }
+    </style>
+
     <div class="mywizard">
         <div class="steps clearfix">
             <ul role="tablist">
@@ -299,7 +320,33 @@
                         <h4 class="mb-3">متغيرات العقد</h4>
                         <ul style="list-style: none;margin:0;padding:0;">
                             @foreach ($variables as $index => $variable)
-                                <li class="w-100 mb-1 d-flex justify-content-between"
+                                <li class="input-group p-2 mb-1 {{ $currentVariableIndex == $index ? 'variable-active' : 'variable' }}"
+                                    style=" border-radius:0.25em">
+
+                                    <span
+                                        class="px-2 d-flex align-items-center cursor-pointer {{ $currentVariableIndex == $index ? '#0162e8' : '#b9c2d8' }}"
+                                        style="flex:1;border:none;cursor: pointer;"
+                                        wire:click="setActiveVariable({{ $index }})">
+                                        {{ $variable['cv_name'] }}
+                                    </span>
+
+                                    <div class="d-flex align-items-center">
+                                        <a class="px-2 {{ $currentVariableIndex == $index ? '#0162e8' : '#b9c2d8' }}"
+                                            wire:click.prevent="removeVariable({{ $index }})"
+                                            style="border: none;cursor: pointer;"
+                                            title="{{ __('panel.remove_variable') }}">
+                                            <i class="far fa-trash-alt"></i>
+                                        </a>
+                                        <a class="px-2 {{ $currentVariableIndex == $index ? '#0162e8' : '#b9c2d8' }}"
+                                            wire:click="setActiveVariable({{ $index }})"
+                                            style="border: none;cursor: pointer;"
+                                            title="{{ __('panel.set_active') }}">
+                                            <i class="far fa-edit"></i>
+                                        </a>
+
+                                    </div>
+                                </li>
+                                {{-- <li class="w-100 mb-1 d-flex justify-content-between"
                                     style="background-color: {{ $currentVariableIndex == $index ? '#0162e8' : '#b9c2d8' }} ; border-width: 0;">
                                     <a class=" "
                                         style="flex: 1;color:white;display: flex;align-items: center;justify-content: flex-start; padding: 10px"
@@ -307,14 +354,12 @@
                                         style="padding: 9px 20px;line-height: 1.538;color:#fff;">
                                         {{ $variable['cv_name'] }} </a>
 
-                                    <a href=""
+                                    <a href="" wire:ignore.self
                                         wire:click.prevent="removeVariable({{ $currentVariableIndex }})"
-                                        class=""
-                                        style="color:#fff;display: flex;justify-content: center;align-items: center">
-                                        <i
-                                            class="fas fa-trash-alt {{ $currentVariableIndex == $index ? 'text-white' : 'text-danger' }}  me-3"></i>
+                                        class="" style="">
+                                        khaleel
                                     </a>
-                                </li>
+                                </li> --}}
                             @endforeach
                         </ul>
                         <div class="d-flex justify-content-between" style="">
