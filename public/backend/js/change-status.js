@@ -771,4 +771,29 @@ $(document).ready(function(){
     });
 
 
+    //  updateContractStatus
+    $(document).on("click",".updateContractStatus",function(){
+        var status = $(this).children("i").attr("status");
+        var contract_id = $(this).attr("contract_id");
+
+        $.ajax({
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type:'post',
+            url:'/admin/contract-templates/update-contract-template-status',
+            data:{status:status,contract_id:contract_id},
+            success:function(resp){
+                if(resp['status']==0){
+                    $("#contract-template-"+contract_id).html("<i class='fas fa-toggle-off fa-lg text-warning' aria-hidden='true' status='Inactive' style='font-size:1.6em' />");
+                }else if (resp['status'] ==1 ){
+                    $("#contract-template-"+contract_id).html("<i class='fas fa-toggle-on fa-lg text-success' aria-hidden='true' status='Active' style='font-size:1.6em' />");
+                }
+            },error:function(){
+                alert("Error");
+            }
+        });
+    });
+
+
 });
