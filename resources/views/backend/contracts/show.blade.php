@@ -131,6 +131,11 @@
                                 <i class="fas fa-file-pdf me-2"></i>
                                 {{ __('panel.contract_export_pdf') }}
                             </a>
+
+                            <a href="{{ route('admin.contracts.index') }}" class="btn btn-info btn-sm ms-2">
+                                <i class="fas fa-list me-2"></i>
+                                {{ __('panel.go_back_to_contracts') }}
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -1852,6 +1852,7 @@ return [
     'contract_template_basic_info'                          =>  'البيانات الاساسية',
     'contracts_variales_not_found'                          =>  'لا يوجد اي متغيرات',
     'contract_template_contracts'                           =>  'عقود القالب',
+    'go_back_to_contracts'                                  =>  'العودة الى قائمة العقود',
 
 
 
