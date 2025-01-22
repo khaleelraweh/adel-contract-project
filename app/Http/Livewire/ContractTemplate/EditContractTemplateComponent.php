@@ -46,6 +46,45 @@ class EditContractTemplateComponent extends Component
         'step4' => '',
     ];
 
+    // public function mount($contractTemplateId = null)
+    // {
+    //     $this->currentVariableIndex = 0;
+
+    //     if ($this->contractTemplate) {
+    //         $this->contract_template_name       =   $this->contractTemplate->contract_template_name;
+    //         $this->language                     =   $this->contractTemplate->language;
+    //         $this->published_on                 =   $this->contractTemplate->published_on;
+    //         $this->status                       =   $this->contractTemplate->status;
+    //         $this->contract_template_text       =   $this->contractTemplate->contract_template_text;
+
+
+    //         $this->variables = $this->contractTemplate->contractVariables->map(function ($variable) {
+    //             return [
+    //                 'variableId'            =>  $variable->id,
+    //                 'cv_name'               =>  $variable->cv_name,
+    //                 'cv_question'           =>  $variable->cv_question,
+    //                 'cv_type'               =>  $variable->cv_type,
+    //                 'cv_required'           =>  $variable->cv_required,
+    //                 'cv_details'            =>  $variable->cv_details,
+    //                 'saved' => true,
+    //             ];
+    //         })->toArray();
+    //     } else {
+    //         $this->variables = [
+    //             [
+    //                 'variableId'            => 1,
+    //                 'cv_name'               =>  __('panel.variable') . (count($this->variables) + 1),
+    //                 'cv_question'           =>  '',
+    //                 'cv_type'               =>   0,
+    //                 'cv_required'           =>   1,
+    //                 'cv_details'            =>  '',
+    //                 'saved' => false, // Initialize saved as false
+    //             ]
+    //         ];
+    //     }
+
+    //     $this->count = count($this->variables);
+    // }
     public function mount($contractTemplateId = null)
     {
         $this->currentVariableIndex = 0;
@@ -271,14 +310,17 @@ class EditContractTemplateComponent extends Component
         // Save the new data to the database
         foreach ($this->variables as $variable) {
             // Save the variable
-            $variableModel = ContractVariable::create([
-                'cv_name'               => $variable['cv_name'],
-                'cv_question'           => $variable['cv_question'],
-                'cv_type'               => $variable['cv_type'],
-                'cv_required'           => $variable['cv_required'],
-                'cv_details'            => $variable['cv_details'],
-                'contract_template_id'  => $this->contractTemplate->id,
-            ]);
+            $variableModel = ContractVariable::updateOrCreate(
+                ['id'                       => $variable['variableId'] ?? null],
+                [
+                    'cv_name'               => $variable['cv_name'],
+                    'cv_question'           => $variable['cv_question'],
+                    'cv_type'               => $variable['cv_type'],
+                    'cv_required'           => $variable['cv_required'],
+                    'cv_details'            => $variable['cv_details'],
+                    'contract_template_id'  => $this->contractTemplate->id,
+                ]
+            );
         }
 
         // Indicate that step three data is saved
