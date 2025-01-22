@@ -107,11 +107,12 @@
     display: block;
 }
 
-/* Navigation Buttons Container */
+/* Navigation Buttons Container *//* Navigation Buttons Container */
+/* Navigation Buttons Container (RTL) */
 .actions {
     padding: 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* Align buttons to the left in RTL */
     background-color: #f9fafb;
     border-top: 1px solid #dde2ef;
     border-radius: 0 0 8px 8px;
@@ -123,8 +124,6 @@
     margin: 0;
     display: flex;
     gap: 10px; /* Space between buttons */
-    width: 100%;
-    justify-content: flex-end; /* Align buttons to the right */
 }
 
 .actions ul li {
@@ -133,15 +132,18 @@
 
 /* Base Button Styles */
 .nav-button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 10px 20px;
     font-size: 14px;
     font-weight: 500;
     text-align: center;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 6px;
     transition: all 0.3s ease;
     cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 /* Previous Button */
@@ -154,6 +156,7 @@
 .prev-button:hover {
     background-color: #5a6268; /* Darker gray on hover */
     border-color: #545b62;
+    transform: translateY(-1px); /* Slight lift on hover */
 }
 
 /* Next Button */
@@ -166,7 +169,7 @@
 .next-button:hover {
     background-color: #0148a8; /* Darker blue on hover */
     border-color: #013d8f;
-    color: #fff;
+    transform: translateY(-1px); /* Slight lift on hover */
 }
 
 /* Finish Button */
@@ -179,6 +182,7 @@
 .finish-button:hover {
     background-color: #218838; /* Darker green on hover */
     border-color: #1e7e34;
+    transform: translateY(-1px); /* Slight lift on hover */
 }
 
 /* Disabled Button Styles */
@@ -187,4 +191,16 @@
     border-color: #949eb7;
     cursor: not-allowed;
     opacity: 0.7;
+    box-shadow: none; /* Remove shadow for disabled state */
+    transform: none; /* Remove hover effect */
+}
+
+/* Icon Styles (RTL Adjustments) */
+.nav-button i {
+    margin-left: 8px; /* Space between text and icon in RTL */
+}
+
+.prev-button i {
+    margin-left: 0; /* No margin for the previous button icon */
+    margin-right: 8px; /* Space between icon and text */
 }

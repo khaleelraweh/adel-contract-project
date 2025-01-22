@@ -360,23 +360,23 @@
 
 
 
-        <div class="actions clearfix">
+        <div class="actions clearfix" dir="rtl">
             <ul role="menu" aria-label="Pagination">
                 <li class="{{ $currentStep == 1 ? 'disabled' : '' }}"
                     aria-disabled="{{ $currentStep == 1 ? 'true' : 'false' }}">
                     <a href="#previous" wire:click="previousStep" role="menuitem" class="nav-button prev-button">
-                        {{ __('panel.previous') }}
+                        <i class="fas fa-arrow-right"></i> {{ __('panel.previous') }}
                     </a>
                 </li>
                 <li aria-hidden="false" aria-disabled="false"
                     style="display: {{ $currentStep == $totalSteps ? 'none' : 'block' }}">
                     <a href="#next" wire:click="nextStep" role="menuitem" class="nav-button next-button">
-                        التالي
+                        التالي <i class="fas fa-arrow-left"></i>
                     </a>
                 </li>
                 <li aria-hidden="true" style="display: {{ $currentStep == $totalSteps ? 'block' : 'none' }}">
                     <a href="#finish" wire:click="finish" role="menuitem" class="nav-button finish-button">
-                        {{ __('panel.finish') }}
+                        {{ __('panel.finish') }} <i class="fas fa-check"></i>
                     </a>
                 </li>
             </ul>
