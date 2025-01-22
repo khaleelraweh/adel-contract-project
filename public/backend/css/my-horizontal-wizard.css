@@ -1,0 +1,190 @@
+/* General Styles */
+.mywizard {
+    border: 1px solid #dde2ef;
+    background-color: #fff;
+    font-family: "Roboto", sans-serif;
+    padding: 20px;
+}
+
+/* Steps Column */
+.steps {
+    background-color: #f9fafb; /* Light background for steps */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.steps ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Vertical layout */
+    gap: 10px; /* Space between steps */
+}
+
+.steps ul li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.steps ul li:hover {
+    background-color: #e9ecef; /* Hover effect */
+}
+
+.steps ul li.current {
+    background-color: #0162e8; /* Active step background */
+}
+
+.steps ul li.current a {
+    color: #fff; /* Active step text color */
+}
+
+.steps ul li a {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between number and title */
+    color: #242f48;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.steps ul li a .number {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #b9c2d8;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.steps ul li.current a .number {
+    background-color: #fff; /* Active step number background */
+    color: #0162e8; /* Active step number color */
+}
+
+.steps ul li a .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Content Column */
+.mycontent {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mycontent .title {
+    font-size: 18px;
+    color: #242f48;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.mycontent .title.current {
+    display: block;
+}
+
+.mycontent .body {
+    display: none;
+}
+
+.mycontent .body.current {
+    display: block;
+}
+
+/* Navigation Buttons Container */
+.actions {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #f9fafb;
+    border-top: 1px solid #dde2ef;
+    border-radius: 0 0 8px 8px;
+}
+
+.actions ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    width: 100%;
+    justify-content: flex-end; /* Align buttons to the right */
+}
+
+.actions ul li {
+    display: inline-block;
+}
+
+/* Base Button Styles */
+.nav-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Previous Button */
+.prev-button {
+    background-color: #6c757d; /* Gray color */
+    color: #fff;
+    border: 1px solid #6c757d;
+}
+
+.prev-button:hover {
+    background-color: #5a6268; /* Darker gray on hover */
+    border-color: #545b62;
+}
+
+/* Next Button */
+.next-button {
+    background-color: #0162e8; /* Primary blue color */
+    color: #fff;
+    border: 1px solid #0162e8;
+}
+
+.next-button:hover {
+    background-color: #0148a8; /* Darker blue on hover */
+    border-color: #013d8f;
+    color: #fff;
+}
+
+/* Finish Button */
+.finish-button {
+    background-color: #28a745; /* Green color */
+    color: #fff;
+    border: 1px solid #28a745;
+}
+
+.finish-button:hover {
+    background-color: #218838; /* Darker green on hover */
+    border-color: #1e7e34;
+}
+
+/* Disabled Button Styles */
+.actions .disabled .nav-button {
+    background-color: #949eb7; /* Grayed out for disabled state */
+    border-color: #949eb7;
+    cursor: not-allowed;
+    opacity: 0.7;
+}

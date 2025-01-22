@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('backend/css/mywizard.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/my-horizontal-wizard.css') }}">
 
     <style>
         .ck.ck-editor__main>.ck-editor__editable {
@@ -51,5 +51,5 @@
 
 
     @section('script')
-        <script src="{{ asset('backend/js/form-wizard.js') }}"></script>
+        <script src="{{ asset('backend/js/form-horizontal-wizard.js') }}"></script>
     @endsection
