@@ -108,10 +108,11 @@
 }
 
 /* Navigation Buttons Container (RTL) */
+/* Navigation Buttons Container (RTL) */
 .actions {
     padding: 20px;
     display: flex;
-    justify-content: flex-start; /* Align buttons to the left in RTL */
+    justify-content: flex-end; /* Align buttons to the end (right side in RTL) */
     background-color: #f9fafb;
     border-top: 1px solid #dde2ef;
     border-radius: 0 0 8px 8px;
