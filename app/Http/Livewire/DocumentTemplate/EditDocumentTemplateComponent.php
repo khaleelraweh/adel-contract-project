@@ -237,6 +237,7 @@ class EditDocumentTemplateComponent extends Component
                     'language'              => $this->language,
                     'published_on'          => $this->published_on,
                     'status'                => $this->status,
+                    'updated_by'            => auth()->user()->full_name,
                 ]
             );
             $this->alert('success', __('panel.document_template_data_saved'));

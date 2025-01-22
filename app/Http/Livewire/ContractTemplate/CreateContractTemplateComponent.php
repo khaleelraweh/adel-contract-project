@@ -165,6 +165,7 @@ class CreateContractTemplateComponent extends Component
                         'language'                  => $this->language,
                         'published_on'              => Carbon::now(),
                         'status'                    => $this->status,
+                        'created_by'            => auth()->user()->full_name,
                     ]
                 );
             } else {
@@ -174,6 +175,7 @@ class CreateContractTemplateComponent extends Component
                         'language'              => $this->language,
                         'published_on'          => Carbon::now(),
                         'status'                => $this->status,
+                        'created_by'            => auth()->user()->full_name,
                     ]
                 );
             }
