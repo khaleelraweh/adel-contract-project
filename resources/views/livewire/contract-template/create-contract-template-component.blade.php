@@ -320,7 +320,7 @@
 
                 <div class="row">
                     <div class="col-sm-12 col-md-4 pt-3">
-                        <h4 class="mb-3">متغيرات العقد</h4>
+                        <h4 class="mb-2 pb-2" style="border-bottom:4px solid #01616D "> متغيرات العقد</h4>
                         <ul style="list-style: none;margin:0;padding:0;">
                             @foreach ($variables as $index => $variable)
                                 <li class="input-group p-2 mb-1 {{ $currentVariableIndex == $index ? 'variable-active' : 'variable' }}"
