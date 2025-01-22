@@ -16,8 +16,11 @@
         }
 
         .icon-active {
-            background-color: #01616D;
             color: #fff;
+        }
+
+        .icon-active:hover {
+            color: #e37272;
         }
     </style>
 
@@ -331,13 +334,13 @@
                                     </span>
 
                                     <div class="d-flex align-items-center">
-                                        <a class="px-2 {{ $currentVariableIndex == $index ? '#0162e8' : '#b9c2d8' }}"
+                                        <a class="px-2 {{ $currentVariableIndex == $index ? 'icon-active' : 'icon' }}"
                                             wire:click.prevent="removeVariable({{ $index }})"
                                             style="border: none;cursor: pointer;"
                                             title="{{ __('panel.remove_variable') }}">
                                             <i class="far fa-trash-alt"></i>
                                         </a>
-                                        <a class="px-2 {{ $currentVariableIndex == $index ? '#0162e8' : '#b9c2d8' }}"
+                                        <a class="px-2 {{ $currentVariableIndex == $index ? 'icon-active' : 'icon' }}"
                                             wire:click="setActiveVariable({{ $index }})"
                                             style="border: none;cursor: pointer;"
                                             title="{{ __('panel.set_active') }}">
