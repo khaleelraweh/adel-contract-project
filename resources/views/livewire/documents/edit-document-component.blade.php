@@ -245,7 +245,7 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-12">
 
-                                    @foreach ($documentPage['groups'] as $groupIndex => $pageGroup)
+                                    {{-- @foreach ($documentPage['groups'] as $groupIndex => $pageGroup)
                                         <fieldset>
                                             <legend>{{ $pageGroup['pg_name'] }}</legend>
 
@@ -265,11 +265,75 @@
                                                             {{ $pageVariable['pv_required'] == 0 ? '' : 'required' }}>
                                                         <small>{{ $pageVariable['pv_details'] }}</small>
 
-                                                        @error('docData.' . $pageIndex . '.groups.' . $groupIndex .
-                                                            '.variables.' . $variableIndex . '.pv_value')
+                                                        @error('docData.' . $pageIndex . '.groups.' . $groupIndex . '.variables.' . $variableIndex . '.pv_value')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
 
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </fieldset>
+                                    @endforeach --}}
+
+                                    @foreach ($documentPage['groups'] as $groupIndex => $pageGroup)
+                                        <fieldset>
+                                            <legend>{{ $pageGroup['pg_name'] }}</legend>
+                                            @foreach ($pageGroup['variables'] as $variableIndex => $pageVariable)
+                                                <div class="row">
+                                                    <div class="col-sm-12 {{ $loop->first ? '' : 'pt-3' }} ">
+                                                        <label for="{{ 'text_' . $pageVariable['pv_id'] }}">
+                                                            {{ $pageVariable['pv_name'] }}:
+                                                            (<small>{{ $pageVariable['pv_question'] }}</small>)
+                                                        </label>
+                                                        @switch($pageVariable['pv_type'])
+                                                            @case(0)
+                                                                <input type="text" name="{{ $pageVariable['pv_id'] }}"
+                                                                    id="{{ 'text_' . $pageVariable['pv_id'] }}"
+                                                                    wire:model.defer="docData.{{ $pageIndex }}.groups.{{ $groupIndex }}.variables.{{ $variableIndex }}.pv_value"
+                                                                    value="{{ $pageVariable['pv_value'] }}" class="form-control"
+                                                                    {{ $pageVariable['pv_required'] == 0 ? '' : 'required' }}
+                                                                    class="form-control">
+                                                                <small>{!! $pageVariable['pv_details'] !!}</small>
+                                                                @error('docData.' . $pageIndex . '.groups.' . $groupIndex .
+                                                                    '.variables.' . $variableIndex . '.pv_value')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            @break
+
+                                                            @case(1)
+                                                                <input type="number" name="{{ $pageVariable['pv_id'] }}"
+                                                                    id="{{ 'text_' . $pageVariable['pv_id'] }}"
+                                                                    wire:model.defer="docData.{{ $pageIndex }}.groups.{{ $groupIndex }}.variables.{{ $variableIndex }}.pv_value"
+                                                                    value="{{ $pageVariable['pv_value'] }}" class="form-control"
+                                                                    {{ $pageVariable['pv_required'] == 0 ? '' : 'required' }}
+                                                                    class="form-control">
+                                                                <small>{{ $pageVariable['pv_details'] }}</small>
+                                                                @error('docData.' . $pageIndex . '.groups.' . $groupIndex .
+                                                                    '.variables.' . $variableIndex . '.pv_value')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            @break
+
+                                                            @case(2)
+                                                                <div class="input-group flatpickr" id="flatpickr-datetime"
+                                                                    wire:ignore>
+                                                                    <input type="text" name="published_on"
+                                                                        wire:model.defer="docData.{{ $pageIndex }}.groups.{{ $groupIndex }}.variables.{{ $variableIndex }}.pv_value"
+                                                                        value="{{ $pageVariable['pv_value'] }}"
+                                                                        class="form-control" placeholder="Select date" data-input
+                                                                        readonly>
+                                                                    <span class="input-group-text input-group-addon" data-toggle>
+                                                                        <i data-feather="calendar"></i>
+                                                                    </span>
+                                                                </div>
+                                                                @error('docData.' . $pageIndex . '.groups.' . $groupIndex .
+                                                                    '.variables.' . $variableIndex . '.pv_value')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            @break
+
+                                                            @default
+                                                        @endswitch
                                                     </div>
                                                 </div>
                                             @endforeach
