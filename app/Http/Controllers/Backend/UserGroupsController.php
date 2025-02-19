@@ -86,50 +86,20 @@ class UserGroupsController extends Controller
         return view('backend.user_groups.edit', compact('user_group'));
     }
 
-    public function update(SupervisorRequest $request, User $supervisor)
+    public function update(UserGroupRequest $request, Role $user_group)
     {
         if (!auth()->user()->ability('admin', 'update_user_groups')) {
             return redirect('admin/index');
         }
 
-        $input['first_name'] = $request->first_name;
-        $input['last_name'] = $request->last_name;
-        $input['username'] = $request->username;
-        $input['email'] = $request->email;
-        $input['mobile'] = $request->mobile;
-        if (trim($request->password) != '') {
-            $input['password'] = bcrypt($request->password);
-        }
-        $input['status'] = $request->status;
-        $input['updated_by'] = auth()->user()->full_name;
 
+        $input['name'] = "users";
+        $input['display_name'] = $request->display_name;
+        $input['description'] = $request->description;
+        $input['allowed_route'] = 'admin';
 
-        if ($image = $request->file('user_image')) {
+        $user_groups = Role::create($input);
 
-            if ($supervisor->user_image != null && File::exists('assets/users/' . $supervisor->user_image)) {
-                unlink('assets/users/' . $supervisor->user_image);
-            }
-
-            $manager = new ImageManager(new Driver());
-            $file_name = Str::slug($request->username) . '_' . time() .  "." . $image->getClientOriginalExtension();
-            $img = $manager->read($request->file('user_image'));
-            // $img = $img->resize(370, 246);
-            $img->toJpeg(80)->save(base_path('public/assets/users/' . $file_name));
-
-
-            $input['user_image'] = $file_name;
-        }
-
-        $supervisor->update($input);
-        //update permission
-        //add permissions
-
-        if (isset($request->all_permissions)) {
-            $permissions = Permission::get(['id']);
-            $supervisor->permissions()->sync($permissions);
-        } else if (isset($request->permissions) && count($request->permissions) > 0) {
-            $supervisor->permissions()->sync($request->permissions);
-        }
 
         return redirect()->route('admin.user_groups.index')->with([
             'message' => 'Updated successfully',
@@ -137,57 +107,17 @@ class UserGroupsController extends Controller
         ]);
     }
 
-    public function destroy(User $supervisor)
+    public function destroy(Role $user_group)
     {
         if (!auth()->user()->ability('admin', 'delete_user_groups')) {
             return redirect('admin/index');
         }
 
-        // first: delete image from users path 
-        if (File::exists('assets/users/' . $supervisor->user_image)) {
-            unlink('assets/users/' . $supervisor->user_image);
-        }
-        //second : delete supervisor from users table 
-        $supervisor->delete();
+        $user_group->delete();
 
         return redirect()->route('admin.user_groups.index')->with([
             'message' => 'Deleted successfully',
             'alert-type' => 'success'
         ]);
-    }
-
-    public function remove_image(Request $request)
-    {
-
-        if (!auth()->user()->ability('admin', 'delete_user_groups')) {
-            return redirect('admin/index');
-        }
-
-        $supervisor = User::findOrFail($request->supervisor_id);
-        if (File::exists('assets/users/' . $supervisor->user_image)) {
-            unlink('assets/users/' . $supervisor->user_image);
-            $supervisor->user_image = null;
-            $supervisor->save();
-        }
-        if ($supervisor->user_image != null) {
-            $supervisor->user_image = null;
-            $supervisor->save();
-        }
-
-        return true;
-    }
-
-    public function updateSupervisorStatus(Request $request)
-    {
-        if ($request->ajax()) {
-            $data = $request->all();
-            if ($data['status'] == "Active") {
-                $status = 0;
-            } else {
-                $status = 1;
-            }
-            User::where('id', $data['supervisor_id'])->update(['status' => $status]);
-            return response()->json(['status' => $status, 'supervisor_id' => $data['supervisor_id']]);
-        }
     }
 }

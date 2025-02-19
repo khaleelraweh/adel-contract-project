@@ -45,7 +45,7 @@
                 <thead>
                     <tr>
                         <th>{{ __('panel.user_group_name') }}</th>
-                        <th>{{ __('panel.status') }}</th>
+                        {{-- <th>{{ __('panel.status') }}</th> --}}
                         <th class="d-none d-sm-table-cell">{{ __('panel.created_at') }}</th>
                         <th class="text-center" style="width:30px;">{{ __('panel.actions') }}</th>
                     </tr>
@@ -58,7 +58,7 @@
                                 {{ $user_group->display_name }} <br>
                             </td>
 
-                            <td>
+                            {{-- <td>
                                 @if ($user_group->status == 1)
                                     <a href="javascript:void(0);" class="updateUserGroupStatus "
                                         id="user_group-{{ $user_group->id }}" user_group_id="{{ $user_group->id }}">
@@ -72,7 +72,7 @@
                                             style="font-size: 1.6em"></i>
                                     </a>
                                 @endif
-                            </td>
+                            </td> --}}
                             <td class="d-none d-sm-table-cell">
                                 {{ \Carbon\Carbon::parse($user_group->published_on)->diffForHumans() }}
                             </td>
