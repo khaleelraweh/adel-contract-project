@@ -44,7 +44,7 @@ class UserGroupsController extends Controller
 
         $permissions = Permission::get(['id', 'display_name']);
 
-        return view('backend.supervisors.create', compact('permissions'));
+        return view('backend.user_groups.create', compact('permissions'));
     }
 
     public function store(SupervisorRequest $request)
@@ -92,7 +92,7 @@ class UserGroupsController extends Controller
 
 
 
-        return redirect()->route('admin.supervisors.index')->with([
+        return redirect()->route('admin.user_groups.index')->with([
             'message' => 'created successfully',
             'alert-type' => 'success'
         ]);
@@ -103,7 +103,7 @@ class UserGroupsController extends Controller
         if (!auth()->user()->ability('admin', 'display_user_groups')) {
             return redirect('admin/index');
         }
-        return view('backend.supervisors.show', compact('supervisor'));
+        return view('backend.user_groups.show', compact('supervisor'));
     }
 
     public function edit(User $supervisor)
@@ -115,7 +115,7 @@ class UserGroupsController extends Controller
         $permissions = Permission::get(['id', 'display_name']);
         $supervisorPermissions = UserPermissions::whereUserId($supervisor->id)->pluck('permission_id')->toArray();
 
-        return view('backend.supervisors.edit', compact('supervisor', 'permissions', 'supervisorPermissions'));
+        return view('backend.user_groups.edit', compact('supervisor', 'permissions', 'supervisorPermissions'));
     }
 
     public function update(SupervisorRequest $request, User $supervisor)
@@ -163,7 +163,7 @@ class UserGroupsController extends Controller
             $supervisor->permissions()->sync($request->permissions);
         }
 
-        return redirect()->route('admin.supervisors.index')->with([
+        return redirect()->route('admin.user_groups.index')->with([
             'message' => 'Updated successfully',
             'alert-type' => 'success'
         ]);
@@ -182,7 +182,7 @@ class UserGroupsController extends Controller
         //second : delete supervisor from users table 
         $supervisor->delete();
 
-        return redirect()->route('admin.supervisors.index')->with([
+        return redirect()->route('admin.user_groups.index')->with([
             'message' => 'Deleted successfully',
             'alert-type' => 'success'
         ]);
