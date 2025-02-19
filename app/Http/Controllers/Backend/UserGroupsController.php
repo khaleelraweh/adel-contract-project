@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Roles;
 use App\Http\Requests\Backend\SupervisorRequest;
+use App\Http\Requests\Backend\UserGroupRequest;
 use App\Models\Permission;
 use App\Models\User;
 use App\Models\UserPermissions;
@@ -42,12 +43,11 @@ class UserGroupsController extends Controller
             return redirect('admin/index');
         }
 
-        $permissions = Permission::get(['id', 'display_name']);
 
-        return view('backend.user_groups.create', compact('permissions'));
+        return view('backend.user_groups.create');
     }
 
-    public function store(SupervisorRequest $request)
+    public function store(UserGroupRequest $request)
     {
         if (!auth()->user()->ability('admin', 'create_user_groups')) {
             return redirect('admin/index');
