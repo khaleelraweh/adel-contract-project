@@ -66,13 +66,7 @@
                                 @endforelse
                             </select>
 
-                            {{-- child class is used to make disabled and enabled to select part --}}
-                            {{-- <div class="col-md-12 col-sm-12 ">
-                                        <label class="col-form-label col-md-12 col-sm-12 ">
-                                            <input class='child' type='checkbox' name="all_permissions" value="ok" />
-                                            {{ __('panel.grant_all_permissions') }}
-                                        </label>
-                                    </div> --}}
+
 
                         </div>
 

@@ -45,9 +45,11 @@ class UserPermissionsController extends Controller
 
         $roles = Role::where('name', 'users')->get(['id', 'display_name']);
 
+        $permissions = Permission::get(['id', 'display_name']);
 
 
-        return view('backend.user_permissions.create', compact('roles'));
+
+        return view('backend.user_permissions.create', compact('roles', $permissions));
     }
 
     public function store(SupervisorRequest $request)
