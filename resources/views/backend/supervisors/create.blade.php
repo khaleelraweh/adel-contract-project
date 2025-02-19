@@ -126,17 +126,17 @@
 
                             </div>
 
-                            {{-- permission row --}}
+                            {{-- user group row --}}
                             <div class="row pt-4">
 
                                 <div class="col-md-12 col-sm-12 ">
 
-                                    <label for="permissions"> {{ __('panel.permissions') }} </label>
-                                    <select name="permissions[]" class="form-control select2 child" multiple="multiple">
-                                        @forelse ($permissions as $permission)
-                                            <option value="{{ $permission->id }}"
-                                                {{ in_array($permission->id, old('permissions', [])) ? 'selected' : null }}>
-                                                {{ $permission->display_name }}</option>
+                                    <label for="user_groups"> {{ __('panel.user_groups') }} </label>
+                                    <select name="user_groups[]" class="form-control select2 child" multiple="multiple">
+                                        @forelse ($user_groups as $user_group)
+                                            <option value="{{ $user_group->id }}"
+                                                {{ in_array($user_group->id, old('user_groups', [])) ? 'selected' : null }}>
+                                                {{ $user_group->display_name }}</option>
                                         @empty
                                         @endforelse
                                     </select>

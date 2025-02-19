@@ -24,7 +24,7 @@ class SupervisorController extends Controller
 
         //get users where has roles 
         $supervisors = User::whereHas('roles', function ($query) {
-            $query->where('name', 'supervisor');
+            $query->where('name', 'users');
         })
             ->when(\request()->keyword != null, function ($query) {
                 $query->search(\request()->keyword);
@@ -44,9 +44,9 @@ class SupervisorController extends Controller
             return redirect('admin/index');
         }
 
-        $permissions = Permission::get(['id', 'display_name']);
+        $user_groups = Role::where('name', 'users')->get(['id', 'display_name']);
 
-        return view('backend.supervisors.create', compact('permissions'));
+        return view('backend.supervisors.create', compact('user_groups'));
     }
 
     public function store(SupervisorRequest $request)
@@ -80,17 +80,21 @@ class SupervisorController extends Controller
         }
 
         $supervisor = User::create($input);
-        $supervisor->markEmailAsVerified();
-        $supervisor->attachRole(Role::whereName('supervisor')->first()->id);
 
+        // $supervisor->attachRole(Role::whereName('supervisor')->first()->id);
 
-
-        if (isset($request->all_permissions)) {
-            $permissions = Permission::get(['id']);
-            $supervisor->permissions()->sync($permissions);
-        } else if (isset($request->permissions) && count($request->permissions) > 0) {
-            $supervisor->permissions()->sync($request->permissions);
+        if (isset($request->user_groups) && count($request->user_groups) > 0) {
+            $supervisor->roles()->sync($request->user_groups);
         }
+
+        // dd($request->user_groups[0]);
+
+        // if (isset($request->all_permissions)) {
+        //     $permissions = Permission::get(['id']);
+        //     $supervisor->permissions()->sync($permissions);
+        // } else if (isset($request->permissions) && count($request->permissions) > 0) {
+        //     $supervisor->permissions()->sync($request->permissions);
+        // }
 
 
 
