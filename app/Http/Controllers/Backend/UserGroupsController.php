@@ -24,7 +24,7 @@ class UserGroupsController extends Controller
             return redirect('admin/index');
         }
 
-        $user_groups = Role::where('name', 'supervisor')
+        $user_groups = Role::where('name', 'users')
             ->when(\request()->keyword != null, function ($query) {
                 $query->search(\request()->keyword);
             })
