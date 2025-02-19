@@ -45,6 +45,7 @@ use App\Http\Controllers\Backend\DocumentsController;
 use App\Http\Controllers\Backend\DocumentTemplatesController;
 use App\Http\Controllers\Backend\PoliciesPrivacyMenuController;
 use App\Http\Controllers\Backend\UserGroupsController;
+use App\Http\Controllers\Backend\UserPermissionsController;
 
 Auth::routes(['verify' => true]);
 // لايقاف الديباجر نضيف هذا الكود
@@ -80,6 +81,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
         // user groups 
         Route::resource('user_groups', UserGroupsController::class);
+
+        // user groups 
+        Route::resource('user_permissions', UserPermissionsController::class);
 
         Route::post('support_menus/update-support-menu-status', [SupportMenuController::class, 'updateSupportMenuStatus'])->name('support_menus.update_support_menu_status');
         Route::resource('support_menus', SupportMenuController::class);
