@@ -44,6 +44,7 @@ use App\Http\Controllers\Backend\ContractTemplateController;
 use App\Http\Controllers\Backend\DocumentsController;
 use App\Http\Controllers\Backend\DocumentTemplatesController;
 use App\Http\Controllers\Backend\PoliciesPrivacyMenuController;
+use App\Http\Controllers\Backend\UserGroupsController;
 
 Auth::routes(['verify' => true]);
 // لايقاف الديباجر نضيف هذا الكود
@@ -76,6 +77,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::post('supervisors/remove-image', [SupervisorController::class, 'remove_image'])->name('supervisors.remove_image');
         Route::post('supervisors/update-supervisor-status', [SupervisorController::class, 'updateSupervisorStatus'])->name('supervisors.update_supervisor_status');
         Route::resource('supervisors', SupervisorController::class);
+
+        // user groups 
+        Route::resource('user_groups', UserGroupsController::class);
 
         Route::post('support_menus/update-support-menu-status', [SupportMenuController::class, 'updateSupportMenuStatus'])->name('support_menus.update_support_menu_status');
         Route::resource('support_menus', SupportMenuController::class);

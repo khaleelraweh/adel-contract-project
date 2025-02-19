@@ -14,7 +14,7 @@ use App\Models\User;
 use App\Models\UserPermissions;
 use Illuminate\Http\Request;
 
-class SupervisorController extends Controller
+class UserGroupsController extends Controller
 {
     public function index()
     {

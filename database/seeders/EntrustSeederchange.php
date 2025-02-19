@@ -16,9 +16,9 @@ class EntrustSeeder extends Seeder
      * Run the database seeds.
      * 
      * Dictionary : 
-     *              01- Roles 
+     *              01- user_groups 
      *              02- Users
-     *              03- AttachRoles To  Users
+     *              03- Attachuser_groups To  Users
      *              04- Create random customer and  AttachRole to customerRole
      * 
      * 
@@ -27,14 +27,14 @@ class EntrustSeeder extends Seeder
     public function run()
     {
 
-        //manage Contracts
-        $manageContracts = Permission::create(['name' => 'manage_contracts', 'display_name' => ['ar'    =>  ' إدارة العقود',   'en'    =>  '’Manage Contracts'], 'route' => 'contracts', 'module' => 'contracts', 'as' => 'contracts.index', 'icon' => 'fas fa-file-signature', 'parent' => '0', 'parent_original' => '0', 'sidebar_link' => '1', 'appear' => '1', 'ordering' => '25',]);
-        $manageContracts->parent_show = $manageContracts->id;
-        $manageContracts->save();
-        $showContracts    =  Permission::create(['name' => 'show_contracts', 'display_name'       =>    ['ar'   =>  ' العقود',   'en'    =>  ' Contracts'],   'route' => 'contracts', 'module' => 'contracts', 'as' => 'contracts.index', 'icon' => 'fas fa-file-signature', 'parent' => '0', 'parent_original' => '0', 'parent_show' => '0', 'sidebar_link' => '0', 'appear' => '0']);
-        $createContracts  =  Permission::create(['name' => 'create_contracts', 'display_name'     =>    ['ar'   =>  'إضافة عقد',   'en'    =>  'Add Contract'],    'route' => 'contracts', 'module' => 'contracts', 'as' => 'contracts.create', 'icon' => null, 'parent' => '0', 'parent_original' => '0', 'parent_show' => '0', 'sidebar_link' => '0', 'appear' => '0']);
-        $displayContracts =  Permission::create(['name' => 'display_contracts', 'display_name'    =>    ['ar'   =>  ' عرض عقد',   'en'    =>  'Display Contract'],    'route' => 'contracts', 'module' => 'contracts', 'as' => 'contracts.show', 'icon' => null, 'parent' => '0', 'parent_original' => '0', 'parent_show' => '0', 'sidebar_link' => '0', 'appear' => '0']);
-        $updateContracts  =  Permission::create(['name' => 'update_contracts', 'display_name'     =>    ['ar'   =>  'تعديل عقد',   'en'    =>  'Edit Contract'],    'route' => 'contracts', 'module' => 'contracts', 'as' => 'contracts.edit', 'icon' => null, 'parent' => '0', 'parent_original' => '0', 'parent_show' => '0', 'sidebar_link' => '0', 'appear' => '0']);
-        $deleteContracts  =  Permission::create(['name' => 'delete_contracts', 'display_name'     =>    ['ar'   =>  'حذف عقد',   'en'    =>  'Delete Contract'],    'route' => 'contracts', 'module' => 'contracts', 'as' => 'contracts.destroy', 'icon' => null, 'parent' => '0', 'parent_original' => '0', 'parent_show' => '0', 'sidebar_link' => '0', 'appear' => '0']);
+        //manage User Group
+        $manageUserGroups = Permission::create(['name' => 'manage_user_groups', 'display_name' => ['ar'    =>  'دليل مجموعة المستخدمين',    'en'    =>  'Manage User Groups'], 'route' => 'user_groups', 'module' => 'user_groups', 'as' => 'user_groups.index', 'icon' => 'fas fa-user-tie', 'parent' => '0', 'parent_original' => '0', 'parent_show' => '0', 'sidebar_link' => '1', 'appear' => '1', 'ordering' => '5',]);
+        $manageUserGroups->parent_show = $manageUserGroups->id;
+        $manageUserGroups->save();
+        $showUserGroups   =  Permission::create(['name' => 'show_user_groups', 'display_name'    =>  ['ar'   =>  'دليل مجموعة المستخدمين',   'en'    =>  'User Groups'], 'route' => 'user_groups', 'module' => 'user_groups', 'as' => 'user_groups.index', 'icon' => 'fas fa-user-tie', 'parent' => $manageUserGroups->id, 'parent_original' => $manageUserGroups->id, 'parent_show' => $manageUserGroups->id, 'sidebar_link' => '0', 'appear' => '0']);
+        $createUserGroups =  Permission::create(['name' => 'create_user_groups', 'display_name'    =>  ['ar'   =>  'إضافة مجموعة مستخدمين',   'en'    =>  'Add User Group'], 'route' => 'user_groups', 'module' => 'user_groups', 'as' => 'user_groups.create', 'icon' => null, 'parent' => $manageUserGroups->id, 'parent_original' => $manageUserGroups->id, 'parent_show' => $manageUserGroups->id, 'sidebar_link' => '0', 'appear' => '0']);
+        $displayUserGroups =  Permission::create(['name' => 'display_user_groups', 'display_name'    =>  ['ar'   =>  'عرض مجموعة مستخدمين',   'en'    =>  'Dsiplay User Group'], 'route' => 'user_groups', 'module' => 'user_groups', 'as' => 'user_groups.show', 'icon' => null, 'parent' => $manageUserGroups->id, 'parent_original' => $manageUserGroups->id, 'parent_show' => $manageUserGroups->id, 'sidebar_link' => '0', 'appear' => '0']);
+        $updateUserGroups  =  Permission::create(['name' => 'update_user_groups', 'display_name'    =>  ['ar'   =>  'تعديل مجموعة مستخدمين',   'en'    =>  'Edit User Group'], 'route' => 'user_groups', 'module' => 'user_groups', 'as' => 'user_groups.edit', 'icon' => null, 'parent' => $manageUserGroups->id, 'parent_original' => $manageUserGroups->id, 'parent_show' => $manageUserGroups->id, 'sidebar_link' => '0', 'appear' => '0']);
+        $deleteUserGroups =  Permission::create(['name' => 'delete_user_groups', 'display_name'    =>  ['ar'   =>  'حذف مجموعة مستخدمين',   'en'    =>  'Delete User Group'], 'route' => 'user_groups', 'module' => 'user_groups', 'as' => 'user_groups.destroy', 'icon' => null, 'parent' => $manageUserGroups->id, 'parent_original' => $manageUserGroups->id, 'parent_show' => $manageUserGroups->id, 'sidebar_link' => '0', 'appear' => '0']);
     }
 }
