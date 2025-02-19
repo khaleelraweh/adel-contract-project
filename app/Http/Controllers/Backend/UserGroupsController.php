@@ -58,8 +58,6 @@ class UserGroupsController extends Controller
         $input['display_name'] = $request->display_name;
         $input['description'] = $request->description;
         $input['allowed_route'] = 'admin';
-        // $input['status'] = $request->status;
-        $input['created_by'] = auth()->user()->full_name;
 
         $user_groups = Role::create($input);
 
