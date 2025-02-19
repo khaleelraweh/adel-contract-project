@@ -21,7 +21,7 @@
                         @endif
                     </li>
                     <li class="ms-1">
-                        <a href="{{ route('admin.supervisors.index') }}">
+                        <a href="{{ route('admin.user_permissions.index') }}">
                             {{ __('panel.show_supervisors') }}
                         </a>
                     </li>
@@ -47,166 +47,37 @@
                 @endif
 
                 {{-- enctype used cause we will save images  --}}
-                <form action="{{ route('admin.supervisors.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.user_permissions.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
-                    <div class="row">
 
-                        <div class="col-sm-12 col-md-8">
+                    {{-- user group row --}}
+                    <div class="row pt-4">
 
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="first_name"> {{ __('panel.first_name') }}</label>
-                                        <input type="text" id="first_name" name="first_name"
-                                            value="{{ old('first_name') }}" class="form-control" placeholder="">
-                                        @error('first_name')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="last_name">{{ __('panel.last_name') }}</label>
-                                        <input type="text" id="last_name" name="last_name"
-                                            value="{{ old('last_name') }}" class="form-control" placeholder="">
-                                        @error('last_name')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-md-12 col-sm-12 ">
 
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="username">{{ __('panel.user_name') }}</label>
-                                        <input type="text" id="username" name="username" value="{{ old('username') }}"
-                                            class="form-control" placeholder="">
-                                        @error('username')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="password">{{ __('panel.user_password') }}</label>
-                                        <input type="text" id="password" name="password" value="{{ old('password') }}"
-                                            class="form-control" placeholder="">
-                                        @error('password')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
+                            <label for="user_groups"> {{ __('panel.user_groups') }} </label>
+                            <select name="user_groups[]" class="form-control select2 child">
+                                @forelse ($user_groups as $user_group)
+                                    <option value="{{ $user_group->id }}"
+                                        {{ in_array($user_group->id, old('user_groups', [])) ? 'selected' : null }}>
+                                        {{ $user_group->display_name }}</option>
+                                @empty
+                                @endforelse
+                            </select>
 
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="email">{{ __('panel.email') }}</label>
-                                        <input type="text" id="email" name="email" value="{{ old('email') }}"
-                                            class="form-control" placeholder="">
-                                        @error('email')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="mobile">{{ __('panel.mobile') }}</label>
-                                        <input type="text" id="mobile" name="mobile" value="{{ old('mobile') }}"
-                                            class="form-control" placeholder="">
-                                        @error('mobile')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            {{-- user group row --}}
-                            <div class="row pt-4">
-
-                                <div class="col-md-12 col-sm-12 ">
-
-                                    <label for="user_groups"> {{ __('panel.user_groups') }} </label>
-                                    <select name="user_groups[]" class="form-control select2 child" multiple="multiple">
-                                        @forelse ($user_groups as $user_group)
-                                            <option value="{{ $user_group->id }}"
-                                                {{ in_array($user_group->id, old('user_groups', [])) ? 'selected' : null }}>
-                                                {{ $user_group->display_name }}</option>
-                                        @empty
-                                        @endforelse
-                                    </select>
-
-                                    {{-- child class is used to make disabled and enabled to select part --}}
-                                    {{-- <div class="col-md-12 col-sm-12 ">
+                            {{-- child class is used to make disabled and enabled to select part --}}
+                            {{-- <div class="col-md-12 col-sm-12 ">
                                         <label class="col-form-label col-md-12 col-sm-12 ">
                                             <input class='child' type='checkbox' name="all_permissions" value="ok" />
                                             {{ __('panel.grant_all_permissions') }}
                                         </label>
                                     </div> --}}
 
-                                </div>
-
-                            </div>
-
-
-
                         </div>
-
-                        {{-- image of supervisor account --}}
-                        <div class="col-sm-12 col-md-4">
-                            <div class="row pt-3">
-                                <div class="col-12">
-                                    <label for="user_image"> {{ __('panel.image') }} </label>
-                                    <br>
-                                    <span class="form-text text-muted">{{ __('panel.user_image_size') }} </span>
-                                    <div class="file-loading">
-                                        <input type="file" name="user_image" id="supervisor_image"
-                                            class="file-input-overview ">
-                                        <span class="form-text text-muted">{{ __('panel.user_image_size') }} </span>
-                                        @error('user_image')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12 col-md-2 pt-3">
-                                    <label for="status" class="control-label">
-                                        <span>{{ __('panel.status') }}</span>
-                                    </label>
-                                </div>
-                                <div class="col-sm-12 col-md-10 pt-3">
-                                    <div class="form-check form-check-inline">
-                                        <input type="radio" class="form-check-input" name="status" id="status_active"
-                                            value="1" {{ old('status', '1') == '1' ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="status_active">
-                                            {{ __('panel.status_active') }}
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input type="radio" class="form-check-input" name="status"
-                                            id="status_inactive" value="0"
-                                            {{ old('status') == '0' ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="status_inactive">
-                                            {{ __('panel.status_inactive') }}
-                                        </label>
-                                    </div>
-                                    @error('status')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                        </div>
-
 
                     </div>
+
 
                     <div class="row">
                         <div class="col-sm-12 col-md-2 pt-3 d-none d-md-block">
@@ -218,7 +89,7 @@
                                 {{ __('panel.save_data') }}
                             </button>
 
-                            <a href="{{ route('admin.supervisors.index') }}" name="submit"
+                            <a href="{{ route('admin.user_permissions.index') }}" name="submit"
                                 class=" btn btn-outline-danger">
                                 <i class="icon-lg  me-2" data-feather="x"></i>
                                 {{ __('panel.cancel') }}
