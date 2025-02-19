@@ -18,12 +18,12 @@ class UserGroupsController extends Controller
 {
     public function index()
     {
-        if (!auth()->user()->ability('admin', 'manage_supervisors , show_supervisors')) {
+        if (!auth()->user()->ability('admin', 'manage_user_groups , show_user_groups')) {
             return redirect('admin/index');
         }
 
         //get users where has roles 
-        $supervisors = User::whereHas('roles', function ($query) {
+        $user_groups = User::whereHas('roles', function ($query) {
             $query->where('name', 'supervisor');
         })
             ->when(\request()->keyword != null, function ($query) {
@@ -35,12 +35,12 @@ class UserGroupsController extends Controller
             ->orderBy(\request()->sort_by ?? 'id', \request()->order_by ?? 'desc')
             ->paginate(\request()->limit_by ?? 10);
 
-        return view('backend.supervisors.index', compact('supervisors'));
+        return view('backend.user_groups.index', compact('user_groups'));
     }
 
     public function create()
     {
-        if (!auth()->user()->ability('admin', 'create_supervisors')) {
+        if (!auth()->user()->ability('admin', 'create_user_groups')) {
             return redirect('admin/index');
         }
 
@@ -51,7 +51,7 @@ class UserGroupsController extends Controller
 
     public function store(SupervisorRequest $request)
     {
-        if (!auth()->user()->ability('admin', 'create_supervisors')) {
+        if (!auth()->user()->ability('admin', 'create_user_groups')) {
             return redirect('admin/index');
         }
 
@@ -102,7 +102,7 @@ class UserGroupsController extends Controller
 
     public function show(User $supervisor)
     {
-        if (!auth()->user()->ability('admin', 'display_supervisors')) {
+        if (!auth()->user()->ability('admin', 'display_user_groups')) {
             return redirect('admin/index');
         }
         return view('backend.supervisors.show', compact('supervisor'));
@@ -110,7 +110,7 @@ class UserGroupsController extends Controller
 
     public function edit(User $supervisor)
     {
-        if (!auth()->user()->ability('admin', 'update_supervisors')) {
+        if (!auth()->user()->ability('admin', 'update_user_groups')) {
             return redirect('admin/index');
         }
 
@@ -122,7 +122,7 @@ class UserGroupsController extends Controller
 
     public function update(SupervisorRequest $request, User $supervisor)
     {
-        if (!auth()->user()->ability('admin', 'update_supervisors')) {
+        if (!auth()->user()->ability('admin', 'update_user_groups')) {
             return redirect('admin/index');
         }
 
@@ -173,7 +173,7 @@ class UserGroupsController extends Controller
 
     public function destroy(User $supervisor)
     {
-        if (!auth()->user()->ability('admin', 'delete_supervisors')) {
+        if (!auth()->user()->ability('admin', 'delete_user_groups')) {
             return redirect('admin/index');
         }
 
@@ -193,7 +193,7 @@ class UserGroupsController extends Controller
     public function remove_image(Request $request)
     {
 
-        if (!auth()->user()->ability('admin', 'delete_supervisors')) {
+        if (!auth()->user()->ability('admin', 'delete_user_groups')) {
             return redirect('admin/index');
         }
 
