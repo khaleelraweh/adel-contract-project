@@ -56,12 +56,12 @@
 
                         <div class="col-md-12 col-sm-12 ">
 
-                            <label for="user_groups"> {{ __('panel.user_groups') }} </label>
-                            <select name="user_groups[]" class="form-control select2 child">
-                                @forelse ($user_groups as $user_group)
-                                    <option value="{{ $user_group->id }}"
-                                        {{ in_array($user_group->id, old('user_groups', [])) ? 'selected' : null }}>
-                                        {{ $user_group->display_name }}</option>
+                            <label for="roles"> {{ __('panel.roles') }} </label>
+                            <select name="roles[]" class="form-control select2 child">
+                                @forelse ($roles as $role)
+                                    <option value="{{ $role->id }}"
+                                        {{ in_array($role->id, old('roles', [])) ? 'selected' : null }}>
+                                        {{ $role->display_name }}</option>
                                 @empty
                                 @endforelse
                             </select>

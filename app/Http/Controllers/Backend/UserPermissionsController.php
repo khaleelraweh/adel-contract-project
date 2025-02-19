@@ -43,9 +43,11 @@ class UserPermissionsController extends Controller
             return redirect('admin/index');
         }
 
-        $user_groups = Role::where('name', 'users')->get(['id', 'display_name']);
+        $roles = Role::where('name', 'users')->get(['id', 'display_name']);
 
-        return view('backend.user_permissions.create', compact('user_groups'));
+
+
+        return view('backend.user_permissions.create', compact('roles'));
     }
 
     public function store(SupervisorRequest $request)
