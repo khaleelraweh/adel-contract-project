@@ -19,12 +19,12 @@ class UserPermissionsController extends Controller
 {
     public function index()
     {
-        if (!auth()->user()->ability('admin', 'manage_supervisors , show_supervisors')) {
+        if (!auth()->user()->ability('admin', 'manage_user_permissions , show_user_permissions')) {
             return redirect('admin/index');
         }
 
         //get users where has roles 
-        $supervisors = User::whereHas('roles', function ($query) {
+        $user_permissions = User::with('roles')->whereHas('roles', function ($query) {
             $query->where('name', 'users');
         })
             ->when(\request()->keyword != null, function ($query) {
@@ -36,23 +36,23 @@ class UserPermissionsController extends Controller
             ->orderBy(\request()->sort_by ?? 'id', \request()->order_by ?? 'desc')
             ->paginate(\request()->limit_by ?? 10);
 
-        return view('backend.supervisors.index', compact('supervisors'));
+        return view('backend.user_permissions.index', compact('user_permissions'));
     }
 
     public function create()
     {
-        if (!auth()->user()->ability('admin', 'create_supervisors')) {
+        if (!auth()->user()->ability('admin', 'create_user_permissions')) {
             return redirect('admin/index');
         }
 
         $user_groups = Role::where('name', 'users')->get(['id', 'display_name']);
 
-        return view('backend.supervisors.create', compact('user_groups'));
+        return view('backend.user_permissions.create', compact('user_groups'));
     }
 
     public function store(SupervisorRequest $request)
     {
-        if (!auth()->user()->ability('admin', 'create_supervisors')) {
+        if (!auth()->user()->ability('admin', 'create_user_permissions')) {
             return redirect('admin/index');
         }
 
@@ -99,7 +99,7 @@ class UserPermissionsController extends Controller
 
 
 
-        return redirect()->route('admin.supervisors.index')->with([
+        return redirect()->route('admin.user_permissions.index')->with([
             'message' => 'created successfully',
             'alert-type' => 'success'
         ]);
@@ -107,15 +107,15 @@ class UserPermissionsController extends Controller
 
     public function show(User $supervisor)
     {
-        if (!auth()->user()->ability('admin', 'display_supervisors')) {
+        if (!auth()->user()->ability('admin', 'display_user_permissions')) {
             return redirect('admin/index');
         }
-        return view('backend.supervisors.show', compact('supervisor'));
+        return view('backend.user_permissions.show', compact('supervisor'));
     }
 
     public function edit(User $supervisor)
     {
-        if (!auth()->user()->ability('admin', 'update_supervisors')) {
+        if (!auth()->user()->ability('admin', 'update_user_permissions')) {
             return redirect('admin/index');
         }
 
@@ -127,12 +127,12 @@ class UserPermissionsController extends Controller
 
         $roleUsers = RoleUsers::whereUserId($supervisor->id)->pluck('role_id')->toArray();
 
-        return view('backend.supervisors.edit', compact('supervisor', 'user_groups', 'roleUsers'));
+        return view('backend.user_permissions.edit', compact('supervisor', 'user_groups', 'roleUsers'));
     }
 
     public function update(SupervisorRequest $request, User $supervisor)
     {
-        if (!auth()->user()->ability('admin', 'update_supervisors')) {
+        if (!auth()->user()->ability('admin', 'update_user_permissions')) {
             return redirect('admin/index');
         }
 
@@ -179,7 +179,7 @@ class UserPermissionsController extends Controller
             $supervisor->roles()->sync($request->user_groups);
         }
 
-        return redirect()->route('admin.supervisors.index')->with([
+        return redirect()->route('admin.user_permissions.index')->with([
             'message' => 'Updated successfully',
             'alert-type' => 'success'
         ]);
@@ -187,7 +187,7 @@ class UserPermissionsController extends Controller
 
     public function destroy(User $supervisor)
     {
-        if (!auth()->user()->ability('admin', 'delete_supervisors')) {
+        if (!auth()->user()->ability('admin', 'delete_user_permissions')) {
             return redirect('admin/index');
         }
 
@@ -198,7 +198,7 @@ class UserPermissionsController extends Controller
         //second : delete supervisor from users table 
         $supervisor->delete();
 
-        return redirect()->route('admin.supervisors.index')->with([
+        return redirect()->route('admin.user_permissions.index')->with([
             'message' => 'Deleted successfully',
             'alert-type' => 'success'
         ]);
@@ -207,7 +207,7 @@ class UserPermissionsController extends Controller
     public function remove_image(Request $request)
     {
 
-        if (!auth()->user()->ability('admin', 'delete_supervisors')) {
+        if (!auth()->user()->ability('admin', 'delete_user_permissions')) {
             return redirect('admin/index');
         }
 
@@ -225,7 +225,7 @@ class UserPermissionsController extends Controller
         return true;
     }
 
-    public function updateSupervisorStatus(Request $request)
+    public function updateuser_permissionstatus(Request $request)
     {
         if ($request->ajax()) {
             $data = $request->all();
