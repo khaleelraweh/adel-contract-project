@@ -8,6 +8,7 @@ use illuminate\support\Str;
 use App\Models\Role;
 use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\Roles;
 use App\Http\Requests\Backend\SupervisorRequest;
 use App\Models\Permission;
 use App\Models\User;
@@ -22,10 +23,7 @@ class UserGroupsController extends Controller
             return redirect('admin/index');
         }
 
-        //get users where has roles 
-        $user_groups = User::whereHas('roles', function ($query) {
-            $query->where('name', 'supervisor');
-        })
+        $user_groups = Role::where('name', 'supervisor')
             ->when(\request()->keyword != null, function ($query) {
                 $query->search(\request()->keyword);
             })
