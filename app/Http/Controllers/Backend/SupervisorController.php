@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\SupervisorRequest;
 use App\Models\Permission;
+use App\Models\RoleUsers;
 use App\Models\User;
 use App\Models\UserPermissions;
 use Illuminate\Http\Request;
@@ -118,10 +119,15 @@ class SupervisorController extends Controller
             return redirect('admin/index');
         }
 
-        $permissions = Permission::get(['id', 'display_name']);
-        $supervisorPermissions = UserPermissions::whereUserId($supervisor->id)->pluck('permission_id')->toArray();
+        // $permissions = Permission::get(['id', 'display_name']);
 
-        return view('backend.supervisors.edit', compact('supervisor', 'permissions', 'supervisorPermissions'));
+        $user_groups = Role::where('name', 'users')->get(['id', 'display_name']);
+
+        // $supervisorPermissions = UserPermissions::whereUserId($supervisor->id)->pluck('permission_id')->toArray();
+
+        $roleUsers = RoleUsers::whereUserId($supervisor->id)->pluck('role_id')->toArray();
+
+        return view('backend.supervisors.edit', compact('supervisor', 'user_groups', 'roleUsers'));
     }
 
     public function update(SupervisorRequest $request, User $supervisor)

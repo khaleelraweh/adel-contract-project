@@ -137,7 +137,7 @@
                             </div>
 
                             {{-- permissions row --}}
-                            <div class="row pt-4">
+                            {{-- <div class="row pt-4">
                                 <div class="col-12">
                                     <label for="permissions">{{ __('panel.permissions') }}</label>
                                     <select name="permissions[]" class="form-control select2 child" multiple="multiple">
@@ -149,13 +149,34 @@
                                         @endforelse
                                     </select>
 
-                                    {{-- child class is used to make disabled and enabled to select part --}}
                                     <div class="col-md-12 col-sm-12 ">
                                         <label class="col-form-label col-md-12 col-sm-12 ">
                                             <input class='child' type='checkbox' name="all_permissions" value="ok" />
                                             {{ __('panel.grant_all_permissions') }}
                                         </label>
                                     </div>
+
+                                </div>
+                            </div> --}}
+                            <div class="row pt-4">
+                                <div class="col-12">
+                                    <label for="user_groups">{{ __('panel.user_groups') }}</label>
+                                    <select name="user_groups[]" class="form-control select2 child" multiple="multiple">
+                                        @forelse ($user_groups as $user_group)
+                                            <option value="{{ $user_group->id }}"
+                                                {{ in_array($user_group->id, old('user_groups', $roleUsers)) ? 'selected' : null }}>
+                                                {{ $user_group->display_name }}</option>
+                                        @empty
+                                        @endforelse
+                                    </select>
+
+                                    {{-- child class is used to make disabled and enabled to select part --}}
+                                    {{-- <div class="col-md-12 col-sm-12 ">
+                                        <label class="col-form-label col-md-12 col-sm-12 ">
+                                            <input class='child' type='checkbox' name="all_permissions" value="ok" />
+                                            {{ __('panel.grant_all_permissions') }}
+                                        </label>
+                                    </div> --}}
 
                                 </div>
                             </div>
