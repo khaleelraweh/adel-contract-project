@@ -56,32 +56,36 @@
 
                     <div class="row">
 
-
                         <div class="row">
-                            <div class="col-sm-12 col-md-6 pt-4">
-                                <div class="form-group">
-                                    <label for="first_name"> {{ __('panel.first_name') }}</label>
-                                    <input type="text" id="first_name" name="first_name"
-                                        value="{{ old('first_name', $user_group->first_name) }}" class="form-control"
-                                        placeholder="">
-                                    @error('first_name')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
+                            <div class="col-sm-12 col-md-2 pt-3">
+                                <label for="display_name">
+                                    {{ __('panel.user_group_display_name') }}
+                                </label>
                             </div>
-                            <div class="col-sm-12 col-md-6 pt-4">
-                                <div class="form-group">
-                                    <label for="last_name">{{ __('panel.last_name') }}</label>
-                                    <input type="text" id="last_name" name="last_name"
-                                        value="{{ old('last_name', $user_group->last_name) }}" class="form-control"
-                                        placeholder="">
-                                    @error('last_name')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
+                            <div class="col-sm-12 col-md-10 pt-3">
+                                <input type="text" id="display_name" name="display_name"
+                                    value="{{ old('display_name', $user_group->display_name) }}" class="form-control"
+                                    placeholder="">
+                                @error('display_name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
+
                         </div>
 
+                        <div class="row">
+                            <div class="col-sm-12 col-md-2 pt-3">
+                                <label for="description">
+                                    {{ __('panel.user_group_description') }}
+                                </label>
+                            </div>
+                            <div class="col-sm-12 col-md-10 pt-3">
+                                <textarea name="description" id="tinymceExample" rows="10" class="form-control">{!! old('description', $user_group->description) !!}</textarea>
+                                @error('description')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
 
                     </div>
 
