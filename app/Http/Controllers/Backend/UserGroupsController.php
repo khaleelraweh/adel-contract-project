@@ -69,24 +69,21 @@ class UserGroupsController extends Controller
         ]);
     }
 
-    public function show(User $supervisor)
+    public function show(Role $user_group)
     {
         if (!auth()->user()->ability('admin', 'display_user_groups')) {
             return redirect('admin/index');
         }
-        return view('backend.user_groups.show', compact('supervisor'));
+        return view('backend.user_groups.show', compact('user_group'));
     }
 
-    public function edit(User $supervisor)
+    public function edit(Role $user_group)
     {
         if (!auth()->user()->ability('admin', 'update_user_groups')) {
             return redirect('admin/index');
         }
 
-        $permissions = Permission::get(['id', 'display_name']);
-        $supervisorPermissions = UserPermissions::whereUserId($supervisor->id)->pluck('permission_id')->toArray();
-
-        return view('backend.user_groups.edit', compact('supervisor', 'permissions', 'supervisorPermissions'));
+        return view('backend.user_groups.edit', compact('user_group'));
     }
 
     public function update(SupervisorRequest $request, User $supervisor)
