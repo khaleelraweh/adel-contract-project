@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 @section('content')
 
-    {{ dd($user_groups) }}
 
     <div class="card shadow mb-4">
 
@@ -45,10 +44,7 @@
                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                     <tr>
-                        <th class="d-none d-sm-table-cell">{{ __('panel.image') }}</th>
-                        <th>{{ __('panel.advertisor_name') }}</th>
-                        <th class="d-none d-sm-table-cell">{{ __('panel.email') }} {{ __('panel.and') }}
-                            {{ __('panel.mobile') }} </th>
+                        <th>{{ __('panel.user_group_name') }}</th>
                         <th>{{ __('panel.status') }}</th>
                         <th class="d-none d-sm-table-cell">{{ __('panel.created_at') }}</th>
                         <th class="text-center" style="width:30px;">{{ __('panel.actions') }}</th>
@@ -57,41 +53,12 @@
                 <tbody>
                     @forelse ($user_groups as $user_group)
                         <tr>
-                            <td class="d-none d-sm-table-cell">
-                                @php
-                                    if ($user_group->user_image != null) {
-                                        $user_group_img = asset('assets/users/' . $user_group->user_image);
 
-                                        if (!file_exists(public_path('assets/users/' . $user_group->user_image))) {
-                                            $user_group_img = asset('image/not_found/avator1.webp');
-                                        }
-                                    } else {
-                                        $user_group_img = asset('image/not_found/avator1.webp');
-                                    }
-                                @endphp
-
-                                <img src="{{ $user_group_img }}" width="60" height="60"
-                                    alt="{{ $user_group->full_name }}">
-
-                            </td>
                             <td>
-
-
-                                {{ $user_group->full_name }} <br>
-                                <small>
-                                    <span class="bg-info px-2 text-white rounded-pill">
-                                        {{ __('panel.username') }}:
-                                        <strong>{{ $user_group->username }}</strong>
-                                    </span>
-                                </small>
-
+                                {{ $user_group->display_name }} <br>
                             </td>
-                            <td class="d-none d-sm-table-cell">
-                                {{ $user_group->email }} <br>
-                                {{ $user_group->mobile }}
-                            </td>
+
                             <td>
-
                                 @if ($user_group->status == 1)
                                     <a href="javascript:void(0);" class="updateUserGroupStatus "
                                         id="user_group-{{ $user_group->id }}" user_group_id="{{ $user_group->id }}">
