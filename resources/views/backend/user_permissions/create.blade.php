@@ -72,6 +72,37 @@
 
                     </div>
 
+                    <div class="row pt-4">
+                        <div class="col-sm-12">
+                            @foreach ($permissions as $parentPermission)
+                                <div class="permission-group">
+                                    <!-- Display the Parent Permission Title -->
+                                    <div class="permission-title">
+                                        <label class="fw-bold">{{ $parentPermission->display_name }}</label>
+                                        <!-- Assuming you want to display 'en' -->
+                                    </div>
+
+                                    <!-- Display child permissions (checkboxes) -->
+                                    @if ($parentPermission->children->count() > 0)
+                                        <ul class="child-permissions">
+                                            @foreach ($parentPermission->children as $childPermission)
+                                                <li>
+                                                    <input type="checkbox" name="permissions[]"
+                                                        value="{{ $childPermission->id }}"
+                                                        id="permission_{{ $childPermission->id }}"
+                                                        {{ in_array($childPermission->id, old('permissions', [])) ? 'checked' : '' }} />
+                                                    <label
+                                                        for="permission_{{ $childPermission->id }}">{{ $childPermission->display_name }}</label>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                </div>
+                            @endforeach
+
+                        </div>
+                    </div>
+
 
                     <div class="row">
                         <div class="col-sm-12 col-md-2 pt-3 d-none d-md-block">
