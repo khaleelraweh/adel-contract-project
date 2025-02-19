@@ -24,9 +24,7 @@ class UserPermissionsController extends Controller
         }
 
         //get users where has roles 
-        $user_permissions = User::with('roles')->whereHas('roles', function ($query) {
-            $query->where('name', 'users');
-        })
+        $role_users = Role::with('users')->where('name', 'users')
             ->when(\request()->keyword != null, function ($query) {
                 $query->search(\request()->keyword);
             })
@@ -36,7 +34,7 @@ class UserPermissionsController extends Controller
             ->orderBy(\request()->sort_by ?? 'id', \request()->order_by ?? 'desc')
             ->paginate(\request()->limit_by ?? 10);
 
-        return view('backend.user_permissions.index', compact('user_permissions'));
+        return view('backend.user_permissions.index', compact('role_users'));
     }
 
     public function create()

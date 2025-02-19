@@ -3,6 +3,8 @@
 
     <div class="card shadow mb-4">
 
+
+
         <div class="card-header py-3 d-flex justify-content-between">
             <div class="card-naving">
                 <h3 class="font-weight-bold text-primary">
@@ -19,17 +21,17 @@
                         @endif
                     </li>
                     <li class="ms-1">
-                        {{ __('panel.show_user_permissions') }}
+                        {{ __('panel.show_role_users') }}
                     </li>
                 </ul>
             </div>
             <div class="ml-auto">
-                @ability('admin', 'create_user_permissions')
+                @ability('admin', 'create_role_users')
                     <a href="{{ route('admin.user_permissions.create') }}" class="btn btn-primary">
                         <span class="icon text-white-50">
                             <i class="fa fa-plus-square"></i>
                         </span>
-                        <span class="text">{{ __('panel.add_new_user_permission') }}</span>
+                        <span class="text">{{ __('panel.add_new_role_user') }}</span>
                     </a>
                 @endability
             </div>
@@ -43,86 +45,37 @@
                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                     <tr>
-                        <th class="d-none d-sm-table-cell">{{ __('panel.image') }}</th>
-                        <th>{{ __('panel.advertisor_name') }}</th>
-                        <th class="d-none d-sm-table-cell">{{ __('panel.email') }} {{ __('panel.and') }}
-                            {{ __('panel.mobile') }} </th>
-                        <th>{{ __('panel.status') }}</th>
+                        <th>{{ __('panel.role_display_name') }}</th>
                         <th class="d-none d-sm-table-cell">{{ __('panel.created_at') }}</th>
                         <th class="text-center" style="width:30px;">{{ __('panel.actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($user_permissions as $user_permission)
+                    @forelse ($role_users as $role_user)
                         <tr>
-                            <td class="d-none d-sm-table-cell">
-                                @php
-                                    if ($user_permission->user_image != null) {
-                                        $user_permission_img = asset('assets/users/' . $user_permission->user_image);
 
-                                        if (!file_exists(public_path('assets/users/' . $user_permission->user_image))) {
-                                            $user_permission_img = asset('image/not_found/avator1.webp');
-                                        }
-                                    } else {
-                                        $user_permission_img = asset('image/not_found/avator1.webp');
-                                    }
-                                @endphp
-
-                                <img src="{{ $user_permission_img }}" width="60" height="60"
-                                    alt="{{ $user_permission->full_name }}">
-
-                            </td>
                             <td>
-
-
-                                {{ $user_permission->full_name }} <br>
-                                <small>
-                                    <span class="bg-info px-2 text-white rounded-pill">
-                                        {{ __('panel.username') }}:
-                                        <strong>{{ $user_permission->username }}</strong>
-                                    </span>
-                                </small>
-
+                                {{ $role_user->display_name }} <br>
                             </td>
+
+
                             <td class="d-none d-sm-table-cell">
-                                {{ $user_permission->email }} <br>
-                                {{ $user_permission->mobile }}
-                            </td>
-                            <td>
-
-                                @if ($user_permission->status == 1)
-                                    <a href="javascript:void(0);" class="updateuser_permissionstatus "
-                                        id="user_permission-{{ $user_permission->id }}"
-                                        user_permission_id="{{ $user_permission->id }}">
-                                        <i class="fas fa-toggle-on fa-lg text-success" aria-hidden="true" status="Active"
-                                            style="font-size: 1.6em"></i>
-                                    </a>
-                                @else
-                                    <a href="javascript:void(0);" class="updateuser_permissionstatus"
-                                        id="user_permission-{{ $user_permission->id }}"
-                                        user_permission_id="{{ $user_permission->id }}">
-                                        <i class="fas fa-toggle-off fa-lg text-warning" aria-hidden="true" status="Inactive"
-                                            style="font-size: 1.6em"></i>
-                                    </a>
-                                @endif
-                            </td>
-                            <td class="d-none d-sm-table-cell">
-                                {{ \Carbon\Carbon::parse($user_permission->published_on)->diffForHumans() }}
+                                {{ \Carbon\Carbon::parse($role_user->published_on)->diffForHumans() }}
                             </td>
                             <td>
                                 {{-- <div class="btn-group btn-group-sm">
-                                    <a href="{{ route('admin.user_permissions.edit', $user_permission->id) }}"
+                                    <a href="{{ route('admin.user_permissions.edit', $role_user->id) }}"
                                         class="btn btn-primary">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <a href="javascript:void(0);"
-                                        onclick=" if( confirm('{{ __('panel.confirm_delete_message') }}') ){document.getElementById('delete-user_permission-{{ $user_permission->id }}').submit();}else{return false;}"
+                                        onclick=" if( confirm('{{ __('panel.confirm_delete_message') }}') ){document.getElementById('delete-role_user-{{ $role_user->id }}').submit();}else{return false;}"
                                         class="btn btn-danger">
                                         <i class="fa fa-trash"></i>
                                     </a>
                                 </div>
-                                <form action="{{ route('admin.user_permissions.destroy', $user_permission->id) }}" method="post"
-                                    class="d-none" id="delete-user_permission-{{ $user_permission->id }}">
+                                <form action="{{ route('admin.user_permissions.destroy', $role_user->id) }}" method="post"
+                                    class="d-none" id="delete-role_user-{{ $role_user->id }}">
                                     @csrf
                                     @method('DELETE')
                                 </form> --}}
@@ -141,41 +94,38 @@
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item d-flex align-items-center btn btn-success"
-                                                href="{{ route('admin.user_permissions.show', $user_permission->id) }}">
+                                                href="{{ route('admin.user_permissions.show', $role_user->id) }}">
                                                 <i data-feather="eye" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_show') }}</span>
                                             </a>
                                             <a class="dropdown-item d-flex align-items-center"
-                                                href="{{ route('admin.user_permissions.edit', $user_permission->id) }}">
+                                                href="{{ route('admin.user_permissions.edit', $role_user->id) }}">
                                                 <i data-feather="edit-2" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_edit') }}</span>
                                             </a>
 
                                             <a href="javascript:void(0);"
-                                                onclick="confirmDelete('delete-user_permission-{{ $user_permission->id }}', '{{ __('panel.confirm_delete_message') }}', '{{ __('panel.yes_delete') }}', '{{ __('panel.cancel') }}')"
+                                                onclick="confirmDelete('delete-role_user-{{ $role_user->id }}', '{{ __('panel.confirm_delete_message') }}', '{{ __('panel.yes_delete') }}', '{{ __('panel.cancel') }}')"
                                                 class="dropdown-item d-flex align-items-center">
                                                 <i data-feather="trash" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_delete') }}</span>
                                             </a>
-                                            <form
-                                                action="{{ route('admin.user_permissions.destroy', $user_permission->id) }}"
-                                                method="post" class="d-none"
-                                                id="delete-user_permission-{{ $user_permission->id }}">
+                                            <form action="{{ route('admin.user_permissions.destroy', $role_user->id) }}"
+                                                method="post" class="d-none" id="delete-role_user-{{ $role_user->id }}">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
 
                                             <a href="javascript:void(0);"
                                                 class="dropdown-item d-flex align-items-center btn btn-success copyButton"
-                                                data-copy-text="https://ibbuniv.era-t.com/user_permission-single/{{ $user_permission->slug }}"
-                                                data-id="{{ $user_permission->id }}" title="Copy the link">
+                                                data-copy-text="https://ibbuniv.era-t.com/role_user-single/{{ $role_user->slug }}"
+                                                data-id="{{ $role_user->id }}" title="Copy the link">
                                                 <i data-feather="copy" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_copy_link') }}</span>
                                             </a>
 
                                         </div>
-                                        <span class="copyMessage" data-id="{{ $user_permission->id }}"
-                                            style="display:none;">
+                                        <span class="copyMessage" data-id="{{ $role_user->id }}" style="display:none;">
                                             {{ __('panel.copied') }}
                                         </span>
                                     </div>
@@ -192,7 +142,7 @@
                     <tr>
                         <td colspan="6">
                             <div class="float-right">
-                                {!! $user_permissions->appends(request()->all())->links() !!}
+                                {!! $role_users->appends(request()->all())->links() !!}
                             </div>
                         </td>
                     </tr>
