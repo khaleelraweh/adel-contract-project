@@ -98,7 +98,8 @@ class UserGroupsController extends Controller
         $input['description'] = $request->description;
         $input['allowed_route'] = 'admin';
 
-        $user_groups = Role::create($input);
+
+        $user_group->update($input);
 
 
         return redirect()->route('admin.user_groups.index')->with([
