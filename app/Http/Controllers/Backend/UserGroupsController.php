@@ -61,7 +61,9 @@ class UserGroupsController extends Controller
         $input['email'] = $request->email;
         $input['mobile'] = $request->mobile;
         $input['password'] = bcrypt($request->password);
+
         $input['status'] = $request->status;
+
         $input['created_by'] = auth()->user()->full_name;
 
 
