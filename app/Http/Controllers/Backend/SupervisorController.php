@@ -168,11 +168,15 @@ class SupervisorController extends Controller
         //update permission
         //add permissions
 
-        if (isset($request->all_permissions)) {
-            $permissions = Permission::get(['id']);
-            $supervisor->permissions()->sync($permissions);
-        } else if (isset($request->permissions) && count($request->permissions) > 0) {
-            $supervisor->permissions()->sync($request->permissions);
+        // if (isset($request->all_permissions)) {
+        //     $permissions = Permission::get(['id']);
+        //     $supervisor->permissions()->sync($permissions);
+        // } else if (isset($request->permissions) && count($request->permissions) > 0) {
+        //     $supervisor->permissions()->sync($request->permissions);
+        // }
+
+        if (isset($request->user_groups) && count($request->user_groups) > 0) {
+            $supervisor->roles()->sync($request->user_groups);
         }
 
         return redirect()->route('admin.supervisors.index')->with([
