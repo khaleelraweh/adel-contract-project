@@ -54,15 +54,17 @@
 
 
                         <div class="row">
-                            <div class="col-sm-12 col-md-12 pt-4">
-                                <div class="form-group">
-                                    <label for="display_name"> {{ __('panel.user_group_display_name') }}</label>
-                                    <input type="text" id="display_name" name="display_name"
-                                        value="{{ old('display_name') }}" class="form-control" placeholder="">
-                                    @error('display_name')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
+                            <div class="col-sm-12 col-md-2 pt-3">
+                                <label for="display_name">
+                                    {{ __('panel.user_group_display_name') }}
+                                </label>
+                            </div>
+                            <div class="col-sm-12 col-md-10 pt-3">
+                                <input type="text" id="display_name" name="display_name"
+                                    value="{{ old('display_name') }}" class="form-control" placeholder="">
+                                @error('display_name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
 
                         </div>
