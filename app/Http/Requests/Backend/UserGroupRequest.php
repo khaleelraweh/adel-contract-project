@@ -38,7 +38,6 @@ class UserGroupRequest extends FormRequest
             case 'PUT':
             case 'PATCH': {
                     return [
-                        'first_name'        => 'required',
                         'display_name'      => 'required|unique:roles,display_name,' . $this->route()->user_group->id,
                         'description'       => 'nullable',
 
