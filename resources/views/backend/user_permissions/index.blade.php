@@ -63,22 +63,7 @@
                                 {{ \Carbon\Carbon::parse($role_user->published_on)->diffForHumans() }}
                             </td>
                             <td>
-                                {{-- <div class="btn-group btn-group-sm">
-                                    <a href="{{ route('admin.user_permissions.edit', $role_user->id) }}"
-                                        class="btn btn-primary">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <a href="javascript:void(0);"
-                                        onclick=" if( confirm('{{ __('panel.confirm_delete_message') }}') ){document.getElementById('delete-role_user-{{ $role_user->id }}').submit();}else{return false;}"
-                                        class="btn btn-danger">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </div>
-                                <form action="{{ route('admin.user_permissions.destroy', $role_user->id) }}" method="post"
-                                    class="d-none" id="delete-role_user-{{ $role_user->id }}">
-                                    @csrf
-                                    @method('DELETE')
-                                </form> --}}
+
                                 <div class="btn-group btn-group-sm">
                                     <div class="dropdown mb-2 ">
                                         <a type="button" class="d-flex" id="dropdownMenuButton" data-bs-toggle="dropdown"
