@@ -53,44 +53,15 @@ class UserGroupsController extends Controller
             return redirect('admin/index');
         }
 
-        // dd($request);
 
-        $input['first_name'] = $request->first_name;
-        $input['last_name'] = $request->last_name;
-        $input['username'] = $request->username;
-        $input['email'] = $request->email;
-        $input['mobile'] = $request->mobile;
-        $input['password'] = bcrypt($request->password);
-
-        $input['status'] = $request->status;
-
+        $input['name'] = "users";
+        $input['display_name'] = $request->display_name;
+        $input['description'] = $request->description;
+        $input['allowed_route'] = 'admin';
+        // $input['status'] = $request->status;
         $input['created_by'] = auth()->user()->full_name;
 
-
-        if ($image = $request->file('user_image')) {
-
-            $manager = new ImageManager(new Driver());
-            $file_name = Str::slug($request->username) . '_' . time() .  "." . $image->getClientOriginalExtension();
-            $img = $manager->read($request->file('user_image'));
-            // $img = $img->resize(370, 246);
-            $img->toJpeg(80)->save(base_path('public/assets/users/' . $file_name));
-
-
-            $input['user_image'] = $file_name;
-        }
-
-        $supervisor = User::create($input);
-        $supervisor->markEmailAsVerified();
-        $supervisor->attachRole(Role::whereName('supervisor')->first()->id);
-
-
-
-        if (isset($request->all_permissions)) {
-            $permissions = Permission::get(['id']);
-            $supervisor->permissions()->sync($permissions);
-        } else if (isset($request->permissions) && count($request->permissions) > 0) {
-            $supervisor->permissions()->sync($request->permissions);
-        }
+        $user_groups = Role::create($input);
 
 
 

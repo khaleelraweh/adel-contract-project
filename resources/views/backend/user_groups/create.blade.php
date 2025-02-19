@@ -83,7 +83,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-sm-12 col-md-2 pt-3">
                                 <label for="status" class="control-label">
                                     <span>{{ __('panel.status') }}</span>
@@ -108,15 +108,7 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                        </div>
-
-
-
-
-
-
-
-
+                        </div> --}}
 
                     </div>
 
