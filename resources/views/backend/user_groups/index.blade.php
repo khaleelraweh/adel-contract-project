@@ -108,22 +108,7 @@
                                 {{ \Carbon\Carbon::parse($user_group->published_on)->diffForHumans() }}
                             </td>
                             <td>
-                                {{-- <div class="btn-group btn-group-sm">
-                                    <a href="{{ route('admin.user_groups.edit', $user_group->id) }}"
-                                        class="btn btn-primary">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <a href="javascript:void(0);"
-                                        onclick=" if( confirm('{{ __('panel.confirm_delete_message') }}') ){document.getElementById('delete-user_group-{{ $user_group->id }}').submit();}else{return false;}"
-                                        class="btn btn-danger">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </div>
-                                <form action="{{ route('admin.user_groups.destroy', $user_group->id) }}" method="post"
-                                    class="d-none" id="delete-user_group-{{ $user_group->id }}">
-                                    @csrf
-                                    @method('DELETE')
-                                </form> --}}
+
                                 <div class="btn-group btn-group-sm">
                                     <div class="dropdown mb-2 ">
                                         <a type="button" class="d-flex" id="dropdownMenuButton" data-bs-toggle="dropdown"
