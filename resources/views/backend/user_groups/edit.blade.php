@@ -12,7 +12,7 @@
             <div class="card-naving">
                 <h3 class="font-weight-bold text-primary">
                     <i class="fa fa-edit"></i>
-                    {{ __('panel.edit_existing_supervisor') }}
+                    {{ __('panel.edit_existing_user_group') }}
                 </h3>
                 <ul class="breadcrumb pt-3">
                     <li>
@@ -24,8 +24,8 @@
                         @endif
                     </li>
                     <li class="ms-1">
-                        <a href="{{ route('admin.supervisors.index') }}">
-                            {{ __('panel.show_supervisors') }}
+                        <a href="{{ route('admin.user_groups.index') }}">
+                            {{ __('panel.show_user_groups') }}
                         </a>
                     </li>
                 </ul>
@@ -48,7 +48,7 @@
                 @endif
 
                 {{-- enctype used cause we will save images  --}}
-                <form action="{{ route('admin.supervisors.update', $supervisor->id) }}" method="post"
+                <form action="{{ route('admin.user_groups.update', $user_group->id) }}" method="post"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
@@ -56,161 +56,33 @@
 
                     <div class="row">
 
-                        {{-- main info of supervisor account  --}}
-                        <div class="col-sm-12 col-md-8">
 
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="first_name"> {{ __('panel.first_name') }}</label>
-                                        <input type="text" id="first_name" name="first_name"
-                                            value="{{ old('first_name', $supervisor->first_name) }}" class="form-control"
-                                            placeholder="">
-                                        @error('first_name')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="last_name">{{ __('panel.last_name') }}</label>
-                                        <input type="text" id="last_name" name="last_name"
-                                            value="{{ old('last_name', $supervisor->last_name) }}" class="form-control"
-                                            placeholder="">
-                                        @error('last_name')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="username">{{ __('panel.user_name') }}</label>
-                                        <input type="text" id="username" name="username"
-                                            value="{{ old('username', $supervisor->username) }}" class="form-control"
-                                            placeholder="">
-                                        @error('username')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="password">{{ __('panel.user_password') }}</label>
-                                        <input type="password" id="password" name="password" value="{{ old('password') }}"
-                                            class="form-control" placeholder="">
-                                        @error('password')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="email">{{ __('panel.email') }}</label>
-                                        <input type="text" id="email" name="email"
-                                            value="{{ old('email', $supervisor->email) }}" class="form-control"
-                                            placeholder="">
-                                        @error('email')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="mobile">{{ __('panel.mobile') }}</label>
-                                        <input type="text" id="mobile" name="mobile"
-                                            value="{{ old('mobile', $supervisor->mobile) }}" class="form-control"
-                                            placeholder="">
-                                        @error('mobile')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            {{-- permissions row --}}
-                            <div class="row pt-4">
-                                <div class="col-12">
-                                    <label for="permissions">{{ __('panel.permissions') }}</label>
-                                    <select name="permissions[]" class="form-control select2 child" multiple="multiple">
-                                        @forelse ($permissions as $permission)
-                                            <option value="{{ $permission->id }}"
-                                                {{ in_array($permission->id, old('permissions', $supervisorPermissions)) ? 'selected' : null }}>
-                                                {{ $permission->display_name }}</option>
-                                        @empty
-                                        @endforelse
-                                    </select>
-
-                                    {{-- child class is used to make disabled and enabled to select part --}}
-                                    <div class="col-md-12 col-sm-12 ">
-                                        <label class="col-form-label col-md-12 col-sm-12 ">
-                                            <input class='child' type='checkbox' name="all_permissions" value="ok" />
-                                            {{ __('panel.grant_all_permissions') }}
-                                        </label>
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                        {{-- image of supervisor account --}}
-                        <div class="col-sm-12 col-md-4">
-                            <div class="row pt-3">
-                                <div class="col-12">
-                                    <label for="user_image"> {{ __('panel.image') }}</label>
-                                    <br>
-                                    <span class="form-text text-muted">{{ __('panel.user_image_size') }} </span>
-                                    <div class="file-loading">
-                                        <input type="file" name="user_image" id="supervisor_image"
-                                            class="file-input-overview ">
-                                        <span class="form-text text-muted">{{ __('panel.user_image_size') }} </span>
-                                        @error('user_image')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12 col-md-2 pt-3">
-                                    <label for="status" class="control-label">
-                                        <span>{{ __('panel.status') }}</span>
-                                    </label>
-                                </div>
-                                <div class="col-sm-12 col-md-10 pt-3">
-                                    <div class="form-check form-check-inline">
-                                        <input type="radio" class="form-check-input" name="status" id="status_active"
-                                            value="1"
-                                            {{ old('status', $supervisor->status) == '1' ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="status_active">
-                                            {{ __('panel.status_active') }}
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input type="radio" class="form-check-input" name="status"
-                                            id="status_inactive" value="0"
-                                            {{ old('status', $supervisor->status) == '0' ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="status_inactive">
-                                            {{ __('panel.status_inactive') }}
-                                        </label>
-                                    </div>
-                                    @error('status')
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 pt-4">
+                                <div class="form-group">
+                                    <label for="first_name"> {{ __('panel.first_name') }}</label>
+                                    <input type="text" id="first_name" name="first_name"
+                                        value="{{ old('first_name', $user_group->first_name) }}" class="form-control"
+                                        placeholder="">
+                                    @error('first_name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
-
+                            <div class="col-sm-12 col-md-6 pt-4">
+                                <div class="form-group">
+                                    <label for="last_name">{{ __('panel.last_name') }}</label>
+                                    <input type="text" id="last_name" name="last_name"
+                                        value="{{ old('last_name', $user_group->last_name) }}" class="form-control"
+                                        placeholder="">
+                                    @error('last_name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
+
+
                     </div>
 
                     <div class="row">
@@ -222,7 +94,7 @@
                                 {{ __('panel.update_data') }}
                             </button>
 
-                            <a href="{{ route('admin.supervisors.index') }}" name="submit"
+                            <a href="{{ route('admin.user_groups.index') }}" name="submit"
                                 class=" btn btn-outline-danger">
                                 <i class="icon-lg  me-2" data-feather="x"></i>
                                 {{ __('panel.cancel') }}
@@ -241,7 +113,7 @@
     @section('script')
         <script>
             $(function() {
-                $("#supervisor_image").fileinput({
+                $("#user_group_image").fileinput({
                     theme: "fa5",
                     maxFileCount: 1,
                     allowedFileTypes: ['image'],
@@ -250,20 +122,20 @@
                     showUpload: false,
                     overwriteInitial: false,
                     initialPreview: [
-                        @if ($supervisor->user_image != '')
-                            "{{ asset('assets/users/' . $supervisor->user_image) }}",
+                        @if ($user_group->user_image != '')
+                            "{{ asset('assets/users/' . $user_group->user_image) }}",
                         @endif
                     ],
                     initialPreviewAsData: true,
                     initialPreviewFileType: 'image',
                     initialPreviewConfig: [
-                        @if ($supervisor->user_image != '')
+                        @if ($user_group->user_image != '')
                             {
-                                caption: "{{ $supervisor->user_image }}",
+                                caption: "{{ $user_group->user_image }}",
                                 size: '1111',
                                 width: "120px",
-                                url: "{{ route('admin.supervisors.remove_image', ['supervisor_id' => $supervisor->id, '_token' => csrf_token()]) }}",
-                                key: {{ $supervisor->id }}
+                                url: "{{ route('admin.user_groups.remove_image', ['user_group_id' => $user_group->id, '_token' => csrf_token()]) }}",
+                                key: {{ $user_group->id }}
                             }
                         @endif
                     ]

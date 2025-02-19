@@ -50,40 +50,38 @@
                 <form action="{{ route('admin.user_groups.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
+
                     <div class="row">
-
-
-                        <div class="row">
-                            <div class="col-sm-12 col-md-2 pt-3">
-                                <label for="display_name">
-                                    {{ __('panel.user_group_display_name') }}
-                                </label>
-                            </div>
-                            <div class="col-sm-12 col-md-10 pt-3">
-                                <input type="text" id="display_name" name="display_name"
-                                    value="{{ old('display_name') }}" class="form-control" placeholder="">
-                                @error('display_name')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-
+                        <div class="col-sm-12 col-md-2 pt-3">
+                            <label for="display_name">
+                                {{ __('panel.user_group_display_name') }}
+                            </label>
+                        </div>
+                        <div class="col-sm-12 col-md-10 pt-3">
+                            <input type="text" id="display_name" name="display_name" value="{{ old('display_name') }}"
+                                class="form-control" placeholder="">
+                            @error('display_name')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
-                        <div class="row">
-                            <div class="col-sm-12 col-md-2 pt-3">
-                                <label for="description">
-                                    {{ __('panel.user_group_description') }}
-                                </label>
-                            </div>
-                            <div class="col-sm-12 col-md-10 pt-3">
-                                <textarea name="description" id="tinymceExample" rows="10" class="form-control">{!! old('description') !!}</textarea>
-                                @error('description')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
+                    </div>
 
-                        {{-- <div class="row">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-2 pt-3">
+                            <label for="description">
+                                {{ __('panel.user_group_description') }}
+                            </label>
+                        </div>
+                        <div class="col-sm-12 col-md-10 pt-3">
+                            <textarea name="description" id="tinymceExample" rows="10" class="form-control">{!! old('description') !!}</textarea>
+                            @error('description')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    {{-- <div class="row">
                             <div class="col-sm-12 col-md-2 pt-3">
                                 <label for="status" class="control-label">
                                     <span>{{ __('panel.status') }}</span>
@@ -110,7 +108,8 @@
                             </div>
                         </div> --}}
 
-                    </div>
+
+
 
                     <div class="row">
                         <div class="col-sm-12 col-md-2 pt-3 d-none d-md-block">
@@ -130,6 +129,7 @@
 
                         </div>
                     </div>
+
 
                 </form>
             </div>
