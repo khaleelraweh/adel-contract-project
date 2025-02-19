@@ -29,7 +29,6 @@ class UserGroupRequest extends FormRequest
                         'display_name' => 'required|unique:roles',
                         'description'  => 'nullable',
 
-                        'status'     => 'required',
                         'created_by' => 'nullable',
                         'updated_by' => 'nullable',
                         'deleted_by' => 'nullable',
@@ -43,7 +42,6 @@ class UserGroupRequest extends FormRequest
                         'display_name'      => 'required|unique:roles,display_name,' . $this->route()->user_group->id,
                         'description'       => 'nullable',
 
-                        'status'     => 'required',
                         'created_by' => 'nullable',
                         'updated_by' => 'nullable',
                         'deleted_by' => 'nullable',
@@ -62,7 +60,6 @@ class UserGroupRequest extends FormRequest
             'display_name'      => '( ' . __('panel.user_group_display_name') . ' )',
             'description'      => '( ' . __('panel.user_group_description') . ' )',
 
-            'status'    =>  '( ' . __('panel.status') . ' )',
         ];
 
         return $attr;
