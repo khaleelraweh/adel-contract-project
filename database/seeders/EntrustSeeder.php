@@ -165,8 +165,47 @@ class EntrustSeeder extends Seeder
         $updateUserPermisssions  =  Permission::create(['name' => 'update_user_Permissions', 'display_name'    =>  ['ar'   =>  'تعديل صلاحية مستخدم',   'en'    =>  'Edit User Permission'], 'route' => 'user_permissions', 'module' => 'user_permissions', 'as' => 'user_permissions.edit', 'icon' => null, 'parent' => $manageUserPermissions->id, 'parent_original' => $manageUserPermissions->id, 'parent_show' => $manageUserPermissions->id, 'sidebar_link' => '0', 'appear' => '0']);
         $deleteUserPermisssions =  Permission::create(['name' => 'delete_user_Permissions', 'display_name'    =>  ['ar'   =>  'حذف صلاحية مستخدم',   'en'    =>  'Delete User Permission'], 'route' => 'user_permissions', 'module' => 'user_permissions', 'as' => 'user_permissions.destroy', 'icon' => null, 'parent' => $manageUserPermissions->id, 'parent_original' => $manageUserPermissions->id, 'parent_show' => $manageUserPermissions->id, 'sidebar_link' => '0', 'appear' => '0']);
 
+
+
+        // إنشاء صلاحية "نظام إدارة الوثائق"
+        $manageDocumentManagementSystem = Permission::create([
+            'name' => 'manage_document_management_system',
+            'display_name' => ['ar' => 'نظام إدارة الوثائق', 'en' => 'Document Management System'],
+            'route' => 'document_categories',
+            'module' => 'document_categories',
+            'as' => 'document_categories.index.index',
+            'icon' => 'fas fa-folder',
+            'parent' => 0, // لا يوجد والد، فهي صلاحية رئيسية
+            'parent_original' => 0,
+            'sidebar_link' => 1,
+            'appear' => 1,
+            'ordering' => 5, // ترتيب الصلاحية
+        ]);
+        $manageDocumentManagementSystem->parent_show = $manageDocumentManagementSystem->id;
+        $manageDocumentManagementSystem->save();
+
+
+        // إنشاء صلاحية "التهيئة"
+        $setupDocuments = Permission::create([
+            'name' => 'setup_documents',
+            'display_name' => ['ar' => 'التهيئة', 'en' => 'Setup Documents'],
+            'route' => 'document_categories',
+            'module' => 'document_categories',
+            'as' => 'document_categories.index',
+            'icon' => 'fas fa-cogs',
+            'parent' => $manageDocumentManagementSystem->id, // ارتباطها بـ "نظام إدارة الوثائق"
+            'parent_original' => $manageDocumentManagementSystem->id,
+            'parent_show' => $manageDocumentManagementSystem->id,
+            'sidebar_link' => 1,
+            'appear' => 1,
+            'ordering' => 10,
+        ]);
+        $setupDocuments->parent_show = $setupDocuments->id;
+        $setupDocuments->save();
+
+
         //document Categories 
-        $manageDocumentCategories = Permission::create(['name' => 'manage_document_categories', 'display_name' => ['ar' => 'إدارة تصنيف الوثائق', 'en' => 'Manage Document Categories'], 'route' => 'document_categories', 'module' => 'document_categories', 'as' => 'document_categories.index', 'icon' => 'far fa-file-alt', 'parent' => '0', 'parent_original' => '0', 'sidebar_link' => '1', 'appear' => '1', 'ordering' => '10',]);
+        $manageDocumentCategories = Permission::create(['name' => 'manage_document_categories', 'display_name' => ['ar' => 'إدارة تصنيف الوثائق', 'en' => 'Manage Document Categories'], 'route' => 'document_categories', 'module' => 'document_categories', 'as' => 'document_categories.index', 'icon' => 'far fa-file-alt', 'parent' => $setupDocuments->id, 'parent_original' => $setupDocuments->id, 'parent_show' => $setupDocuments->id, 'sidebar_link' => '1', 'appear' => '1', 'ordering' => '10',]);
         $manageDocumentCategories->parent_show = $manageDocumentCategories->id;
         $manageDocumentCategories->save();
         $showDocuments    =  Permission::create(['name' => 'show_document_categories',  'display_name' => ['ar'     => 'إدارة تصنيف الوثائق ', 'en'  =>   'manage Document Categories'], 'route' => 'document_categories', 'module' => 'document_categories', 'as' => 'document_categories.index', 'icon' => 'far fa-file-alt', 'parent' => $manageDocumentCategories->id, 'parent_original' => $manageDocumentCategories->id, 'parent_show' => $manageDocumentCategories->id, 'sidebar_link' => '0', 'appear' => '0']);
