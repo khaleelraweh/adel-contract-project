@@ -217,8 +217,13 @@ class EntrustSeeder extends Seeder
         $deleteDocumentTemplates  =  Permission::create(['name' => 'delete_document_templates', 'display_name'     =>    ['ar'   =>  'حذف قالب وثيقة',   'en'    =>  'Delete Document Template'],    'route' => 'document_templates', 'module' => 'document_templates', 'as' => 'document_templates.destroy', 'icon' => null, 'parent' => $manageDocumentTemplates->id, 'parent_original' => $manageDocumentTemplates->id, 'parent_show' => $manageDocumentTemplates->id, 'sidebar_link' => '0', 'appear' => '0']);
 
 
+        //............... إنشاء  العمليات .................//
+        $proccessDocuments = Permission::create(['name' => 'proccess_documents', 'display_name' => ['ar' => 'العمليات', 'en' => 'Proccess Documents'], 'route' => 'documents', 'module' => 'documents', 'as' => 'documents.index', 'icon' => 'fas fa-cogs', 'parent' => $manageDocumentManagementSystem->id, 'parent_original' => $manageDocumentManagementSystem->id, 'parent_show' => $manageDocumentManagementSystem->id, 'sidebar_link' => 1, 'appear' => 1, 'ordering' => 10,]);
+        $proccessDocuments->parent_show = $proccessDocuments->id;
+        $proccessDocuments->save();
+
         //manage Document 
-        $manageDocuments = Permission::create(['name' => 'manage_documents', 'display_name' => ['ar'    =>  ' إدارة الوثائق',   'en'    =>  '’Manage Documents'], 'route' => 'documents', 'module' => 'documents', 'as' => 'documents.index', 'icon' => 'fas fa-file-signature', 'parent' => '0', 'parent_original' => '0', 'sidebar_link' => '1', 'appear' => '1', 'ordering' => '25',]);
+        $manageDocuments = Permission::create(['name' => 'manage_documents', 'display_name' => ['ar'    =>  ' إدارة الوثائق',   'en'    =>  '’Manage Documents'], 'route' => 'documents', 'module' => 'documents', 'as' => 'documents.index', 'icon' => 'fas fa-file-signature', 'parent' => $proccessDocuments->id, 'parent_original' => $proccessDocuments->id, 'sidebar_link' => '1', 'appear' => '1', 'ordering' => '25',]);
         $manageDocuments->parent_show = $manageDocuments->id;
         $manageDocuments->save();
         $showDocuments    =  Permission::create(['name' => 'show_documents', 'display_name'       =>    ['ar'   =>  ' الوثائق',   'en'    =>  ' Documents'],   'route' => 'documents', 'module' => 'documents', 'as' => 'documents.index', 'icon' => 'fas fa-file-signature', 'parent' => $manageDocuments->id, 'parent_original' => $manageDocuments->id, 'parent_show' => $manageDocuments->id, 'sidebar_link' => '0', 'appear' => '0']);
