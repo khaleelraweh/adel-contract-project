@@ -233,8 +233,21 @@ class EntrustSeeder extends Seeder
         $deleteDocuments  =  Permission::create(['name' => 'delete_documents', 'display_name'     =>    ['ar'   =>  'حذف وثيقة',   'en'    =>  'Delete Document'],    'route' => 'documents', 'module' => 'documents', 'as' => 'documents.destroy', 'icon' => null, 'parent' => $manageDocuments->id, 'parent_original' => $manageDocuments->id, 'parent_show' => $manageDocuments->id, 'sidebar_link' => '0', 'appear' => '0']);
 
 
+        // ========================= نظام ادارة العقود ========================= //
+
+        // إنشاء صلاحية "نظام إدارة العقود"
+        $manageContractManagementSystem = Permission::create(['name' => 'manage_contract_management_system', 'display_name' => ['ar' => 'نظام إدارة العقود', 'en' => 'Contract Management System'], 'route' => 'contract_templates', 'module' => 'contract_templates', 'as' => 'contract_templates.index', 'icon' => 'fas fa-folder', 'parent' => 0, 'parent_original' => 0, 'sidebar_link' => 1, 'appear' => 1, 'ordering' => 30,]);
+        $manageContractManagementSystem->parent_show = $manageContractManagementSystem->id;
+        $manageContractManagementSystem->save();
+
+        //............... إنشاء صلاحية التهيئة .................//
+        $setupContracts = Permission::create(['name' => 'setup_contracts', 'display_name' => ['ar' => 'التهيئة', 'en' => 'Setup Contracts'], 'route' => 'contract_templates', 'module' => 'contract_templates', 'as' => 'contract_templates.index', 'icon' => 'fas fa-cogs', 'parent' => $manageContractManagementSystem->id, 'parent_original' => $manageContractManagementSystem->id, 'parent_show' => $manageContractManagementSystem->id, 'sidebar_link' => 1, 'appear' => 1, 'ordering' => 35,]);
+        $setupContracts->parent_show = $setupContracts->id;
+        $setupContracts->save();
+
+
         //manage Contract Templates
-        $manageContractTemplates = Permission::create(['name' => 'manage_contract_templates', 'display_name' => ['ar'    =>  ' إدارة قالب العقود',   'en'    =>  '’Manage Contract Templates'], 'route' => 'contract_templates', 'module' => 'contract_templates', 'as' => 'contract_templates.index', 'icon' => 'fas fa-file-signature', 'parent' => '0', 'parent_original' => '0', 'sidebar_link' => '1', 'appear' => '1', 'ordering' => '30',]);
+        $manageContractTemplates = Permission::create(['name' => 'manage_contract_templates', 'display_name' => ['ar'    =>  ' إدارة قالب العقود',   'en'    =>  '’Manage Contract Templates'], 'route' => 'contract_templates', 'module' => 'contract_templates', 'as' => 'contract_templates.index', 'icon' => 'fas fa-file-signature', 'parent' => $setupContracts->id, 'parent_original' => $setupContracts->id, 'sidebar_link' => '1', 'appear' => '1', 'ordering' => '30',]);
         $manageContractTemplates->parent_show = $manageContractTemplates->id;
         $manageContractTemplates->save();
         $showContractTemplates    =  Permission::create(['name' => 'show_contract_templates', 'display_name'       =>    ['ar'   =>  'قالب العقود',   'en'    =>  ' Contract Templates'],   'route' => 'contract_templates', 'module' => 'contract_templates', 'as' => 'contract_templates.index', 'icon' => 'fas fa-file-signature', 'parent' => $manageContractTemplates->id, 'parent_original' => $manageContractTemplates->id, 'parent_show' => $manageContractTemplates->id, 'sidebar_link' => '0', 'appear' => '0']);
