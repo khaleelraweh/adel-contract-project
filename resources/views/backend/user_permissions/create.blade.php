@@ -163,7 +163,7 @@
 
                                     <!-- Child Permissions -->
                                     @if ($parentPermission->children->count() > 0)
-                                        <ul class="child-permissions">
+                                        <ul class="child-permissions" style="list-style-type:none;">
                                             @foreach ($parentPermission->children as $childPermission)
                                                 <li>
                                                     <input type="checkbox" name="permissions[]"
@@ -177,7 +177,7 @@
 
                                                     <!-- Sub-Child Permissions -->
                                                     @if ($childPermission->children->count() > 0)
-                                                        <ul class="sub-child-permissions">
+                                                        <ul class="sub-child-permissions" style="list-style-type: none;">
                                                             @foreach ($childPermission->children as $subChildPermission)
                                                                 <li>
                                                                     <input type="checkbox" name="permissions[]"
