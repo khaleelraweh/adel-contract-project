@@ -72,7 +72,7 @@
 
                     </div>
 
-                    <div class="row pt-4">
+                    {{-- <div class="row pt-4">
                         <div class="col-sm-12">
                             @foreach ($permissions as $parentPermission)
                                 <div class="permission-group">
@@ -101,7 +101,53 @@
                             @endforeach
 
                         </div>
+                    </div> --}}
+
+                    <div class="row pt-4">
+                        <div class="col-sm-12">
+                            @foreach ($permissions as $parentPermission)
+                                <div class="permission-group">
+                                    <!-- Display the Parent Permission Title -->
+                                    <div class="permission-title">
+                                        <label class="fw-bold">{{ $parentPermission->display_name }}</label>
+                                    </div>
+
+                                    <!-- Display child permissions (checkboxes) -->
+                                    @if ($parentPermission->children->count() > 0)
+                                        <ul class="child-permissions">
+                                            @foreach ($parentPermission->children as $childPermission)
+                                                <li>
+                                                    <input type="checkbox" name="permissions[]"
+                                                        value="{{ $childPermission->id }}"
+                                                        id="permission_{{ $childPermission->id }}"
+                                                        {{ in_array($childPermission->id, old('permissions', [])) ? 'checked' : '' }} />
+                                                    <label
+                                                        for="permission_{{ $childPermission->id }}">{{ $childPermission->display_name }}</label>
+
+                                                    <!-- Check if the child has sub-children (third level) -->
+                                                    @if ($childPermission->children->count() > 0)
+                                                        <ul class="sub-child-permissions">
+                                                            @foreach ($childPermission->children as $subChildPermission)
+                                                                <li>
+                                                                    <input type="checkbox" name="permissions[]"
+                                                                        value="{{ $subChildPermission->id }}"
+                                                                        id="permission_{{ $subChildPermission->id }}"
+                                                                        {{ in_array($subChildPermission->id, old('permissions', [])) ? 'checked' : '' }} />
+                                                                    <label
+                                                                        for="permission_{{ $subChildPermission->id }}">{{ $subChildPermission->display_name }}</label>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    @endif
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
+
 
 
                     <div class="row">
