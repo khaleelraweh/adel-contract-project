@@ -14,48 +14,62 @@
             <li class="nav-item nav-category">{{ __('panel.menu') }}</li>
 
             @foreach ($admin_side_menu as $menu)
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#menu-{{ $menu->id }}" role="button"
-                        aria-expanded="false" aria-controls="menu-{{ $menu->id }}">
-                        <i class="{{ $menu->icon ?? 'fas fa-home' }}"></i>
-                        <span class="link-title">{{ \Illuminate\Support\Str::limit($menu->display_name, 18) }}</span>
+                @if (count($menu->appearedChildren) == 0)
+                    <li class="nav-item">
+                        <a href="{{ route('admin.' . $menu->as) }}" class="nav-link">
+                            <i class="{{ $menu->icon != null ? $menu->icon : 'fas fa-home' }}"></i>
+                            {{-- <span class="link-title">{{ $menu->display_name }}</span> --}}
+
+                            <span class="link-title">
+                                {{ \Illuminate\Support\Str::limit($menu->display_name, 25) }}
+                            </span>
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#menu-{{ $menu->id }}" role="button"
+                            aria-expanded="false" aria-controls="menu-{{ $menu->id }}">
+                            <i class="{{ $menu->icon ?? 'fas fa-home' }}"></i>
+                            <span
+                                class="link-title">{{ \Illuminate\Support\Str::limit($menu->display_name, 18) }}</span>
+                            @if (count($menu->appearedChildren))
+                                <i class="link-arrow" data-feather="chevron-down"></i>
+                            @endif
+                        </a>
                         @if (count($menu->appearedChildren))
-                            <i class="link-arrow" data-feather="chevron-down"></i>
-                        @endif
-                    </a>
-                    @if (count($menu->appearedChildren))
-                        <div class="collapse" id="menu-{{ $menu->id }}">
-                            <ul class="nav sub-menu">
-                                @foreach ($menu->appearedChildren as $sub_menu)
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="collapse"
-                                            href="#submenu-{{ $sub_menu->id }}" role="button" aria-expanded="false"
-                                            aria-controls="submenu-{{ $sub_menu->id }}">
-                                            {{ \Illuminate\Support\Str::limit($sub_menu->display_name, 25) }}
+                            <div class="collapse" id="menu-{{ $menu->id }}">
+                                <ul class="nav sub-menu">
+                                    @foreach ($menu->appearedChildren as $sub_menu)
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-bs-toggle="collapse"
+                                                href="#submenu-{{ $sub_menu->id }}" role="button"
+                                                aria-expanded="false" aria-controls="submenu-{{ $sub_menu->id }}">
+                                                {{ \Illuminate\Support\Str::limit($sub_menu->display_name, 25) }}
+                                                @if (count($sub_menu->appearedChildren))
+                                                    <i class="link-arrow" data-feather="chevron-down"></i>
+                                                @endif
+                                            </a>
                                             @if (count($sub_menu->appearedChildren))
-                                                <i class="link-arrow" data-feather="chevron-down"></i>
+                                                <div class="collapse" id="submenu-{{ $sub_menu->id }}">
+                                                    <ul class="nav sub-menu">
+                                                        @foreach ($sub_menu->appearedChildren as $sub_sub_menu)
+                                                            <li class="nav-item">
+                                                                <a href="{{ route('admin.' . $sub_sub_menu->as) }}"
+                                                                    class="nav-link">
+                                                                    {{ \Illuminate\Support\Str::limit($sub_sub_menu->display_name, 25) }}
+                                                                </a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
                                             @endif
-                                        </a>
-                                        @if (count($sub_menu->appearedChildren))
-                                            <div class="collapse" id="submenu-{{ $sub_menu->id }}">
-                                                <ul class="nav sub-menu">
-                                                    @foreach ($sub_menu->appearedChildren as $sub_sub_menu)
-                                                        <li class="nav-item">
-                                                            <a href="{{ route('admin.' . $sub_sub_menu->as) }}"
-                                                                class="nav-link">
-                                                                {{ \Illuminate\Support\Str::limit($sub_sub_menu->display_name, 25) }}
-                                                            </a>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        @endif
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                </li>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </li>
+                @endif
             @endforeach
         </ul>
     </div>
