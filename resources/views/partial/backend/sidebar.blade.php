@@ -27,8 +27,8 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#menu-{{ $menu->id }}" role="button"
-                            aria-expanded="false" aria-controls="menu-{{ $menu->id }}">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#{{ $menu->name }}" role="button"
+                            aria-expanded="false" aria-controls="{{ $menu->name }}">
                             <i class="{{ $menu->icon ?? 'fas fa-home' }}"></i>
                             <span
                                 class="link-title">{{ \Illuminate\Support\Str::limit($menu->display_name, 18) }}</span>
@@ -37,33 +37,42 @@
                             @endif
                         </a>
                         @if (count($menu->appearedChildren))
-                            <div class="collapse" id="menu-{{ $menu->id }}">
+                            <div class="collapse" id="{{ $menu->name }}">
                                 <ul class="nav sub-menu">
                                     @foreach ($menu->appearedChildren as $sub_menu)
-                                        <li class="nav-item">
-                                            <a class="nav-link" data-bs-toggle="collapse"
-                                                href="#submenu-{{ $sub_menu->id }}" role="button"
-                                                aria-expanded="false" aria-controls="submenu-{{ $sub_menu->id }}">
-                                                {{ \Illuminate\Support\Str::limit($sub_menu->display_name, 25) }}
+                                        @if (count($sub_menu->appearedChildren) == 0)
+                                            <li class="nav-item">
+                                                <a href="{{ route('admin.' . $sub_menu->as) }}" class="nav-link">
+                                                    {{-- {{ $sub_menu->display_name }} --}}
+                                                    {{ \Illuminate\Support\Str::limit($sub_menu->display_name, 25) }}
+                                                </a>
+                                            </li>
+                                        @else
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-bs-toggle="collapse"
+                                                    href="#{{ $sub_menu->name }}" role="button" aria-expanded="false"
+                                                    aria-controls="{{ $sub_menu->name }}">
+                                                    {{ \Illuminate\Support\Str::limit($sub_menu->display_name, 25) }}
+                                                    @if (count($sub_menu->appearedChildren))
+                                                        <i class="link-arrow" data-feather="chevron-down"></i>
+                                                    @endif
+                                                </a>
                                                 @if (count($sub_menu->appearedChildren))
-                                                    <i class="link-arrow" data-feather="chevron-down"></i>
+                                                    <div class="collapse" id="{{ $sub_menu->name }}">
+                                                        <ul class="nav sub-menu">
+                                                            @foreach ($sub_menu->appearedChildren as $sub_sub_menu)
+                                                                <li class="nav-item">
+                                                                    <a href="{{ route('admin.' . $sub_sub_menu->as) }}"
+                                                                        class="nav-link">
+                                                                        {{ \Illuminate\Support\Str::limit($sub_sub_menu->display_name, 25) }}
+                                                                    </a>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
                                                 @endif
-                                            </a>
-                                            @if (count($sub_menu->appearedChildren))
-                                                <div class="collapse" id="submenu-{{ $sub_menu->id }}">
-                                                    <ul class="nav sub-menu">
-                                                        @foreach ($sub_menu->appearedChildren as $sub_sub_menu)
-                                                            <li class="nav-item">
-                                                                <a href="{{ route('admin.' . $sub_sub_menu->as) }}"
-                                                                    class="nav-link">
-                                                                    {{ \Illuminate\Support\Str::limit($sub_sub_menu->display_name, 25) }}
-                                                                </a>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                            @endif
-                                        </li>
+                                            </li>
+                                        @endif
                                     @endforeach
                                 </ul>
                             </div>
