@@ -165,41 +165,16 @@ class EntrustSeeder extends Seeder
         $updateUserPermisssions  =  Permission::create(['name' => 'update_user_Permissions', 'display_name'    =>  ['ar'   =>  'تعديل صلاحية مستخدم',   'en'    =>  'Edit User Permission'], 'route' => 'user_permissions', 'module' => 'user_permissions', 'as' => 'user_permissions.edit', 'icon' => null, 'parent' => $manageUserPermissions->id, 'parent_original' => $manageUserPermissions->id, 'parent_show' => $manageUserPermissions->id, 'sidebar_link' => '0', 'appear' => '0']);
         $deleteUserPermisssions =  Permission::create(['name' => 'delete_user_Permissions', 'display_name'    =>  ['ar'   =>  'حذف صلاحية مستخدم',   'en'    =>  'Delete User Permission'], 'route' => 'user_permissions', 'module' => 'user_permissions', 'as' => 'user_permissions.destroy', 'icon' => null, 'parent' => $manageUserPermissions->id, 'parent_original' => $manageUserPermissions->id, 'parent_show' => $manageUserPermissions->id, 'sidebar_link' => '0', 'appear' => '0']);
 
-
+        // ========================= نظام ادارة الوثائق ========================= //
 
         // إنشاء صلاحية "نظام إدارة الوثائق"
-        $manageDocumentManagementSystem = Permission::create([
-            'name' => 'manage_document_management_system',
-            'display_name' => ['ar' => 'نظام إدارة الوثائق', 'en' => 'Document Management System'],
-            'route' => 'document_categories',
-            'module' => 'document_categories',
-            'as' => 'document_categories.index.index',
-            'icon' => 'fas fa-folder',
-            'parent' => 0, // لا يوجد والد، فهي صلاحية رئيسية
-            'parent_original' => 0,
-            'sidebar_link' => 1,
-            'appear' => 1,
-            'ordering' => 5, // ترتيب الصلاحية
-        ]);
+        $manageDocumentManagementSystem = Permission::create(['name' => 'manage_document_management_system', 'display_name' => ['ar' => 'نظام إدارة الوثائق', 'en' => 'Document Management System'], 'route' => 'document_categories', 'module' => 'document_categories', 'as' => 'document_categories.index.index', 'icon' => 'fas fa-folder', 'parent' => 0, 'parent_original' => 0, 'sidebar_link' => 1, 'appear' => 1, 'ordering' => 5,]);
         $manageDocumentManagementSystem->parent_show = $manageDocumentManagementSystem->id;
         $manageDocumentManagementSystem->save();
 
 
-        // إنشاء صلاحية "التهيئة"
-        $setupDocuments = Permission::create([
-            'name' => 'setup_documents',
-            'display_name' => ['ar' => 'التهيئة', 'en' => 'Setup Documents'],
-            'route' => 'document_categories',
-            'module' => 'document_categories',
-            'as' => 'document_categories.index',
-            'icon' => 'fas fa-cogs',
-            'parent' => $manageDocumentManagementSystem->id, // ارتباطها بـ "نظام إدارة الوثائق"
-            'parent_original' => $manageDocumentManagementSystem->id,
-            'parent_show' => $manageDocumentManagementSystem->id,
-            'sidebar_link' => 1,
-            'appear' => 1,
-            'ordering' => 10,
-        ]);
+        //............... إنشاء صلاحية التهيئة .................//
+        $setupDocuments = Permission::create(['name' => 'setup_documents', 'display_name' => ['ar' => 'التهيئة', 'en' => 'Setup Documents'], 'route' => 'document_categories', 'module' => 'document_categories', 'as' => 'document_categories.index', 'icon' => 'fas fa-cogs', 'parent' => $manageDocumentManagementSystem->id, 'parent_original' => $manageDocumentManagementSystem->id, 'parent_show' => $manageDocumentManagementSystem->id, 'sidebar_link' => 1, 'appear' => 1, 'ordering' => 10,]);
         $setupDocuments->parent_show = $setupDocuments->id;
         $setupDocuments->save();
 
@@ -225,11 +200,17 @@ class EntrustSeeder extends Seeder
         $deleteDocuments  =  Permission::create(['name' => 'delete_document_types', 'display_name'  => ['ar'     => 'حذف دليل تصنيف وثيقة', 'en'  =>  'Delete Document classification guide'], 'route' => 'document_types', 'module' => 'document_types', 'as' => 'document_types.destroy', 'icon' => null, 'parent' => $manageDocumentTypes->id, 'parent_original' => $manageDocumentTypes->id, 'parent_show' => $manageDocumentTypes->id, 'sidebar_link' => '0', 'appear' => '0']);
 
 
+        //............... إنشاء  المدخلات .................//
+        $inputDocuments = Permission::create(['name' => 'input_documents', 'display_name' => ['ar' => 'المدخلات', 'en' => 'Input Documents'], 'route' => 'document_templates', 'module' => 'document_templates', 'as' => 'document_templates.index', 'icon' => 'fas fa-cogs', 'parent' => $manageDocumentManagementSystem->id, 'parent_original' => $manageDocumentManagementSystem->id, 'parent_show' => $manageDocumentManagementSystem->id, 'sidebar_link' => 1, 'appear' => 1, 'ordering' => 10,]);
+        $inputDocuments->parent_show = $inputDocuments->id;
+        $inputDocuments->save();
+
+
         //manage Document Templates
-        $manageDocumentTemplates = Permission::create(['name' => 'manage_document_templates', 'display_name' => ['ar'    =>  ' إدارة قالب الوثائق',   'en'    =>  '’Manage Document Templates'], 'route' => 'document_templates', 'module' => 'document_templates', 'as' => 'document_templates.index', 'icon' => 'fas fa-file-signature', 'parent' => '0', 'parent_original' => '0', 'sidebar_link' => '1', 'appear' => '1', 'ordering' => '20',]);
+        $manageDocumentTemplates = Permission::create(['name' => 'manage_document_templates', 'display_name' => ['ar'    =>  'قالب الوثائق',   'en'    =>  'Document Templates'], 'route' => 'document_templates', 'module' => 'document_templates', 'as' => 'document_templates.index', 'icon' => 'fas fa-file-signature', 'parent' => $inputDocuments->id, 'parent_original' => $inputDocuments->id, 'sidebar_link' => '1', 'appear' => '1', 'ordering' => '20',]);
         $manageDocumentTemplates->parent_show = $manageDocumentTemplates->id;
         $manageDocumentTemplates->save();
-        $showDocumentTemplates    =  Permission::create(['name' => 'show_document_templates', 'display_name'       =>    ['ar'   =>  'قالب الوثائق',   'en'    =>  ' Document Templates'],   'route' => 'document_templates', 'module' => 'document_templates', 'as' => 'document_templates.index', 'icon' => 'fas fa-file-signature', 'parent' => $manageDocumentTemplates->id, 'parent_original' => $manageDocumentTemplates->id, 'parent_show' => $manageDocumentTemplates->id, 'sidebar_link' => '0', 'appear' => '0']);
+        $showDocumentTemplates    =  Permission::create(['name' => 'show_document_templates', 'display_name'       =>    ['ar'   =>  'إدارة قالب الوثائق',   'en'    =>  'Manage Document Templates'],   'route' => 'document_templates', 'module' => 'document_templates', 'as' => 'document_templates.index', 'icon' => 'fas fa-file-signature', 'parent' => $manageDocumentTemplates->id, 'parent_original' => $manageDocumentTemplates->id, 'parent_show' => $manageDocumentTemplates->id, 'sidebar_link' => '0', 'appear' => '0']);
         $createDocumentTemplates  =  Permission::create(['name' => 'create_document_templates', 'display_name'     =>    ['ar'   =>  'إضافة قالب وثيقة جديد',   'en'    =>  'Add Document Template'],    'route' => 'document_templates', 'module' => 'document_templates', 'as' => 'document_templates.create', 'icon' => null, 'parent' => $manageDocumentTemplates->id, 'parent_original' => $manageDocumentTemplates->id, 'parent_show' => $manageDocumentTemplates->id, 'sidebar_link' => '0', 'appear' => '0']);
         $displayDocumentTemplates =  Permission::create(['name' => 'display_document_templates', 'display_name'    =>    ['ar'   =>  ' عرض قالب وثيقة',   'en'    =>  'Display Document Template'],    'route' => 'document_templates', 'module' => 'document_templates', 'as' => 'document_templates.show', 'icon' => null, 'parent' => $manageDocumentTemplates->id, 'parent_original' => $manageDocumentTemplates->id, 'parent_show' => $manageDocumentTemplates->id, 'sidebar_link' => '0', 'appear' => '0']);
         $updateDocumentTemplates  =  Permission::create(['name' => 'update_document_templates', 'display_name'     =>    ['ar'   =>  'تعديل قالب وثيقة',   'en'    =>  'Edit Document Template'],    'route' => 'document_templates', 'module' => 'document_templates', 'as' => 'document_templates.edit', 'icon' => null, 'parent' => $manageDocumentTemplates->id, 'parent_original' => $manageDocumentTemplates->id, 'parent_show' => $manageDocumentTemplates->id, 'sidebar_link' => '0', 'appear' => '0']);
