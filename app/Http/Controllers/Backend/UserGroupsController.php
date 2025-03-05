@@ -21,7 +21,7 @@ class UserGroupsController extends Controller
 {
     public function index()
     {
-        if (!auth()->user()->ability('admin', 'manage_user_groups , show_user_groups')) {
+        if (!auth()->user()->ability(['admin','users'], 'manage_user_groups , show_user_groups')) {
             return redirect('admin/index');
         }
 
@@ -118,6 +118,14 @@ class UserGroupsController extends Controller
 
 
         $user_group->update($input);
+
+          // Sync the permissions
+        if ($request->has('permissions')) {
+            $user_group->perms()->sync($request->permissions);
+        } else {
+            $user_group->perms()->sync([]);
+        }
+
 
 
         return redirect()->route('admin.user_groups.index')->with([
