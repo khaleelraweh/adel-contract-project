@@ -98,19 +98,10 @@ class UserGroupsController extends Controller
         // Fetch all permissions in a hierarchical structure
         $permissions = Permission::tree();
 
-        // Fetch the permissions already assigned to the role
-        // $assignedPermissions = $user_group->permissions->pluck('id')->toArray();
         $assignedPermissions = PermissionRole::whereRoleId($user_group->id)->pluck('permission_id')->toArray();
 
 
-
-
-        dd($assignedPermissions);
-
-        // $permissions = Permission::get(['id', 'display_name']);
-        // $supervisorPermissions = UserPermissions::whereUserId($supervisor->id)->pluck('permission_id')->toArray();
-
-        return view('backend.user_groups.edit', compact('user_group'));
+        return view('backend.user_groups.edit', compact('user_group','permissions','assignedPermissions'));
     }
 
     public function update(UserGroupRequest $request, Role $user_group)
