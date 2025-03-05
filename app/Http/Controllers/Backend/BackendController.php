@@ -56,10 +56,15 @@ class BackendController extends Controller
     public function index()
     {
 
-        dd(
-            auth()->user()->roles->pluck('name'), // Check user roles
-            auth()->user()->permissions->pluck('name') // Check user permissions
-        );
+        // dd(
+        //     auth()->user()->roles->pluck('name'), // Check user roles
+        //     // auth()->user()->roles-permissions->pluck('name') // Check user permissions
+        //     auth()->user()->roles->flatMap->permissions->pluck('name')->unique() // Check user permissions
+
+        // );
+
+        // dd(auth()->user()->permissions->pluck('name'));
+
 
         // Number of documents added today
         $numberOfDocumentsToday = Document::whereDate('created_at', today())->count();

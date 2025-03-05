@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,12 +8,10 @@ use Spatie\Translatable\HasTranslations;
 
 class Permission extends EntrustPermission
 {
-
-    use HasFactory, HasTranslations,  SearchableTrait;
+    use HasFactory, HasTranslations, SearchableTrait;
 
     protected $guarded = [];
     public $translatable = ['display_name', 'description'];
-
 
     protected $searchable = [
         'columns' => [
@@ -23,27 +20,13 @@ class Permission extends EntrustPermission
         ]
     ];
 
-
-
-
-    protected function asJson($value)
-    {
-        return json_encode($value, JSON_UNESCAPED_UNICODE);
-    }
-
-
-
-
-
     public function parent()
     {
-        // hasOne syntax : hasOne(model::class , foreign_key , Local_key)
         return $this->hasOne(Permission::class, 'id', 'parent');
     }
 
     public function children()
     {
-        // hasMany syntax : hasMany(model::class, foreign_key ,Local_key)
         return $this->hasMany(Permission::class, 'parent', 'id');
     }
 
@@ -57,7 +40,7 @@ class Permission extends EntrustPermission
         return static::with(implode('.', array_fill(0, $level, 'children')))
             ->whereParent(0)
             ->whereAppear(1)
-            ->whereSidebarLink(1) // this is the option to let the sidebar link is happened in side link
+            ->whereSidebarLink(1)
             ->orderBy('ordering', 'asc')
             ->get();
     }
@@ -71,10 +54,9 @@ class Permission extends EntrustPermission
             ->get();
     }
 
-
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'permission_role', 'permission_id', 'role_id')
-                    ->using(PermissionRole::class);
+                    ->using(PermissionRole::class); // Use the pivot model
     }
 }

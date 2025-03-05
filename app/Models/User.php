@@ -1,11 +1,9 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -17,23 +15,8 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, EntrustUserWithPermissionsTrait, SearchableTrait, HasTranslations;
 
-
     protected $guarded = [];
     public $translatable = ['description', 'motavation'];
-
-
-
-    protected function asJson($value)
-    {
-        return json_encode($value, JSON_UNESCAPED_UNICODE);
-    }
-
-    // for receiving the notifications depends on the channel next to the route
-    public function receivesBroadcastNotificationsOn(): string
-    {
-        return 'App.Models.User.' . $this->id;
-    }
-
 
     protected $searchable = [
         'columns' => [
@@ -52,15 +35,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    // to get full name as property instead of first_name and last_name
     protected $appends = ['full_name'];
 
-    // ucfirst : get first alphabet as bigger alpha
     public function getFullNameAttribute(): string
     {
         return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
     }
-
 
     public function status()
     {
@@ -77,5 +57,15 @@ class User extends Authenticatable implements MustVerifyEmail
         return $query->whereHas('roles', function ($query) use ($role) {
             $query->where('name', $role);
         });
+    }
+
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
+    }
+
+    public function permissions(): BelongsToMany
+    {
+        return $this->belongsToMany(Permission::class, 'user_permissions', 'permission_id', 'user_id');
     }
 }

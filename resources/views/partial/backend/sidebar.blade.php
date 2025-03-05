@@ -107,6 +107,52 @@
                     @endpermission
                 @endforeach
             @endrole
+            @role(['users'])
+                @foreach ($admin_side_menu as $menu)
+                    @permission($menu->name)
+                            @if (count($menu->appearedChildren) == 0)
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.' . $menu->as) }}" class="nav-link">
+                                        <i class="{{ $menu->icon != null ? $menu->icon : 'fas fa-home' }}"></i>
+                                        {{-- <span class="link-title">{{ $menu->display_name }}</span> --}}
+
+                                        <span class="link-title">
+                                            {{ \Illuminate\Support\Str::limit($menu->display_name, 25) }}
+                                        </span>
+                                    </a>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="collapse" href="#{{ $menu->name }}" role="button"
+                                        aria-expanded="false" aria-controls="{{ $menu->name }}">
+                                        <i class="{{ $menu->icon != null ? $menu->icon : 'fas fa-home' }}"></i>
+                                        {{-- <span class="link-title">{{ $menu->display_name }}</span> --}}
+                                        <span class="link-title">
+                                            {{ \Illuminate\Support\Str::limit($menu->display_name, 18) }}
+                                        </span>
+                                        <i class="link-arrow" data-feather="chevron-down"></i>
+                                    </a>
+                                    @if ($menu->appearedChildren !== null && count($menu->appearedChildren) > 0)
+                                        <div class="collapse" id="{{ $menu->name }}">
+                                            <ul class="nav sub-menu">
+                                                @foreach ($menu->appearedChildren as $sub_menu)
+                                                @permission($sub_menu->name)
+                                                    <li class="nav-item">
+                                                        <a href="{{ route('admin.' . $sub_menu->as) }}" class="nav-link">
+                                                            {{-- {{ $sub_menu->display_name }} --}}
+                                                            {{ \Illuminate\Support\Str::limit($sub_menu->display_name, 25) }}
+                                                        </a>
+                                                    </li>
+                                                    @endpermission
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                </li>
+                            @endif
+                    @endpermission
+                @endforeach
+            @endrole
 
 
 

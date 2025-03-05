@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,7 +7,8 @@ use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Role extends EntrustRole
 {
-    use HasFactory,  SearchableTrait;
+    use HasFactory, SearchableTrait;
+
     protected $guarded = [];
 
     protected $searchable = [
@@ -18,10 +18,14 @@ class Role extends EntrustRole
         ]
     ];
 
-
     public function permissions()
     {
         return $this->belongsToMany(Permission::class, 'permission_role', 'role_id', 'permission_id')
-                    ->using(PermissionRole::class);
+                    ->using(PermissionRole::class); // Use the pivot model
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'role_user', 'role_id', 'user_id');
     }
 }

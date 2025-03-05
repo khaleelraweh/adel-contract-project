@@ -70,8 +70,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     });
 
     //uthenticate to website
-    // Route::group(['middleware' => ['auth', 'roles', 'role:admin|supervisor|users']], function () {
-    Route::group(['middleware' => ['auth', 'roles', 'role:users']], function () {
+    Route::group(['middleware' => ['auth', 'roles', 'role:admin|supervisor|users']], function () {
         Route::get('/', [BackendController::class, 'index'])->name('index2');
         Route::get('/index', [BackendController::class, 'index'])->name('index');
 
