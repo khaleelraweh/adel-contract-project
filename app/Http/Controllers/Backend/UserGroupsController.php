@@ -14,6 +14,7 @@ use App\Http\Requests\Backend\UserGroupRequest;
 use App\Models\Permission;
 use App\Models\User;
 use App\Models\UserPermissions;
+use App\Models\PermissionRole;
 use Illuminate\Http\Request;
 
 class UserGroupsController extends Controller
@@ -92,6 +93,22 @@ class UserGroupsController extends Controller
         if (!auth()->user()->ability('admin', 'update_user_groups')) {
             return redirect('admin/index');
         }
+
+
+        // Fetch all permissions in a hierarchical structure
+        $permissions = Permission::tree();
+
+        // Fetch the permissions already assigned to the role
+        // $assignedPermissions = $user_group->permissions->pluck('id')->toArray();
+        $assignedPermissions = PermissionRole::whereRoleId($user_group->id)->pluck('permission_id')->toArray();
+
+
+
+
+        dd($assignedPermissions);
+
+        // $permissions = Permission::get(['id', 'display_name']);
+        // $supervisorPermissions = UserPermissions::whereUserId($supervisor->id)->pluck('permission_id')->toArray();
 
         return view('backend.user_groups.edit', compact('user_group'));
     }
