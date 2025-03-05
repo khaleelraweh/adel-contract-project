@@ -43,8 +43,10 @@ class UserGroupsController extends Controller
             return redirect('admin/index');
         }
 
+        $permissions = Permission::tree();
 
-        return view('backend.user_groups.create');
+
+        return view('backend.user_groups.create',compact('permissions'));
     }
 
     public function store(UserGroupRequest $request)
@@ -60,6 +62,11 @@ class UserGroupsController extends Controller
         $input['allowed_route'] = 'admin';
 
         $user_groups = Role::create($input);
+
+         // Attach the checked permissions to the role
+        if ($request->has('permissions')) {
+            $user_groups->attachPermissions($request->permissions);
+        }
 
 
 
