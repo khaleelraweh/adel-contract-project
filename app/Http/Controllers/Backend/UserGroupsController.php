@@ -64,6 +64,8 @@ class UserGroupsController extends Controller
 
         $user_groups = Role::create($input);
 
+        dd($request->permissions);
+
          // Attach the checked permissions to the role
         if ($request->has('permissions')) {
             $user_groups->attachPermissions($request->permissions);
