@@ -26,7 +26,7 @@ class UserGroupRequest extends FormRequest
         switch ($this->method()) {
             case 'POST': {
                     return [
-                        'display_name' => 'required|unique:roles',
+                        // 'display_name' => 'required|unique:roles',
                         'description'  => 'nullable',
 
                         'created_by' => 'nullable',

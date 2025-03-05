@@ -56,7 +56,8 @@ class UserGroupsController extends Controller
         }
 
 
-        $input['name'] = "users";
+        // $input['name'] = strtolower(str_replace(' ', '_', $request->display_name)); // Convert "Admin Group" to "admin_group"
+        $input['name'] = 'users'; // Convert "Admin Group" to "admin_group"
         $input['display_name'] = $request->display_name;
         $input['description'] = $request->description;
         $input['allowed_route'] = 'admin';
