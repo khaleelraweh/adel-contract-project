@@ -14,20 +14,20 @@ class EntrustSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     * 
-     * Dictionary : 
-     *              01- Roles 
+     *
+     * Dictionary :
+     *              01- Roles
      *              02- Users
      *              03- AttachRoles To  Users
      *              04- Create random customer and  AttachRole to customerRole
-     * 
-     * 
+     *
+     *
      * @return void
      */
     public function run()
     {
 
-        //create fake information  using faker factory lab 
+        //create fake information  using faker factory lab
         $faker = Factory::create();
 
 
@@ -179,7 +179,7 @@ class EntrustSeeder extends Seeder
         $setupDocuments->save();
 
 
-        //document Categories 
+        //document Categories
         $manageDocumentCategories = Permission::create(['name' => 'manage_document_categories', 'display_name' => ['ar' => 'دليل مجموعة الوثائق', 'en' => 'Document collection guide'], 'route' => 'document_categories', 'module' => 'document_categories', 'as' => 'document_categories.index', 'icon' => 'far fa-file-alt', 'parent' => $setupDocuments->id, 'parent_original' => $setupDocuments->id, 'parent_show' => $setupDocuments->id, 'sidebar_link' => '1', 'appear' => '1', 'ordering' => '10',]);
         $manageDocumentCategories->parent_show = $manageDocumentCategories->id;
         $manageDocumentCategories->save();
@@ -189,7 +189,7 @@ class EntrustSeeder extends Seeder
         $updateDocuments  =  Permission::create(['name' => 'update_document_categories', 'display_name'  => ['ar'     => 'تعديل دليل مجموعة وثيقة', 'en'  =>  'Edit Document collection guide'], 'route' => 'document_categories', 'module' => 'document_categories', 'as' => 'document_categories.edit', 'icon' => null, 'parent' => $manageDocumentCategories->id, 'parent_original' => $manageDocumentCategories->id, 'parent_show' => $manageDocumentCategories->id, 'sidebar_link' => '0', 'appear' => '0']);
         $deleteDocuments  =  Permission::create(['name' => 'delete_document_categories', 'display_name'  => ['ar'     => 'حذف دليل مجموعة وثيقة', 'en'  =>  'Delete Document collection guide'], 'route' => 'document_categories', 'module' => 'document_categories', 'as' => 'document_categories.destroy', 'icon' => null, 'parent' => $manageDocumentCategories->id, 'parent_original' => $manageDocumentCategories->id, 'parent_show' => $manageDocumentCategories->id, 'sidebar_link' => '0', 'appear' => '0']);
 
-        //document Types 
+        //document Types
         $manageDocumentTypes = Permission::create(['name' => 'manage_document_types', 'display_name' => ['ar' => 'دليل تصنيف الوثائق', 'en' => 'Document classification guide'], 'route' => 'document_types', 'module' => 'document_types', 'as' => 'document_types.index', 'icon' => 'far fa-file-alt', 'parent' => $setupDocuments->id, 'parent_original' => $setupDocuments->id, 'sidebar_link' => '1', 'appear' => '1', 'ordering' => '15',]);
         $manageDocumentTypes->parent_show = $manageDocumentTypes->id;
         $manageDocumentTypes->save();
@@ -222,7 +222,7 @@ class EntrustSeeder extends Seeder
         $proccessDocuments->parent_show = $proccessDocuments->id;
         $proccessDocuments->save();
 
-        //manage Document 
+        //manage Document
         $manageDocuments = Permission::create(['name' => 'manage_documents', 'display_name' => ['ar'    =>  ' إدارة الوثائق',   'en'    =>  '’Manage Documents'], 'route' => 'documents', 'module' => 'documents', 'as' => 'documents.index', 'icon' => 'fas fa-file-signature', 'parent' => $proccessDocuments->id, 'parent_original' => $proccessDocuments->id, 'sidebar_link' => '1', 'appear' => '1', 'ordering' => '25',]);
         $manageDocuments->parent_show = $manageDocuments->id;
         $manageDocuments->save();
@@ -282,5 +282,9 @@ class EntrustSeeder extends Seeder
         $displayDocumentArchives =  Permission::create(['name' => 'display_document_archives', 'display_name'    =>    ['ar'   =>  ' عرض إرشيف وثيقة',   'en'    =>  'Display Document Archive'],    'route' => 'document_archives', 'module' => 'document_archives', 'as' => 'document_archives.show', 'icon' => null, 'parent' => $manageDocumentArchives->id, 'parent_original' => $manageDocumentArchives->id, 'parent_show' => $manageDocumentArchives->id, 'sidebar_link' => '0', 'appear' => '0']);
         $updateDocumentArchives  =  Permission::create(['name' => 'update_document_archives', 'display_name'     =>    ['ar'   =>  'تعديل إرشيف وثيقة',   'en'    =>  'Edit Document Archive'],    'route' => 'document_archives', 'module' => 'document_archives', 'as' => 'document_archives.edit', 'icon' => null, 'parent' => $manageDocumentArchives->id, 'parent_original' => $manageDocumentArchives->id, 'parent_show' => $manageDocumentArchives->id, 'sidebar_link' => '0', 'appear' => '0']);
         $deleteDocumentArchives  =  Permission::create(['name' => 'delete_document_archives', 'display_name'     =>    ['ar'   =>  'حذف إرشيف وثيقة',   'en'    =>  'Delete Document Archive'],    'route' => 'document_archives', 'module' => 'document_archives', 'as' => 'document_archives.destroy', 'icon' => null, 'parent' => $manageDocumentArchives->id, 'parent_original' => $manageDocumentArchives->id, 'parent_show' => $manageDocumentArchives->id, 'sidebar_link' => '0', 'appear' => '0']);
+
+         // Assign all permissions to the admin role
+         $permissions = Permission::all();
+         $adminRole->attachPermissions($permissions);
     }
 }
