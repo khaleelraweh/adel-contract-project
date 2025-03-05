@@ -44,7 +44,7 @@ class BackendController extends Controller
     // public function index()
     // {
 
-    //     $numberOfDocumentsToday = Document::whereDate('created_at', today())->count(); //filter the created_at to today 
+    //     $numberOfDocumentsToday = Document::whereDate('created_at', today())->count(); //filter the created_at to today
 
     //     if (Auth::check()) {
     //         return view('backend.index', compact('numberOfDocumentsToday'));
@@ -55,6 +55,12 @@ class BackendController extends Controller
 
     public function index()
     {
+
+        dd(
+            auth()->user()->roles->pluck('name'), // Check user roles
+            auth()->user()->permissions->pluck('name') // Check user permissions
+        );
+
         // Number of documents added today
         $numberOfDocumentsToday = Document::whereDate('created_at', today())->count();
 

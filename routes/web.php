@@ -51,7 +51,7 @@ Auth::routes(['verify' => true]);
 // لايقاف الديباجر نضيف هذا الكود
 app('debugbar')->disable();
 
-//Frontend 
+//Frontend
 Route::get('/',         [BackendController::class, 'index'])->name('admin.index');
 Route::get('/index',    [BackendController::class, 'index'])->name('admin.index');
 
@@ -61,7 +61,7 @@ Route::get('/change-language/{locale}',     [LocaleController::class, 'switch'])
 //Backend
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
-    //guest to website 
+    //guest to website
     Route::group(['middleware' => 'guest'], function () {
         Route::get('/login', [BackendController::class, 'login'])->name('login');
         Route::get('/register', [BackendController::class, 'register'])->name('register');
@@ -69,8 +69,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/recover-password', [BackendController::class, 'recover_password'])->name('recover-password');
     });
 
-    //uthenticate to website 
-    Route::group(['middleware' => ['auth', 'roles', 'role:admin|supervisor']], function () {
+    //uthenticate to website
+    // Route::group(['middleware' => ['auth', 'roles', 'role:admin|supervisor|users']], function () {
+    Route::group(['middleware' => ['auth', 'roles', 'role:users']], function () {
         Route::get('/', [BackendController::class, 'index'])->name('index2');
         Route::get('/index', [BackendController::class, 'index'])->name('index');
 
@@ -79,10 +80,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::post('supervisors/update-supervisor-status', [SupervisorController::class, 'updateSupervisorStatus'])->name('supervisors.update_supervisor_status');
         Route::resource('supervisors', SupervisorController::class);
 
-        // user groups 
+        // user groups
         Route::resource('user_groups', UserGroupsController::class);
 
-        // user groups 
+        // user groups
         Route::resource('user_permissions', UserPermissionsController::class);
 
         Route::post('support_menus/update-support-menu-status', [SupportMenuController::class, 'updateSupportMenuStatus'])->name('support_menus.update_support_menu_status');

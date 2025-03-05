@@ -24,6 +24,8 @@ class Permission extends EntrustPermission
     ];
 
 
+
+
     protected function asJson($value)
     {
         return json_encode($value, JSON_UNESCAPED_UNICODE);
@@ -67,5 +69,12 @@ class Permission extends EntrustPermission
             ->whereAppear(1)
             ->orderBy('ordering', 'asc')
             ->get();
+    }
+
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'permission_role', 'permission_id', 'role_id')
+                    ->using(PermissionRole::class);
     }
 }
