@@ -1803,6 +1803,9 @@ return [
     'display_name'                                         =>  'الاسم المعروض',
     'associated_permissions'                                =>  'الصلاحيات المرتبطة',
 
+    'user_details'                                          =>  'تفاصيل المستخدم',
+    'roles_and_permissions'                                 =>  'الأدوار والصلاحيات',
+
     'user'                                                  =>  'المستخدم',
     'users'                                                 =>  'المستخدمين',
     'user_name'                                             =>  'اسم المستخدم',
