@@ -60,7 +60,7 @@ class EntrustSeeder extends Seeder
         //userRole
         $usersRole = new Role();
         $usersRole->name         = 'users';
-        $usersRole->display_name = 'Login main'; // optional
+        $usersRole->display_name = 'Access Home Page '; // optional
         $usersRole->description  = 'users role is allow user to access main page or home only '; // optional
         $usersRole->allowed_route = 'admin';
         $usersRole->save();
