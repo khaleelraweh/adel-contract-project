@@ -13,7 +13,7 @@ class ContractsController extends Controller
 {
     public function index()
     {
-        if (!auth()->user()->ability('admin', 'manage_contracts , show_contracts')) {
+        if (!auth()->user()->ability(['admin','supervisor','users'], 'manage_contracts , show_contracts')) {
             return redirect('admin/index');
         }
 
@@ -100,10 +100,10 @@ class ContractsController extends Controller
 
         $data['contract_content']         =  $contract->contract_content;
 
-        // المكان الذي يوجد فيه ملف ال pdf.blade.php  
-        // نقوم بارسال البيانات اليه من اجل عرضها في ذلك الملف 
+        // المكان الذي يوجد فيه ملف ال pdf.blade.php
+        // نقوم بارسال البيانات اليه من اجل عرضها في ذلك الملف
         $pdf = PDF::loadView('backend.contracts.pdf', $data);
-        // لطباعة ملف البيدي اف باسم معين وفي المسار المعين 
+        // لطباعة ملف البيدي اف باسم معين وفي المسار المعين
         return $pdf->stream($contract->id . '.pdf');
 
         return view('backend.contracts.pdf', compact('contract'));

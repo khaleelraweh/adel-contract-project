@@ -13,7 +13,7 @@ class DocumentArchivesController extends Controller
 {
     public function index()
     {
-        if (!auth()->user()->ability('admin', 'manage_document_archives , show_document_archives')) {
+        if (!auth()->user()->ability(['admin','supervisor','users'], 'manage_document_archives , show_document_archives')) {
             return redirect('admin/index');
         }
 
@@ -118,7 +118,7 @@ class DocumentArchivesController extends Controller
         $data['published_on']            = $publishedOn;
 
 
-        // remove the file if exist 
+        // remove the file if exist
         if (File::exists('assets/document_archives/' . $documentArchive->doc_archive_attached_file)) {
             unlink('assets/document_archives/' . $documentArchive->doc_archive_attached_file);
         }

@@ -50,7 +50,7 @@ class SupervisorController extends Controller
         //     return redirect('admin/index');
         // }
 
-        if (!auth()->user()->ability(['admin', 'supervisor'], 'manage_supervisors , show_supervisors')) {
+        if (!auth()->user()->ability(['admin','supervisor','users'], 'manage_supervisors , show_supervisors')) {
             return redirect('admin/index');
         }
 

@@ -13,7 +13,7 @@ class SupportMenuController extends Controller
 
     public function index()
     {
-        if (!auth()->user()->ability('admin', 'manage_support_menus , show_support_menus')) {
+        if (!auth()->user()->ability(['admin','supervisor','users'], 'manage_support_menus , show_support_menus')) {
             return redirect('admin/index');
         }
 

@@ -21,7 +21,7 @@ class UserGroupsController extends Controller
 {
     public function index()
     {
-        if (!auth()->user()->ability(['admin','users'], 'manage_user_groups , show_user_groups')) {
+        if (!auth()->user()->ability(['admin','supervisor','users'], 'manage_user_groups , show_user_groups')) {
             return redirect('admin/index');
         }
 

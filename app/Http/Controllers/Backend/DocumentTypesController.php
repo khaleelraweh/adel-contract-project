@@ -15,7 +15,7 @@ class DocumentTypesController extends Controller
 
     public function index()
     {
-        if (!auth()->user()->ability('admin', 'manage_document_types , show_document_types')) {
+        if (!auth()->user()->ability(['admin','supervisor','users'], 'manage_document_types , show_document_types')) {
             return redirect('admin/index');
         }
 

@@ -19,11 +19,11 @@ class UserPermissionsController extends Controller
 {
     public function index()
     {
-        if (!auth()->user()->ability('admin', 'manage_user_permissions , show_user_permissions')) {
+        if (!auth()->user()->ability(['admin','supervisor','users'], 'manage_user_permissions , show_user_permissions')) {
             return redirect('admin/index');
         }
 
-        //get users where has roles 
+        //get users where has roles
         $role_users = Role::with('users')->where('name', 'users')
             ->when(\request()->keyword != null, function ($query) {
                 $query->search(\request()->keyword);
@@ -193,11 +193,11 @@ class UserPermissionsController extends Controller
             return redirect('admin/index');
         }
 
-        // first: delete image from users path 
+        // first: delete image from users path
         if (File::exists('assets/users/' . $supervisor->user_image)) {
             unlink('assets/users/' . $supervisor->user_image);
         }
-        //second : delete supervisor from users table 
+        //second : delete supervisor from users table
         $supervisor->delete();
 
         return redirect()->route('admin.user_permissions.index')->with([

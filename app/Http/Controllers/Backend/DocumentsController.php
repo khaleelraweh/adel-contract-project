@@ -13,7 +13,7 @@ class DocumentsController extends Controller
 {
     public function index()
     {
-        if (!auth()->user()->ability('admin', 'manage_documents , show_documents')) {
+        if (!auth()->user()->ability(['admin','supervisor','users'], 'manage_documents , show_documents')) {
             return redirect('admin/index');
         }
 
@@ -101,10 +101,10 @@ class DocumentsController extends Controller
 
         $data['doc_content']         =  $document->doc_content;
 
-        // المكان الذي يوجد فيه ملف ال pdf.blade.php  
-        // نقوم بارسال البيانات اليه من اجل عرضها في ذلك الملف 
+        // المكان الذي يوجد فيه ملف ال pdf.blade.php
+        // نقوم بارسال البيانات اليه من اجل عرضها في ذلك الملف
         $pdf = PDF::loadView('backend.documents.pdf', $data);
-        // لطباعة ملف البيدي اف باسم معين وفي المسار المعين 
+        // لطباعة ملف البيدي اف باسم معين وفي المسار المعين
         return $pdf->stream($document->id . '.pdf');
 
         return view('backend.documents.pdf', compact('document'));

@@ -13,7 +13,7 @@ class DocumentCategoriesController extends Controller
 {
     public function index()
     {
-        if (!auth()->user()->ability('admin', 'manage_document_categories , show_document_categories')) {
+        if (!auth()->user()->ability(['admin','supervisor','users'], 'manage_document_categories , show_document_categories')) {
             return redirect('admin/index');
         }
 

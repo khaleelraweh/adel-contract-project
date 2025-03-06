@@ -12,7 +12,7 @@ class DocumentTemplatesController extends Controller
 {
     public function index()
     {
-        if (!auth()->user()->ability('admin', 'manage_document_templates , show_document_templates')) {
+        if (!auth()->user()->ability(['admin','supervisor','users'], 'manage_document_templates , show_document_templates')) {
             return redirect('admin/index');
         }
 

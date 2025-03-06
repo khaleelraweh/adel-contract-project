@@ -10,7 +10,7 @@ class ContractTemplateController extends Controller
 {
     public function index()
     {
-        if (!auth()->user()->ability('admin', 'manage_contract_templates , show_contract_templates')) {
+        if (!auth()->user()->ability(['admin','supervisor','users'], 'manage_contract_templates , show_contract_templates')) {
             return redirect('admin/index');
         }
 
