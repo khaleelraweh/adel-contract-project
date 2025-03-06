@@ -65,7 +65,6 @@ class UserPermissionsController extends Controller
 
         $user = User::where('id', $request->user_id)->first();
 
-        dd($user);
 
 
         if ($image = $request->file('user_image')) {
