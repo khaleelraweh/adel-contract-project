@@ -51,10 +51,10 @@
                     @forelse ($role_users as $role_user)
                         <tr>
                             <td>
-                                {{ $role_user->user->first_name ?? 'N/A' }} <br>
+                                {{ $role_user->first_name ?? 'N/A' }} <br>
                             </td>
                             <td>
-                                {{ $role_user->role->display_name ?? 'N/A' }} <br>
+                                {{ $role_user->display_name ?? 'N/A' }} <br>
                             </td>
                             <td class="d-none d-sm-table-cell">
                                 {{ \Carbon\Carbon::parse($role_user->created_at)->diffForHumans() }}
@@ -75,24 +75,24 @@
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item d-flex align-items-center btn btn-success"
-                                                href="{{ route('admin.user_permissions.show', $role_user->role->id) }}">
+                                                href="{{ route('admin.user_permissions.show', $role_user->id) }}">
                                                 <i data-feather="eye" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_show') }}</span>
                                             </a>
                                             <a class="dropdown-item d-flex align-items-center"
-                                                href="{{ route('admin.user_permissions.edit', $role_user->role->id) }}">
+                                                href="{{ route('admin.user_permissions.edit', $role_user->id) }}">
                                                 <i data-feather="edit-2" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_edit') }}</span>
                                             </a>
 
                                             <a href="javascript:void(0);"
-                                                onclick="confirmDelete('delete-role_user-{{ $role_user->role->id }}', '{{ __('panel.confirm_delete_message') }}', '{{ __('panel.yes_delete') }}', '{{ __('panel.cancel') }}')"
+                                                onclick="confirmDelete('delete-role_user-{{ $role_user->id }}', '{{ __('panel.confirm_delete_message') }}', '{{ __('panel.yes_delete') }}', '{{ __('panel.cancel') }}')"
                                                 class="dropdown-item d-flex align-items-center">
                                                 <i data-feather="trash" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_delete') }}</span>
                                             </a>
-                                            <form action="{{ route('admin.user_permissions.destroy', $role_user->role->id) }}"
-                                                method="post" class="d-none" id="delete-role_user-{{ $role_user->role->id }}">
+                                            <form action="{{ route('admin.user_permissions.destroy', $role_user->id) }}"
+                                                method="post" class="d-none" id="delete-role_user-{{ $role_user->id }}">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>

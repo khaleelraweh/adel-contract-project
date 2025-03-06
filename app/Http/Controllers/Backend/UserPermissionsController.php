@@ -28,7 +28,6 @@ class UserPermissionsController extends Controller
             $query->where('name', 'users');
         })->with('roles')->get();
 
-        dd($role_users);
 
         return view('backend.user_permissions.index', compact('role_users'));
     }
