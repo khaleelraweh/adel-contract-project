@@ -76,7 +76,7 @@
                     {{-- roles  row --}}
                     <div class="row">
                         <div class="col-sm-12 col-md-3 pt-3">
-                            <label for="roles"> {{ __('panel.roles') }} </label>
+                            <label for="roles"> {{ __('panel.user_roles') }} </label>
                         </div>
                         <div class="col-sm-12 col-md-9 pt-3">
                             <select name="roles[]" class="form-control select2 child " multiple="multiple">
@@ -90,8 +90,11 @@
                         </div>
                     </div>
 
-                    <div class="row pt-4">
-                        <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-3 pt-3">
+                            <label for="roles"> {{ __('panel.manage_permissions') }} </label>
+                        </div>
+                        <div class="col-sm-12 col-md-9 pt-3">
                             @foreach ($permissions as $parentPermission)
                                 <div class="permission-group">
                                     <!-- Parent Permission Checkbox -->
