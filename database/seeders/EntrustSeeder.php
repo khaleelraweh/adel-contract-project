@@ -57,6 +57,14 @@ class EntrustSeeder extends Seeder
         $customerRole->allowed_route = null;
         $customerRole->save();
 
+        //userRole
+        $usersRole = new Role();
+        $usersRole->name         = 'users';
+        $usersRole->display_name = 'Login main'; // optional
+        $usersRole->description  = 'users role is allow user to access main page or home only '; // optional
+        $usersRole->allowed_route = 'admin';
+        $usersRole->save();
+
 
         //------------- 02- Users  ------------//
         // Create Admin
@@ -133,6 +141,9 @@ class EntrustSeeder extends Seeder
         $manageMain = Permission::create(['name' => 'main', 'display_name' => ['ar' => 'الرئيسية', 'en'    => 'Main'], 'route' => 'index', 'module' => 'index', 'as' => 'index', 'icon' => 'fa fa-home', 'parent' => '0', 'parent_original' => '0', 'sidebar_link' => '1', 'appear' => '1', 'ordering' => '1']);
         $manageMain->parent_show = $manageMain->id;
         $manageMain->save();
+
+        $usersRole->attachPermission($manageMain);
+
 
 
 
