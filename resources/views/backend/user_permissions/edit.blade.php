@@ -64,7 +64,7 @@
                             <select name="user_id" class="form-control select2 child" id="user_id">
                                 @forelse ($users as $user)
                                     <option value="{{ $user->id }}"
-                                        {{ in_array($user->id, old('users', [])) ? 'selected' : null }}>
+                                        {{ old('user_id', $user->id) ? 'selected' : null }}>
                                         {{ $user->first_name . " " .$user->last_name }}</option>
                                 @empty
                                 @endforelse
