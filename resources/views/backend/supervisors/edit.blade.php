@@ -87,53 +87,55 @@
                             </div>
 
                             <div class="row">
+                                <div class="col-sm-12 col-md-3 pt-4">
+                                    <label for="username">{{ __('panel.user_name') }}</label>
+                                </div>
                                 <div class="col-sm-12 col-md-9 pt-4">
-                                    <div class="form-group">
-                                        <label for="username">{{ __('panel.user_name') }}</label>
                                         <input type="text" id="username" name="username"
                                             value="{{ old('username', $supervisor->username) }}" class="form-control"
                                             placeholder="">
                                         @error('username')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
-                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-3 pt-4">
+                                    <label for="password">{{ __('panel.user_password') }}</label>
                                 </div>
                                 <div class="col-sm-12 col-md-9 pt-4">
-                                    <div class="form-group">
-                                        <label for="password">{{ __('panel.user_password') }}</label>
-                                        <input type="password" id="password" name="password" value="{{ old('password') }}"
-                                            class="form-control" placeholder="">
-                                        @error('password')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                    <input type="password" id="password" name="password" value="{{ old('password') }}"
+                                        class="form-control" placeholder="">
+                                    @error('password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
-
                             </div>
 
                             <div class="row">
-                                <div class="col-sm-12 col-md-9 pt-4">
-                                    <div class="form-group">
-                                        <label for="email">{{ __('panel.email') }}</label>
-                                        <input type="text" id="email" name="email"
-                                            value="{{ old('email', $supervisor->email) }}" class="form-control"
-                                            placeholder="">
-                                        @error('email')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <div class="col-sm-12 col-md-3 pt-4">
+                                    <label for="email">{{ __('panel.email') }}</label>
                                 </div>
-
                                 <div class="col-sm-12 col-md-9 pt-4">
-                                    <div class="form-group">
-                                        <label for="mobile">{{ __('panel.mobile') }}</label>
-                                        <input type="text" id="mobile" name="mobile"
-                                            value="{{ old('mobile', $supervisor->mobile) }}" class="form-control"
-                                            placeholder="">
-                                        @error('mobile')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                    <input type="text" id="email" name="email"
+                                        value="{{ old('email', $supervisor->email) }}" class="form-control"
+                                        placeholder="">
+                                    @error('email')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-3 pt-4">
+                                    <label for="mobile">{{ __('panel.mobile') }}</label>
+                                </div>
+                                <div class="col-sm-12 col-md-9 pt-4">
+                                    <input type="text" id="mobile" name="mobile"
+                                        value="{{ old('mobile', $supervisor->mobile) }}" class="form-control"
+                                        placeholder="">
+                                    @error('mobile')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                             </div>
@@ -171,15 +173,6 @@
                                         @empty
                                         @endforelse
                                     </select>
-
-                                    {{-- child class is used to make disabled and enabled to select part --}}
-                                    {{-- <div class="col-md-12 col-sm-12 ">
-                                        <label class="col-form-label col-md-12 col-sm-12 ">
-                                            <input class='child' type='checkbox' name="all_permissions" value="ok" />
-                                            {{ __('panel.grant_all_permissions') }}
-                                        </label>
-                                    </div> --}}
-
                                 </div>
                             </div>
 
