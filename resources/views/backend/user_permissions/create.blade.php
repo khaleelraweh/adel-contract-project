@@ -221,9 +221,6 @@
                         </div>
                     </div>
 
-
-
-
                     <div class="row">
                         <div class="col-sm-12 col-md-2 pt-3 d-none d-md-block">
                         </div>
