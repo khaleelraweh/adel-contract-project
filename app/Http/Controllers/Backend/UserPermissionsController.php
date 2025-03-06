@@ -43,22 +43,26 @@ class UserPermissionsController extends Controller
             return redirect('admin/index');
         }
 
+        $users = User::whereHas('roles', function ($query) {
+            $query->where('name', 'users');
+        })->get(['id', 'first_name', 'last_name']);
+
         $roles = Role::where('name', 'users')->get(['id', 'display_name']);
 
         $permissions = Permission::tree();
 
 
 
-        return view('backend.user_permissions.create', compact('roles', 'permissions'));
+        return view('backend.user_permissions.create', compact('roles', 'permissions','users'));
     }
 
-    public function store(SupervisorRequest $request)
+    public function store(Request $request)
     {
         if (!auth()->user()->ability('admin', 'create_user_permissions')) {
             return redirect('admin/index');
         }
 
-        // dd($request);
+        dd($request->user_id);
 
         $input['first_name'] = $request->first_name;
         $input['last_name'] = $request->last_name;

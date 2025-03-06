@@ -4,6 +4,7 @@
     {{-- main holder page  --}}
     <div class="card shadow mb-4">
 
+
         {{-- breadcrumb part  --}}
         <div class="card-header py-3 d-flex justify-content-between">
             <div class="card-naving">
@@ -56,6 +57,24 @@
 
                         <div class="col-md-12 col-sm-12 ">
 
+                            <label for="user_id"> {{ __('panel.users') }} </label>
+                            <select name="user_id" class="form-control select2 child" id="user_id">
+                                @forelse ($users as $user)
+                                    <option value="{{ $user->id }}"
+                                        {{ in_array($user->id, old('users', [])) ? 'selected' : null }}>
+                                        {{ $user->first_name . " " .$user->last_name }}</option>
+                                @empty
+                                @endforelse
+                            </select>
+                        </div>
+
+                    </div>
+
+                    {{-- user group  row --}}
+                    <div class="row pt-4">
+
+                        <div class="col-md-12 col-sm-12 ">
+
                             <label for="roles"> {{ __('panel.roles') }} </label>
                             <select name="roles[]" class="form-control select2 child">
                                 @forelse ($roles as $role)
@@ -71,6 +90,7 @@
                         </div>
 
                     </div>
+
 
                     {{-- <div class="row pt-4">
                         <div class="col-sm-12">
@@ -246,7 +266,7 @@
             });
 
 
-            //select2: code to search in data 
+            //select2: code to search in data
             function matchStart(params, data) {
                 // If there are no search terms, return all of the data
                 if ($.trim(params.term) === '') {
