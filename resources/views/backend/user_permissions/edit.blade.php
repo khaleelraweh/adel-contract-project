@@ -54,183 +54,173 @@
                     @method('PATCH')
 
 
-                    <div class="row">
 
-                        {{-- main info of supervisor account  --}}
-                        <div class="col-sm-12 col-md-8">
+                    {{-- user  row --}}
+                    <div class="row pt-4">
 
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="first_name"> {{ __('panel.first_name') }}</label>
-                                        <input type="text" id="first_name" name="first_name"
-                                            value="{{ old('first_name', $supervisor->first_name) }}" class="form-control"
-                                            placeholder="">
-                                        @error('first_name')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="last_name">{{ __('panel.last_name') }}</label>
-                                        <input type="text" id="last_name" name="last_name"
-                                            value="{{ old('last_name', $supervisor->last_name) }}" class="form-control"
-                                            placeholder="">
-                                        @error('last_name')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-md-12 col-sm-12 ">
 
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="username">{{ __('panel.user_name') }}</label>
-                                        <input type="text" id="username" name="username"
-                                            value="{{ old('username', $supervisor->username) }}" class="form-control"
-                                            placeholder="">
-                                        @error('username')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="password">{{ __('panel.user_password') }}</label>
-                                        <input type="password" id="password" name="password" value="{{ old('password') }}"
-                                            class="form-control" placeholder="">
-                                        @error('password')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
+                            <label for="user_id"> {{ __('panel.users') }} </label>
+                            <select name="user_id" class="form-control select2 child" id="user_id">
+                                @forelse ($users as $user)
+                                    <option value="{{ $user->id }}"
+                                        {{ in_array($user->id, old('users', [])) ? 'selected' : null }}>
+                                        {{ $user->first_name . " " .$user->last_name }}</option>
+                                @empty
+                                @endforelse
+                            </select>
+                        </div>
 
-                            </div>
+                    </div>
 
-                            <div class="row">
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="email">{{ __('panel.email') }}</label>
-                                        <input type="text" id="email" name="email"
-                                            value="{{ old('email', $supervisor->email) }}" class="form-control"
-                                            placeholder="">
-                                        @error('email')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
+                    {{-- roles  row --}}
+                    <div class="row pt-4">
 
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="mobile">{{ __('panel.mobile') }}</label>
-                                        <input type="text" id="mobile" name="mobile"
-                                            value="{{ old('mobile', $supervisor->mobile) }}" class="form-control"
-                                            placeholder="">
-                                        @error('mobile')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
+                        <div class="col-md-12 col-sm-12 ">
 
-                            </div>
+                            <label for="roles"> {{ __('panel.roles') }} </label>
+                            <select name="roles[]" class="form-control select2 child " multiple="multiple">
+                                @forelse ($roles as $role)
+                                    <option value="{{ $role->id }}"
+                                        {{ in_array($role->id, old('roles', [])) ? 'selected' : null }}>
+                                        {{ $role->display_name }}</option>
+                                @empty
+                                @endforelse
+                            </select>
 
-                            {{-- permissions row --}}
-                            {{-- <div class="row pt-4">
-                                <div class="col-12">
-                                    <label for="permissions">{{ __('panel.permissions') }}</label>
-                                    <select name="permissions[]" class="form-control select2 child" multiple="multiple">
-                                        @forelse ($permissions as $permission)
-                                            <option value="{{ $permission->id }}"
-                                                {{ in_array($permission->id, old('permissions', $supervisorPermissions)) ? 'selected' : null }}>
-                                                {{ $permission->display_name }}</option>
-                                        @empty
-                                        @endforelse
-                                    </select>
-
-                                    <div class="col-md-12 col-sm-12 ">
-                                        <label class="col-form-label col-md-12 col-sm-12 ">
-                                            <input class='child' type='checkbox' name="all_permissions" value="ok" />
-                                            {{ __('panel.grant_all_permissions') }}
-                                        </label>
-                                    </div>
-
-                                </div>
-                            </div> --}}
-                            <div class="row pt-4">
-                                <div class="col-12">
-                                    <label for="user_groups">{{ __('panel.user_groups') }}</label>
-                                    <select name="user_groups[]" class="form-control select2 child" multiple="multiple">
-                                        @forelse ($user_groups as $user_group)
-                                            <option value="{{ $user_group->id }}"
-                                                {{ in_array($user_group->id, old('user_groups', $roleUsers)) ? 'selected' : null }}>
-                                                {{ $user_group->display_name }}</option>
-                                        @empty
-                                        @endforelse
-                                    </select>
-
-                                    {{-- child class is used to make disabled and enabled to select part --}}
-                                    {{-- <div class="col-md-12 col-sm-12 ">
-                                        <label class="col-form-label col-md-12 col-sm-12 ">
-                                            <input class='child' type='checkbox' name="all_permissions" value="ok" />
-                                            {{ __('panel.grant_all_permissions') }}
-                                        </label>
-                                    </div> --}}
-
-                                </div>
-                            </div>
 
 
                         </div>
 
-                        {{-- image of supervisor account --}}
-                        <div class="col-sm-12 col-md-4">
-                            <div class="row pt-3">
-                                <div class="col-12">
-                                    <label for="user_image"> {{ __('panel.image') }}</label>
-                                    <br>
-                                    <span class="form-text text-muted">{{ __('panel.user_image_size') }} </span>
-                                    <div class="file-loading">
-                                        <input type="file" name="user_image" id="supervisor_image"
-                                            class="file-input-overview ">
-                                        <span class="form-text text-muted">{{ __('panel.user_image_size') }} </span>
-                                        @error('user_image')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
 
-                            <div class="row">
-                                <div class="col-sm-12 col-md-2 pt-3">
-                                    <label for="status" class="control-label">
-                                        <span>{{ __('panel.status') }}</span>
-                                    </label>
-                                </div>
-                                <div class="col-sm-12 col-md-10 pt-3">
-                                    <div class="form-check form-check-inline">
-                                        <input type="radio" class="form-check-input" name="status" id="status_active"
-                                            value="1"
-                                            {{ old('status', $supervisor->status) == '1' ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="status_active">
-                                            {{ __('panel.status_active') }}
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input type="radio" class="form-check-input" name="status"
-                                            id="status_inactive" value="0"
-                                            {{ old('status', $supervisor->status) == '0' ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="status_inactive">
-                                            {{ __('panel.status_inactive') }}
-                                        </label>
-                                    </div>
-                                    @error('status')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
 
+                    {{-- <div class="row pt-4">
+                        <div class="col-sm-12">
+                            @foreach ($permissions as $parentPermission)
+                                <div class="permission-group">
+                                    <!-- Display the Parent Permission Title -->
+                                    <div class="permission-title">
+                                        <label class="fw-bold">{{ $parentPermission->display_name }}</label>
+                                        <!-- Assuming you want to display 'en' -->
+                                    </div>
+
+                                    <!-- Display child permissions (checkboxes) -->
+                                    @if ($parentPermission->children->count() > 0)
+                                        <ul class="child-permissions">
+                                            @foreach ($parentPermission->children as $childPermission)
+                                                <li>
+                                                    <input type="checkbox" name="permissions[]"
+                                                        value="{{ $childPermission->id }}"
+                                                        id="permission_{{ $childPermission->id }}"
+                                                        {{ in_array($childPermission->id, old('permissions', [])) ? 'checked' : '' }} />
+                                                    <label
+                                                        for="permission_{{ $childPermission->id }}">{{ $childPermission->display_name }}</label>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                </div>
+                            @endforeach
+
+                        </div>
+                    </div> --}}
+
+                    {{-- <div class="row pt-4">
+                        <div class="col-sm-12">
+                            @foreach ($permissions as $parentPermission)
+                                <div class="permission-group">
+                                    <!-- Display the Parent Permission Title -->
+                                    <div class="permission-title">
+                                        <label class="fw-bold">{{ $parentPermission->display_name }}</label>
+                                    </div>
+
+                                    <!-- Display child permissions (checkboxes) -->
+                                    @if ($parentPermission->children->count() > 0)
+                                        <ul class="child-permissions">
+                                            @foreach ($parentPermission->children as $childPermission)
+                                                <li>
+                                                    <input type="checkbox" name="permissions[]"
+                                                        value="{{ $childPermission->id }}"
+                                                        id="permission_{{ $childPermission->id }}"
+                                                        {{ in_array($childPermission->id, old('permissions', [])) ? 'checked' : '' }} />
+                                                    <label
+                                                        for="permission_{{ $childPermission->id }}">{{ $childPermission->display_name }}</label>
+
+                                                    <!-- Check if the child has sub-children (third level) -->
+                                                    @if ($childPermission->children->count() > 0)
+                                                        <ul class="sub-child-permissions">
+                                                            @foreach ($childPermission->children as $subChildPermission)
+                                                                <li>
+                                                                    <input type="checkbox" name="permissions[]"
+                                                                        value="{{ $subChildPermission->id }}"
+                                                                        id="permission_{{ $subChildPermission->id }}"
+                                                                        {{ in_array($subChildPermission->id, old('permissions', [])) ? 'checked' : '' }} />
+                                                                    <label
+                                                                        for="permission_{{ $subChildPermission->id }}">{{ $subChildPermission->display_name }}</label>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    @endif
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                    </div> --}}
+
+                    <div class="row pt-4">
+                        <div class="col-sm-12">
+                            @foreach ($permissions as $parentPermission)
+                                <div class="permission-group">
+                                    <!-- Parent Permission Checkbox -->
+                                    <div class="permission-title">
+                                        <input type="checkbox" name="permissions[]" value="{{ $parentPermission->id }}"
+                                            id="permission_{{ $parentPermission->id }}" class="parent-checkbox"
+                                            {{ in_array($parentPermission->id, old('permissions', [])) ? 'checked' : '' }} />
+                                        <label class="fw-bold"
+                                            for="permission_{{ $parentPermission->id }}">{{ $parentPermission->display_name }}</label>
+                                    </div>
+
+                                    <!-- Child Permissions -->
+                                    @if ($parentPermission->children->count() > 0)
+                                        <ul class="child-permissions" style="list-style-type:none;">
+                                            @foreach ($parentPermission->children as $childPermission)
+                                                <li>
+                                                    <input type="checkbox" name="permissions[]"
+                                                        value="{{ $childPermission->id }}"
+                                                        id="permission_{{ $childPermission->id }}"
+                                                        class="child-checkbox parent-{{ $parentPermission->id }}"
+                                                        data-parent="permission_{{ $parentPermission->id }}"
+                                                        {{ in_array($childPermission->id, old('permissions', [])) ? 'checked' : '' }} />
+                                                    <label
+                                                        for="permission_{{ $childPermission->id }}">{{ $childPermission->display_name }}</label>
+
+                                                    <!-- Sub-Child Permissions -->
+                                                    @if ($childPermission->children->count() > 0)
+                                                        <ul class="sub-child-permissions" style="list-style-type: none;">
+                                                            @foreach ($childPermission->children as $subChildPermission)
+                                                                <li>
+                                                                    <input type="checkbox" name="permissions[]"
+                                                                        value="{{ $subChildPermission->id }}"
+                                                                        id="permission_{{ $subChildPermission->id }}"
+                                                                        class="sub-child-checkbox child-{{ $childPermission->id }}"
+                                                                        data-parent="permission_{{ $childPermission->id }}"
+                                                                        {{ in_array($subChildPermission->id, old('permissions', [])) ? 'checked' : '' }} />
+                                                                    <label
+                                                                        for="permission_{{ $subChildPermission->id }}">{{ $subChildPermission->display_name }}</label>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    @endif
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 
@@ -238,12 +228,13 @@
                         <div class="col-sm-12 col-md-2 pt-3 d-none d-md-block">
                         </div>
                         <div class="col-sm-12 col-md 10 pt-3">
+
                             <button type="submit" name="submit" class="btn btn-primary">
                                 <i class="icon-lg  me-2" data-feather="corner-down-left"></i>
-                                {{ __('panel.update_data') }}
+                                {{ __('panel.save_data') }}
                             </button>
 
-                            <a href="{{ route('admin.supervisors.index') }}" name="submit"
+                            <a href="{{ route('admin.user_permissions.index') }}" name="submit"
                                 class=" btn btn-outline-danger">
                                 <i class="icon-lg  me-2" data-feather="x"></i>
                                 {{ __('panel.cancel') }}
@@ -291,7 +282,7 @@
                 });
             });
 
-            //select2: code to search in data 
+            //select2: code to search in data
             function matchStart(params, data) {
                 // If there are no search terms, return all of the data
                 if ($.trim(params.term) === '') {
