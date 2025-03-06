@@ -64,8 +64,6 @@ class UserPermissionsController extends Controller
            //add roles
            if (isset($request->roles) && count($request->roles) > 0) {
                 $user->roles()->sync($request->roles);
-            } else {
-
             }
 
 
@@ -99,24 +97,28 @@ class UserPermissionsController extends Controller
         return view('backend.user_permissions.show', compact('supervisor'));
     }
 
-    public function edit(User $supervisor)
+    public function edit($user)
     {
         if (!auth()->user()->ability('admin', 'update_user_permissions')) {
             return redirect('admin/index');
         }
 
-        // $permissions = Permission::get(['id', 'display_name']);
+        $user = User::where('id', $user)->first();
 
-        $user_groups = Role::where('name', 'users')->get(['id', 'display_name']);
 
-        // $supervisorPermissions = UserPermissions::whereUserId($supervisor->id)->pluck('permission_id')->toArray();
+        $users = User::whereHas('roles', function ($query) {
+            $query->where('name', 'users');
+        })->get(['id', 'first_name', 'last_name']);
 
-        $roleUsers = RoleUsers::whereUserId($supervisor->id)->pluck('role_id')->toArray();
+        $roles = Role::where('name', 'users')->get(['id', 'display_name']);
 
-        return view('backend.user_permissions.edit', compact('supervisor', 'user_groups', 'roleUsers'));
+        $permissions = Permission::tree();
+
+
+        return view('backend.user_permissions.edit', compact('users', 'roles', 'permissions'));
     }
 
-    public function update(SupervisorRequest $request, User $supervisor)
+    public function update(Request $request, User $user)
     {
         if (!auth()->user()->ability('admin', 'update_user_permissions')) {
             return redirect('admin/index');
