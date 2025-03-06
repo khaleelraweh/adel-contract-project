@@ -60,18 +60,18 @@
                         <div class="col-sm-12 col-md-8">
 
                             <div class="row">
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="first_name"> {{ __('panel.first_name') }}</label>
-                                        <input type="text" id="first_name" name="first_name"
-                                            value="{{ old('first_name', $supervisor->first_name) }}" class="form-control"
-                                            placeholder="">
-                                        @error('first_name')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <div class="col-sm-12 col-md-3 pt-4">
+                                    <label for="first_name"> {{ __('panel.first_name') }}</label>
                                 </div>
-                                <div class="col-sm-12 col-md-6 pt-4">
+                                <div class="col-sm-12 col-md-9 pt-4">
+                                    <input type="text" id="first_name" name="first_name"
+                                        value="{{ old('first_name', $supervisor->first_name) }}" class="form-control"
+                                        placeholder="">
+                                    @error('first_name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-sm-12 col-md-9 pt-4">
                                     <div class="form-group">
                                         <label for="last_name">{{ __('panel.last_name') }}</label>
                                         <input type="text" id="last_name" name="last_name"
@@ -85,7 +85,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-sm-12 col-md-6 pt-4">
+                                <div class="col-sm-12 col-md-9 pt-4">
                                     <div class="form-group">
                                         <label for="username">{{ __('panel.user_name') }}</label>
                                         <input type="text" id="username" name="username"
@@ -96,7 +96,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-md-6 pt-4">
+                                <div class="col-sm-12 col-md-9 pt-4">
                                     <div class="form-group">
                                         <label for="password">{{ __('panel.user_password') }}</label>
                                         <input type="password" id="password" name="password" value="{{ old('password') }}"
@@ -110,7 +110,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-sm-12 col-md-6 pt-4">
+                                <div class="col-sm-12 col-md-9 pt-4">
                                     <div class="form-group">
                                         <label for="email">{{ __('panel.email') }}</label>
                                         <input type="text" id="email" name="email"
@@ -122,7 +122,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-12 col-md-6 pt-4">
+                                <div class="col-sm-12 col-md-9 pt-4">
                                     <div class="form-group">
                                         <label for="mobile">{{ __('panel.mobile') }}</label>
                                         <input type="text" id="mobile" name="mobile"
@@ -291,7 +291,7 @@
                 });
             });
 
-            //select2: code to search in data 
+            //select2: code to search in data
             function matchStart(params, data) {
                 // If there are no search terms, return all of the data
                 if ($.trim(params.term) === '') {
