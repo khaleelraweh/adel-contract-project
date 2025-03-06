@@ -90,7 +90,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-sm-12 col-md-3 pt-3">
                             <label for="roles"> {{ __('panel.manage_permissions') }} </label>
                         </div>
@@ -144,7 +144,7 @@
                                 </div>
                             @endforeach
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="row">
                         <div class="col-sm-12 col-md-2 pt-3 d-none d-md-block">
