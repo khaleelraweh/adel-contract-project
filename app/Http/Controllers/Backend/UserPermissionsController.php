@@ -115,7 +115,7 @@ class UserPermissionsController extends Controller
         $permissions = Permission::tree();
 
 
-        return view('backend.user_permissions.edit', compact('users', 'roles', 'permissions'));
+        return view('backend.user_permissions.edit', compact('user','users', 'roles', 'permissions'));
     }
 
     public function update(Request $request, User $user)

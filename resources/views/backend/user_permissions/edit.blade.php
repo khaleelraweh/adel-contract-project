@@ -12,7 +12,7 @@
             <div class="card-naving">
                 <h3 class="font-weight-bold text-primary">
                     <i class="fa fa-edit"></i>
-                    {{ __('panel.edit_existing_supervisor') }}
+                    {{ __('panel.edit_existing_role_user') }}
                 </h3>
                 <ul class="breadcrumb pt-3">
                     <li>
@@ -24,8 +24,8 @@
                         @endif
                     </li>
                     <li class="ms-1">
-                        <a href="{{ route('admin.supervisors.index') }}">
-                            {{ __('panel.show_supervisors') }}
+                        <a href="{{ route('admin.user_permissions.index') }}">
+                            {{ __('panel.show_user_permissions') }}
                         </a>
                     </li>
                 </ul>
@@ -48,7 +48,7 @@
                 @endif
 
                 {{-- enctype used cause we will save images  --}}
-                <form action="{{ route('admin.supervisors.update', $supervisor->id) }}" method="post"
+                <form action="{{ route('admin.user_permissions.update', $user->id) }}" method="post"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
@@ -176,70 +176,6 @@
 
     @section('script')
         <script>
-            $(function() {
-                $("#supervisor_image").fileinput({
-                    theme: "fa5",
-                    maxFileCount: 1,
-                    allowedFileTypes: ['image'],
-                    showCancel: true,
-                    showRemove: false,
-                    showUpload: false,
-                    overwriteInitial: false,
-                    initialPreview: [
-                        @if ($supervisor->user_image != '')
-                            "{{ asset('assets/users/' . $supervisor->user_image) }}",
-                        @endif
-                    ],
-                    initialPreviewAsData: true,
-                    initialPreviewFileType: 'image',
-                    initialPreviewConfig: [
-                        @if ($supervisor->user_image != '')
-                            {
-                                caption: "{{ $supervisor->user_image }}",
-                                size: '1111',
-                                width: "120px",
-                                url: "{{ route('admin.supervisors.remove_image', ['supervisor_id' => $supervisor->id, '_token' => csrf_token()]) }}",
-                                key: {{ $supervisor->id }}
-                            }
-                        @endif
-                    ]
-                });
-            });
-
-            //select2: code to search in data
-            function matchStart(params, data) {
-                // If there are no search terms, return all of the data
-                if ($.trim(params.term) === '') {
-                    return data;
-                }
-
-                // Skip if there is no 'children' property
-                if (typeof data.children === 'undefined') {
-                    return null;
-                }
-
-                // `data.children` contains the actual options that we are matching against
-                var filteredChildren = [];
-                $.each(data.children, function(idx, child) {
-                    if (child.text.toUpperCase().indexOf(params.term.toUpperCase()) == 0) {
-                        filteredChildren.push(child);
-                    }
-                });
-
-                // If we matched any of the timezone group's children, then set the matched children on the group
-                // and return the group object
-                if (filteredChildren.length) {
-                    var modifiedData = $.extend({}, data, true);
-                    modifiedData.children = filteredChildren;
-
-                    // You can return modified objects from here
-                    // This includes matching the `children` how you want in nested data sets
-                    return modifiedData;
-                }
-
-                // Return `null` if the term should not be displayed
-                return null;
-            }
 
             // select2 : .select2 : is  identifier used with element to be effected
             $(".select2").select2({
