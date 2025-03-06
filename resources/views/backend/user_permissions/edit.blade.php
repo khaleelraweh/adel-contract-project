@@ -60,13 +60,25 @@
 
                         <div class="col-md-12 col-sm-12 ">
 
-                            <label for="user_id"> {{ __('panel.users') }} </label>
+                            {{-- <label for="user_id"> {{ __('panel.users') }} </label>
                             <select name="user_id" class="form-control select2 child" id="user_id">
                                 @forelse ($users as $user)
                                     <option value="{{ $user->id }}"
                                         {{ old('user_id', $user->id) ? 'selected' : null }}>
                                         {{ $user->first_name . " " .$user->last_name }}</option>
                                 @empty
+                                @endforelse
+                            </select> --}}
+
+
+                            <label for="user_id"> {{ __('panel.users') }} </label>
+                            <select name="user_id" class="form-control select2 child" id="user_id">
+                                @forelse ($users as $u)
+                                    <option value="{{ $u->id }}" {{ old('user_id', $u->id) == $user->id ? 'selected' : null }}>
+                                        {{ $u->first_name . " " . $u->last_name }}
+                                    </option>
+                                @empty
+                                    <option value="">No users found</option>
                                 @endforelse
                             </select>
                         </div>

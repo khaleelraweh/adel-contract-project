@@ -103,19 +103,21 @@ class UserPermissionsController extends Controller
             return redirect('admin/index');
         }
 
+        // Fetch the user to be edited
         $user = User::where('id', $user)->first();
 
-
+        // Fetch all users with the role 'users'
         $users = User::whereHas('roles', function ($query) {
             $query->where('name', 'users');
         })->get(['id', 'first_name', 'last_name']);
 
+        // Fetch roles with the name 'users'
         $roles = Role::where('name', 'users')->get(['id', 'display_name']);
 
+        // Fetch permissions in a tree structure
         $permissions = Permission::tree();
 
-
-        return view('backend.user_permissions.edit', compact('user','users', 'roles', 'permissions'));
+        return view('backend.user_permissions.edit', compact('user', 'users', 'roles', 'permissions'));
     }
 
     public function update(Request $request, User $user)
