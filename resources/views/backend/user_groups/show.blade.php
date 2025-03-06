@@ -32,10 +32,32 @@
         {{-- Body part --}}
         <div class="card-body">
 
-            {{-- Supervisor Details --}}
+            {{-- Role Details --}}
             <div class="row">
+                <div class="col-12">
+                    <h4>{{ __('panel.role_details') }}</h4>
+                    <p><strong>{{ __('panel.name') }}:</strong> {{ $user_group->name }}</p>
+                    <p><strong>{{ __('panel.display_name') }}:</strong> {{ $user_group->display_name }}</p>
+                    <p><strong>{{ __('panel.description') }}:</strong> {{ $user_group->description }}</p>
+                </div>
+            </div>
 
-
+            {{-- Permissions Section --}}
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h4>{{ __('panel.associated_permissions') }}</h4>
+                    @if ($permissions->count() > 0)
+                        <ul>
+                            @foreach ($permissions as $permission)
+                                <li>
+                                    <strong>{{ $permission->display_name }}</strong> ({{ $permission->name }})
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <p>{{ __('panel.no_permissions_assigned') }}</p>
+                    @endif
+                </div>
             </div>
 
             {{-- Back Button --}}

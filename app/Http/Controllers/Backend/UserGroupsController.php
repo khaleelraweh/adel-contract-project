@@ -79,12 +79,25 @@ class UserGroupsController extends Controller
         ]);
     }
 
+    // public function show(Role $user_group)
+    // {
+    //     if (!auth()->user()->ability('admin', 'display_user_groups')) {
+    //         return redirect('admin/index');
+    //     }
+    //     return view('backend.user_groups.show', compact('user_group'));
+    // }
+
     public function show(Role $user_group)
     {
         if (!auth()->user()->ability('admin', 'display_user_groups')) {
             return redirect('admin/index');
         }
-        return view('backend.user_groups.show', compact('user_group'));
+
+        // Fetch the permissions associated with the role
+        $permissions = $user_group->permissions;
+
+
+        return view('backend.user_groups.show', compact('user_group', 'permissions'));
     }
 
     public function edit(Role $user_group)

@@ -1890,6 +1890,10 @@ return [
     'permission_roles'                                      =>  'أدوار الصلاحيات',
     'permission_users'                                      =>  'مستخدمي الصلاحيات',
     'show_role_detials'                                     =>  'عرض تفاصيل الدور',
+    'role_details'                                          =>  'تفاصيل الدور',
+    'display_name'                                         =>  'الاسم المعروض',
+    'associated_permissions'                                =>  'الصلاحيات المرتبطة',
+
 
     'user'                                                  =>  'المستخدم',
     'users'                                                 =>  'المستخدمين',
