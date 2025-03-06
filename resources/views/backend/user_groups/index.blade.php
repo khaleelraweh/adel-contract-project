@@ -44,7 +44,7 @@
                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                     <tr>
-                        <th>{{ __('panel.user_group_name') }}</th>
+                        <th>{{ __('panel.role_name') }}</th>
                         {{-- <th>{{ __('panel.status') }}</th> --}}
                         <th class="d-none d-sm-table-cell">{{ __('panel.created_at') }}</th>
                         <th class="text-center" style="width:30px;">{{ __('panel.actions') }}</th>
