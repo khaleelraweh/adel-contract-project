@@ -77,46 +77,12 @@
 
                     <hr>
 
-                    {{-- Permissions Section --}}
+                      {{-- Permissions Section --}}
                     <div class="row pt-4">
                         <div class="col-sm-12">
                             @foreach ($permissions as $parentPermission)
-                                <div class="permission-group">
-                                    <!-- Parent Permission Checkbox -->
-                                    <div class="permission-title">
-                                        <input type="checkbox" name="permissions[]" value="{{ $parentPermission->id }}" id="permission_{{ $parentPermission->id }}" class="parent-checkbox"
-                                            {{ in_array($parentPermission->id, $assignedPermissions) ? 'checked' : '' }} />
-                                        <label class="fw-bold" for="permission_{{ $parentPermission->id }}">{{ $parentPermission->display_name }}</label>
-                                    </div>
-
-                                    <!-- Child Permissions -->
-                                    @if ($parentPermission->children->count() > 0)
-                                        <ul class="child-permissions" style="list-style-type:none;">
-                                            @foreach ($parentPermission->children as $childPermission)
-                                                <li>
-                                                    <input type="checkbox" name="permissions[]" value="{{ $childPermission->id }}" id="permission_{{ $childPermission->id }}" class="child-checkbox parent-{{ $parentPermission->id }}"
-                                                        data-parent="permission_{{ $parentPermission->id }}"
-                                                        {{ in_array($childPermission->id, $assignedPermissions) ? 'checked' : '' }} />
-                                                    <label for="permission_{{ $childPermission->id }}">{{ $childPermission->display_name }}</label>
-
-                                                    <!-- Sub-Child Permissions -->
-                                                    @if ($childPermission->children->count() > 0)
-                                                        <ul class="sub-child-permissions" style="list-style-type: none;">
-                                                            @foreach ($childPermission->children as $subChildPermission)
-                                                                <li>
-                                                                    <input type="checkbox" name="permissions[]" value="{{ $subChildPermission->id }}" id="permission_{{ $subChildPermission->id }}" class="sub-child-checkbox child-{{ $childPermission->id }}"
-                                                                        data-parent="permission_{{ $childPermission->id }}"
-                                                                        {{ in_array($subChildPermission->id, $assignedPermissions) ? 'checked' : '' }} />
-                                                                    <label for="permission_{{ $subChildPermission->id }}">{{ $subChildPermission->display_name }}</label>
-                                                                </li>
-                                                            @endforeach
-                                                        </ul>
-                                                    @endif
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    @endif
-                                </div>
+                                <!-- Use the PermissionsCheckbox component -->
+                                <x-permissions-checkbox :permission="$parentPermission" :assignedPermissions="old('permissions', $assignedPermissions ?? [])" />
                             @endforeach
                         </div>
                     </div>
