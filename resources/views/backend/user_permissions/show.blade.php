@@ -9,7 +9,7 @@
             <div class="card-naving">
                 <h3 class="font-weight-bold text-primary">
                     <i class="fa fa-eye"></i>
-                    {{ __('panel.show_supervisor_details') }}
+                    {{ __('panel.show_user_permissions') }}
                 </h3>
                 <ul class="breadcrumb pt-3">
                     <li>
@@ -21,8 +21,8 @@
                         @endif
                     </li>
                     <li class="ms-1">
-                        <a href="{{ route('admin.supervisors.index') }}">
-                            {{ __('panel.show_supervisors') }}
+                        <a href="{{ route('admin.user_permissions.index') }}">
+                            {{ __('panel.show_user_permissions') }}
                         </a>
                     </li>
                 </ul>
@@ -32,83 +32,55 @@
         {{-- Body part --}}
         <div class="card-body">
 
-            {{-- Supervisor Details --}}
+            {{-- User Details --}}
             <div class="row">
-                {{-- Supervisor Image --}}
-                <div class="col-sm-12 col-md-4 text-center">
-                    <div class="profile-image">
-                        <img src="{{ asset('assets/users/' . $supervisor->user_image) }}" alt="{{ $supervisor->full_name }}"
-                            class="img-fluid rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
-                    </div>
+                <div class="col-12">
+                    <h4>{{ __('panel.user_details') }}</h4>
+                    <p><strong>{{ __('panel.name') }}:</strong> {{ $user->first_name }} {{ $user->last_name }}</p>
+                    <p><strong>{{ __('panel.email') }}:</strong> {{ $user->email }}</p>
+                    <p><strong>{{ __('panel.username') }}:</strong> {{ $user->username }}</p>
+                    <p><strong>{{ __('panel.status') }}:</strong> {{ $user->status == 1 ? 'Active' : 'Inactive' }}</p>
                 </div>
+            </div>
 
-                {{-- Supervisor Information --}}
-                <div class="col-sm-12 col-md-8">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <tbody>
-                                <tr>
-                                    <th>{{ __('panel.first_name') }}</th>
-                                    <td>{{ $supervisor->first_name }}</td>
-                                </tr>
-                                <tr>
-                                    <th>{{ __('panel.last_name') }}</th>
-                                    <td>{{ $supervisor->last_name }}</td>
-                                </tr>
-                                <tr>
-                                    <th>{{ __('panel.user_name') }}</th>
-                                    <td>{{ $supervisor->username }}</td>
-                                </tr>
-                                <tr>
-                                    <th>{{ __('panel.email') }}</th>
-                                    <td>{{ $supervisor->email }}</td>
-                                </tr>
-                                <tr>
-                                    <th>{{ __('panel.mobile') }}</th>
-                                    <td>{{ $supervisor->mobile }}</td>
-                                </tr>
-                                <tr>
-                                    <th>{{ __('panel.status') }}</th>
-                                    <td>
-                                        @if ($supervisor->status == 1)
-                                            <span class="badge bg-success">{{ __('panel.status_active') }}</span>
-                                        @else
-                                            <span class="badge bg-danger">{{ __('panel.status_inactive') }}</span>
-                                        @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>{{ __('panel.permissions') }}</th>
-                                    <td>
-                                        @if ($supervisor->permissions->count() > 0)
-                                            <ul class="list-unstyled">
-                                                @foreach ($supervisor->permissions as $permission)
-                                                    <li>{{ $permission->display_name }}</li>
-                                                @endforeach
-                                            </ul>
-                                        @else
-                                            <span class="text-muted">{{ __('panel.no_permissions_assigned') }}</span>
-                                        @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>{{ __('panel.created_at') }}</th>
-                                    <td>{{ $supervisor->created_at->format('Y-m-d H:i:s') }}</td>
-                                </tr>
-                                <tr>
-                                    <th>{{ __('panel.updated_at') }}</th>
-                                    <td>{{ $supervisor->updated_at->format('Y-m-d H:i:s') }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+            {{-- Roles and Permissions Section --}}
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h4>{{ __('panel.roles_and_permissions') }}</h4>
+                    @if ($user->roles->count() > 0)
+                        @foreach ($user->roles as $role)
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h5 class="mb-0">
+                                        <strong>{{ __('panel.role') }}:</strong> {{ $role->display_name }} ({{ $role->name }})
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <h6>{{ __('panel.permissions') }}:</h6>
+                                    @if ($role->permissions->count() > 0)
+                                        <ul>
+                                            @foreach ($role->permissions as $permission)
+                                                <li>
+                                                    <strong>{{ $permission->display_name }}</strong> ({{ $permission->name }})
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @else
+                                        <p>{{ __('panel.no_permissions_assigned_to_role') }}</p>
+                                    @endif
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <p>{{ __('panel.no_roles_assigned_to_user') }}</p>
+                    @endif
                 </div>
             </div>
 
             {{-- Back Button --}}
             <div class="row mt-4">
                 <div class="col-12 text-end">
-                    <a href="{{ route('admin.supervisors.index') }}" class="btn btn-outline-secondary">
+                    <a href="{{ route('admin.user_permissions.index') }}" class="btn btn-outline-secondary">
                         <i class="fa fa-arrow-left me-2"></i>
                         {{ __('panel.back_to_list') }}
                     </a>

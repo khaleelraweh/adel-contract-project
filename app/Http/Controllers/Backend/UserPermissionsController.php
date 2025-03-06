@@ -87,13 +87,25 @@ class UserPermissionsController extends Controller
         ]);
     }
 
+    // public function show($user)
+    // {
+    //     if (!auth()->user()->ability('admin', 'display_user_permissions')) {
+    //         return redirect('admin/index');
+    //     }
+
+    //     $user = User::where('id', $user)->first();
+    //     return view('backend.user_permissions.show', compact('user'));
+    // }
+
     public function show($user)
     {
         if (!auth()->user()->ability('admin', 'display_user_permissions')) {
             return redirect('admin/index');
         }
 
-        $user = User::where('id', $user)->first();
+        // Fetch the user with their roles and permissions
+        $user = User::with(['roles.permissions'])->findOrFail($user);
+
         return view('backend.user_permissions.show', compact('user'));
     }
 
