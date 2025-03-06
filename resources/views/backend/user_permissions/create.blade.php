@@ -72,7 +72,7 @@
                     {{-- roles  row --}}
                     <div class="row">
                         <div class="col-sm-12 col-md-3 pt-3">
-                            <label for="user_id"> {{ __('panel.user') }} </label>
+                            <label for="user_id"> {{ __('panel.user_roles') }} </label>
                         </div>
                         <div class="col-sm-12 col-md-9 pt-3">
                             <select name="roles[]" class="form-control select2 child " multiple="multiple">
