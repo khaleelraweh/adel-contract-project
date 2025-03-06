@@ -72,6 +72,7 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-sm-12 col-md-3 pt-4">
                                     <label for="last_name">{{ __('panel.last_name') }}</label>
@@ -99,6 +100,7 @@
                                         @enderror
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-sm-12 col-md-3 pt-4">
                                     <label for="password">{{ __('panel.user_password') }}</label>
@@ -125,6 +127,7 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-sm-12 col-md-3 pt-4">
                                     <label for="mobile">{{ __('panel.mobile') }}</label>
@@ -140,30 +143,8 @@
 
                             </div>
 
-                            {{-- permissions row --}}
                             {{-- <div class="row pt-4">
-                                <div class="col-12">
-                                    <label for="permissions">{{ __('panel.permissions') }}</label>
-                                    <select name="permissions[]" class="form-control select2 child" multiple="multiple">
-                                        @forelse ($permissions as $permission)
-                                            <option value="{{ $permission->id }}"
-                                                {{ in_array($permission->id, old('permissions', $supervisorPermissions)) ? 'selected' : null }}>
-                                                {{ $permission->display_name }}</option>
-                                        @empty
-                                        @endforelse
-                                    </select>
-
-                                    <div class="col-md-12 col-sm-12 ">
-                                        <label class="col-form-label col-md-12 col-sm-12 ">
-                                            <input class='child' type='checkbox' name="all_permissions" value="ok" />
-                                            {{ __('panel.grant_all_permissions') }}
-                                        </label>
-                                    </div>
-
-                                </div>
-                            </div> --}}
-                            <div class="row pt-4">
-                                <div class="col-12">
+                                <div class="col">
                                     <label for="user_groups">{{ __('panel.user_groups') }}</label>
                                     <select name="user_groups[]" class="form-control select2 child" multiple="multiple">
                                         @forelse ($user_groups as $user_group)
@@ -174,8 +155,7 @@
                                         @endforelse
                                     </select>
                                 </div>
-                            </div>
-
+                            </div> --}}
 
                         </div>
 
