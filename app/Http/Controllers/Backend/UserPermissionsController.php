@@ -67,9 +67,8 @@ class UserPermissionsController extends Controller
 
 
            //add roles
-           dd($request->roles);
            if (isset($request->roles) && count($request->roles) > 0) {
-            dd($$request->roles);
+            dd($request->roles);
             // $course->users()->sync($request->instructors);
         } else {
 
