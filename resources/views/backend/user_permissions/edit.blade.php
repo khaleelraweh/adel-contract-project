@@ -75,9 +75,7 @@
 
                     {{-- roles  row --}}
                     <div class="row pt-4">
-
                         <div class="col-md-12 col-sm-12 ">
-
                             <label for="roles"> {{ __('panel.roles') }} </label>
                             <select name="roles[]" class="form-control select2 child " multiple="multiple">
                                 @forelse ($roles as $role)
@@ -87,11 +85,7 @@
                                 @empty
                                 @endforelse
                             </select>
-
-
-
                         </div>
-
                     </div>
 
 
