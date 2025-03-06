@@ -83,8 +83,13 @@
 
                     <hr>
 
-                    <div class="row pt-4">
-                        <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-2 pt-3">
+                            <label for="description">
+                                {{ __('panel.manage_permissions') }}
+                            </label>
+                        </div>
+                        <div class="col-sm-12 col-md-10 pt-3">
                             @foreach ($permissions as $parentPermission)
                                 <!-- Render the parent permission and its children recursively -->
                                 <x-permissions-checkbox :permission="$parentPermission" :assignedPermissions="old('permissions', $assignedPermissions ?? [])" />
