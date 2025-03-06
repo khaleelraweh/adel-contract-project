@@ -1763,6 +1763,18 @@ return [
 
     // Manage user roles and permissions
 
+    'manage_users'                                          =>  'إدارة المستخدمين',
+    'manage_roles'                                          =>  'إدارة الأدوار',
+    'manage_permissions'                                    =>  'إدارة الصلاحيات',
+    'show_users'                                            =>  'عرض المستخدمين',
+    'show_roles'                                            =>  'عرض الأدوار',
+    'show_permissions'                                      =>  'عرض الصلاحيات',
+    'add_new_user'                                          =>  'إضافة مستخدم جديد',
+    'add_new_role'                                          =>  'إضافة دور جديد',
+    'add_new_permission'                                    =>  'إضافة صلاحية جديدة',
+    'edit_existing_user'                                    =>  'تعديل مستخدم موجود',
+    'edit_existing_role'                                    =>  'تعديل دور موجود',
+    'edit_existing_permission'                              =>  'تعديل صلاحية موجودة',
 
     'user'                                                  =>  'المستخدم',
     'users'                                                 =>  'المستخدمين',

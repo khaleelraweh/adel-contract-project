@@ -19,7 +19,7 @@
                         @endif
                     </li>
                     <li class="ms-1">
-                        {{ __('panel.show_supervisors') }}
+                        {{ __('panel.show_users') }}
                     </li>
                 </ul>
             </div>
@@ -29,7 +29,7 @@
                         <span class="icon text-white-50">
                             <i class="fa fa-plus-square"></i>
                         </span>
-                        <span class="text">{{ __('panel.add_new_supervisor') }}</span>
+                        <span class="text">{{ __('panel.add_new_user') }}</span>
                     </a>
                 @endability
             </div>
@@ -44,7 +44,7 @@
                 <thead>
                     <tr>
                         <th class="d-none d-sm-table-cell">{{ __('panel.image') }}</th>
-                        <th>{{ __('panel.advertisor_name') }}</th>
+                        <th>{{ __('panel.user_name') }}</th>
                         <th class="d-none d-sm-table-cell">{{ __('panel.email') }} {{ __('panel.and') }}
                             {{ __('panel.mobile') }} </th>
                         <th>{{ __('panel.status') }}</th>
