@@ -55,10 +55,10 @@
                         <div class="col-sm-12 col-md-8">
 
                             <div class="row">
-                                <div class="col-sm-12 col-md-2 pt-4">
+                                <div class="col-sm-12 col-md-3 pt-4">
                                     <label for="first_name"> {{ __('panel.first_name') }}</label>
                                 </div>
-                                <div class="col-sm-12 col-md-10 pt-4">
+                                <div class="col-sm-12 col-md-9 pt-4">
                                     <input type="text" id="first_name" name="first_name"
                                         value="{{ old('first_name') }}" class="form-control" placeholder="">
                                     @error('first_name')
@@ -68,10 +68,10 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-sm-12 col-md-2 pt-4">
+                                <div class="col-sm-12 col-md-3 pt-4">
                                     <label for="last_name">{{ __('panel.last_name') }}</label>
                                 </div>
-                                <div class="col-sm-12 col-md-10 pt-4">
+                                <div class="col-sm-12 col-md-9 pt-4">
                                     <input type="text" id="last_name" name="last_name"
                                         value="{{ old('last_name') }}" class="form-control" placeholder="">
                                     @error('last_name')
@@ -81,10 +81,10 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-sm-12 col-md-2 pt-4">
+                                <div class="col-sm-12 col-md-3 pt-4">
                                     <label for="username">{{ __('panel.user_name') }}</label>
                                 </div>
-                                <div class="col-sm-12 col-md-10 pt-4">
+                                <div class="col-sm-12 col-md-9 pt-4">
                                     <input type="text" id="username" name="username" value="{{ old('username') }}"
                                         class="form-control" placeholder="">
                                     @error('username')
@@ -93,10 +93,10 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-12 col-md-2 pt-4">
+                                <div class="col-sm-12 col-md-3 pt-4">
                                     <label for="password">{{ __('panel.user_password') }}</label>
                                 </div>
-                                <div class="col-sm-12 col-md-10 pt-4">
+                                <div class="col-sm-12 col-md-9 pt-4">
                                     <input type="text" id="password" name="password" value="{{ old('password') }}"
                                         class="form-control" placeholder="">
                                     @error('password')
@@ -106,10 +106,10 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-sm-12 col-md-2 pt-4">
+                                <div class="col-sm-12 col-md-3 pt-4">
                                     <label for="email">{{ __('panel.email') }}</label>
                                 </div>
-                                <div class="col-sm-12 col-md-10 pt-4">
+                                <div class="col-sm-12 col-md-9 pt-4">
                                     <input type="text" id="email" name="email" value="{{ old('email') }}"
                                         class="form-control" placeholder="">
                                     @error('email')
@@ -118,10 +118,10 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-12 col-md-2 pt-4">
+                                <div class="col-sm-12 col-md-3 pt-4">
                                     <label for="mobile">{{ __('panel.mobile') }}</label>
                                 </div>
-                                <div class="col-sm-12 col-md-10 pt-4">
+                                <div class="col-sm-12 col-md-9 pt-4">
                                         <input type="text" id="mobile" name="mobile" value="{{ old('mobile') }}"
                                             class="form-control" placeholder="">
                                         @error('mobile')
@@ -173,7 +173,7 @@
                                         <span>{{ __('panel.status') }}</span>
                                     </label>
                                 </div>
-                                <div class="col-sm-12 col-md-10 pt-3">
+                                <div class="col-sm-12 col-md-9 pt-3">
                                     <div class="form-check form-check-inline">
                                         <input type="radio" class="form-check-input" name="status" id="status_active"
                                             value="1" {{ old('status', '1') == '1' ? 'checked' : '' }}>
