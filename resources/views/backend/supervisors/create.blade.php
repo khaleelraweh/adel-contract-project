@@ -55,62 +55,66 @@
                         <div class="col-sm-12 col-md-8">
 
                             <div class="row">
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="first_name"> {{ __('panel.first_name') }}</label>
-                                        <input type="text" id="first_name" name="first_name"
-                                            value="{{ old('first_name') }}" class="form-control" placeholder="">
-                                        @error('first_name')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <div class="col-sm-12 col-md-2 pt-4">
+                                    <label for="first_name"> {{ __('panel.first_name') }}</label>
                                 </div>
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="last_name">{{ __('panel.last_name') }}</label>
-                                        <input type="text" id="last_name" name="last_name"
-                                            value="{{ old('last_name') }}" class="form-control" placeholder="">
-                                        @error('last_name')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <div class="col-sm-12 col-md-10 pt-4">
+                                    <input type="text" id="first_name" name="first_name"
+                                        value="{{ old('first_name') }}" class="form-control" placeholder="">
+                                    @error('first_name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="username">{{ __('panel.user_name') }}</label>
-                                        <input type="text" id="username" name="username" value="{{ old('username') }}"
-                                            class="form-control" placeholder="">
-                                        @error('username')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <div class="col-sm-12 col-md-2 pt-4">
+                                    <label for="last_name">{{ __('panel.last_name') }}</label>
                                 </div>
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="password">{{ __('panel.user_password') }}</label>
-                                        <input type="text" id="password" name="password" value="{{ old('password') }}"
-                                            class="form-control" placeholder="">
-                                        @error('password')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <div class="col-sm-12 col-md-10 pt-4">
+                                    <input type="text" id="last_name" name="last_name"
+                                        value="{{ old('last_name') }}" class="form-control" placeholder="">
+                                    @error('last_name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
-
                             </div>
 
                             <div class="row">
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="email">{{ __('panel.email') }}</label>
-                                        <input type="text" id="email" name="email" value="{{ old('email') }}"
-                                            class="form-control" placeholder="">
-                                        @error('email')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <div class="col-sm-12 col-md-2 pt-4">
+                                    <label for="username">{{ __('panel.user_name') }}</label>
+                                </div>
+                                <div class="col-sm-12 col-md-10 pt-4">
+                                    <input type="text" id="username" name="username" value="{{ old('username') }}"
+                                        class="form-control" placeholder="">
+                                    @error('username')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-2 pt-4">
+                                    <label for="password">{{ __('panel.user_password') }}</label>
+                                </div>
+                                <div class="col-sm-12 col-md-10 pt-4">
+                                    <input type="text" id="password" name="password" value="{{ old('password') }}"
+                                        class="form-control" placeholder="">
+                                    @error('password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12 col-md-2 pt-4">
+                                    <label for="email">{{ __('panel.email') }}</label>
+                                </div>
+                                <div class="col-sm-12 col-md-10 pt-4">
+                                    <input type="text" id="email" name="email" value="{{ old('email') }}"
+                                        class="form-control" placeholder="">
+                                    @error('email')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="col-sm-12 col-md-6 pt-4">
