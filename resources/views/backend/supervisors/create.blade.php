@@ -9,7 +9,7 @@
             <div class="card-naving">
                 <h3 class="font-weight-bold text-primary">
                     <i class="fa fa-plus-square"></i>
-                    {{ __('panel.add_new_supervisor') }}
+                    {{ __('panel.add_new_user') }}
                 </h3>
                 <ul class="breadcrumb pt-3">
                     <li>
@@ -22,7 +22,7 @@
                     </li>
                     <li class="ms-1">
                         <a href="{{ route('admin.supervisors.index') }}">
-                            {{ __('panel.show_supervisors') }}
+                            {{ __('panel.show_users') }}
                         </a>
                     </li>
                 </ul>
@@ -250,7 +250,7 @@
             });
 
 
-            //select2: code to search in data 
+            //select2: code to search in data
             function matchStart(params, data) {
                 // If there are no search terms, return all of the data
                 if ($.trim(params.term) === '') {
