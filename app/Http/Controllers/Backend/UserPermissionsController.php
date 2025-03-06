@@ -24,9 +24,11 @@ class UserPermissionsController extends Controller
         }
 
         // Get RoleUsers where the role is 'users'
-        $role_users = RoleUsers::whereHas('role', function ($query) {
+        $role_users = User::whereHas('roles', function ($query) {
             $query->where('name', 'users');
-        })->with(['role', 'user'])->get();
+        })->with('roles')->get();
+
+        dd($role_users);
 
         return view('backend.user_permissions.index', compact('role_users'));
     }
