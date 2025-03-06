@@ -2,106 +2,139 @@
 
 @section('style')
     <style>
+        /* General Card Styling */
         .card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            overflow: hidden;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
         }
 
+        /* Badge Styling */
         .badge {
             font-size: 0.9rem;
             padding: 0.5rem 0.75rem;
+            font-weight: 500;
         }
 
+        /* Button Styling */
         .btn-light {
             background-color: #f8f9fa;
             border-color: #f8f9fa;
+            transition: all 0.3s ease;
         }
 
         .btn-light:hover {
             background-color: #e2e6ea;
             border-color: #dae0e5;
+            transform: translateY(-2px);
         }
 
-        /* تنسيق fieldset */
+        /* Fieldset Styling */
         fieldset {
             border: 2px solid #e9ecef;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            background-color: #f8f9fa;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* تنسيق legend */
+        /* Legend Styling */
         legend {
-            font-size: 1.2rem;
-            font-weight: bold;
+            font-size: 1.25rem;
+            font-weight: 600;
             color: #495057;
             background-color: #ffffff;
-            padding: 8px 16px;
+            padding: 10px 20px;
             border: 2px solid #e9ecef;
-            border-radius: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 25px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
             width: auto;
             margin-left: -10px;
         }
 
-        /* تحسين المسافات داخل fieldset */
-        fieldset .mb-4 {
-            margin-bottom: 1.5rem !important;
-        }
-
-        /* تحسين تنسيق النصوص داخل fieldset */
-        fieldset .form-label {
+        /* Text and Label Styling */
+        .form-label {
             font-size: 0.9rem;
             color: #6c757d;
+            font-weight: 500;
         }
 
-        fieldset .fw-bold {
+        .fw-bold {
             font-size: 1.1rem;
             color: #343a40;
         }
 
-        fieldset .lead {
+        .lead {
             font-size: 1rem;
             color: #495057;
             line-height: 1.6;
         }
-    </style>
-    <style>
-        /* تنسيق المستويات الهرمية */
+
+        /* Hierarchical Styling */
         .document-page {
-            border-right: 4px solid #007bff;
-            padding-right: 15px;
+            border-left: 4px solid #007bff;
+            padding-left: 15px;
             margin-bottom: 20px;
         }
 
         .page-group {
-            border-right: 4px solid #28a745;
-            padding-right: 15px;
+            border-left: 4px solid #28a745;
+            padding-left: 15px;
             margin-bottom: 15px;
         }
 
         .page-variable {
-            border-right: 4px solid #dc3545;
-            padding-right: 15px;
+            border-left: 4px solid #dc3545;
+            padding-left: 15px;
             margin-bottom: 10px;
         }
 
-        /* تنسيق الرموز */
+        /* Icon Styling */
         .fa-file-alt,
         .fa-folder,
         .fa-tag {
             color: #6c757d;
+            transition: color 0.3s ease;
         }
 
-        /* تحسين المسافات */
+        .fa-file-alt:hover,
+        .fa-folder:hover,
+        .fa-tag:hover {
+            color: #007bff;
+        }
+
+        /* Spacing and Layout */
         .ms-4 {
-            margin-right: 1.5rem !important;
+            margin-left: 1.5rem !important;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: #ffffff;
+            border-bottom: none;
+        }
+
+        .card-footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+        }
+
+        /* Hover Effects for Links */
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
         }
     </style>
 @endsection
@@ -109,10 +142,10 @@
 @section('content')
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card shadow-lg border-0 rounded-lg">
                     <!-- Card Header -->
-                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <div class="card-header d-flex justify-content-between align-items-center">
                         <h3 class="mb-0">{{ __('panel.contract_template_details') }}</h3>
                     </div>
 
@@ -123,71 +156,52 @@
                         <fieldset>
                             <legend>{{ __('panel.contract_template_basic_info') }}</legend>
 
-
-                            <!-- Document Template name -->
+                            <!-- Document Template Name -->
                             <div class="mb-4">
-                                <label class="form-label text-muted small mb-1">
-                                    {{ __('panel.contract_template_name') }}
-                                </label>
-                                <h4 class="fw-bold">{{ $contract_template->getTranslation('contract_template_name', 'ar') }}
-                                </h4>
+                                <label class="form-label">{{ __('panel.contract_template_name') }}</label>
+                                <h4 class="fw-bold">{{ $contract_template->getTranslation('contract_template_name', 'ar') }}</h4>
                             </div>
 
                             <!-- Contract Template Language -->
                             <div class="mb-4">
-                                <label class="form-label text-muted small mb-1">
-                                    {{ __('panel.language') }}
-                                </label>
+                                <label class="form-label">{{ __('panel.language') }}</label>
                                 <h4 class="fw-bold">{{ $contract_template->language() }}</h4>
                             </div>
 
                             <!-- Contract Template Status -->
                             <div class="mb-4">
-                                <label class="form-label text-muted small mb-1">
-                                    {{ __('panel.status') }}
-                                </label>
+                                <label class="form-label">{{ __('panel.status') }}</label>
                                 <p>
                                     <span class="badge {{ $contract_template->status ? 'bg-success' : 'bg-secondary' }}">
                                         {{ $contract_template->status ? __('Active') : __('Inactive') }}
                                     </span>
                                 </p>
                             </div>
-
                         </fieldset>
 
-
-
-                        <!-- Contract Template  Variables -->
+                        <!-- Contract Template Variables -->
                         <fieldset>
                             <legend>{{ __('panel.contract_template_variables') }}</legend>
 
                             @forelse ($contract_template->contractVariables as $contractVariable)
                                 <div class="mb-4">
-                                    <!-- Document Page Name -->
                                     <div class="document-page">
-                                        <label class="form-label text-muted small mb-1">
-                                            {{ __('panel.cv_name') }}
-                                        </label>
+                                        <label class="form-label">{{ __('panel.cv_name') }}</label>
                                         <h4 class="fw-bold">
                                             <i class="fas fa-file-alt me-2"></i> {{ $contractVariable->cv_name }}
                                         </h4>
                                     </div>
-
-
                                 </div>
                             @empty
                                 <p class="text-muted">{{ __('panel.contracts_variales_not_found') }}</p>
                             @endforelse
                         </fieldset>
 
-
-                        <!-- contract Template Text -->
+                        <!-- Contract Template Text -->
                         <fieldset>
                             <legend>{{ __('panel.contract_template_text') }}</legend>
                             <div class="mb-4">
-                                <label class="form-label text-muted small mb-1">
-                                    {{ __('panel.contract_template_text') }}
-                                </label>
+                                <label class="form-label">{{ __('panel.contract_template_text') }}</label>
                                 <p class="lead">{!! $contract_template->contract_template_text !!}</p>
                             </div>
                         </fieldset>
@@ -203,28 +217,27 @@
                                             {{ $contract->getTranslation('contract_name', 'ar') }}
                                         </a>
                                     </p>
-
                                 </div>
                             @empty
+                                <p class="text-muted">{{ __('panel.no_contracts_found') }}</p>
                             @endforelse
-
                         </fieldset>
 
                         <!-- Timestamps Section -->
-                        <div class="row">
+                        <div class="row mt-4">
                             <div class="col-md-6">
-                                <label class="form-label text-muted small mb-1">{{ __('panel.published_on') }}</label>
+                                <label class="form-label">{{ __('panel.published_on') }}</label>
                                 <p class="fw-semibold">{{ $contract_template->published_on }}</p>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label text-muted small mb-1">{{ __('panel.updated_at') }}</label>
+                                <label class="form-label">{{ __('panel.updated_at') }}</label>
                                 <p class="fw-semibold">{{ $contract_template->updated_at }}</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Card Footer -->
-                    <div class="card-footer bg-light d-flex justify-content-end">
+                    <div class="card-footer d-flex justify-content-end">
                         <a href="{{ route('admin.contract_templates.index') }}" class="btn btn-primary">
                             <i class="fas fa-arrow-left me-1"></i> {{ __('panel.back_to_list') }}
                         </a>
