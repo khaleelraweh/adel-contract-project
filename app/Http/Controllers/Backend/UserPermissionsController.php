@@ -179,38 +179,4 @@ class UserPermissionsController extends Controller
         ]);
     }
 
-    public function remove_image(Request $request)
-    {
-
-        if (!auth()->user()->ability('admin', 'delete_user_permissions')) {
-            return redirect('admin/index');
-        }
-
-        $supervisor = User::findOrFail($request->supervisor_id);
-        if (File::exists('assets/users/' . $supervisor->user_image)) {
-            unlink('assets/users/' . $supervisor->user_image);
-            $supervisor->user_image = null;
-            $supervisor->save();
-        }
-        if ($supervisor->user_image != null) {
-            $supervisor->user_image = null;
-            $supervisor->save();
-        }
-
-        return true;
-    }
-
-    public function updateuser_permissionstatus(Request $request)
-    {
-        if ($request->ajax()) {
-            $data = $request->all();
-            if ($data['status'] == "Active") {
-                $status = 0;
-            } else {
-                $status = 1;
-            }
-            User::where('id', $data['supervisor_id'])->update(['status' => $status]);
-            return response()->json(['status' => $status, 'supervisor_id' => $data['supervisor_id']]);
-        }
-    }
 }
