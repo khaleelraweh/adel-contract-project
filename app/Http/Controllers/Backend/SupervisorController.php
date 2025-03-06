@@ -85,11 +85,13 @@ class SupervisorController extends Controller
 
         $supervisor = User::create($input);
 
+        $supervisor->attachRole(Role::whereName('users')->first()->id);
+
         // $supervisor->attachRole(Role::whereName('supervisor')->first()->id);
 
-        if (isset($request->user_groups) && count($request->user_groups) > 0) {
-            $supervisor->roles()->sync($request->user_groups);
-        }
+        // if (isset($request->user_groups) && count($request->user_groups) > 0) {
+        //     $supervisor->roles()->sync($request->user_groups);
+        // }
 
         // dd($request->user_groups[0]);
 
