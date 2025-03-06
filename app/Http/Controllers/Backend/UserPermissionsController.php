@@ -65,7 +65,6 @@ class UserPermissionsController extends Controller
 
         $user = User::where('id', $request->user_id)->first();
 
-        $role = Role::where('id', $request->role_id)->first();
 
            //add roles
            dd($request->roles);
