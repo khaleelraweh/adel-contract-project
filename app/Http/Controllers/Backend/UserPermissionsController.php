@@ -65,19 +65,19 @@ class UserPermissionsController extends Controller
 
         $user = User::where('id', $request->user_id)->first();
 
+        $role = Role::where('id', $request->role_id)->first();
 
+           //add roles
+           dd($request->roles);
+           if (isset($request->roles) && count($request->roles) > 0) {
+            dd($$request->roles);
+            // $course->users()->sync($request->instructors);
+        } else {
 
-        if ($image = $request->file('user_image')) {
-
-            $manager = new ImageManager(new Driver());
-            $file_name = Str::slug($request->username) . '_' . time() .  "." . $image->getClientOriginalExtension();
-            $img = $manager->read($request->file('user_image'));
-            // $img = $img->resize(370, 246);
-            $img->toJpeg(80)->save(base_path('public/assets/users/' . $file_name));
-
-
-            $input['user_image'] = $file_name;
         }
+
+
+
 
         $supervisor = User::create($input);
 
