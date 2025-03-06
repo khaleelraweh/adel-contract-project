@@ -26,7 +26,7 @@
                 </ul>
             </div>
             <div class="ml-auto">
-                @ability('admin', 'create_role_users')
+                @ability('admin', 'create_user_Permissions')
                     <a href="{{ route('admin.user_permissions.create') }}" class="btn btn-primary">
                         <span class="icon text-white-50">
                             <i class="fa fa-plus-square"></i>
