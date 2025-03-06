@@ -87,12 +87,14 @@ class UserPermissionsController extends Controller
         ]);
     }
 
-    public function show(User $supervisor)
+    public function show($user)
     {
         if (!auth()->user()->ability('admin', 'display_user_permissions')) {
             return redirect('admin/index');
         }
-        return view('backend.user_permissions.show', compact('supervisor'));
+
+        $user = User::where('id', $user)->first();
+        return view('backend.user_permissions.show', compact('user'));
     }
 
     public function edit($user)
