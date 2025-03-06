@@ -1933,6 +1933,9 @@ return [
     'role_permission_group_deleted_at'                      =>  'تاريخ الحذف',
 
 
+    'no_contracts_found'                                    =>  'لم يتم العثور على اي عقود',
+
+
 
 
 
