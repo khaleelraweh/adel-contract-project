@@ -1,10 +1,7 @@
 @extends('layouts.admin')
+
 @section('content')
-
     <div class="card shadow mb-4">
-
-
-
         <div class="card-header py-3 d-flex justify-content-between">
             <div class="card-naving">
                 <h3 class="font-weight-bold text-primary">
@@ -35,7 +32,6 @@
                     </a>
                 @endability
             </div>
-
         </div>
 
         @include('backend.user_permissions.filter.filter')
@@ -45,6 +41,7 @@
                 style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                     <tr>
+                        <th>{{ __('panel.user') }}</th>
                         <th>{{ __('panel.role_display_name') }}</th>
                         <th class="d-none d-sm-table-cell">{{ __('panel.created_at') }}</th>
                         <th class="text-center" style="width:30px;">{{ __('panel.actions') }}</th>
@@ -53,17 +50,16 @@
                 <tbody>
                     @forelse ($role_users as $role_user)
                         <tr>
-
                             <td>
-                                {{ $role_user->display_name }} <br>
+                                {{ $role_user->user->first_name ?? 'N/A' }} <br>
                             </td>
-
-
+                            <td>
+                                {{ $role_user->role->display_name ?? 'N/A' }} <br>
+                            </td>
                             <td class="d-none d-sm-table-cell">
-                                {{ \Carbon\Carbon::parse($role_user->published_on)->diffForHumans() }}
+                                {{ \Carbon\Carbon::parse($role_user->created_at)->diffForHumans() }}
                             </td>
                             <td>
-
                                 <div class="btn-group btn-group-sm">
                                     <div class="dropdown mb-2 ">
                                         <a type="button" class="d-flex" id="dropdownMenuButton" data-bs-toggle="dropdown"
@@ -79,24 +75,24 @@
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <a class="dropdown-item d-flex align-items-center btn btn-success"
-                                                href="{{ route('admin.user_permissions.show', $role_user->id) }}">
+                                                href="{{ route('admin.user_permissions.show', $role_user->role->id) }}">
                                                 <i data-feather="eye" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_show') }}</span>
                                             </a>
                                             <a class="dropdown-item d-flex align-items-center"
-                                                href="{{ route('admin.user_permissions.edit', $role_user->id) }}">
+                                                href="{{ route('admin.user_permissions.edit', $role_user->role->id) }}">
                                                 <i data-feather="edit-2" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_edit') }}</span>
                                             </a>
 
                                             <a href="javascript:void(0);"
-                                                onclick="confirmDelete('delete-role_user-{{ $role_user->id }}', '{{ __('panel.confirm_delete_message') }}', '{{ __('panel.yes_delete') }}', '{{ __('panel.cancel') }}')"
+                                                onclick="confirmDelete('delete-role_user-{{ $role_user->role->id }}', '{{ __('panel.confirm_delete_message') }}', '{{ __('panel.yes_delete') }}', '{{ __('panel.cancel') }}')"
                                                 class="dropdown-item d-flex align-items-center">
                                                 <i data-feather="trash" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_delete') }}</span>
                                             </a>
-                                            <form action="{{ route('admin.user_permissions.destroy', $role_user->id) }}"
-                                                method="post" class="d-none" id="delete-role_user-{{ $role_user->id }}">
+                                            <form action="{{ route('admin.user_permissions.destroy', $role_user->role->id) }}"
+                                                method="post" class="d-none" id="delete-role_user-{{ $role_user->role->id }}">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
@@ -108,7 +104,6 @@
                                                 <i data-feather="copy" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_copy_link') }}</span>
                                             </a>
-
                                         </div>
                                         <span class="copyMessage" data-id="{{ $role_user->id }}" style="display:none;">
                                             {{ __('panel.copied') }}
@@ -127,13 +122,12 @@
                     <tr>
                         <td colspan="6">
                             <div class="float-right">
-                                {!! $role_users->appends(request()->all())->links() !!}
+                                {{-- {!! $role_users->appends(request()->all())->links() !!} --}}
                             </div>
                         </td>
                     </tr>
                 </tfoot>
             </table>
         </div>
-
     </div>
 @endsection

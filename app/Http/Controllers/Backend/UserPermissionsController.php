@@ -19,15 +19,14 @@ class UserPermissionsController extends Controller
 {
     public function index()
     {
-        if (!auth()->user()->ability(['admin','supervisor','users'], 'manage_user_permissions , show_user_permissions')) {
+        if (!auth()->user()->ability(['admin', 'supervisor', 'users'], 'manage_user_permissions , show_user_permissions')) {
             return redirect('admin/index');
         }
 
+        // Get RoleUsers where the role is 'users'
         $role_users = RoleUsers::whereHas('role', function ($query) {
             $query->where('name', 'users');
-        })->get();
-
-        dd($role_users);
+        })->with(['role', 'user'])->get();
 
         return view('backend.user_permissions.index', compact('role_users'));
     }
