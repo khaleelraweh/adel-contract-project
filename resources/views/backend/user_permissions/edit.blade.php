@@ -80,7 +80,7 @@
                             <select name="roles[]" class="form-control select2 child " multiple="multiple">
                                 @forelse ($roles as $role)
                                     <option value="{{ $role->id }}"
-                                        {{ in_array($role->id, old('roles', [])) ? 'selected' : null }}>
+                                        {{ in_array($role->id, old('roles', $assignedRoles)) ? 'selected' : null }}>
                                         {{ $role->display_name }}</option>
                                 @empty
                                 @endforelse
@@ -88,7 +88,7 @@
                         </div>
                     </div>
 
-                    <label for="instructors">{{ __('panel.instructors') }}</label>
+                    {{-- <label for="instructors">{{ __('panel.instructors') }}</label>
                     <select name="instructors[]" class="form-control select2 child" multiple="multiple">
                         @forelse ($instructors as $instructor)
                             <option value="{{ $instructor->id }}"
@@ -96,7 +96,7 @@
                                 {{ $instructor->first_name }} {{ $instructor->last_name }}</option>
                         @empty
                         @endforelse
-                    </select>
+                    </select> --}}
 
                     <div class="row pt-4">
                         <div class="col-sm-12">
