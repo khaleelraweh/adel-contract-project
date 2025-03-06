@@ -17,44 +17,16 @@ use Illuminate\Http\Request;
 
 class SupervisorController extends Controller
 {
-    // public function index()
-    // {
-    //     if (!auth()->user()->ability('admin', 'manage_supervisors , show_supervisors')) {
-    //         return redirect('admin/index');
-    //     }
 
-    //     //get users where has roles
-    //     $supervisors = User::whereHas('roles', function ($query) {
-    //         $query->where('name', 'users');
-    //     })
-    //         ->when(\request()->keyword != null, function ($query) {
-    //             $query->search(\request()->keyword);
-    //         })
-    //         ->when(\request()->status != null, function ($query) {
-    //             $query->where('status', \request()->status);
-    //         })
-    //         ->orderBy(\request()->sort_by ?? 'id', \request()->order_by ?? 'desc')
-    //         ->paginate(\request()->limit_by ?? 10);
-
-    //     return view('backend.supervisors.index', compact('supervisors'));
-    // }
 
 
     public function index()
     {
-        // if (!auth()->user()->ability('supervisor', 'manage_supervisors , show_supervisors')) {
-        //     return redirect('admin/index');
-        // }
-
-        // if (!auth()->user()->can('manage_supervisors') || !auth()->user()->can('show_supervisors')) {
-        //     return redirect('admin/index');
-        // }
 
         if (!auth()->user()->ability(['admin','supervisor','users'], 'manage_supervisors , show_supervisors')) {
             return redirect('admin/index');
         }
 
-        //get users where has roles
         $supervisors = User::whereHas('roles', function ($query) {
             $query->where('name', 'users');
         })
