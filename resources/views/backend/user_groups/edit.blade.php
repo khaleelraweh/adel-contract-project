@@ -9,7 +9,7 @@
             <div class="card-naving">
                 <h3 class="font-weight-bold text-primary">
                     <i class="fa fa-edit"></i>
-                    {{ __('panel.edit_existing_user_group') }}
+                    {{ __('panel.edit_existing_role') }}
                 </h3>
                 <ul class="breadcrumb pt-3">
                     <li>
@@ -22,7 +22,7 @@
                     </li>
                     <li class="ms-1">
                         <a href="{{ route('admin.user_groups.index') }}">
-                            {{ __('panel.show_user_groups') }}
+                            {{ __('panel.show_roles') }}
                         </a>
                     </li>
                 </ul>
@@ -50,7 +50,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-2 pt-3">
                             <label for="display_name">
-                                {{ __('panel.user_group_display_name') }}
+                                {{ __('panel.role_name') }}
                             </label>
                         </div>
                         <div class="col-sm-12 col-md-10 pt-3">
@@ -64,7 +64,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-2 pt-3">
                             <label for="description">
-                                {{ __('panel.user_group_description') }}
+                                {{ __('panel.role_description') }}
                             </label>
                         </div>
                         <div class="col-sm-12 col-md-10 pt-3">
@@ -78,8 +78,13 @@
                     <hr>
 
                       {{-- Permissions Section --}}
-                    <div class="row pt-4">
-                        <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-2 pt-3">
+                            <label for="manage_permissions">
+                                {{ __('panel.manage_permissions') }}
+                            </label>
+                        </div>
+                        <div class="col-sm-12 col-md-10 pt-3" id="manage_permissions">
                             @foreach ($permissions as $parentPermission)
                                 <!-- Use the PermissionsCheckbox component -->
                                 <x-permissions-checkbox :permission="$parentPermission" :assignedPermissions="old('permissions', $assignedPermissions ?? [])" />
