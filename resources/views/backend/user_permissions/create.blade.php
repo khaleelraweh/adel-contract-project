@@ -57,7 +57,7 @@
 
                         <div class="col-md-12 col-sm-12 ">
 
-                            <label for="user_id"> {{ __('panel.users') }} </label>
+                            <label for="user_id"> {{ __('panel.user') }} </label>
                             <select name="user_id" class="form-control select2 child" id="user_id">
                                 @forelse ($users as $user)
                                     <option value="{{ $user->id }}"

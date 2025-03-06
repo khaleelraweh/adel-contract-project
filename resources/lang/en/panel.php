@@ -223,7 +223,7 @@ return [
     'instructor'                    =>  'instructor',
     'send_for_review'               =>  'Send for Review',
 
-    // Course status 
+    // Course status
     'course_new_course'                         =>  'New',
     'course_completed'                          =>  ' Completed',
     'course_under_process'                      =>  'Under Proccess',
@@ -236,7 +236,7 @@ return [
 
 
 
-    // Course Topics  
+    // Course Topics
     'course_topics_tab'                         =>  'Course Topics',
     'course_objectives_tab'                     =>  'Course Objectives',
     'txt_course_topics'                         =>  'Course Topics',
@@ -913,7 +913,7 @@ return [
     'cc_codes_used_by_administration'           => 'Codes used by the administration',
     'cc_using_and_printing_codes'               => 'Using and printing codes',
 
-    // card codes tab add 
+    // card codes tab add
     'cc_add_direct_codes'                       =>  'Add Direct Codes',
     'cc_add_custom_codes'                       =>  'Add Custom Codes',
     'cc_add_custom_group_codes'                 =>  'Add Custom Group Codes',
@@ -1204,7 +1204,7 @@ return [
 
     // ============ common translate ==============//
 
-    // Languages 
+    // Languages
     'en'                    => 'English',
     'ar'                    => 'Arabic',
     'ca'                    => 'Spanish',
@@ -1242,7 +1242,7 @@ return [
     'type_to_filter'                =>  'Type To Filter',
     'icon'                          =>  'Icon',
 
-    // ======= display Add and Update Section =======// 
+    // ======= display Add and Update Section =======//
 
     // ------------ Tabs name -----------------/
     'content_tab'           => 'Content Data ',
@@ -1357,7 +1357,7 @@ return [
 
 
 
-    //messages 
+    //messages
     'f_m_item_removed_from_shop_cart'                       =>  'The item has been removed from your shopping cart',
     'f_m_item_removed_from_wishlist_cart'                   =>  'The item has been removed from your wishlist cart',
 
@@ -1373,14 +1373,14 @@ return [
     'f_m_some_thing_went_error'                             =>  'Somethig Went Error !',
 
 
-    // ========================  frontend Message =========================// 
+    // ========================  frontend Message =========================//
     'f_our_price_are_the_best'                                              => 'Our prices are the best',
     'f_strongest_offers'                                                    => 'Strongest offers',
     'f_outstanding_customer_service'                                        => 'Outstanding customer service',
     'f_packages_that_suit_your_needs'                                       => 'Packages that suit your needs',
 
 
-    // ========================  frontend Footer  =========================// 
+    // ========================  frontend Footer  =========================//
     'f_phone'                                       => 'Phone',
     'f_phone_number'                                =>  'Phone Number',
     'f_email'                                       => 'Email Address',
@@ -1452,7 +1452,7 @@ return [
     // ====================== card category page translation ===================================//
 
     // ====================== Blog page  translation ===================================//
-    // main blog page 
+    // main blog page
     'f_common_tags'                                      =>  'Common Tags',
     'f_we_chosed_for_you'                                =>  'We chosed for you',
     'f_topic'                                            => 'Topic',
@@ -1461,7 +1461,7 @@ return [
     'f_what_do_you_want_to_search_for'          =>  'What do you want to search for',
 
     // ========================== frontend header side panel translate ===============================================//
-    // user login guest 
+    // user login guest
     'f_close'                                           =>  'Close',
     'f_center_pay'                                      =>  'CenterPay',
     'f_login'                                           =>  'Login',
@@ -1479,7 +1479,7 @@ return [
 
     'f_account_type'                                    =>  'Account Type',
 
-    //user loged in 
+    //user loged in
     'f_welcome'                                         =>  'Welcome',
     'f_insure_user_email'                               =>  'Insure your email',
     'f_we_sent_link_insurent_to_your_email'             =>  'We had Sent you an insurent link to your email ',
@@ -1487,7 +1487,7 @@ return [
     'f_if_you_didnt_receive_an_email'                   =>  'If you did not receive an email',
     'f_click_here_to_get_another'                       =>  'Click here to get another',
 
-    //user control panel 
+    //user control panel
     'f_content'                                         =>  'Content',
     'f_description'                                     =>  'Description',
     'f_profile'                                         =>  'Profile',
@@ -1505,14 +1505,14 @@ return [
     'f_logout'                                          =>  'Logout',
 
 
-    // Register 
+    // Register
     'f_create_new_account'                              => 'Create new account',
     'f_create_an_account'                               => 'Create an account',
     'f_register'                                        =>  'Register',
 
     'f_do_you_have_an_account'                          =>  'You have an account ?',
 
-    // Email reset password 
+    // Email reset password
     'f_reset_password'                                  =>  'Reset password',
     'f_we_have_sent_you_a_reset_link_to_your_email'     =>  'We have sent you a reset link to your email , please check it ',
     'f_send_reset_link'                                 =>  'Send reset Link',
@@ -1525,7 +1525,7 @@ return [
     // customer profile
     'f_delete_image'                                    =>  'Delete Image',
 
-    //customer control panel 
+    //customer control panel
     'f_general_information'                                    =>  'General Information',
 
     //customer addresses
@@ -1596,11 +1596,11 @@ return [
 
 
 
-    // added new 
+    // added new
     'username'                                     => 'username',
 
 
-    // Evaluations 
+    // Evaluations
     'add_evaluation'                                =>  'Add Evaluation',
     'evaluation_title'                              =>  'Evaluation Title',
 
@@ -1623,7 +1623,7 @@ return [
     'evaluation_saved_successfully'                 =>  'Evaluation Saved Successfully',
     'evaluation'                                    =>  'Evaluation',
 
-    // 
+    //
 
     'best_size'                                     =>  'Best Size',
     'Image_show_in_main_page'                       =>  'Image Show in Main Page',
@@ -1633,7 +1633,7 @@ return [
 
 
 
-    // new work in in university 
+    // new work in in university
     'news_update'                                       =>  'News Update',
     'university_news'                                   =>  'University News',
     'activities_update'                                 =>  'Activities Update',
@@ -1760,6 +1760,44 @@ return [
     'pc_type_date'                                          =>  'Date',
     'pc_required'                                           =>  'Required',
     'pc_details'                                            =>  'Details',
+
+    // Manage user roles and permissions
+
+
+    'user'                                                  =>  'المستخدم',
+    'users'                                                 =>  'المستخدمين',
+    'user_name'                                             =>  'اسم المستخدم',
+    'user_email'                                            =>  'البريد الإلكتروني',
+    'user_password'                                         =>  'كلمة المرور',
+    'user_password_confirmation'                            =>  'تأكيد كلمة المرور',
+    'user_role'                                             =>  'الدور',
+    'user_status'                                           =>  'الحالة',
+    'user_created_at'                                       =>  'تاريخ الإنشاء',
+    'user_updated_at'                                       =>  'تاريخ التحديث',
+    'user_deleted_at'                                       =>  'تاريخ الحذف',
+    'user_last_login'                                       =>  'آخر تسجيل دخول',
+    'role'                                                  =>  'الدور',
+    'roles'                                                 =>  'الأدوار',
+    'role_name'                                             =>  'اسم الدور',
+    'role_description'                                      =>  'وصف الدور',
+    'role_created_at'                                       =>  'تاريخ الإنشاء',
+    'role_updated_at'                                       =>  'تاريخ التحديث',
+    'role_deleted_at'                                       =>  'تاريخ الحذف',
+    'role_permissions'                                      =>  'الصلاحيات',
+    'role_permission'                                       =>  'الصلاحية',
+    'role_permission_name'                                  =>  'اسم الصلاحية',
+    'role_permission_description'                           =>  'وصف الصلاحية',
+    'role_permission_created_at'                            =>  'تاريخ الإنشاء',
+    'role_permission_updated_at'                            =>  'تاريخ التحديث',
+    'role_permission_deleted_at'                            =>  'تاريخ الحذف',
+    'role_permission_group'                                 =>  'مجموعة الصلاحيات',
+    'role_permission_group_name'                            =>  'اسم مجموعة الصلاحيات',
+    'role_permission_group_description'                     =>  'وصف مجموعة الصلاحيات',
+    'role_permission_group_created_at'                      =>  'تاريخ الإنشاء',
+    'role_permission_group_updated_at'                      =>  'تاريخ التحديث',
+    'role_permission_group_deleted_at'                      =>  'تاريخ الحذف',
+
+
 
 
 ];

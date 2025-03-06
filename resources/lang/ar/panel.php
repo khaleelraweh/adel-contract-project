@@ -244,7 +244,7 @@ return [
     'send_for_review'               =>  'ارسلت للتحقق',
 
 
-    // Course status 
+    // Course status
     'course_new_course'             =>  'جديد',
     'course_completed'              =>  'مكتمل',
     'course_under_process'          =>  'تحت المعالجة',
@@ -259,7 +259,7 @@ return [
 
 
 
-    // course topics  
+    // course topics
     'course_topics_tab'                         =>  'مواضيع الدورة',
     'course_objectives_tab'                     =>  ' اهداف الدورة',
     'txt_course_topics'                         =>  'المواضيع',
@@ -273,7 +273,7 @@ return [
     'msg_one_or_more_topic_field_empty'         =>  'واحد او اكثر من موضوعات الدورة فارغ , الرجاء تعبئتها قبل اكمال عملية الحفظ',
     'msg_please_fill_in_all_topic_fields_before_adding_new'  => 'يرجى ملء جميع الحقول في علامة التبويب موضوعات الدورة قبل إضافة موضوع جديد.',
 
-    // course requirement  
+    // course requirement
     'course_requirements_tab'                         =>  'متطلبات الدورة',
     'txt_course_requirements'                         =>  'المتطلبات',
     'btn_add_another_requirement'                     =>  'إضافة متطلب جديد',
@@ -894,7 +894,7 @@ return [
     'cc_codes_used_by_administration'               => 'الاكواد المستخدمة من قبل الإدارة',
     'cc_using_and_printing_codes'                   => 'إستخدام وطباعة الاكواد',
 
-    // card codes tab add 
+    // card codes tab add
     'cc_add_direct_codes'                       =>  'إضافة اكواد مباشرة',
     'cc_add_custom_codes'                       =>  'إضافة اكواد مخصصة',
     'cc_add_custom_group_codes'                 =>  'إضافة مجموعة اكواد مخصصة',
@@ -1325,7 +1325,7 @@ return [
     'f_remove_from_cart'                        =>  'حذف من سلة المشتريات',
     'f_remove_from_wishlist'                    =>  'حذف من سلة المفضلات',
 
-    //messages 
+    //messages
     'f_m_item_removed_from_shop_cart'           =>  'تم إزالة العنصر من سلة التسوق بنجاح',
     'f_m_item_removed_from_wishlist_cart'       =>  'تم إزالة العنصر من قائمة المفظلات بنجاح',
 
@@ -1339,14 +1339,14 @@ return [
     'f_m_item_add_to_wishlist_cart'             =>  'تم إضافة العنصر الى قائمة المفضلات بنجاح',
 
 
-    // ========================  frontend Message =========================// 
+    // ========================  frontend Message =========================//
     'f_our_price_are_the_best'                  => 'اسعارنا الافضل',
     'f_strongest_offers'                        => 'عروضنا الأقوى',
     'f_outstanding_customer_service'            => 'خدمة عملاء متميزة',
     'f_packages_that_suit_your_needs'           => 'باقات تناسب احتياجك',
 
 
-    // ========================  fronten Footer  =========================// 
+    // ========================  fronten Footer  =========================//
     'f_phone'                                   => 'تلفون',
     'f_phone_number'                            => 'رقم الجوال',
     'f_email'                                   => 'البريد الإلكتروني',
@@ -1417,7 +1417,7 @@ return [
     // ====================== card category page translation ===================================//
 
     // ====================== Blog page  translation ===================================//
-    // main blog page 
+    // main blog page
     'f_common_tags'                                      =>  'الكلمات المفتاحية',
     'f_we_chosed_for_you'                                =>  'اخترنا لك',
     'f_topic'                                            =>  'موضوع',
@@ -1426,7 +1426,7 @@ return [
     'f_what_do_you_want_to_search_for'                   =>  'ما الذي تريد البحث عنه؟',
 
     // ========================== frontend header side panel translate ===============================================//
-    // user login guest 
+    // user login guest
     'f_close'                                           =>  'إغلاق',
     'f_center_pay'                                      =>  'سنتر باي',
     'f_login'                                           =>  'تسجيل الدخول',
@@ -1444,7 +1444,7 @@ return [
 
     'f_account_type'                                    =>  'نوع الحساب',
 
-    //user loged in 
+    //user loged in
 
     'f_welcome'                                         =>  'مرحبا',
     'f_insure_user_email'                               =>  'تاكيد عنوان البريد الإلكتروني ',
@@ -1468,14 +1468,14 @@ return [
     'f_youth_step'                                      =>  'قم بالتدريس في خطوة شباب',
     'f_logout'                                          =>  'تسجيل الخروج',
 
-    // Register 
+    // Register
     'f_create_new_account'                              => 'إنشاء حساب جديد',
     'f_create_an_account'                               => 'إنشاء حساب',
     'f_register'                                        => 'إنشاء حساب',
 
     'f_do_you_have_an_account'                          =>  'هل لديك حساب ؟ ',
 
-    // Email reset password 
+    // Email reset password
     'f_reset_password'                                  =>  'إعادة تعيين كلمة المرور',
     'f_we_have_sent_you_a_reset_link_to_your_email'     =>  ' لقد قمنا بارسال رابط اعادة تعيين كلمة المرور الى بريدك الإلكتروني, الرجاء التحقق من بريدك الإلكتروني ',
     'f_send_reset_link'                                 =>  'إرسال رابط إعادة التعيين',
@@ -1485,10 +1485,10 @@ return [
     'f_confirm_password'                                =>  'تاكيد كلمة المرور',
     'f_please_confirm_your_password_before_continuing'  =>  'الرجاء تاكيد كلمة المرور قبل المتابعة!',
 
-    // customer pages 
+    // customer pages
     'f_delete_image'                                    =>  'حذف الصورة',
 
-    //customer control panel 
+    //customer control panel
     'f_general_information'                             =>  'المعلومات العامة',
 
     //customer addresses
@@ -1560,11 +1560,11 @@ return [
     'f_paypal'                                          =>  'باي بال',
 
 
-    // added new 
+    // added new
     'username'                                     => 'إسم المستخدم',
 
 
-    // Evaluations 
+    // Evaluations
     'add_evaluation'                                =>  'اضافة تقييم',
     'evaluation_title'                              =>  'عنوان التقييم',
 
@@ -1598,7 +1598,7 @@ return [
 
 
 
-    // new work in in university 
+    // new work in in university
     'news_update'                                       =>  'تحديث الأخبار',
     'university_news'                                   =>  'أخبار النظام',
     'activities_update'                                 =>  'تحديث الفعاليات',
@@ -1853,6 +1853,41 @@ return [
     'contracts_variales_not_found'                          =>  'لا يوجد اي متغيرات',
     'contract_template_contracts'                           =>  'عقود القالب',
     'go_back_to_contracts'                                  =>  'العودة الى قائمة العقود',
+
+    // Manage user roles and permissions
+
+    'user'                                                  =>  'المستخدم',
+    'users'                                                 =>  'المستخدمين',
+    'user_name'                                             =>  'اسم المستخدم',
+    'user_email'                                            =>  'البريد الإلكتروني',
+    'user_password'                                         =>  'كلمة المرور',
+    'user_password_confirmation'                            =>  'تأكيد كلمة المرور',
+    'user_role'                                             =>  'الدور',
+    'user_status'                                           =>  'الحالة',
+    'user_created_at'                                       =>  'تاريخ الإنشاء',
+    'user_updated_at'                                       =>  'تاريخ التحديث',
+    'user_deleted_at'                                       =>  'تاريخ الحذف',
+    'user_last_login'                                       =>  'آخر تسجيل دخول',
+    'role'                                                  =>  'الدور',
+    'roles'                                                 =>  'الأدوار',
+    'role_name'                                             =>  'اسم الدور',
+    'role_description'                                      =>  'وصف الدور',
+    'role_created_at'                                       =>  'تاريخ الإنشاء',
+    'role_updated_at'                                       =>  'تاريخ التحديث',
+    'role_deleted_at'                                       =>  'تاريخ الحذف',
+    'role_permissions'                                      =>  'الصلاحيات',
+    'role_permission'                                       =>  'الصلاحية',
+    'role_permission_name'                                  =>  'اسم الصلاحية',
+    'role_permission_description'                           =>  'وصف الصلاحية',
+    'role_permission_created_at'                            =>  'تاريخ الإنشاء',
+    'role_permission_updated_at'                            =>  'تاريخ التحديث',
+    'role_permission_deleted_at'                            =>  'تاريخ الحذف',
+    'role_permission_group'                                 =>  'مجموعة الصلاحيات',
+    'role_permission_group_name'                            =>  'اسم مجموعة الصلاحيات',
+    'role_permission_group_description'                     =>  'وصف مجموعة الصلاحيات',
+    'role_permission_group_created_at'                      =>  'تاريخ الإنشاء',
+    'role_permission_group_updated_at'                      =>  'تاريخ التحديث',
+    'role_permission_group_deleted_at'                      =>  'تاريخ الحذف',
 
 
 
