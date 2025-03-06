@@ -1791,7 +1791,8 @@ return [
     'edit_existing_user_permission'                         =>  'تعديل صلاحية مستخدم موجودة',
 
 
-    'user_roles'                                            =>  'أدوار المستخدمين',
+    'user_roles'                                            =>  'أدوار المستخدم',
+    'users_roles'                                            =>  'أدوار المستخدمين',
     'user_permissions'                                      =>  'صلاحيات المستخدمين',
     'role_permissions'                                      =>  'صلاحيات الأدوار',
     'role_users'                                            =>  'مستخدمي الأدوار',
