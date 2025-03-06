@@ -12,7 +12,7 @@
             <div class="card-naving">
                 <h3 class="font-weight-bold text-primary">
                     <i class="fa fa-edit"></i>
-                    {{ __('panel.edit_existing_role_user') }}
+                    {{ __('panel.edit_existing_user_permission') }}
                 </h3>
                 <ul class="breadcrumb pt-3">
                     <li>
