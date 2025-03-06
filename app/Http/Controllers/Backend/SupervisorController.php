@@ -59,7 +59,6 @@ class SupervisorController extends Controller
             return redirect('admin/index');
         }
 
-        // dd($request);
 
         $input['first_name'] = $request->first_name;
         $input['last_name'] = $request->last_name;
@@ -180,9 +179,9 @@ class SupervisorController extends Controller
         //     $supervisor->permissions()->sync($request->permissions);
         // }
 
-        if (isset($request->user_groups) && count($request->user_groups) > 0) {
-            $supervisor->roles()->sync($request->user_groups);
-        }
+        // if (isset($request->user_groups) && count($request->user_groups) > 0) {
+        //     $supervisor->roles()->sync($request->user_groups);
+        // }
 
         return redirect()->route('admin.supervisors.index')->with([
             'message' => 'Updated successfully',
