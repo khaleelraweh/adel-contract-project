@@ -68,22 +68,16 @@ class UserPermissionsController extends Controller
 
            //add roles
            if (isset($request->roles) && count($request->roles) > 0) {
-            dd($request->roles);
-            // $course->users()->sync($request->instructors);
-        } else {
+                $user->roles()->sync($request->roles);
+            } else {
 
-        }
-
+            }
 
 
 
-        $supervisor = User::create($input);
-
-        // $supervisor->attachRole(Role::whereName('supervisor')->first()->id);
-
-        if (isset($request->user_groups) && count($request->user_groups) > 0) {
-            $supervisor->roles()->sync($request->user_groups);
-        }
+        // if (isset($request->user_groups) && count($request->user_groups) > 0) {
+        //     $supervisor->roles()->sync($request->user_groups);
+        // }
 
         // dd($request->user_groups[0]);
 
