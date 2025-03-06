@@ -71,16 +71,18 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-3 pt-4">
+                                    <label for="last_name">{{ __('panel.last_name') }}</label>
+                                </div>
                                 <div class="col-sm-12 col-md-9 pt-4">
-                                    <div class="form-group">
-                                        <label for="last_name">{{ __('panel.last_name') }}</label>
-                                        <input type="text" id="last_name" name="last_name"
-                                            value="{{ old('last_name', $supervisor->last_name) }}" class="form-control"
-                                            placeholder="">
-                                        @error('last_name')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                    <input type="text" id="last_name" name="last_name"
+                                        value="{{ old('last_name', $supervisor->last_name) }}" class="form-control"
+                                        placeholder="">
+                                    @error('last_name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
