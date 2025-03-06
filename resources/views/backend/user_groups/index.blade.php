@@ -20,7 +20,7 @@
                         @endif
                     </li>
                     <li class="ms-1">
-                        {{ __('panel.show_user_groups') }}
+                        {{ __('panel.show_roles') }}
                     </li>
                 </ul>
             </div>
@@ -30,7 +30,7 @@
                         <span class="icon text-white-50">
                             <i class="fa fa-plus-square"></i>
                         </span>
-                        <span class="text">{{ __('panel.add_new_user_group') }}</span>
+                        <span class="text">{{ __('panel.add_new_role') }}</span>
                     </a>
                 @endability
             </div>
