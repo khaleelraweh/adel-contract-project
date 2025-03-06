@@ -23,16 +23,11 @@ class UserPermissionsController extends Controller
             return redirect('admin/index');
         }
 
-        //get users where has roles
-        $role_users = Role::with('users')->where('name', 'users')
-            ->when(\request()->keyword != null, function ($query) {
-                $query->search(\request()->keyword);
-            })
-            ->when(\request()->status != null, function ($query) {
-                $query->where('status', \request()->status);
-            })
-            ->orderBy(\request()->sort_by ?? 'id', \request()->order_by ?? 'desc')
-            ->paginate(\request()->limit_by ?? 10);
+        $role_users = RoleUsers::whereHas('role', function ($query) {
+            $query->where('name', 'users');
+        })->get();
+
+        dd($role_users);
 
         return view('backend.user_permissions.index', compact('role_users'));
     }

@@ -13,13 +13,15 @@ class RoleUsers extends Model
 
     protected $guarded = [];
 
+    // Relationship to Role
     public function role()
     {
-        return $this->belongsToMany(Role::class, 'id', 'role_id');
+        return $this->belongsTo(Role::class, 'role_id', 'id');
     }
 
+    // Relationship to User
     public function user()
     {
-        return $this->belongsToMany(User::class, 'id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }
