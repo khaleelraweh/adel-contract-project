@@ -142,22 +142,40 @@ class UserPermissionsController extends Controller
         ]);
     }
 
-    public function destroy(User $supervisor)
+    public function destroy($user)
     {
         if (!auth()->user()->ability('admin', 'delete_user_permissions')) {
             return redirect('admin/index');
         }
 
-        // first: delete image from users path
-        if (File::exists('assets/users/' . $supervisor->user_image)) {
-            unlink('assets/users/' . $supervisor->user_image);
-        }
-        //second : delete supervisor from users table
-        $supervisor->delete();
+        // Fetch the user to be deleted
+        $user = User::where('id', $user)->first();
 
+        if ($user) {
+            // Check if the user has an image and if the file exists
+            if ($user->user_image && File::exists('assets/users/' . $user->user_image)) {
+                // Ensure that $user->user_image is a file, not a directory
+                if (is_file('assets/users/' . $user->user_image)) {
+                    unlink('assets/users/' . $user->user_image);
+                } else {
+                    // Log or handle the case where $user->user_image is a directory
+                    \Log::warning("Attempted to delete a directory instead of a file: assets/users/{$user->user_image}");
+                }
+            }
+
+            // Delete the user from the database
+            $user->delete();
+
+            return redirect()->route('admin.user_permissions.index')->with([
+                'message' => 'Deleted successfully',
+                'alert-type' => 'success'
+            ]);
+        }
+
+        // If the user doesn't exist, redirect with an error message
         return redirect()->route('admin.user_permissions.index')->with([
-            'message' => 'Deleted successfully',
-            'alert-type' => 'success'
+            'message' => 'User not found',
+            'alert-type' => 'error'
         ]);
     }
 
