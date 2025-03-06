@@ -1889,6 +1889,7 @@ return [
     'role_users'                                            =>  'مستخدمي الأدوار',
     'permission_roles'                                      =>  'أدوار الصلاحيات',
     'permission_users'                                      =>  'مستخدمي الصلاحيات',
+    'show_role_detials'                                     =>  'عرض تفاصيل الدور',
 
     'user'                                                  =>  'المستخدم',
     'users'                                                 =>  'المستخدمين',
