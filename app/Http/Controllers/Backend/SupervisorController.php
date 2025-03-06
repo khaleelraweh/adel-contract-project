@@ -56,7 +56,7 @@ class SupervisorController extends Controller
 
         //get users where has roles
         $supervisors = User::whereHas('roles', function ($query) {
-            $query->where('name', 'supervisor');
+            $query->where('name', 'users');
         })
             ->when(\request()->keyword != null, function ($query) {
                 $query->search(\request()->keyword);
