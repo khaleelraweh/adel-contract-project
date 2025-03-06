@@ -11,13 +11,10 @@
 
     <!-- Child Permissions -->
     @if ($permission->children->count() > 0)
-        <ul class="child-permissions" style="list-style-type:none;">
+        <ul class="child-permissions" style="list-style-type:none; padding-left: 20px;">
             @foreach ($permission->children as $childPermission)
                 <li>
                     <!-- Recursively render child permissions -->
-                    @php
-                        $assignedPermissions = $assignedPermissions ?? [];
-                    @endphp
                     <x-permissions-checkbox :permission="$childPermission" :assignedPermissions="$assignedPermissions" />
                 </li>
             @endforeach
