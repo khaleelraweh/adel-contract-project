@@ -116,18 +116,18 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-
-                                <div class="col-sm-12 col-md-6 pt-4">
-                                    <div class="form-group">
-                                        <label for="mobile">{{ __('panel.mobile') }}</label>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-2 pt-4">
+                                    <label for="mobile">{{ __('panel.mobile') }}</label>
+                                </div>
+                                <div class="col-sm-12 col-md-10 pt-4">
                                         <input type="text" id="mobile" name="mobile" value="{{ old('mobile') }}"
                                             class="form-control" placeholder="">
                                         @error('mobile')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
-                                    </div>
                                 </div>
-
                             </div>
 
                             {{-- user group row --}}
