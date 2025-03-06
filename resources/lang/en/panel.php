@@ -1776,6 +1776,28 @@ return [
     'edit_existing_role'                                    =>  'تعديل دور موجود',
     'edit_existing_permission'                              =>  'تعديل صلاحية موجودة',
 
+
+    'manage_user_roles'                                     =>  'إدارة أدوار المستخدمين',
+    'manage_role_permissions'                               =>  'إدارة صلاحيات الأدوار',
+    'manage_user_permissions'                               =>  'إدارة صلاحيات المستخدمين',
+    'show_user_roles'                                       =>  'عرض أدوار المستخدمين',
+    'show_role_permissions'                                 =>  'عرض صلاحيات الأدوار',
+    'show_user_permissions'                                 =>  'عرض صلاحيات المستخدمين',
+    'add_new_user_role'                                     =>  'إضافة دور مستخدم جديد',
+    'add_new_role_permission'                               =>  'إضافة صلاحية دور جديدة',
+    'add_new_user_permission'                               =>  'إضافة صلاحية مستخدم جديدة',
+    'edit_existing_user_role'                               =>  'تعديل دور مستخدم موجود',
+    'edit_existing_role_permission'                         =>  'تعديل صلاحية دور موجودة',
+    'edit_existing_user_permission'                         =>  'تعديل صلاحية مستخدم موجودة',
+
+
+    'user_roles'                                            =>  'أدوار المستخدمين',
+    'user_permissions'                                      =>  'صلاحيات المستخدمين',
+    'role_permissions'                                      =>  'صلاحيات الأدوار',
+    'role_users'                                            =>  'مستخدمي الأدوار',
+    'permission_roles'                                      =>  'أدوار الصلاحيات',
+    'permission_users'                                      =>  'مستخدمي الصلاحيات',
+
     'user'                                                  =>  'المستخدم',
     'users'                                                 =>  'المستخدمين',
     'user_name'                                             =>  'اسم المستخدم',
