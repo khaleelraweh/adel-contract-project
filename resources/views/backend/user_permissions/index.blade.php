@@ -54,7 +54,12 @@
                                 {{ $role_user->first_name ?? 'N/A' }} <br>
                             </td>
                             <td>
-                                {{ $role_user->display_name ?? 'N/A' }} <br>
+                                @foreach ($role_user->roles as $role)
+                                {{ $role->display_name ?? 'N/A' }}
+                                @if (!$loop->last)
+                                ،
+                                @endif
+                                @endforeach
                             </td>
                             <td class="d-none d-sm-table-cell">
                                 {{ \Carbon\Carbon::parse($role_user->created_at)->diffForHumans() }}
