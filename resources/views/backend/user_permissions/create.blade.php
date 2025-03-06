@@ -10,7 +10,7 @@
             <div class="card-naving">
                 <h3 class="font-weight-bold text-primary">
                     <i class="fa fa-plus-square"></i>
-                    {{ __('panel.add_new_supervisor') }}
+                    {{ __('panel.add_new_user_permission') }}
                 </h3>
                 <ul class="breadcrumb pt-3">
                     <li>
@@ -23,7 +23,7 @@
                     </li>
                     <li class="ms-1">
                         <a href="{{ route('admin.user_permissions.index') }}">
-                            {{ __('panel.show_supervisors') }}
+                            {{ __('panel.show_user_permissions') }}
                         </a>
                     </li>
                 </ul>
