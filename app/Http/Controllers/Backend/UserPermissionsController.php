@@ -60,12 +60,10 @@ class UserPermissionsController extends Controller
 
         $user = User::where('id', $request->user_id)->first();
 
-
            //add roles
            if (isset($request->roles) && count($request->roles) > 0) {
                 $user->roles()->sync($request->roles);
             }
-
 
 
         // if (isset($request->user_groups) && count($request->user_groups) > 0) {
@@ -124,54 +122,19 @@ class UserPermissionsController extends Controller
         return view('backend.user_permissions.edit', compact('user', 'users', 'assignedRoles','roles', 'permissions'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request,  $user)
     {
         if (!auth()->user()->ability('admin', 'update_user_permissions')) {
             return redirect('admin/index');
         }
 
-        $input['first_name'] = $request->first_name;
-        $input['last_name'] = $request->last_name;
-        $input['username'] = $request->username;
-        $input['email'] = $request->email;
-        $input['mobile'] = $request->mobile;
-        if (trim($request->password) != '') {
-            $input['password'] = bcrypt($request->password);
-        }
-        $input['status'] = $request->status;
-        $input['updated_by'] = auth()->user()->full_name;
+        $user = User::where('id', $user)->first();
 
+        //add roles
+        if (isset($request->roles) && count($request->roles) > 0) {
+             $user->roles()->sync($request->roles);
+         }
 
-        if ($image = $request->file('user_image')) {
-
-            if ($supervisor->user_image != null && File::exists('assets/users/' . $supervisor->user_image)) {
-                unlink('assets/users/' . $supervisor->user_image);
-            }
-
-            $manager = new ImageManager(new Driver());
-            $file_name = Str::slug($request->username) . '_' . time() .  "." . $image->getClientOriginalExtension();
-            $img = $manager->read($request->file('user_image'));
-            // $img = $img->resize(370, 246);
-            $img->toJpeg(80)->save(base_path('public/assets/users/' . $file_name));
-
-
-            $input['user_image'] = $file_name;
-        }
-
-        $supervisor->update($input);
-        //update permission
-        //add permissions
-
-        // if (isset($request->all_permissions)) {
-        //     $permissions = Permission::get(['id']);
-        //     $supervisor->permissions()->sync($permissions);
-        // } else if (isset($request->permissions) && count($request->permissions) > 0) {
-        //     $supervisor->permissions()->sync($request->permissions);
-        // }
-
-        if (isset($request->user_groups) && count($request->user_groups) > 0) {
-            $supervisor->roles()->sync($request->user_groups);
-        }
 
         return redirect()->route('admin.user_permissions.index')->with([
             'message' => 'Updated successfully',
