@@ -114,10 +114,14 @@ class UserPermissionsController extends Controller
         // Fetch roles with the name 'users'
         $roles = Role::where('name', 'users')->get(['id', 'display_name']);
 
+            // Fetch the IDs of roles assigned to the user
+        $assignedRoles = $user->roles->pluck('id')->toArray();
+
+
         // Fetch permissions in a tree structure
         $permissions = Permission::tree();
 
-        return view('backend.user_permissions.edit', compact('user', 'users', 'roles', 'permissions'));
+        return view('backend.user_permissions.edit', compact('user', 'users', 'assignedRoles','roles', 'permissions'));
     }
 
     public function update(Request $request, User $user)
