@@ -53,11 +53,11 @@
 
 
                     {{-- user  row --}}
-                    <div class="row pt-4">
-
-                        <div class="col-md-12 col-sm-12 ">
-
+                    <div class="row">
+                        <div class="col-sm-12 col-md-3 pt-3">
                             <label for="user_id"> {{ __('panel.user') }} </label>
+                        </div>
+                        <div class="col-sm-12 col-md-9 pt-3">
                             <select name="user_id" class="form-control select2 child" id="user_id">
                                 @forelse ($users as $user)
                                     <option value="{{ $user->id }}"
@@ -67,15 +67,14 @@
                                 @endforelse
                             </select>
                         </div>
-
                     </div>
 
                     {{-- roles  row --}}
-                    <div class="row pt-4">
-
-                        <div class="col-md-12 col-sm-12 ">
-
-                            <label for="roles"> {{ __('panel.roles') }} </label>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-3 pt-3">
+                            <label for="user_id"> {{ __('panel.user') }} </label>
+                        </div>
+                        <div class="col-sm-12 col-md-9 pt-3">
                             <select name="roles[]" class="form-control select2 child " multiple="multiple">
                                 @forelse ($roles as $role)
                                     <option value="{{ $role->id }}"
@@ -84,11 +83,7 @@
                                 @empty
                                 @endforelse
                             </select>
-
-
-
                         </div>
-
                     </div>
 
 
