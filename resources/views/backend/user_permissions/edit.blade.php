@@ -56,10 +56,11 @@
 
 
                     {{-- user  row --}}
-                    <div class="row pt-4">
-
-                        <div class="col-md-12 col-sm-12 ">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-3 pt-3">
                             <label for="user_id"> {{ __('panel.user') }} </label>
+                        </div>
+                        <div class="col-sm-12 col-md-9 pt-3">
                             <select name="user_id" class="form-control select2 child" id="user_id">
                                 @forelse ($users as $u)
                                     <option value="{{ $u->id }}" {{ old('user_id', $u->id) == $user->id ? 'selected' : null }}>
@@ -70,13 +71,14 @@
                                 @endforelse
                             </select>
                         </div>
-
                     </div>
 
                     {{-- roles  row --}}
-                    <div class="row pt-4">
-                        <div class="col-md-12 col-sm-12 ">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-3 pt-3">
                             <label for="roles"> {{ __('panel.roles') }} </label>
+                        </div>
+                        <div class="col-sm-12 col-md-9 pt-3">
                             <select name="roles[]" class="form-control select2 child " multiple="multiple">
                                 @forelse ($roles as $role)
                                     <option value="{{ $role->id }}"
@@ -87,16 +89,6 @@
                             </select>
                         </div>
                     </div>
-
-                    {{-- <label for="instructors">{{ __('panel.instructors') }}</label>
-                    <select name="instructors[]" class="form-control select2 child" multiple="multiple">
-                        @forelse ($instructors as $instructor)
-                            <option value="{{ $instructor->id }}"
-                                {{ in_array($instructor->id, old('instructors', $courseinstructors)) ? 'selected' : null }}>
-                                {{ $instructor->first_name }} {{ $instructor->last_name }}</option>
-                        @empty
-                        @endforelse
-                    </select> --}}
 
                     <div class="row pt-4">
                         <div class="col-sm-12">
