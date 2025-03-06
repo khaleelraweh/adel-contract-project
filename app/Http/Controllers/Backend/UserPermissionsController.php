@@ -62,16 +62,10 @@ class UserPermissionsController extends Controller
             return redirect('admin/index');
         }
 
-        dd($request->user_id);
 
-        $input['first_name'] = $request->first_name;
-        $input['last_name'] = $request->last_name;
-        $input['username'] = $request->username;
-        $input['email'] = $request->email;
-        $input['mobile'] = $request->mobile;
-        $input['password'] = bcrypt($request->password);
-        $input['status'] = $request->status;
-        $input['created_by'] = auth()->user()->full_name;
+        $user = User::where('id', $request->user_id)->first();
+
+        dd($user);
 
 
         if ($image = $request->file('user_image')) {
