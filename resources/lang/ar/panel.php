@@ -1934,6 +1934,8 @@ return [
 
 
     'no_contracts_found'                                    =>  'لم يتم العثور على اي عقود',
+    'user_information'                                      =>  'معلومات المستخدم',
+    'no_permissions_assigned'                               =>  'لا توجد صلاحيات مسندة',
 
 
 

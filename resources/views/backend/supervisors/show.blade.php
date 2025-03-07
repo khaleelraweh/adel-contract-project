@@ -43,7 +43,7 @@
                         <div class="card-header bg-light">
                             <h4 class="font-weight-bold text-primary mb-0">
                                 <i class="fa fa-user me-2"></i>
-                                {{ __('panel.supervisor_information') }}
+                                {{ __('panel.user_information') }}
                             </h4>
                         </div>
                         <div class="card-body">
