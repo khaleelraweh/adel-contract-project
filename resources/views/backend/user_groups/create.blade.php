@@ -181,4 +181,31 @@
                 }
             });
         </script>
+
+        <script>
+            $(document).ready(function() {
+            // Function to handle checkbox changes
+            function handleCheckboxChange() {
+            const $this = $(this);
+            const isChecked = $this.prop('checked');
+
+            // If this is a parent checkbox, check/uncheck all its children
+            if ($this.hasClass('parent-checkbox')) {
+                $this.closest('.permission-group').find('.child-permissions input[type="checkbox"]').prop('checked', isChecked);
+            }
+
+            // If this is a child checkbox, check/uncheck its parent
+            if ($this.closest('.child-permissions').length) {
+                const $parentCheckbox = $this.closest('.permission-group').find('.parent-checkbox');
+                const allChildrenChecked = $this.closest('.child-permissions').find('input[type="checkbox"]').length === $this.closest('.child-permissions').find('input[type="checkbox"]:checked').length;
+                $parentCheckbox.prop('checked', allChildrenChecked);
+            }
+            }
+
+            // Attach the event handler to all checkboxes
+            $('.parent-checkbox, .child-permissions input[type="checkbox"]').on('change', handleCheckboxChange);
+            });
+        </script>
     @endsection
+
+

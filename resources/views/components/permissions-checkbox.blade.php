@@ -2,8 +2,8 @@
     <!-- Parent Permission Checkbox -->
     <div class="permission-title">
         <input type="checkbox" name="permissions[]" value="{{ $permission->id }}"
-            id="permission_{{ $permission->id }}" class="parent-checkbox"
-            {{ in_array($permission->id, $assignedPermissions) ? 'checked' : '' }} />
+               id="permission_{{ $permission->id }}" class="parent-checkbox"
+               {{ in_array($permission->id, $assignedPermissions) ? 'checked' : '' }} />
         <label class="fw-bold" for="permission_{{ $permission->id }}">
             {{ $permission->display_name }}
         </label>
