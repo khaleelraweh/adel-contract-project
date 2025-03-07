@@ -114,6 +114,10 @@ class SupervisorController extends Controller
         if (!auth()->user()->ability('admin', 'display_supervisors')) {
             return redirect('admin/index');
         }
+
+               // Fetch the user with their roles and permissions
+        $supervisor = $supervisor->with(['roles.permissions'])->where('id', $supervisor->id)->first();
+
         return view('backend.supervisors.show', compact('supervisor'));
     }
 
