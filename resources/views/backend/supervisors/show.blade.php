@@ -81,6 +81,23 @@
                                             </td>
                                         </tr>
                                         <tr>
+                                            <th>{{ __('panel.roles') }}</th>
+                                            <td>
+                                                @if ($supervisor->roles->count() > 0)
+                                                    <ul class="list-unstyled">
+                                                        @foreach ($supervisor->roles as $role)
+                                                            <li>
+                                                                    <i class="fa fa-check-circle text-success me-2"></i>
+                                                                    {{ $role->display_name }}
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                @else
+                                                    <span class="text-muted">{{ __('panel.no_roles_assigned') }}</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             <th>{{ __('panel.permissions') }}</th>
                                             <td>
                                                 @if ($supervisor->permissions->count() > 0)
