@@ -87,8 +87,20 @@
                                                     <ul class="list-unstyled">
                                                         @foreach ($supervisor->roles as $role)
                                                             <li>
-                                                                    <i class="fa fa-check-circle text-success me-2"></i>
-                                                                    {{ $role->display_name }}
+                                                                <i class="fa fa-check-circle text-success me-2"></i>
+                                                                {{ $role->display_name }}
+                                                                @if ($role->permissions->count() > 0)
+                                                                    <ul class="list-unstyled ms-4">
+                                                                        @foreach ($role->permissions as $permission)
+                                                                            <li>
+                                                                                <i class="fa fa-circle text-info me-2"></i>
+                                                                                {{ $permission->display_name }}
+                                                                            </li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                @else
+                                                                    <span class="text-muted ms-4">{{ __('panel.no_permissions_assigned') }}</span>
+                                                                @endif
                                                             </li>
                                                         @endforeach
                                                     </ul>
