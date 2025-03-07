@@ -99,7 +99,7 @@
                                                                         @endforeach
                                                                     </ul>
                                                                 @else
-                                                                    <span class="text-muted ms-4">{{ __('panel.no_permissions_assigned') }}</span>
+                                                                    <span class="text-muted ms-4">{{ __('panel.no_individual_permissions_assigned_to_the_user') }}</span>
                                                                 @endif
                                                             </li>
                                                         @endforeach

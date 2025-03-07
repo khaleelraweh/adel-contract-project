@@ -1937,7 +1937,7 @@ return [
     'user_information'                                      =>  'معلومات المستخدم',
     'no_permissions_assigned'                               =>  'لا توجد صلاحيات مسندة',
     'no_roles_assigned'                                     =>  'لا توجد أدوار مسندة',
-
+    'no_individual_permissions_assigned_to_the_user'        =>  'لا توجد صلاحيات فردية مسندة للمستخدم',
 
 
 
