@@ -82,22 +82,27 @@
                                                 <i data-feather="eye" class="icon-sm me-2"></i>
                                                 <span class="">{{ __('panel.operation_show') }}</span>
                                             </a>
-                                            @if (!$user_group->display_name=="Default Access Home Page")
-                                                <a class="dropdown-item d-flex align-items-center"
-                                                    href="{{ route('admin.user_groups.edit', $user_group->id) }}">
-                                                    <i data-feather="edit-2" class="icon-sm me-2"></i>
-                                                    <span class="">{{ __('panel.operation_edit') }}</span>
-                                                </a>
+                                            @if ($user_group->display_name==="Default Access Home Page")
+
+                                            @else
+                                            <a class="dropdown-item d-flex align-items-center"
+                                                href="{{ route('admin.user_groups.edit', $user_group->id) }}">
+                                                <i data-feather="edit-2" class="icon-sm me-2"></i>
+                                                <span class="">{{ __('panel.operation_edit') }}</span>
+                                            </a>
+
                                             @endif
 
 
-                                            @if (!$user_group->display_name=="Default Access Home Page")
-                                                <a href="javascript:void(0);"
-                                                    onclick="confirmDelete('delete-user_group-{{ $user_group->id }}', '{{ __('panel.confirm_delete_message') }}', '{{ __('panel.yes_delete') }}', '{{ __('panel.cancel') }}')"
-                                                    class="dropdown-item d-flex align-items-center">
-                                                    <i data-feather="trash" class="icon-sm me-2"></i>
-                                                    <span class="">{{ __('panel.operation_delete') }}</span>
-                                                </a>
+                                            @if ($user_group->display_name==="Default Access Home Page")
+
+                                            @else
+                                            <a href="javascript:void(0);"
+                                                onclick="confirmDelete('delete-user_group-{{ $user_group->id }}', '{{ __('panel.confirm_delete_message') }}', '{{ __('panel.yes_delete') }}', '{{ __('panel.cancel') }}')"
+                                                class="dropdown-item d-flex align-items-center">
+                                                <i data-feather="trash" class="icon-sm me-2"></i>
+                                                <span class="">{{ __('panel.operation_delete') }}</span>
+                                            </a>
                                             @endif
                                             <form action="{{ route('admin.user_groups.destroy', $user_group->id) }}"
                                                 method="post" class="d-none" id="delete-user_group-{{ $user_group->id }}">
